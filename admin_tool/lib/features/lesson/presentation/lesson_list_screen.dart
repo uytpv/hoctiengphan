@@ -131,24 +131,10 @@ class LessonListScreen extends ConsumerWidget {
       columns: [
         DataColumn(
           label: const Row(
-            children: [Text('Chapter'), Icon(Icons.sort, size: 16)],
-          ),
-          onSort: (index, ascending) =>
-              ref.read(lessonFilterProvider.notifier).toggleSort('chapter'),
-        ),
-        DataColumn(
-          label: const Row(
             children: [Text('Title'), Icon(Icons.sort, size: 16)],
           ),
           onSort: (index, ascending) =>
               ref.read(lessonFilterProvider.notifier).toggleSort('title'),
-        ),
-        DataColumn(
-          label: const Row(
-            children: [Text('Display Name'), Icon(Icons.sort, size: 16)],
-          ),
-          onSort: (index, ascending) =>
-              ref.read(lessonFilterProvider.notifier).toggleSort('fullDisplay'),
         ),
         DataColumn(label: const Text('Description')),
         DataColumn(label: const Text('Actions')),
@@ -158,12 +144,10 @@ class LessonListScreen extends ConsumerWidget {
           cells: [
             DataCell(
               Text(
-                lesson.chapter,
+                lesson.title,
                 style: const TextStyle(fontWeight: FontWeight.w600),
               ),
             ),
-            DataCell(Text(lesson.title)),
-            DataCell(Text(lesson.fullDisplay)),
             DataCell(
               Text(lesson.description ?? '-', overflow: TextOverflow.ellipsis),
             ),

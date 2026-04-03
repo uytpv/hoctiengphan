@@ -14,10 +14,18 @@ const db = admin.firestore();
 async function clearCollection(collectionPath) {
   const querySnapshot = await db.collection(collectionPath).get();
   if (querySnapshot.size === 0) return;
-  const batch = db.batch();
-  querySnapshot.docs.forEach((doc) => batch.delete(doc.ref));
-  await batch.commit();
-  console.log(`Cleared collection: ${collectionPath}`);
+  
+  const docs = querySnapshot.docs;
+  const batchLimit = 500;
+  
+  for (let i = 0; i < docs.length; i += batchLimit) {
+    const batch = db.batch();
+    const chunk = docs.slice(i, i + batchLimit);
+    chunk.forEach((doc) => batch.delete(doc.ref));
+    await batch.commit();
+  }
+  
+  console.log(`Cleared collection: ${collectionPath} (${docs.length} docs)`);
 }
 
 async function seedData() {
@@ -59,24 +67,28 @@ async function seedData() {
     lessonNameMap[categoryName] = lessonRef.id;
     
     // Attempt to extract chapter and title if format is "Kappale X: Title"
-    let chapter = '';
-    let title = categoryName;
-    if (categoryName.includes(': ')) {
-        const parts = categoryName.split(': ');
-        chapter = parts[0];
-        title = parts[1];
-    }
-    
     batch.set(lessonRef, {
-      id: lessonRef.id,
-      title: title,
-      chapter: chapter,
-      fullDisplay: categoryName, // Keep original as full display sometimes useful
-      description: ''
+      title: categoryName, // Maps the old category name to the new title
+      description: `Mô tả nội dung cho bài học ${categoryName}`,
+      lessonContent: {
+        text: `Nội dung chi tiết bài học cho ${categoryName}.`,
+        videoUrl: '',
+        imageIds: []
+      },
+      grammar: {
+        text: 'Nội dung ngữ pháp đang được cập nhật.',
+        audioUrl: ''
+      },
+      speaking: {
+        text: 'Nội dung luyện nói đang được cập nhật.',
+        audioUrl: '',
+        conversationUrl: ''
+      },
+      exerciseIds: []
     });
   }
   await batch.commit();
-  console.log('Lesson documents created.');
+  console.log('Lesson documents created with new structure.');
   
   // Now add vocabulary items
   batch = db.batch();

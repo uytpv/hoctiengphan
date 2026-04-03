@@ -7,7 +7,7 @@ class LessonFilterState {
 
   LessonFilterState({
     this.searchQuery = '',
-    this.sortBy = 'chapter',
+    this.sortBy = 'title',
     this.ascending = true,
   });
 

@@ -15,8 +15,6 @@ final filteredLessonsProvider = Provider<AsyncValue<List<Lesson>>>((ref) {
       final query = filters.searchQuery.toLowerCase();
       filtered = filtered.where((l) {
         return l.title.toLowerCase().contains(query) ||
-            l.chapter.toLowerCase().contains(query) ||
-            l.fullDisplay.toLowerCase().contains(query) ||
             (l.description?.toLowerCase().contains(query) ?? false);
       }).toList();
     }
@@ -29,17 +27,9 @@ final filteredLessonsProvider = Provider<AsyncValue<List<Lesson>>>((ref) {
           valA = a.title;
           valB = b.title;
           break;
-        case 'chapter':
-          valA = a.chapter;
-          valB = b.chapter;
-          break;
-        case 'fullDisplay':
-          valA = a.fullDisplay;
-          valB = b.fullDisplay;
-          break;
         default:
-          valA = a.chapter;
-          valB = b.chapter;
+          valA = a.title;
+          valB = b.title;
       }
 
       int cmp = (valA as String).compareTo(valB as String);
