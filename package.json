@@ -1,0 +1,9 @@
+{
+  "name": "hoctiengphan-root",
+  "version": "1.0.0",
+  "scripts": {
+    "emulator:start": "firebase emulators:start --import=./emulator_data --export-on-exit",
+    "emulator:export": "firebase emulators:export ./emulator_data",
+    "init:db": "cd backend && node import-vocab.js && node init-db.js"
+  }
+}

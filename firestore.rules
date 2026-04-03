@@ -1,0 +1,55 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Kiểm tra Role Admin
+    function isAdmin() {
+      return request.auth != null && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // 1. DỮ LIỆU HỆ THỐNG (GLOBAL DATA)
+    match /roadmaps/{roadmapId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    match /vocabularies/{vocId} {
+      allow read: if request.auth != null;
+      // Cho phép tất cả user đăng nhập được TẠO từ vựng mới (Global Shared)
+      allow create: if request.auth != null;
+      // Chỉ admin mới có quyền sửa/xóa các từ vựng đã có
+      allow update, delete: if isAdmin();
+    }
+
+    match /grammar_lessons/{lessonId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    match /categories/{catId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    match /lessons/{lessonId} {
+      allow read: if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // 2. DỮ LIỆU NGƯỜI DÙNG CÁ NHÂN (USER DATA)
+    // Chỉ bảo vệ dữ liệu cá nhân: UID phải trùng khớp
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      // Quản trị viên có toàn quyền đọc/ghi tất cả profile
+      allow read, write: if isAdmin();
+      
+      // Cho phép truy cập vào các sub-collections (progress, notebook_vocabularies, notebook_grammar)
+      match /{allSubcollections=**} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+        allow read, write: if isAdmin();
+      }
+    }
+  }
+}
