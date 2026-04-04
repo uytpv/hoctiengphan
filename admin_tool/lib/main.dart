@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,6 +16,7 @@ import 'features/auth/presentation/login_screen.dart';
 import 'features/auth/providers/auth_provider.dart';
 import 'features/vocabulary/presentation/vocabulary_list_screen.dart';
 import 'features/lesson/presentation/lesson_list_screen.dart';
+import 'features/lesson/presentation/lesson_edit_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -24,6 +28,7 @@ void main() async {
     try {
       FirebaseFirestore.instance.useFirestoreEmulator('127.0.0.1', 8080);
       await FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
+      FirebaseStorage.instance.useStorageEmulator('127.0.0.1', 9199);
     } catch (e) {
       debugPrint('Emulator config failed: $e');
     }
@@ -80,6 +85,15 @@ final _routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/lessons',
             builder: (context, state) => const LessonListScreen(),
+            routes: [
+              GoRoute(
+                path: 'edit/:id',
+                builder: (context, state) {
+                  final id = state.pathParameters['id'];
+                  return LessonEditScreen(lessonId: id == 'new' ? null : id);
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -106,6 +120,16 @@ class OpiSuomeaAdminApp extends ConsumerWidget {
         fontFamily: 'Inter',
       ),
       routerConfig: router,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        FlutterQuillLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('vi', ''),
+      ],
     );
   }
 }

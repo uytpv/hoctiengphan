@@ -4,7 +4,7 @@ import '../domain/lesson.dart';
 import '../data/lesson_repository.dart';
 import 'providers/filtered_lessons_provider.dart';
 import 'providers/lesson_filter_provider.dart';
-import 'widgets/lesson_form_dialog.dart';
+import 'package:go_router/go_router.dart'; // Added this
 
 class LessonListScreen extends ConsumerWidget {
   const LessonListScreen({super.key});
@@ -171,11 +171,9 @@ class LessonListScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> _openForm(BuildContext context, {Lesson? lesson}) async {
-    showDialog(
-      context: context,
-      builder: (context) => LessonFormDialog(lesson: lesson),
-    );
+  void _openForm(BuildContext context, {Lesson? lesson}) {
+    final id = lesson?.id ?? 'new';
+    context.push('/lessons/edit/$id');
   }
 
   Future<void> _confirmDelete(
