@@ -6,8 +6,14 @@ import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:admin_tool/core/services/storage_service.dart';
+import '../../grammar/presentation/widgets/grammar_form_dialog.dart';
+import '../../exercise/presentation/widgets/exercise_form_dialog.dart';
 import 'package:admin_tool/features/lesson/data/lesson_repository.dart';
 import 'package:admin_tool/features/lesson/domain/lesson.dart';
+import 'package:admin_tool/features/grammar/data/grammar_repository.dart';
+import 'package:admin_tool/features/grammar/domain/grammar.dart';
+import 'package:admin_tool/features/exercise/data/exercise_repository.dart';
+import 'package:admin_tool/features/exercise/domain/exercise.dart';
 
 class LessonEditScreen extends ConsumerStatefulWidget {
   final String? lessonId;
@@ -22,11 +28,12 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _titleController;
   late TextEditingController _descController;
-  late TextEditingController _exerciseIdsController;
 
   late QuillController _contentController;
-  late QuillController _grammarController;
   late QuillController _speakingController;
+
+  final Set<String> _selectedGrammarIds = {};
+  final Set<String> _selectedExerciseIds = {};
 
   bool _initialized = false;
   Lesson? _originalLesson;
@@ -36,10 +43,8 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
     super.initState();
     _titleController = TextEditingController();
     _descController = TextEditingController();
-    _exerciseIdsController = TextEditingController();
 
     _contentController = QuillController.basic();
-    _grammarController = QuillController.basic();
     _speakingController = QuillController.basic();
   }
 
@@ -49,10 +54,14 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
       _originalLesson = lesson;
       _titleController.text = lesson.title;
       _descController.text = lesson.description ?? '';
-      _exerciseIdsController.text = lesson.exerciseIds.join(', ');
+      
+      _selectedGrammarIds.clear();
+      _selectedGrammarIds.addAll(lesson.grammarIds);
+      
+      _selectedExerciseIds.clear();
+      _selectedExerciseIds.addAll(lesson.exerciseIds);
 
       _contentController = _loadDelta(lesson.lessonContent.text);
-      _grammarController = _loadDelta(lesson.grammar.text);
       _speakingController = _loadDelta(lesson.speaking.text);
     }
     _initialized = true;
@@ -83,9 +92,7 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
   void dispose() {
     _titleController.dispose();
     _descController.dispose();
-    _exerciseIdsController.dispose();
     _contentController.dispose();
-    _grammarController.dispose();
     _speakingController.dispose();
     super.dispose();
   }
@@ -151,41 +158,15 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
               child: ListView(
                 padding: const EdgeInsets.all(24),
                 children: [
-                  _buildSectionTitle('General Info'),
+                  _buildSectionTitle('Title'),
                   const SizedBox(height: 16),
                   TextFormField(
                     controller: _titleController,
                     decoration: const InputDecoration(
-                      labelText: 'Title *',
+                      labelText: 'Lesson Title *',
                       border: OutlineInputBorder(),
                     ),
                     validator: (v) => v?.isEmpty ?? true ? 'Required' : null,
-                  ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    controller: _descController,
-                    decoration: const InputDecoration(
-                      labelText: 'Short Description',
-                      border: OutlineInputBorder(),
-                    ),
-                    maxLines: 2,
-                  ),
-                  const SizedBox(height: 32),
-                  _buildSectionTitle('Relations'),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    controller: _exerciseIdsController,
-                    decoration: const InputDecoration(
-                      labelText: 'Exercise IDs',
-                      hintText: 'ex1, ex2...',
-                      border: OutlineInputBorder(),
-                    ),
-                    maxLines: 2,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Separated by comma',
-                    style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
                   ),
                 ],
               ),
@@ -193,7 +174,7 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
           ),
           Expanded(
             child: DefaultTabController(
-              length: 3,
+              length: 5,
               child: Column(
                 children: [
                   Container(
@@ -204,10 +185,13 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
                       ),
                     ),
                     child: const TabBar(
+                      isScrollable: true,
                       tabs: [
-                        Tab(text: '1. LESSON CONTENT'),
-                        Tab(text: '2. GRAMMAR'),
+                        Tab(text: '1. DESCRIPTION'),
+                        Tab(text: '2. LESSON CONTENT'),
                         Tab(text: '3. SPEAKING'),
+                        Tab(text: '4. GRAMMAR'),
+                        Tab(text: '5. EXERCISE'),
                       ],
                       labelColor: Colors.blueAccent,
                       indicatorColor: Colors.blueAccent,
@@ -217,9 +201,59 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
                   Expanded(
                     child: TabBarView(
                       children: [
+                        // Tab 1: Description
+                        Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _buildSectionTitle('Short Description'),
+                              const SizedBox(height: 16),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _descController,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Enter a short summary of the lesson...',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  maxLines: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Tab 2: Content
                         _buildEditorSection(_contentController),
-                        _buildEditorSection(_grammarController),
+                        // Tab 3: Speaking
                         _buildEditorSection(_speakingController),
+                        // Tab 4: Grammar
+                        _buildRelationTab<Grammar>(
+                          streamProvider: grammarsStreamProvider,
+                          selectedIds: _selectedGrammarIds,
+                          titleAttr: (g) => g.title,
+                          idAttr: (g) => g.id,
+                          onCreateNew: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => const GrammarFormDialog(),
+                            );
+                          },
+                          emptyLabel: 'Grammar',
+                        ),
+                        // Tab 5: Exercise
+                        _buildRelationTab<Exercise>(
+                          streamProvider: exercisesStreamProvider,
+                          selectedIds: _selectedExerciseIds,
+                          titleAttr: (e) => e.title,
+                          idAttr: (e) => e.id,
+                          onCreateNew: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => const ExerciseFormDialog(),
+                            );
+                          },
+                          emptyLabel: 'Exercise',
+                        ),
                       ],
                     ),
                   ),
@@ -229,6 +263,75 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildRelationTab<T>({
+    required StreamProvider<List<T>> streamProvider,
+    required Set<String> selectedIds,
+    required String Function(T) titleAttr,
+    required String Function(T) idAttr,
+    required VoidCallback onCreateNew,
+    required String emptyLabel,
+  }) {
+    final asyncData = ref.watch(streamProvider);
+    return asyncData.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, s) => Center(child: Text('Error: $e')),
+      data: (items) {
+        if (items.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('No $emptyLabel items found.'),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  onPressed: onCreateNew,
+                  icon: const Icon(Icons.add),
+                  label: Text('Create New $emptyLabel'),
+                ),
+              ],
+            ),
+          );
+        }
+
+        return ListView.separated(
+          padding: const EdgeInsets.all(24),
+          itemCount: items.length,
+          separatorBuilder: (context, index) => const Divider(),
+          itemBuilder: (context, index) {
+            final item = items[index];
+            final id = idAttr(item);
+            final title = titleAttr(item);
+            final isAdded = selectedIds.contains(id);
+
+            return ListTile(
+              title: Text(title),
+              subtitle: Text('ID: $id'),
+              trailing: isAdded
+                  ? IconButton(
+                      icon: const Icon(Icons.remove_circle, color: Colors.red),
+                      onPressed: () {
+                        setState(() {
+                          selectedIds.remove(id);
+                        });
+                      },
+                      tooltip: 'Remove',
+                    )
+                  : IconButton(
+                      icon: const Icon(Icons.add_circle, color: Colors.green),
+                      onPressed: () {
+                        setState(() {
+                          selectedIds.add(id);
+                        });
+                      },
+                      tooltip: 'Add',
+                    ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -318,16 +421,10 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
         description: _descController.text,
         lessonContent: (_originalLesson?.lessonContent ?? const LessonContent())
             .copyWith(text: _saveDelta(_contentController)),
-        grammar: (_originalLesson?.grammar ?? const LessonGrammar()).copyWith(
-          text: _saveDelta(_grammarController),
-        ),
+        grammarIds: _selectedGrammarIds.toList(),
         speaking: (_originalLesson?.speaking ?? const LessonSpeaking())
             .copyWith(text: _saveDelta(_speakingController)),
-        exerciseIds: _exerciseIdsController.text
-            .split(',')
-            .map((e) => e.trim())
-            .where((e) => e.isNotEmpty)
-            .toList(),
+        exerciseIds: _selectedExerciseIds.toList(),
       );
 
       final repository = ref.read(lessonRepositoryProvider);

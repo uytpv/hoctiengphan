@@ -34,16 +34,34 @@ class AdminSidebar extends StatelessWidget {
             onTap: () => context.go('/lessons'),
           ),
           _SidebarItem(
+            icon: Icons.local_activity,
+            title: 'Activities',
+            isSelected: location.startsWith('/activities'),
+            onTap: () => context.go('/activities'),
+          ),
+          _SidebarItem(
             icon: Icons.text_snippet,
             title: 'Grammar',
             isSelected: location.startsWith('/grammar'),
-            onTap: () {}, // To be implemented
+            onTap: () => context.go('/grammar'),
+          ),
+          _SidebarItem(
+            icon: Icons.assignment,
+            title: 'Exercises',
+            isSelected: location.startsWith('/exercises'),
+            onTap: () => context.go('/exercises'),
           ),
           _SidebarItem(
             icon: Icons.map,
             title: 'Study Plans',
             isSelected: location.startsWith('/study-plans'),
-            onTap: () {}, // To be implemented
+            onTap: () => context.go('/study-plans'),
+          ),
+          _SidebarItem(
+            icon: Icons.group,
+            title: 'Students',
+            isSelected: location.startsWith('/students'),
+            onTap: () => context.go('/students'),
           ),
         ],
       ),

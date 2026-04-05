@@ -8,9 +8,11 @@ class Lesson with _$Lesson {
   const factory Lesson({
     required String id,
     @Default('') String title,
+    @Default('') String chapter, // e.g., "Kappale 1"
+    int? week, // Optionally link directly to a week in study plan
     String? description, // Mô tả ngắn gọn nội dung bài học
     @Default(LessonContent()) LessonContent lessonContent, // Phần 1: Bài học
-    @Default(LessonGrammar()) LessonGrammar grammar,      // Phần 2: Ngữ pháp
+    @Default([]) List<String> grammarIds,                 // Phần 2: Ngữ pháp (Danh sách ID liên kết)
     @Default(LessonSpeaking()) LessonSpeaking speaking,   // Phần 3: Bài nói
     @Default([]) List<String> exerciseIds,               // Phần 4: Bài tập (Danh sách ID)
   }) = _Lesson;
@@ -27,16 +29,6 @@ class LessonContent with _$LessonContent {
   }) = _LessonContent;
 
   factory LessonContent.fromJson(Map<String, dynamic> json) => _$LessonContentFromJson(json);
-}
-
-@freezed
-class LessonGrammar with _$LessonGrammar {
-  const factory LessonGrammar({
-    @Default('') String text,          // Nội dung giải thích ngữ pháp
-    String? audioUrl,                  // Audio giải thích hoặc ví dụ
-  }) = _LessonGrammar;
-
-  factory LessonGrammar.fromJson(Map<String, dynamic> json) => _$LessonGrammarFromJson(json);
 }
 
 @freezed

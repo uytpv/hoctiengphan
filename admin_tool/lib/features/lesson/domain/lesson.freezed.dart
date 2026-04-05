@@ -23,12 +23,15 @@ Lesson _$LessonFromJson(Map<String, dynamic> json) {
 mixin _$Lesson {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get chapter => throw _privateConstructorUsedError; // e.g., "Kappale 1"
+  int? get week =>
+      throw _privateConstructorUsedError; // Optionally link directly to a week in study plan
   String? get description =>
       throw _privateConstructorUsedError; // Mô tả ngắn gọn nội dung bài học
   LessonContent get lessonContent =>
       throw _privateConstructorUsedError; // Phần 1: Bài học
-  LessonGrammar get grammar =>
-      throw _privateConstructorUsedError; // Phần 2: Ngữ pháp
+  List<String> get grammarIds =>
+      throw _privateConstructorUsedError; // Phần 2: Ngữ pháp (Danh sách ID liên kết)
   LessonSpeaking get speaking =>
       throw _privateConstructorUsedError; // Phần 3: Bài nói
   List<String> get exerciseIds => throw _privateConstructorUsedError;
@@ -50,15 +53,16 @@ abstract class $LessonCopyWith<$Res> {
   $Res call({
     String id,
     String title,
+    String chapter,
+    int? week,
     String? description,
     LessonContent lessonContent,
-    LessonGrammar grammar,
+    List<String> grammarIds,
     LessonSpeaking speaking,
     List<String> exerciseIds,
   });
 
   $LessonContentCopyWith<$Res> get lessonContent;
-  $LessonGrammarCopyWith<$Res> get grammar;
   $LessonSpeakingCopyWith<$Res> get speaking;
 }
 
@@ -79,9 +83,11 @@ class _$LessonCopyWithImpl<$Res, $Val extends Lesson>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? chapter = null,
+    Object? week = freezed,
     Object? description = freezed,
     Object? lessonContent = null,
-    Object? grammar = null,
+    Object? grammarIds = null,
     Object? speaking = null,
     Object? exerciseIds = null,
   }) {
@@ -95,6 +101,14 @@ class _$LessonCopyWithImpl<$Res, $Val extends Lesson>
                 ? _value.title
                 : title // ignore: cast_nullable_to_non_nullable
                       as String,
+            chapter: null == chapter
+                ? _value.chapter
+                : chapter // ignore: cast_nullable_to_non_nullable
+                      as String,
+            week: freezed == week
+                ? _value.week
+                : week // ignore: cast_nullable_to_non_nullable
+                      as int?,
             description: freezed == description
                 ? _value.description
                 : description // ignore: cast_nullable_to_non_nullable
@@ -103,10 +117,10 @@ class _$LessonCopyWithImpl<$Res, $Val extends Lesson>
                 ? _value.lessonContent
                 : lessonContent // ignore: cast_nullable_to_non_nullable
                       as LessonContent,
-            grammar: null == grammar
-                ? _value.grammar
-                : grammar // ignore: cast_nullable_to_non_nullable
-                      as LessonGrammar,
+            grammarIds: null == grammarIds
+                ? _value.grammarIds
+                : grammarIds // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
             speaking: null == speaking
                 ? _value.speaking
                 : speaking // ignore: cast_nullable_to_non_nullable
@@ -134,16 +148,6 @@ class _$LessonCopyWithImpl<$Res, $Val extends Lesson>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LessonGrammarCopyWith<$Res> get grammar {
-    return $LessonGrammarCopyWith<$Res>(_value.grammar, (value) {
-      return _then(_value.copyWith(grammar: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Lesson
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $LessonSpeakingCopyWith<$Res> get speaking {
     return $LessonSpeakingCopyWith<$Res>(_value.speaking, (value) {
       return _then(_value.copyWith(speaking: value) as $Val);
@@ -162,17 +166,17 @@ abstract class _$$LessonImplCopyWith<$Res> implements $LessonCopyWith<$Res> {
   $Res call({
     String id,
     String title,
+    String chapter,
+    int? week,
     String? description,
     LessonContent lessonContent,
-    LessonGrammar grammar,
+    List<String> grammarIds,
     LessonSpeaking speaking,
     List<String> exerciseIds,
   });
 
   @override
   $LessonContentCopyWith<$Res> get lessonContent;
-  @override
-  $LessonGrammarCopyWith<$Res> get grammar;
   @override
   $LessonSpeakingCopyWith<$Res> get speaking;
 }
@@ -193,9 +197,11 @@ class __$$LessonImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? chapter = null,
+    Object? week = freezed,
     Object? description = freezed,
     Object? lessonContent = null,
-    Object? grammar = null,
+    Object? grammarIds = null,
     Object? speaking = null,
     Object? exerciseIds = null,
   }) {
@@ -209,6 +215,14 @@ class __$$LessonImplCopyWithImpl<$Res>
             ? _value.title
             : title // ignore: cast_nullable_to_non_nullable
                   as String,
+        chapter: null == chapter
+            ? _value.chapter
+            : chapter // ignore: cast_nullable_to_non_nullable
+                  as String,
+        week: freezed == week
+            ? _value.week
+            : week // ignore: cast_nullable_to_non_nullable
+                  as int?,
         description: freezed == description
             ? _value.description
             : description // ignore: cast_nullable_to_non_nullable
@@ -217,10 +231,10 @@ class __$$LessonImplCopyWithImpl<$Res>
             ? _value.lessonContent
             : lessonContent // ignore: cast_nullable_to_non_nullable
                   as LessonContent,
-        grammar: null == grammar
-            ? _value.grammar
-            : grammar // ignore: cast_nullable_to_non_nullable
-                  as LessonGrammar,
+        grammarIds: null == grammarIds
+            ? _value._grammarIds
+            : grammarIds // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
         speaking: null == speaking
             ? _value.speaking
             : speaking // ignore: cast_nullable_to_non_nullable
@@ -240,12 +254,15 @@ class _$LessonImpl implements _Lesson {
   const _$LessonImpl({
     required this.id,
     this.title = '',
+    this.chapter = '',
+    this.week,
     this.description,
     this.lessonContent = const LessonContent(),
-    this.grammar = const LessonGrammar(),
+    final List<String> grammarIds = const [],
     this.speaking = const LessonSpeaking(),
     final List<String> exerciseIds = const [],
-  }) : _exerciseIds = exerciseIds;
+  }) : _grammarIds = grammarIds,
+       _exerciseIds = exerciseIds;
 
   factory _$LessonImpl.fromJson(Map<String, dynamic> json) =>
       _$$LessonImplFromJson(json);
@@ -256,16 +273,30 @@ class _$LessonImpl implements _Lesson {
   @JsonKey()
   final String title;
   @override
+  @JsonKey()
+  final String chapter;
+  // e.g., "Kappale 1"
+  @override
+  final int? week;
+  // Optionally link directly to a week in study plan
+  @override
   final String? description;
   // Mô tả ngắn gọn nội dung bài học
   @override
   @JsonKey()
   final LessonContent lessonContent;
   // Phần 1: Bài học
+  final List<String> _grammarIds;
+  // Phần 1: Bài học
   @override
   @JsonKey()
-  final LessonGrammar grammar;
-  // Phần 2: Ngữ pháp
+  List<String> get grammarIds {
+    if (_grammarIds is EqualUnmodifiableListView) return _grammarIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_grammarIds);
+  }
+
+  // Phần 2: Ngữ pháp (Danh sách ID liên kết)
   @override
   @JsonKey()
   final LessonSpeaking speaking;
@@ -282,7 +313,7 @@ class _$LessonImpl implements _Lesson {
 
   @override
   String toString() {
-    return 'Lesson(id: $id, title: $title, description: $description, lessonContent: $lessonContent, grammar: $grammar, speaking: $speaking, exerciseIds: $exerciseIds)';
+    return 'Lesson(id: $id, title: $title, chapter: $chapter, week: $week, description: $description, lessonContent: $lessonContent, grammarIds: $grammarIds, speaking: $speaking, exerciseIds: $exerciseIds)';
   }
 
   @override
@@ -292,11 +323,16 @@ class _$LessonImpl implements _Lesson {
             other is _$LessonImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.chapter, chapter) || other.chapter == chapter) &&
+            (identical(other.week, week) || other.week == week) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.lessonContent, lessonContent) ||
                 other.lessonContent == lessonContent) &&
-            (identical(other.grammar, grammar) || other.grammar == grammar) &&
+            const DeepCollectionEquality().equals(
+              other._grammarIds,
+              _grammarIds,
+            ) &&
             (identical(other.speaking, speaking) ||
                 other.speaking == speaking) &&
             const DeepCollectionEquality().equals(
@@ -311,9 +347,11 @@ class _$LessonImpl implements _Lesson {
     runtimeType,
     id,
     title,
+    chapter,
+    week,
     description,
     lessonContent,
-    grammar,
+    const DeepCollectionEquality().hash(_grammarIds),
     speaking,
     const DeepCollectionEquality().hash(_exerciseIds),
   );
@@ -336,9 +374,11 @@ abstract class _Lesson implements Lesson {
   const factory _Lesson({
     required final String id,
     final String title,
+    final String chapter,
+    final int? week,
     final String? description,
     final LessonContent lessonContent,
-    final LessonGrammar grammar,
+    final List<String> grammarIds,
     final LessonSpeaking speaking,
     final List<String> exerciseIds,
   }) = _$LessonImpl;
@@ -350,11 +390,15 @@ abstract class _Lesson implements Lesson {
   @override
   String get title;
   @override
+  String get chapter; // e.g., "Kappale 1"
+  @override
+  int? get week; // Optionally link directly to a week in study plan
+  @override
   String? get description; // Mô tả ngắn gọn nội dung bài học
   @override
   LessonContent get lessonContent; // Phần 1: Bài học
   @override
-  LessonGrammar get grammar; // Phần 2: Ngữ pháp
+  List<String> get grammarIds; // Phần 2: Ngữ pháp (Danh sách ID liên kết)
   @override
   LessonSpeaking get speaking; // Phần 3: Bài nói
   @override
@@ -578,176 +622,6 @@ abstract class _LessonContent implements LessonContent {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LessonContentImplCopyWith<_$LessonContentImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-LessonGrammar _$LessonGrammarFromJson(Map<String, dynamic> json) {
-  return _LessonGrammar.fromJson(json);
-}
-
-/// @nodoc
-mixin _$LessonGrammar {
-  String get text =>
-      throw _privateConstructorUsedError; // Nội dung giải thích ngữ pháp
-  String? get audioUrl => throw _privateConstructorUsedError;
-
-  /// Serializes this LessonGrammar to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of LessonGrammar
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LessonGrammarCopyWith<LessonGrammar> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LessonGrammarCopyWith<$Res> {
-  factory $LessonGrammarCopyWith(
-    LessonGrammar value,
-    $Res Function(LessonGrammar) then,
-  ) = _$LessonGrammarCopyWithImpl<$Res, LessonGrammar>;
-  @useResult
-  $Res call({String text, String? audioUrl});
-}
-
-/// @nodoc
-class _$LessonGrammarCopyWithImpl<$Res, $Val extends LessonGrammar>
-    implements $LessonGrammarCopyWith<$Res> {
-  _$LessonGrammarCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of LessonGrammar
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? text = null, Object? audioUrl = freezed}) {
-    return _then(
-      _value.copyWith(
-            text: null == text
-                ? _value.text
-                : text // ignore: cast_nullable_to_non_nullable
-                      as String,
-            audioUrl: freezed == audioUrl
-                ? _value.audioUrl
-                : audioUrl // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
-  }
-}
-
-/// @nodoc
-abstract class _$$LessonGrammarImplCopyWith<$Res>
-    implements $LessonGrammarCopyWith<$Res> {
-  factory _$$LessonGrammarImplCopyWith(
-    _$LessonGrammarImpl value,
-    $Res Function(_$LessonGrammarImpl) then,
-  ) = __$$LessonGrammarImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String text, String? audioUrl});
-}
-
-/// @nodoc
-class __$$LessonGrammarImplCopyWithImpl<$Res>
-    extends _$LessonGrammarCopyWithImpl<$Res, _$LessonGrammarImpl>
-    implements _$$LessonGrammarImplCopyWith<$Res> {
-  __$$LessonGrammarImplCopyWithImpl(
-    _$LessonGrammarImpl _value,
-    $Res Function(_$LessonGrammarImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LessonGrammar
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? text = null, Object? audioUrl = freezed}) {
-    return _then(
-      _$LessonGrammarImpl(
-        text: null == text
-            ? _value.text
-            : text // ignore: cast_nullable_to_non_nullable
-                  as String,
-        audioUrl: freezed == audioUrl
-            ? _value.audioUrl
-            : audioUrl // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$LessonGrammarImpl implements _LessonGrammar {
-  const _$LessonGrammarImpl({this.text = '', this.audioUrl});
-
-  factory _$LessonGrammarImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LessonGrammarImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final String text;
-  // Nội dung giải thích ngữ pháp
-  @override
-  final String? audioUrl;
-
-  @override
-  String toString() {
-    return 'LessonGrammar(text: $text, audioUrl: $audioUrl)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LessonGrammarImpl &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.audioUrl, audioUrl) ||
-                other.audioUrl == audioUrl));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, text, audioUrl);
-
-  /// Create a copy of LessonGrammar
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LessonGrammarImplCopyWith<_$LessonGrammarImpl> get copyWith =>
-      __$$LessonGrammarImplCopyWithImpl<_$LessonGrammarImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LessonGrammarImplToJson(this);
-  }
-}
-
-abstract class _LessonGrammar implements LessonGrammar {
-  const factory _LessonGrammar({final String text, final String? audioUrl}) =
-      _$LessonGrammarImpl;
-
-  factory _LessonGrammar.fromJson(Map<String, dynamic> json) =
-      _$LessonGrammarImpl.fromJson;
-
-  @override
-  String get text; // Nội dung giải thích ngữ pháp
-  @override
-  String? get audioUrl;
-
-  /// Create a copy of LessonGrammar
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LessonGrammarImplCopyWith<_$LessonGrammarImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

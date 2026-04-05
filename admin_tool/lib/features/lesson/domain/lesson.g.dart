@@ -9,13 +9,17 @@ part of 'lesson.dart';
 _$LessonImpl _$$LessonImplFromJson(Map<String, dynamic> json) => _$LessonImpl(
   id: json['id'] as String,
   title: json['title'] as String? ?? '',
+  chapter: json['chapter'] as String? ?? '',
+  week: (json['week'] as num?)?.toInt(),
   description: json['description'] as String?,
   lessonContent: json['lessonContent'] == null
       ? const LessonContent()
       : LessonContent.fromJson(json['lessonContent'] as Map<String, dynamic>),
-  grammar: json['grammar'] == null
-      ? const LessonGrammar()
-      : LessonGrammar.fromJson(json['grammar'] as Map<String, dynamic>),
+  grammarIds:
+      (json['grammarIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
   speaking: json['speaking'] == null
       ? const LessonSpeaking()
       : LessonSpeaking.fromJson(json['speaking'] as Map<String, dynamic>),
@@ -30,9 +34,11 @@ Map<String, dynamic> _$$LessonImplToJson(_$LessonImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'chapter': instance.chapter,
+      'week': instance.week,
       'description': instance.description,
       'lessonContent': instance.lessonContent.toJson(),
-      'grammar': instance.grammar.toJson(),
+      'grammarIds': instance.grammarIds,
       'speaking': instance.speaking.toJson(),
       'exerciseIds': instance.exerciseIds,
     };
@@ -54,15 +60,6 @@ Map<String, dynamic> _$$LessonContentImplToJson(_$LessonContentImpl instance) =>
       'videoUrl': instance.videoUrl,
       'imageIds': instance.imageIds,
     };
-
-_$LessonGrammarImpl _$$LessonGrammarImplFromJson(Map<String, dynamic> json) =>
-    _$LessonGrammarImpl(
-      text: json['text'] as String? ?? '',
-      audioUrl: json['audioUrl'] as String?,
-    );
-
-Map<String, dynamic> _$$LessonGrammarImplToJson(_$LessonGrammarImpl instance) =>
-    <String, dynamic>{'text': instance.text, 'audioUrl': instance.audioUrl};
 
 _$LessonSpeakingImpl _$$LessonSpeakingImplFromJson(Map<String, dynamic> json) =>
     _$LessonSpeakingImpl(

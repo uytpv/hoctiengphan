@@ -16,30 +16,29 @@ class LessonRepository {
 
   LessonRepository(this._firestore);
 
-  CollectionReference<Map<String, dynamic>> get _collection =>
-      _firestore.collection('lessons');
+  CollectionReference<Lesson> get _typedCollection =>
+      _firestore.collection('lessons').withConverter<Lesson>(
+            fromFirestore: (snapshot, _) => Lesson.fromJson(snapshot.data()!..['id'] = snapshot.id),
+            toFirestore: (lesson, _) => lesson.toJson()..remove('id'),
+          );
 
   Stream<List<Lesson>> watchLessons() {
-    return _collection.snapshots().map(
-      (snapshot) => snapshot.docs
-          .map((doc) => Lesson.fromJson({...doc.data(), 'id': doc.id}))
-          .toList(),
+    return _typedCollection.snapshots().map(
+      (snapshot) => snapshot.docs.map((doc) => doc.data()).toList()
+        ..sort((a, b) => a.chapter.compareTo(b.chapter)),
     );
   }
 
-  Future<void> createLesson(Lesson lesson) async {
-    final data = lesson.toJson();
-    data.remove('id'); // ID is the document ID
-    await _collection.add(data);
+  Future<List<Lesson>> getLessonsOnce() async {
+    final snapshot = await _typedCollection.get();
+    return snapshot.docs.map((doc) => doc.data()).toList()
+      ..sort((a, b) => a.chapter.compareTo(b.chapter));
   }
 
-  Future<void> updateLesson(Lesson lesson) async {
-    final data = lesson.toJson();
-    data.remove('id');
-    await _collection.doc(lesson.id).set(data, SetOptions(merge: true));
-  }
+  Future<void> createLesson(Lesson lesson) => _typedCollection.add(lesson);
 
-  Future<void> deleteLesson(String id) async {
-    await _collection.doc(id).delete();
-  }
+  Future<void> updateLesson(Lesson lesson) =>
+      _typedCollection.doc(lesson.id).set(lesson, SetOptions(merge: true));
+
+  Future<void> deleteLesson(String id) => _typedCollection.doc(id).delete();
 }

@@ -11,11 +11,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'dummy-api-key-for-emulator',
-    appId: '1:1234567890:web:abcdef',
-    messagingSenderId: '1234567890',
-    projectId: 'hoctiengphan-dev',
-    authDomain: 'hoctiengphan-dev.firebaseapp.com',
-    storageBucket: 'hoctiengphan-dev.appspot.com',
+    apiKey: 'AIzaSyCSYtbsj3SzzK0XU724hoBQTvdMCrZk2xQ',
+    appId: '1:202348514784:web:71476276fad4c4fd0baf85',
+    messagingSenderId: '202348514784',
+    projectId: 'hoc-tieng-phan',
+    authDomain: 'hoc-tieng-phan.firebaseapp.com',
+    storageBucket: 'hoc-tieng-phan.firebasestorage.app',
+    measurementId: 'G-MLPX3VRMZQ',
   );
+
 }

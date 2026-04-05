@@ -53,3 +53,5 @@ build/config\.gypi
 .npmrc
 pnpm-lock.yaml
 /.history
+
+hoc-tieng-phan-firebase-adminsdk-fbsvc-cbfffbc13f.json

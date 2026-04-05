@@ -6,6 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'features/activity/presentation/activity_list_screen.dart';
+import 'features/study_plan/presentation/study_plan_list_screen.dart';
+import 'features/study_plan/presentation/study_plan_detail_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +20,9 @@ import 'features/auth/providers/auth_provider.dart';
 import 'features/vocabulary/presentation/vocabulary_list_screen.dart';
 import 'features/lesson/presentation/lesson_list_screen.dart';
 import 'features/lesson/presentation/lesson_edit_screen.dart';
+import 'features/grammar/presentation/grammar_list_screen.dart';
+import 'features/exercise/presentation/exercise_list_screen.dart';
+import 'features/student/presentation/student_list_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -79,6 +85,10 @@ final _routerProvider = Provider<GoRouter>((ref) {
             builder: (context, state) => const DashboardView(),
           ),
           GoRoute(
+            path: '/activities',
+            builder: (context, state) => const ActivityListScreen(),
+          ),
+          GoRoute(
             path: '/vocabulary',
             builder: (context, state) => const VocabularyListScreen(),
           ),
@@ -94,6 +104,31 @@ final _routerProvider = Provider<GoRouter>((ref) {
                 },
               ),
             ],
+          ),
+          GoRoute(
+            path: '/grammar',
+            builder: (context, state) => const GrammarListScreen(),
+          ),
+          GoRoute(
+            path: '/exercises',
+            builder: (context, state) => const ExerciseListScreen(),
+          ),
+          GoRoute(
+            path: '/study-plans',
+            builder: (context, state) => const StudyPlanListScreen(),
+            routes: [
+              GoRoute(
+                path: ':id',
+                builder: (context, state) {
+                  final id = state.pathParameters['id']!;
+                  return StudyPlanDetailScreen(planId: id);
+                },
+              ),
+            ],
+          ),
+          GoRoute(
+            path: '/students',
+            builder: (context, state) => const StudentListScreen(),
           ),
         ],
       ),
