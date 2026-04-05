@@ -22,8 +22,9 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserProfile {
   String get id => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
+  String get role => throw _privateConstructorUsedError;
   List<Enrollment> get enrollments => throw _privateConstructorUsedError;
 
   /// Serializes this UserProfile to a JSON map.
@@ -45,8 +46,9 @@ abstract class $UserProfileCopyWith<$Res> {
   @useResult
   $Res call({
     String id,
-    String email,
+    String? email,
     String displayName,
+    String role,
     List<Enrollment> enrollments,
   });
 }
@@ -67,8 +69,9 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
+    Object? email = freezed,
     Object? displayName = null,
+    Object? role = null,
     Object? enrollments = null,
   }) {
     return _then(
@@ -77,13 +80,17 @@ class _$UserProfileCopyWithImpl<$Res, $Val extends UserProfile>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                       as String,
-            email: null == email
+            email: freezed == email
                 ? _value.email
                 : email // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as String?,
             displayName: null == displayName
                 ? _value.displayName
                 : displayName // ignore: cast_nullable_to_non_nullable
+                      as String,
+            role: null == role
+                ? _value.role
+                : role // ignore: cast_nullable_to_non_nullable
                       as String,
             enrollments: null == enrollments
                 ? _value.enrollments
@@ -106,8 +113,9 @@ abstract class _$$UserProfileImplCopyWith<$Res>
   @useResult
   $Res call({
     String id,
-    String email,
+    String? email,
     String displayName,
+    String role,
     List<Enrollment> enrollments,
   });
 }
@@ -127,8 +135,9 @@ class __$$UserProfileImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? email = null,
+    Object? email = freezed,
     Object? displayName = null,
+    Object? role = null,
     Object? enrollments = null,
   }) {
     return _then(
@@ -137,13 +146,17 @@ class __$$UserProfileImplCopyWithImpl<$Res>
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
                   as String,
-        email: null == email
+        email: freezed == email
             ? _value.email
             : email // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as String?,
         displayName: null == displayName
             ? _value.displayName
             : displayName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        role: null == role
+            ? _value.role
+            : role // ignore: cast_nullable_to_non_nullable
                   as String,
         enrollments: null == enrollments
             ? _value._enrollments
@@ -159,8 +172,9 @@ class __$$UserProfileImplCopyWithImpl<$Res>
 class _$UserProfileImpl implements _UserProfile {
   const _$UserProfileImpl({
     required this.id,
-    required this.email,
+    this.email,
     this.displayName = '',
+    this.role = 'student',
     final List<Enrollment> enrollments = const [],
   }) : _enrollments = enrollments;
 
@@ -170,10 +184,13 @@ class _$UserProfileImpl implements _UserProfile {
   @override
   final String id;
   @override
-  final String email;
+  final String? email;
   @override
   @JsonKey()
   final String displayName;
+  @override
+  @JsonKey()
+  final String role;
   final List<Enrollment> _enrollments;
   @override
   @JsonKey()
@@ -185,7 +202,7 @@ class _$UserProfileImpl implements _UserProfile {
 
   @override
   String toString() {
-    return 'UserProfile(id: $id, email: $email, displayName: $displayName, enrollments: $enrollments)';
+    return 'UserProfile(id: $id, email: $email, displayName: $displayName, role: $role, enrollments: $enrollments)';
   }
 
   @override
@@ -197,6 +214,7 @@ class _$UserProfileImpl implements _UserProfile {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
+            (identical(other.role, role) || other.role == role) &&
             const DeepCollectionEquality().equals(
               other._enrollments,
               _enrollments,
@@ -210,6 +228,7 @@ class _$UserProfileImpl implements _UserProfile {
     id,
     email,
     displayName,
+    role,
     const DeepCollectionEquality().hash(_enrollments),
   );
 
@@ -230,8 +249,9 @@ class _$UserProfileImpl implements _UserProfile {
 abstract class _UserProfile implements UserProfile {
   const factory _UserProfile({
     required final String id,
-    required final String email,
+    final String? email,
     final String displayName,
+    final String role,
     final List<Enrollment> enrollments,
   }) = _$UserProfileImpl;
 
@@ -241,9 +261,11 @@ abstract class _UserProfile implements UserProfile {
   @override
   String get id;
   @override
-  String get email;
+  String? get email;
   @override
   String get displayName;
+  @override
+  String get role;
   @override
   List<Enrollment> get enrollments;
 
@@ -264,7 +286,7 @@ mixin _$Enrollment {
   String get planId => throw _privateConstructorUsedError;
   String get planTitle => throw _privateConstructorUsedError;
   double get progressPercent => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError; // active, completed
+  String get status => throw _privateConstructorUsedError;
   List<String> get completedActivityIds => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get lastAccessedAt => throw _privateConstructorUsedError;
@@ -459,9 +481,7 @@ class _$EnrollmentImpl implements _Enrollment {
   @override
   @JsonKey()
   final String status;
-  // active, completed
   final List<String> _completedActivityIds;
-  // active, completed
   @override
   @JsonKey()
   List<String> get completedActivityIds {
@@ -550,7 +570,7 @@ abstract class _Enrollment implements Enrollment {
   @override
   double get progressPercent;
   @override
-  String get status; // active, completed
+  String get status;
   @override
   List<String> get completedActivityIds;
   @override

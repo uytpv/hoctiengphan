@@ -135,68 +135,89 @@ class VocabularyListScreen extends ConsumerWidget {
       );
     }
 
-    return DataTable(
-      columnSpacing: 24,
-      headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey),
-      columns: [
-        DataColumn(label: const Text('Image')),
-        DataColumn(
-          label: const Row(children: [Text('Finnish'), Icon(Icons.sort, size: 16)]),
-          onSort: (index, ascending) => ref.read(vocabularyFilterProvider.notifier).toggleSort('finnish'),
-        ),
-        DataColumn(label: const Text('Phiên âm')),
-        DataColumn(
-          label: const Row(children: [Text('Vietnamese'), Icon(Icons.sort, size: 16)]),
-          onSort: (index, ascending) => ref.read(vocabularyFilterProvider.notifier).toggleSort('vietnamese'),
-        ),
-        DataColumn(
-          label: const Row(children: [Text('English'), Icon(Icons.sort, size: 16)]),
-          onSort: (index, ascending) => ref.read(vocabularyFilterProvider.notifier).toggleSort('english'),
-        ),
-        DataColumn(label: const Text('Lesson')),
-        DataColumn(label: const Text('Category')),
-        DataColumn(label: const Text('Actions')),
-      ],
-      rows: items.map((voc) {
-        final lesson = lessons.where((l) => l.id == voc.lessonId).firstOrNull;
-        
-        return DataRow(
-          cells: [
-            DataCell(
-              voc.imageUrl != null 
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: Image.network(voc.imageUrl!, width: 40, height: 40, fit: BoxFit.cover, errorBuilder: (c, e, s) => const Icon(Icons.broken_image)),
-                  )
-                : const Icon(Icons.image_not_supported, color: Colors.grey),
+    return SizedBox(
+      width: double.infinity,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          columnSpacing: 24,
+          headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey),
+          columns: [
+            DataColumn(label: const Text('Image')),
+            DataColumn(
+              label: const Row(children: [Text('Finnish'), Icon(Icons.sort, size: 16)]),
+              onSort: (index, ascending) => ref.read(vocabularyFilterProvider.notifier).toggleSort('finnish'),
             ),
-            DataCell(Text(voc.finnish, style: const TextStyle(fontWeight: FontWeight.w600))),
-            DataCell(Text(voc.pronunciation ?? '')),
-            DataCell(Text(voc.vietnamese)),
-            DataCell(Text(voc.english)),
-            DataCell(Text(lesson?.title ?? 'Unknown')),
-            DataCell(Text(voc.category ?? '-')),
-            DataCell(
-              Row(
-                children: [
-                   IconButton(
-                     icon: const Icon(Icons.volume_up, color: Colors.green, size: 18), 
-                     onPressed: () {
-                       // TODO: Implement audio playback using voc.audioUrl
-                       ScaffoldMessenger.of(context).showSnackBar(
-                         const SnackBar(content: Text('Audio playback not implemented yet')),
-                       );
-                     },
-                     tooltip: 'Listen',
-                   ),
-                   IconButton(icon: const Icon(Icons.edit, color: Colors.blue, size: 18), onPressed: () => _openForm(context, vocabulary: voc)),
-                   IconButton(icon: const Icon(Icons.delete, color: Colors.red, size: 18), onPressed: () => _confirmDelete(context, ref, voc)),
-                ],
-              ),
+            DataColumn(label: const Text('Phiên âm')),
+            DataColumn(
+              label: const Row(children: [Text('Vietnamese'), Icon(Icons.sort, size: 16)]),
+              onSort: (index, ascending) => ref.read(vocabularyFilterProvider.notifier).toggleSort('vietnamese'),
             ),
+            DataColumn(
+              label: const Row(children: [Text('English'), Icon(Icons.sort, size: 16)]),
+              onSort: (index, ascending) => ref.read(vocabularyFilterProvider.notifier).toggleSort('english'),
+            ),
+            DataColumn(label: const Text('Lesson')),
+            DataColumn(label: const Text('Category')),
+            DataColumn(label: const Text('Actions')),
           ],
-        );
-      }).toList(),
+          rows: items.map((voc) {
+            final lesson = lessons.where((l) => l.id == voc.lessonId).firstOrNull;
+            
+            return DataRow(
+              cells: [
+                DataCell(
+                  voc.imageUrl != null 
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: Image.network(voc.imageUrl!, width: 40, height: 40, fit: BoxFit.cover, errorBuilder: (c, e, s) => const Icon(Icons.broken_image)),
+                      )
+                    : const Icon(Icons.image_not_supported, color: Colors.grey),
+                ),
+                DataCell(SizedBox(width: 150, child: Text(voc.finnish, style: const TextStyle(fontWeight: FontWeight.w600), overflow: TextOverflow.ellipsis))),
+                DataCell(SizedBox(width: 120, child: Text(voc.pronunciation ?? '', overflow: TextOverflow.ellipsis))),
+                DataCell(SizedBox(width: 150, child: Text(voc.vietnamese, overflow: TextOverflow.ellipsis))),
+                DataCell(SizedBox(width: 150, child: Text(voc.english, overflow: TextOverflow.ellipsis))),
+                DataCell(SizedBox(width: 150, child: Text(lesson?.title ?? 'Unknown', overflow: TextOverflow.ellipsis))),
+                DataCell(SizedBox(width: 100, child: Text(voc.category ?? '-', overflow: TextOverflow.ellipsis))),
+                DataCell(
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                       IconButton(
+                         icon: const Icon(Icons.volume_up, color: Colors.green, size: 18), 
+                         onPressed: () {
+                           // TODO: Implement audio playback using voc.audioUrl
+                           ScaffoldMessenger.of(context).showSnackBar(
+                             const SnackBar(content: Text('Audio playback not implemented yet')),
+                           );
+                         },
+                         padding: EdgeInsets.zero,
+                         constraints: const BoxConstraints(),
+                         tooltip: 'Listen',
+                       ),
+                       const SizedBox(width: 4),
+                       IconButton(
+                         icon: const Icon(Icons.edit, color: Colors.blue, size: 18), 
+                         onPressed: () => _openForm(context, vocabulary: voc),
+                         padding: EdgeInsets.zero,
+                         constraints: const BoxConstraints(),
+                       ),
+                       const SizedBox(width: 4),
+                       IconButton(
+                         icon: const Icon(Icons.delete, color: Colors.red, size: 18), 
+                         onPressed: () => _confirmDelete(context, ref, voc),
+                         padding: EdgeInsets.zero,
+                         constraints: const BoxConstraints(),
+                       ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 

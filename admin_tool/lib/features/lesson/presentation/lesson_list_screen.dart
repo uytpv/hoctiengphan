@@ -122,52 +122,76 @@ class LessonListScreen extends ConsumerWidget {
       );
     }
 
-    return DataTable(
-      columnSpacing: 24,
-      headingTextStyle: const TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.blueGrey,
-      ),
-      columns: [
-        DataColumn(
-          label: const Row(
-            children: [Text('Title'), Icon(Icons.sort, size: 16)],
+    return SizedBox(
+      width: double.infinity,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          columnSpacing: 24,
+          headingTextStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.blueGrey,
           ),
-          onSort: (index, ascending) =>
-              ref.read(lessonFilterProvider.notifier).toggleSort('title'),
-        ),
-        DataColumn(label: const Text('Description')),
-        DataColumn(label: const Text('Actions')),
-      ],
-      rows: items.map((lesson) {
-        return DataRow(
-          cells: [
-            DataCell(
-              Text(
-                lesson.title,
-                style: const TextStyle(fontWeight: FontWeight.w600),
+          columns: [
+            DataColumn(
+              label: const Row(
+                children: [Text('Title'), Icon(Icons.sort, size: 16)],
               ),
+              onSort: (index, ascending) =>
+                  ref.read(lessonFilterProvider.notifier).toggleSort('title'),
             ),
-            DataCell(
-              Text(lesson.description ?? '-', overflow: TextOverflow.ellipsis),
-            ),
-            DataCell(
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.edit, color: Colors.blue, size: 18),
-                    onPressed: () => _openForm(context, lesson: lesson),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.delete, color: Colors.red, size: 18),
-                    onPressed: () => _confirmDelete(context, ref, lesson),
-                  ),
-                ],
-              ),
-            ),
+            DataColumn(label: const Text('Description')),
+            DataColumn(label: const Text('Actions')),
           ],
-        );
-      }).toList(),
+          rows: items.map((lesson) {
+            return DataRow(
+              cells: [
+                DataCell(
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      lesson.title,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                DataCell(
+                  SizedBox(
+                    width: 500,
+                    child: Text(
+                      lesson.description ?? '-',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 13),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.edit, color: Colors.blue, size: 18),
+                        onPressed: () => _openForm(context, lesson: lesson),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+                      const SizedBox(width: 8),
+                      IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red, size: 18),
+                        onPressed: () => _confirmDelete(context, ref, lesson),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 

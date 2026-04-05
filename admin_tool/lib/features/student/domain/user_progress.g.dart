@@ -9,8 +9,9 @@ part of 'user_progress.dart';
 _$UserProfileImpl _$$UserProfileImplFromJson(Map<String, dynamic> json) =>
     _$UserProfileImpl(
       id: json['id'] as String,
-      email: json['email'] as String,
+      email: json['email'] as String?,
       displayName: json['displayName'] as String? ?? '',
+      role: json['role'] as String? ?? 'student',
       enrollments:
           (json['enrollments'] as List<dynamic>?)
               ?.map((e) => Enrollment.fromJson(e as Map<String, dynamic>))
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$UserProfileImplToJson(_$UserProfileImpl instance) =>
       'id': instance.id,
       'email': instance.email,
       'displayName': instance.displayName,
+      'role': instance.role,
       'enrollments': instance.enrollments.map((e) => e.toJson()).toList(),
     };
 
