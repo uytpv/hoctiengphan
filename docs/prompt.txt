@@ -1,0 +1,14 @@
+dùng skill @flutter-expert và skill @frontend-design
+thiết kế mobile app sử dụng cho học viên
+Các màn hình được liệt kê
+- Đăng nhập / Đăng ký (dùng tài khoản Google, đây là phương thức đăng nhập đăng ký duy nhất)
+- Giao diện sẽ có các thành phần chung như App Bar, Side Bar, Bottom Bar
+- Màn hình đầu tiên hiển thị danh sách các Study Plan cho học viên chọn
+- Bấm vào một study plan bất kỳ sẽ hiện lộ trình chi tiết gồm nhiều tuần, bấm vào tuần hiện danh sách các ngày, bấm vào ngày hiện ra danh sách cách hoạt động.
+- Hiện tại chỉ thiết kế tương tác với các hoạt động có bài học và làm bài tập
+- Bấm vào bài học sẽ mở trang Lesson tương ứng, Sau khi học xong, sẽ có nút Đã học xong để quay lại danh sách lộ trình, đồng thời đánh dấu DONE, cập nhật tiến độ học tập
+- Bấm vào bài tập sẽ mở trang Bài tập tương ứng. Làm bài tập xong, sau khi Nộp bài sẽ lưu và hiển thị kết quả. Có nút Làm lại, Nút Hoàn thành bài tập để đánh dấu DONE, cập nhật tiến độ học tập
+Ngôn ngữ hiển thị của ứng dụng là song ngữ, tiếng Phần Lan là tiếng chính kèm với tiếng thứ 2 ví dụ: Phần Lan / Việt, Phần Lan / Anh. Cách hiển thị như Harjoitus (Bài tập) cho lựa chọn ngôn ngữ tiếng VIệt, và Harjoitus (Exercise) cho lựa chọn ngôn ngữ tiếng Anh.
+Chuyển ngữ Việt hay Anh được thay đổi trong màn hình Settings. Cơ chế đa ngôn ngữ dùng chuẩn l10n 
+File @beautifulMention là file mô tả các tiêu chuẩn thiết kế yêu cầu bắt buộc tuân theo.
+File @beautifulMention là file mà bạn có thể tham khảo
