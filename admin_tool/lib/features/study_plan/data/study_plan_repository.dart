@@ -9,7 +9,14 @@ class StudyPlanRepository {
 
   CollectionReference<StudyPlan> get _planCollection =>
       _firestore.collection('study_plans').withConverter<StudyPlan>(
-            fromFirestore: (snapshot, _) => StudyPlan.fromJson(snapshot.data()!..['id'] = snapshot.id),
+            fromFirestore: (snapshot, _) {
+              final data = snapshot.data()!;
+              data['id'] = snapshot.id;
+              if (data['createdAt'] is Timestamp) {
+                data['createdAt'] = (data['createdAt'] as Timestamp).toDate().toIso8601String();
+              }
+              return StudyPlan.fromJson(data);
+            },
             toFirestore: (plan, _) => plan.toJson()..remove('id'),
           );
 

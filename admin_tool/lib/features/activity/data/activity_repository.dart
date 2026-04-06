@@ -9,7 +9,15 @@ class ActivityRepository {
 
   CollectionReference<Activity> get _collection =>
       _firestore.collection('activities').withConverter<Activity>(
-            fromFirestore: (snapshot, _) => Activity.fromJson(snapshot.data()!..['id'] = snapshot.id),
+            fromFirestore: (snapshot, _) {
+              final data = snapshot.data()!;
+              data['id'] = snapshot.id;
+              // Chuyển đổi Timestamp sang String để fromJson của freezed có thể parse được
+              if (data['createdAt'] is Timestamp) {
+                data['createdAt'] = (data['createdAt'] as Timestamp).toDate().toIso8601String();
+              }
+              return Activity.fromJson(data);
+            },
             toFirestore: (activity, _) => activity.toJson()..remove('id'),
           );
 

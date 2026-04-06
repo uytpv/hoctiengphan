@@ -856,3 +856,6 @@ const initialVocabularyData = [
     { finnish: "Uskoa", pronunciation: "/ˈus.ko.ɑ/", english: "To believe", vietnamese: "Tin tưởng", category: "Verbit (Động từ)" },
     { finnish: "Luottaa", pronunciation: "/ˈluot.tɑɑ/", english: "To trust", vietnamese: "Tín nhiệm", category: "Verbit (Động từ)" }
 ];
+
+module.exports = initialVocabularyData;
+
