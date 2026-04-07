@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:admin_tool/core/services/storage_service.dart';
 import '../../grammar/presentation/widgets/grammar_form_dialog.dart';
-import '../../exercise/presentation/widgets/exercise_form_dialog.dart';
+
 import 'package:admin_tool/features/lesson/data/lesson_repository.dart';
 import 'package:admin_tool/features/lesson/domain/lesson.dart';
 import 'package:admin_tool/features/grammar/data/grammar_repository.dart';
@@ -54,10 +54,10 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
       _originalLesson = lesson;
       _titleController.text = lesson.title;
       _descController.text = lesson.description ?? '';
-      
+
       _selectedGrammarIds.clear();
       _selectedGrammarIds.addAll(lesson.grammarIds);
-      
+
       _selectedExerciseIds.clear();
       _selectedExerciseIds.addAll(lesson.exerciseIds);
 
@@ -213,7 +213,8 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
                                 child: TextFormField(
                                   controller: _descController,
                                   decoration: const InputDecoration(
-                                    hintText: 'Enter a short summary of the lesson...',
+                                    hintText:
+                                        'Enter a short summary of the lesson...',
                                     border: OutlineInputBorder(),
                                   ),
                                   maxLines: 10,
@@ -247,10 +248,7 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
                           titleAttr: (e) => e.title,
                           idAttr: (e) => e.id,
                           onCreateNew: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => const ExerciseFormDialog(),
-                            );
+                            context.push('/exercises/new');
                           },
                           emptyLabel: 'Exercise',
                         ),

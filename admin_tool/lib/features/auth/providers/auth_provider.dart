@@ -9,8 +9,11 @@ final authStateProvider = StreamProvider<User?>((ref) {
 final userDocProvider = FutureProvider<Map<String, dynamic>?>((ref) async {
   final user = ref.watch(authStateProvider).value;
   if (user == null) return null;
-  
-  final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+
+  final doc = await FirebaseFirestore.instance
+      .collection('users')
+      .doc(user.uid)
+      .get();
   return doc.data();
 });
 
@@ -31,7 +34,7 @@ class AuthNotifier extends AsyncNotifier<User?> {
       email: email,
       password: password,
     );
-    
+
     // Force update build result
     state = AsyncData(FirebaseAuth.instance.currentUser);
   }
@@ -49,4 +52,6 @@ class AuthNotifier extends AsyncNotifier<User?> {
   }
 }
 
-final authNotifierProvider = AsyncNotifierProvider<AuthNotifier, User?>(AuthNotifier.new);
+final authNotifierProvider = AsyncNotifierProvider<AuthNotifier, User?>(
+  AuthNotifier.new,
+);

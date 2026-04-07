@@ -14,7 +14,8 @@ class StudyPlan with _$StudyPlan {
     DateTime? createdAt,
   }) = _StudyPlan;
 
-  factory StudyPlan.fromJson(Map<String, dynamic> json) => _$StudyPlanFromJson(json);
+  factory StudyPlan.fromJson(Map<String, dynamic> json) =>
+      _$StudyPlanFromJson(json);
 }
 
 @freezed
@@ -27,7 +28,8 @@ class StudyPlanWeek with _$StudyPlanWeek {
     @Default([]) List<StudyDay> days,
   }) = _StudyPlanWeek;
 
-  factory StudyPlanWeek.fromJson(Map<String, dynamic> json) => _$StudyPlanWeekFromJson(json);
+  factory StudyPlanWeek.fromJson(Map<String, dynamic> json) =>
+      _$StudyPlanWeekFromJson(json);
 }
 
 @freezed
@@ -37,5 +39,6 @@ class StudyDay with _$StudyDay {
     @Default([]) List<String> activityIds, // IDs of activities to perform
   }) = _StudyDay;
 
-  factory StudyDay.fromJson(Map<String, dynamic> json) => _$StudyDayFromJson(json);
+  factory StudyDay.fromJson(Map<String, dynamic> json) =>
+      _$StudyDayFromJson(json);
 }

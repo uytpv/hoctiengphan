@@ -16,5 +16,6 @@ class Vocabulary with _$Vocabulary {
     String? authorId,
   }) = _Vocabulary;
 
-  factory Vocabulary.fromJson(Map<String, dynamic> json) => _$VocabularyFromJson(json);
+  factory Vocabulary.fromJson(Map<String, dynamic> json) =>
+      _$VocabularyFromJson(json);
 }

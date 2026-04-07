@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:file_picker/file_picker.dart';
+import 'package:file_picker/file_picker.dart' as fp;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,10 +17,10 @@ class StorageService {
     try {
       // Accessing FirebaseStorage inside the method to ensure Firebase is ready
       final storage = _storage;
-      
+
       // 1. Pick file
-      final result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
+      final result = await fp.FilePicker.pickFiles(
+        type: fp.FileType.custom,
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
         withData: true,
       );
@@ -29,7 +29,7 @@ class StorageService {
         debugPrint('Image picking canceled or no files selected.');
         return null;
       }
-      
+
       final file = result.files.first;
       final bytes = file.bytes;
       if (bytes == null) {
@@ -38,7 +38,8 @@ class StorageService {
       }
 
       // 2. Prepare upload path
-      final fileName = '${DateTime.now().millisecondsSinceEpoch}_${p.basename(file.name)}';
+      final fileName =
+          '${DateTime.now().millisecondsSinceEpoch}_${p.basename(file.name)}';
       final storageRef = storage.ref().child('$folder/$fileName');
 
       // 3. Start Upload
@@ -53,7 +54,6 @@ class StorageService {
       final url = await snapshot.ref.getDownloadURL();
       debugPrint('Upload successful: $url');
       return url;
-      
     } catch (e) {
       debugPrint('Storage Service: $e');
       return null;

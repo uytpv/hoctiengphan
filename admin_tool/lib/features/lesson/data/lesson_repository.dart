@@ -16,16 +16,19 @@ class LessonRepository {
 
   LessonRepository(this._firestore);
 
-  CollectionReference<Lesson> get _typedCollection =>
-      _firestore.collection('lessons').withConverter<Lesson>(
-            fromFirestore: (snapshot, _) => Lesson.fromJson(snapshot.data()!..['id'] = snapshot.id),
-            toFirestore: (lesson, _) => lesson.toJson()..remove('id'),
-          );
+  CollectionReference<Lesson> get _typedCollection => _firestore
+      .collection('lessons')
+      .withConverter<Lesson>(
+        fromFirestore: (snapshot, _) =>
+            Lesson.fromJson(snapshot.data()!..['id'] = snapshot.id),
+        toFirestore: (lesson, _) => lesson.toJson()..remove('id'),
+      );
 
   Stream<List<Lesson>> watchLessons() {
     return _typedCollection.snapshots().map(
-      (snapshot) => snapshot.docs.map((doc) => doc.data()).toList()
-        ..sort((a, b) => a.chapter.compareTo(b.chapter)),
+      (snapshot) =>
+          snapshot.docs.map((doc) => doc.data()).toList()
+            ..sort((a, b) => a.chapter.compareTo(b.chapter)),
     );
   }
 

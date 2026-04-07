@@ -22,6 +22,7 @@ import 'features/lesson/presentation/lesson_list_screen.dart';
 import 'features/lesson/presentation/lesson_edit_screen.dart';
 import 'features/grammar/presentation/grammar_list_screen.dart';
 import 'features/exercise/presentation/exercise_list_screen.dart';
+import 'features/exercise/presentation/exercise_form_screen.dart';
 import 'features/student/presentation/student_list_screen.dart';
 import 'firebase_options.dart';
 
@@ -112,6 +113,19 @@ final _routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/exercises',
             builder: (context, state) => const ExerciseListScreen(),
+            routes: [
+              GoRoute(
+                path: 'new',
+                builder: (context, state) => const ExerciseFormScreen(),
+              ),
+              GoRoute(
+                path: 'edit/:id',
+                builder: (context, state) {
+                  final id = state.pathParameters['id'];
+                  return ExerciseFormScreen(exerciseId: id);
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: '/study-plans',
@@ -161,10 +175,7 @@ class OpiSuomeaAdminApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
         FlutterQuillLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en', ''),
-        Locale('vi', ''),
-      ],
+      supportedLocales: const [Locale('en', ''), Locale('vi', '')],
     );
   }
 }

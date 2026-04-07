@@ -69,7 +69,10 @@ class _GrammarFormDialogState extends ConsumerState<GrammarFormDialog> {
                   Expanded(
                     child: TextFormField(
                       controller: _titleController,
-                      decoration: const InputDecoration(labelText: 'Title *', border: OutlineInputBorder()),
+                      decoration: const InputDecoration(
+                        labelText: 'Title *',
+                        border: OutlineInputBorder(),
+                      ),
                       validator: (v) => v?.isEmpty ?? true ? 'Required' : null,
                     ),
                   ),
@@ -77,7 +80,10 @@ class _GrammarFormDialogState extends ConsumerState<GrammarFormDialog> {
                   Expanded(
                     child: TextFormField(
                       controller: _slugController,
-                      decoration: const InputDecoration(labelText: 'Slug', border: OutlineInputBorder()),
+                      decoration: const InputDecoration(
+                        labelText: 'Slug',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                   ),
                 ],
@@ -90,7 +96,9 @@ class _GrammarFormDialogState extends ConsumerState<GrammarFormDialog> {
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                  ),
                   child: QuillEditor.basic(
                     controller: _contentController,
                     config: const QuillEditorConfig(),
@@ -102,7 +110,10 @@ class _GrammarFormDialogState extends ConsumerState<GrammarFormDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
         ElevatedButton(onPressed: _save, child: const Text('Save')),
       ],
     );
@@ -127,7 +138,9 @@ class _GrammarFormDialogState extends ConsumerState<GrammarFormDialog> {
         if (mounted) Navigator.pop(context);
       } catch (e) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('Error: $e')));
         }
       }
     }

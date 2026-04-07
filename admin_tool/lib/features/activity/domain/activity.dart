@@ -29,5 +29,6 @@ class Activity with _$Activity {
     DateTime? createdAt,
   }) = _Activity;
 
-  factory Activity.fromJson(Map<String, dynamic> json) => _$ActivityFromJson(json);
+  factory Activity.fromJson(Map<String, dynamic> json) =>
+      _$ActivityFromJson(json);
 }

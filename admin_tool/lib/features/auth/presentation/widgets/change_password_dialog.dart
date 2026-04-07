@@ -6,7 +6,8 @@ class ChangePasswordDialog extends ConsumerStatefulWidget {
   const ChangePasswordDialog({super.key});
 
   @override
-  ConsumerState<ChangePasswordDialog> createState() => _ChangePasswordDialogState();
+  ConsumerState<ChangePasswordDialog> createState() =>
+      _ChangePasswordDialogState();
 }
 
 class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
@@ -35,7 +36,7 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
       await ref
           .read(authNotifierProvider.notifier)
           .updatePassword(_newPasswordController.text);
-      
+
       if (mounted) {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
@@ -83,7 +84,8 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
               ),
               obscureText: true,
               validator: (value) {
-                if (value == null || value.isEmpty) return 'Vui lòng nhập mật khẩu';
+                if (value == null || value.isEmpty)
+                  return 'Vui lòng nhập mật khẩu';
                 if (value.length < 6) return 'Mật khẩu phải có ít nhất 6 ký tự';
                 return null;
               },
@@ -129,7 +131,10 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
               ? const SizedBox(
                   width: 20,
                   height: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Colors.white,
+                  ),
                 )
               : const Text('Cập nhật'),
         ),

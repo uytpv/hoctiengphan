@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../data/exercise_repository.dart';
-import '../domain/exercise.dart';
-import 'widgets/exercise_form_dialog.dart';
 
 class ExerciseListScreen extends ConsumerStatefulWidget {
   const ExerciseListScreen({super.key});
@@ -34,7 +33,7 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: ElevatedButton.icon(
-              onPressed: () => _showFormDialog(null),
+              onPressed: () => context.go('/exercises/new'),
               icon: const Icon(Icons.add),
               label: const Text('ADD NEW EXERCISE'),
               style: ElevatedButton.styleFrom(
@@ -68,7 +67,9 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
               error: (e, s) => Center(child: Text('Error: $e')),
               data: (exercises) {
                 final filteredExercises = exercises.where((ex) {
-                  return ex.title.toLowerCase().contains(_searchQuery.toLowerCase());
+                  return ex.title.toLowerCase().contains(
+                    _searchQuery.toLowerCase(),
+                  );
                 }).toList();
 
                 if (filteredExercises.isEmpty) {
@@ -92,7 +93,8 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
                         children: [
                           IconButton(
                             icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () => _showFormDialog(item),
+                            onPressed: () =>
+                                context.go('/exercises/edit/${item.id}'),
                           ),
                           IconButton(
                             icon: const Icon(Icons.delete, color: Colors.red),
@@ -111,21 +113,19 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
     );
   }
 
-  void _showFormDialog(Exercise? exercise) {
-    showDialog(
-      context: context,
-      builder: (context) => ExerciseFormDialog(exercise: exercise),
-    );
-  }
-
   void _confirmDelete(String id) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Delete Exercise?'),
-        content: const Text('Are you sure you want to delete this exercise item? This will remove it from any linked lessons too.'),
+        content: const Text(
+          'Are you sure you want to delete this exercise item? This will remove it from any linked lessons too.',
+        ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
           TextButton(
             onPressed: () async {
               await ref.read(exerciseRepositoryProvider).deleteExercise(id);

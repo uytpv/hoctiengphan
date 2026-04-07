@@ -20,7 +20,7 @@ dependencies:
   flutter_quill: ^11.5.0
   flutter_quill_extensions: ^11.0.0
   firebase_storage: ^13.2.0
-  file_picker: ^10.3.10
+  file_picker: ^11.0.2
   path: ^1.9.1
   flutter_localizations:
     sdk: flutter

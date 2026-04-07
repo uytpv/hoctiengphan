@@ -42,4 +42,10 @@ class ExerciseRepository {
   Future<void> deleteExercise(String id) async {
     await _collection.doc(id).delete();
   }
+
+  Future<Exercise> getExercise(String id) async {
+    final doc = await _collection.doc(id).get();
+    if (!doc.exists) throw Exception('Exercise not found');
+    return Exercise.fromJson({...doc.data()!, 'id': doc.id});
+  }
 }

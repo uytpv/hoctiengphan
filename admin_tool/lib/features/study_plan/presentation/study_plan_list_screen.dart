@@ -23,23 +23,37 @@ class StudyPlanListScreen extends ConsumerWidget {
                 context: context,
                 builder: (context) => AlertDialog(
                   title: const Text('Tạo lộ trình chuẩn?'),
-                  content: const Text('Hệ thống sẽ tự động tạo lộ trình 26 tuần (6 tháng) dựa trên mẫu "Suomen Mestari 1".'),
+                  content: const Text(
+                    'Hệ thống sẽ tự động tạo lộ trình 26 tuần (6 tháng) dựa trên mẫu "Suomen Mestari 1".',
+                  ),
                   actions: [
-                    TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Hủy')),
-                    ElevatedButton(onPressed: () => Navigator.pop(context, true), child: const Text('Tạo ngay')),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, false),
+                      child: const Text('Hủy'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => Navigator.pop(context, true),
+                      child: const Text('Tạo ngay'),
+                    ),
                   ],
                 ),
               );
-              
+
               if (confirm == true) {
                 try {
                   await ref.read(studyPlanServiceProvider).seedStandardPlan();
                   if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Đã tạo lộ trình thành công!')));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Đã tạo lộ trình thành công!'),
+                      ),
+                    );
                   }
                 } catch (e) {
                   if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text('Lỗi: $e')));
                   }
                 }
               }
@@ -67,8 +81,13 @@ class StudyPlanListScreen extends ConsumerWidget {
             return Card(
               child: ListTile(
                 leading: const Icon(Icons.map, size: 40, color: Colors.blue),
-                title: Text(plan.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text('${plan.durationWeeks} tuần • ${plan.description}'),
+                title: Text(
+                  plan.title,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  '${plan.durationWeeks} tuần • ${plan.description}',
+                ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -79,19 +98,32 @@ class StudyPlanListScreen extends ConsumerWidget {
                     IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () async {
-                         final confirmed = await showDialog<bool>(
+                        final confirmed = await showDialog<bool>(
                           context: context,
                           builder: (context) => AlertDialog(
                             title: const Text('Xác nhận'),
-                            content: const Text('Bạn có chắc muốn xóa lộ trình này?'),
+                            content: const Text(
+                              'Bạn có chắc muốn xóa lộ trình này?',
+                            ),
                             actions: [
-                              TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Hủy')),
-                              TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Xóa', style: TextStyle(color: Colors.red))),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, false),
+                                child: const Text('Hủy'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, true),
+                                child: const Text(
+                                  'Xóa',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
                             ],
                           ),
                         );
                         if (confirmed == true) {
-                          ref.read(studyPlanRepositoryProvider).deletePlan(plan.id);
+                          ref
+                              .read(studyPlanRepositoryProvider)
+                              .deletePlan(plan.id);
                         }
                       },
                     ),
@@ -111,7 +143,11 @@ class StudyPlanListScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> _editPlan(BuildContext context, WidgetRef ref, StudyPlan plan) async {
+  Future<void> _editPlan(
+    BuildContext context,
+    WidgetRef ref,
+    StudyPlan plan,
+  ) async {
     final titleController = TextEditingController(text: plan.title);
     final descController = TextEditingController(text: plan.description);
 
@@ -135,7 +171,10 @@ class StudyPlanListScreen extends ConsumerWidget {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Hủy')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Hủy'),
+          ),
           TextButton(
             onPressed: () => Navigator.pop(context, {
               'title': titleController.text,

@@ -14,5 +14,6 @@ class Grammar with _$Grammar {
     @Default([]) List<String> relatedVocabularyIds,
   }) = _Grammar;
 
-  factory Grammar.fromJson(Map<String, dynamic> json) => _$GrammarFromJson(json);
+  factory Grammar.fromJson(Map<String, dynamic> json) =>
+      _$GrammarFromJson(json);
 }

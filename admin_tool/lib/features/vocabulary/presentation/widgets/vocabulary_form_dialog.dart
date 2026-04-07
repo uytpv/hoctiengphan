@@ -11,7 +11,8 @@ class VocabularyFormDialog extends ConsumerStatefulWidget {
   const VocabularyFormDialog({super.key, this.vocabulary});
 
   @override
-  ConsumerState<VocabularyFormDialog> createState() => _VocabularyFormDialogState();
+  ConsumerState<VocabularyFormDialog> createState() =>
+      _VocabularyFormDialogState();
 }
 
 class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
@@ -25,7 +26,7 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
   late TextEditingController _exampleController;
   late TextEditingController _exampleTranslationController;
   late TextEditingController _categoryController;
-  
+
   String? _selectedLessonId;
   bool _isSaving = false;
 
@@ -36,13 +37,17 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
     _finnishController = TextEditingController(text: v?.finnish ?? '');
     _vietnameseController = TextEditingController(text: v?.vietnamese ?? '');
     _englishController = TextEditingController(text: v?.english ?? '');
-    _pronunciationController = TextEditingController(text: v?.pronunciation ?? '');
+    _pronunciationController = TextEditingController(
+      text: v?.pronunciation ?? '',
+    );
     _audioUrlController = TextEditingController(text: v?.audioUrl ?? '');
     _imageUrlController = TextEditingController(text: v?.imageUrl ?? '');
     _exampleController = TextEditingController(text: v?.example ?? '');
-    _exampleTranslationController = TextEditingController(text: v?.exampleTranslation ?? '');
+    _exampleTranslationController = TextEditingController(
+      text: v?.exampleTranslation ?? '',
+    );
     _categoryController = TextEditingController(text: v?.category ?? '');
-    
+
     _selectedLessonId = v?.lessonId;
   }
 
@@ -91,7 +96,9 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
       if (mounted) Navigator.pop(context);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error saving: $e')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error saving: $e')));
       }
     } finally {
       if (mounted) setState(() => _isSaving = false);
@@ -103,7 +110,10 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
     final lessons = ref.watch(lessonsProvider).value ?? [];
 
     return AlertDialog(
-      title: Text(widget.vocabulary == null ? 'Add New Vocabulary' : 'Edit Vocabulary', style: const TextStyle(fontWeight: FontWeight.bold)),
+      title: Text(
+        widget.vocabulary == null ? 'Add New Vocabulary' : 'Edit Vocabulary',
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
       content: SizedBox(
         width: 600,
         child: SingleChildScrollView(
@@ -114,7 +124,10 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
               children: [
                 TextFormField(
                   controller: _finnishController,
-                  decoration: const InputDecoration(labelText: 'Finnish*', border: OutlineInputBorder()),
+                  decoration: const InputDecoration(
+                    labelText: 'Finnish*',
+                    border: OutlineInputBorder(),
+                  ),
                   validator: (v) => v!.isEmpty ? 'Finnish is required' : null,
                 ),
                 const SizedBox(height: 16),
@@ -123,16 +136,24 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
                     Expanded(
                       child: TextFormField(
                         controller: _vietnameseController,
-                        decoration: const InputDecoration(labelText: 'Vietnamese*', border: OutlineInputBorder()),
-                        validator: (v) => v!.isEmpty ? 'Vietnamese is required' : null,
+                        decoration: const InputDecoration(
+                          labelText: 'Vietnamese*',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (v) =>
+                            v!.isEmpty ? 'Vietnamese is required' : null,
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
                         controller: _englishController,
-                        decoration: const InputDecoration(labelText: 'English*', border: OutlineInputBorder()),
-                        validator: (v) => v!.isEmpty ? 'English is required' : null,
+                        decoration: const InputDecoration(
+                          labelText: 'English*',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (v) =>
+                            v!.isEmpty ? 'English is required' : null,
                       ),
                     ),
                   ],
@@ -140,7 +161,10 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _pronunciationController,
-                  decoration: const InputDecoration(labelText: 'Phiên âm', border: OutlineInputBorder()),
+                  decoration: const InputDecoration(
+                    labelText: 'Phiên âm',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -148,19 +172,34 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
                     Expanded(
                       child: DropdownButtonFormField<String>(
                         value: _selectedLessonId,
-                        decoration: const InputDecoration(labelText: 'Lesson', border: OutlineInputBorder()),
+                        decoration: const InputDecoration(
+                          labelText: 'Lesson',
+                          border: OutlineInputBorder(),
+                        ),
                         items: [
-                           const DropdownMenuItem(value: null, child: Text('No Lesson')),
-                           ...lessons.map((l) => DropdownMenuItem(value: l.id, child: Text(l.title))),
+                          const DropdownMenuItem(
+                            value: null,
+                            child: Text('No Lesson'),
+                          ),
+                          ...lessons.map(
+                            (l) => DropdownMenuItem(
+                              value: l.id,
+                              child: Text(l.title),
+                            ),
+                          ),
                         ],
-                        onChanged: (val) => setState(() => _selectedLessonId = val),
+                        onChanged: (val) =>
+                            setState(() => _selectedLessonId = val),
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
                         controller: _categoryController,
-                        decoration: const InputDecoration(labelText: 'Category', border: OutlineInputBorder()),
+                        decoration: const InputDecoration(
+                          labelText: 'Category',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                   ],
@@ -168,23 +207,37 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _imageUrlController,
-                  decoration: const InputDecoration(labelText: 'Image URL', border: OutlineInputBorder(), prefixIcon: Icon(Icons.image)),
+                  decoration: const InputDecoration(
+                    labelText: 'Image URL',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.image),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _audioUrlController,
-                  decoration: const InputDecoration(labelText: 'Audio URL', border: OutlineInputBorder(), prefixIcon: Icon(Icons.volume_up)),
+                  decoration: const InputDecoration(
+                    labelText: 'Audio URL',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.volume_up),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _exampleController,
-                  decoration: const InputDecoration(labelText: 'Example Sentence', border: OutlineInputBorder()),
+                  decoration: const InputDecoration(
+                    labelText: 'Example Sentence',
+                    border: OutlineInputBorder(),
+                  ),
                   maxLines: 2,
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _exampleTranslationController,
-                  decoration: const InputDecoration(labelText: 'Example Translation', border: OutlineInputBorder()),
+                  decoration: const InputDecoration(
+                    labelText: 'Example Translation',
+                    border: OutlineInputBorder(),
+                  ),
                   maxLines: 2,
                 ),
               ],
@@ -193,11 +246,26 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: _isSaving ? null : () => Navigator.pop(context), child: const Text('Cancel')),
+        TextButton(
+          onPressed: _isSaving ? null : () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
         ElevatedButton(
           onPressed: _isSaving ? null : _save,
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey.shade800, foregroundColor: Colors.white),
-          child: _isSaving ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)) : const Text('Save Vocabulary'),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blueGrey.shade800,
+            foregroundColor: Colors.white,
+          ),
+          child: _isSaving
+              ? const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Colors.white,
+                  ),
+                )
+              : const Text('Save Vocabulary'),
         ),
       ],
     );

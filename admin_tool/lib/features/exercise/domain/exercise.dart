@@ -9,11 +9,13 @@ class Exercise with _$Exercise {
     required String id,
     @Default('') String title,
     @Default('') String description,
-    @Default('') String type, // fill-in-blanks, true-false, multiple-choice, etc.
+    @Default('')
+    String type, // fill-in-blanks, true-false, multiple-choice, etc.
     String? readingText,
     @Default('') String content, // Instructions/Markdown
     @Default([]) List<Map<String, dynamic>> questions,
   }) = _Exercise;
 
-  factory Exercise.fromJson(Map<String, dynamic> json) => _$ExerciseFromJson(json);
+  factory Exercise.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseFromJson(json);
 }

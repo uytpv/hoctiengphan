@@ -29,9 +29,12 @@ class StudentListScreen extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   const Text('Chưa có học viên nào.'),
-                   const SizedBox(height: 16),
-                   ElevatedButton(onPressed: () => _seedDummyStudents(ref), child: const Text('Tạo học viên mẫu')),
+                  const Text('Chưa có học viên nào.'),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => _seedDummyStudents(ref),
+                    child: const Text('Tạo học viên mẫu'),
+                  ),
                 ],
               ),
             );
@@ -51,59 +54,133 @@ class StudentListScreen extends ConsumerWidget {
                 ],
                 rows: users.expand((user) {
                   final userEmail = user.email ?? 'Không có email';
-                  final userData = user.displayName.isEmpty ? 'Học viên' : user.displayName;
+                  final userData = user.displayName.isEmpty
+                      ? 'Học viên'
+                      : user.displayName;
 
                   if (user.enrollments.isEmpty) {
                     return [
-                      DataRow(cells: [
-                        DataCell(SizedBox(
-                          width: 250,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(userData, style: const TextStyle(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis),
-                              Text(userEmail, style: const TextStyle(fontSize: 12, color: Colors.grey), overflow: TextOverflow.ellipsis),
-                            ],
+                      DataRow(
+                        cells: [
+                          DataCell(
+                            SizedBox(
+                              width: 250,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    userData,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
+                                    userEmail,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        )),
-                        const DataCell(Text('-')),
-                        const DataCell(Text('0%')),
-                        const DataCell(Chip(label: Text('Chưa đăng ký'), padding: EdgeInsets.zero)),
-                      ])
+                          const DataCell(Text('-')),
+                          const DataCell(Text('0%')),
+                          const DataCell(
+                            Chip(
+                              label: Text('Chưa đăng ký'),
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                        ],
+                      ),
                     ];
                   }
 
-                  return user.enrollments.map((enr) => DataRow(cells: [
-                    DataCell(SizedBox(
-                      width: 250,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(userData, style: const TextStyle(fontWeight: FontWeight.bold), overflow: TextOverflow.ellipsis),
-                          Text(userEmail, style: const TextStyle(fontSize: 12, color: Colors.grey), overflow: TextOverflow.ellipsis),
-                        ],
-                      ),
-                    )),
-                    DataCell(SizedBox(width: 200, child: Text(enr.planTitle, overflow: TextOverflow.ellipsis))),
-                    DataCell(SizedBox(
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          LinearProgressIndicator(value: enr.progressPercent / 100, minHeight: 4, borderRadius: BorderRadius.circular(2)),
-                          const SizedBox(height: 4),
-                          Text('${enr.progressPercent.toInt()}%', style: const TextStyle(fontSize: 10)),
-                        ],
-                      ),
-                    )),
-                    DataCell(Chip(
-                      label: Text(enr.status == 'completed' ? 'Hoàn thành' : 'Đang học', style: const TextStyle(fontSize: 10, color: Colors.white)),
-                      backgroundColor: enr.status == 'completed' ? Colors.green : Colors.blue,
-                      padding: EdgeInsets.zero,
-                    )),
-                  ])).toList();
+                  return user.enrollments
+                      .map(
+                        (enr) => DataRow(
+                          cells: [
+                            DataCell(
+                              SizedBox(
+                                width: 250,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      userData,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      userEmail,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            DataCell(
+                              SizedBox(
+                                width: 200,
+                                child: Text(
+                                  enr.planTitle,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                            DataCell(
+                              SizedBox(
+                                width: 100,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    LinearProgressIndicator(
+                                      value: enr.progressPercent / 100,
+                                      minHeight: 4,
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      '${enr.progressPercent.toInt()}%',
+                                      style: const TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            DataCell(
+                              Chip(
+                                label: Text(
+                                  enr.status == 'completed'
+                                      ? 'Hoàn thành'
+                                      : 'Đang học',
+                                  style: const TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                backgroundColor: enr.status == 'completed'
+                                    ? Colors.green
+                                    : Colors.blue,
+                                padding: EdgeInsets.zero,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList();
                 }).toList(),
               ),
             ),

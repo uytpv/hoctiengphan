@@ -21,7 +21,7 @@ class DashboardView extends ConsumerWidget {
             _buildStatCard('Total Vocabulary', '300+', Colors.orange),
             _buildStatCard('Completed Plans', '12', Colors.green),
           ],
-        )
+        ),
       ],
     );
   }
@@ -39,12 +39,19 @@ class DashboardView extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: const TextStyle(color: Colors.grey, fontSize: 16)),
+            Text(
+              title,
+              style: const TextStyle(color: Colors.grey, fontSize: 16),
+            ),
             const SizedBox(height: 12),
             Text(
               count,
-              style: TextStyle(color: color, fontSize: 32, fontWeight: FontWeight.bold),
-            )
+              style: TextStyle(
+                color: color,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),

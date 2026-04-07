@@ -68,7 +68,9 @@ class _GrammarListScreenState extends ConsumerState<GrammarListScreen> {
               error: (e, s) => Center(child: Text('Error: $e')),
               data: (grammars) {
                 final filteredGrammars = grammars.where((g) {
-                  return g.title.toLowerCase().contains(_searchQuery.toLowerCase());
+                  return g.title.toLowerCase().contains(
+                    _searchQuery.toLowerCase(),
+                  );
                 }).toList();
 
                 if (filteredGrammars.isEmpty) {
@@ -123,9 +125,14 @@ class _GrammarListScreenState extends ConsumerState<GrammarListScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Delete Grammar?'),
-        content: const Text('Are you sure you want to delete this grammar item? This action cannot be undone.'),
+        content: const Text(
+          'Are you sure you want to delete this grammar item? This action cannot be undone.',
+        ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
           TextButton(
             onPressed: () async {
               await ref.read(grammarRepositoryProvider).deleteGrammar(id);

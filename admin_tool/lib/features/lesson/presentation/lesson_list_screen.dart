@@ -172,14 +172,22 @@ class LessonListScreen extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.edit, color: Colors.blue, size: 18),
+                        icon: const Icon(
+                          Icons.edit,
+                          color: Colors.blue,
+                          size: 18,
+                        ),
                         onPressed: () => _openForm(context, lesson: lesson),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                       ),
                       const SizedBox(width: 8),
                       IconButton(
-                        icon: const Icon(Icons.delete, color: Colors.red, size: 18),
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                          size: 18,
+                        ),
                         onPressed: () => _confirmDelete(context, ref, lesson),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),

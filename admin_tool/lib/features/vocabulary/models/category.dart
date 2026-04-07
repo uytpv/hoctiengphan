@@ -8,9 +8,6 @@ class Category {
 
   factory Category.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
-    return Category(
-      id: doc.id,
-      name: data['name'] ?? '',
-    );
+    return Category(id: doc.id, name: data['name'] ?? '');
   }
 }

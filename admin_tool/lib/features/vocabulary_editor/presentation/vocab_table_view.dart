@@ -36,7 +36,7 @@ class _VocabTableViewState extends ConsumerState<VocabTableView> {
               },
               icon: const Icon(Icons.add),
               label: const Text('Add Word'),
-            )
+            ),
           ],
         ),
         const SizedBox(height: 24),
@@ -46,9 +46,15 @@ class _VocabTableViewState extends ConsumerState<VocabTableView> {
             child: vocabulariesAsync.when(
               data: (vocabularies) {
                 if (vocabularies.isEmpty) {
-                  return const Center(child: Text('No vocabulary words found.'));
+                  return const Center(
+                    child: Text('No vocabulary words found.'),
+                  );
                 }
-                final dataSource = VocabDataSource(vocabularies, lessonsAsync, ref);
+                final dataSource = VocabDataSource(
+                  vocabularies,
+                  lessonsAsync,
+                  ref,
+                );
 
                 return SingleChildScrollView(
                   child: PaginatedDataTable(
@@ -77,7 +83,7 @@ class _VocabTableViewState extends ConsumerState<VocabTableView> {
               error: (error, stack) => Center(child: Text('Error: $error')),
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -94,41 +100,47 @@ class VocabDataSource extends DataTableSource {
   DataRow? getRow(int index) {
     if (index >= vocabularies.length) return null;
     final vocab = vocabularies[index];
-    
-    return DataRow(cells: [
-      DataCell(Text(vocab.finnish)),
-      DataCell(Text(vocab.pronunciation ?? '')),
-      DataCell(Text(vocab.vietnamese)),
-      DataCell(Text(vocab.english ?? '')),
-      DataCell(
-        lessonsAsync.when(
-          data: (lessons) {
-            final lesson = lessons.where((l) => l.id == vocab.lessonId).firstOrNull;
-            return Text(lesson?.title ?? vocab.lessonId);
-          },
-          loading: () => const Text('Loading...'),
-          error: (_, __) => const Text('Error'),
+
+    return DataRow(
+      cells: [
+        DataCell(Text(vocab.finnish)),
+        DataCell(Text(vocab.pronunciation ?? '')),
+        DataCell(Text(vocab.vietnamese)),
+        DataCell(Text(vocab.english ?? '')),
+        DataCell(
+          lessonsAsync.when(
+            data: (lessons) {
+              final lesson = lessons
+                  .where((l) => l.id == vocab.lessonId)
+                  .firstOrNull;
+              return Text(lesson?.title ?? vocab.lessonId);
+            },
+            loading: () => const Text('Loading...'),
+            error: (_, __) => const Text('Error'),
+          ),
         ),
-      ),
-      DataCell(
-        Row(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.edit, color: Colors.blue),
-              onPressed: () {
-                // Edit logic here
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete, color: Colors.red),
-              onPressed: () {
-                ref.read(vocabularyRepositoryProvider).deleteVocabulary(vocab.id);
-              },
-            ),
-          ],
+        DataCell(
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.edit, color: Colors.blue),
+                onPressed: () {
+                  // Edit logic here
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete, color: Colors.red),
+                onPressed: () {
+                  ref
+                      .read(vocabularyRepositoryProvider)
+                      .deleteVocabulary(vocab.id);
+                },
+              ),
+            ],
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 
   @override

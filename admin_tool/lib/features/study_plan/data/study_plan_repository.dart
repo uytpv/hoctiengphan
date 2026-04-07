@@ -7,24 +7,29 @@ class StudyPlanRepository {
 
   StudyPlanRepository(this._firestore);
 
-  CollectionReference<StudyPlan> get _planCollection =>
-      _firestore.collection('study_plans').withConverter<StudyPlan>(
-            fromFirestore: (snapshot, _) {
-              final data = snapshot.data()!;
-              data['id'] = snapshot.id;
-              if (data['createdAt'] is Timestamp) {
-                data['createdAt'] = (data['createdAt'] as Timestamp).toDate().toIso8601String();
-              }
-              return StudyPlan.fromJson(data);
-            },
-            toFirestore: (plan, _) => plan.toJson()..remove('id'),
-          );
+  CollectionReference<StudyPlan> get _planCollection => _firestore
+      .collection('study_plans')
+      .withConverter<StudyPlan>(
+        fromFirestore: (snapshot, _) {
+          final data = snapshot.data()!;
+          data['id'] = snapshot.id;
+          if (data['createdAt'] is Timestamp) {
+            data['createdAt'] = (data['createdAt'] as Timestamp)
+                .toDate()
+                .toIso8601String();
+          }
+          return StudyPlan.fromJson(data);
+        },
+        toFirestore: (plan, _) => plan.toJson()..remove('id'),
+      );
 
-  CollectionReference<StudyPlanWeek> get _weekCollection =>
-      _firestore.collection('study_plan_weeks').withConverter<StudyPlanWeek>(
-            fromFirestore: (snapshot, _) => StudyPlanWeek.fromJson(snapshot.data()!..['id'] = snapshot.id),
-            toFirestore: (week, _) => week.toJson()..remove('id'),
-          );
+  CollectionReference<StudyPlanWeek> get _weekCollection => _firestore
+      .collection('study_plan_weeks')
+      .withConverter<StudyPlanWeek>(
+        fromFirestore: (snapshot, _) =>
+            StudyPlanWeek.fromJson(snapshot.data()!..['id'] = snapshot.id),
+        toFirestore: (week, _) => week.toJson()..remove('id'),
+      );
 
   // Plans CRUD
   Future<String> createPlan(StudyPlan plan) async {
@@ -32,31 +37,41 @@ class StudyPlanRepository {
     return docRef.id;
   }
 
-  Future<void> updatePlan(StudyPlan plan) => _planCollection.doc(plan.id).set(plan);
+  Future<void> updatePlan(StudyPlan plan) =>
+      _planCollection.doc(plan.id).set(plan);
 
   Future<void> deletePlan(String id) => _planCollection.doc(id).delete();
 
-  Stream<List<StudyPlan>> getPlans() =>
-      _planCollection.snapshots().map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
+  Stream<List<StudyPlan>> getPlans() => _planCollection.snapshots().map(
+    (snapshot) => snapshot.docs.map((doc) => doc.data()).toList(),
+  );
 
   // Weeks CRUD
   Future<void> createWeek(StudyPlanWeek week) => _weekCollection.add(week);
 
-  Future<void> updateWeek(StudyPlanWeek week) => _weekCollection.doc(week.id).set(week);
+  Future<void> updateWeek(StudyPlanWeek week) =>
+      _weekCollection.doc(week.id).set(week);
 
   Future<void> deleteWeek(String id) => _weekCollection.doc(id).delete();
 
-  Stream<List<StudyPlanWeek>> getWeeksForPlan(String planId) =>
-      _weekCollection.where('planId', isEqualTo: planId).orderBy('weekNumber').snapshots().map((snapshot) =>
-          snapshot.docs.map((doc) => doc.data()).toList());
-  
+  Stream<List<StudyPlanWeek>> getWeeksForPlan(String planId) => _weekCollection
+      .where('planId', isEqualTo: planId)
+      .orderBy('weekNumber')
+      .snapshots()
+      .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
+
   Future<List<StudyPlanWeek>> getWeeksForPlanOnce(String planId) async {
-    final snapshot = await _weekCollection.where('planId', isEqualTo: planId).orderBy('weekNumber').get();
+    final snapshot = await _weekCollection
+        .where('planId', isEqualTo: planId)
+        .orderBy('weekNumber')
+        .get();
     return snapshot.docs.map((doc) => doc.data()).toList();
   }
 }
 
-final studyPlanRepositoryProvider = Provider((ref) => StudyPlanRepository(FirebaseFirestore.instance));
+final studyPlanRepositoryProvider = Provider(
+  (ref) => StudyPlanRepository(FirebaseFirestore.instance),
+);
 
 final studyPlansStreamProvider = StreamProvider<List<StudyPlan>>((ref) {
   return ref.watch(studyPlanRepositoryProvider).getPlans();

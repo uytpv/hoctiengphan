@@ -19,5 +19,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'hoc-tieng-phan.firebasestorage.app',
     measurementId: 'G-MLPX3VRMZQ',
   );
-
 }

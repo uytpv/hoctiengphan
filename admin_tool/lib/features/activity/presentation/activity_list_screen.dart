@@ -68,7 +68,9 @@ class _ActivityListScreenState extends ConsumerState<ActivityListScreen> {
               error: (e, s) => Center(child: Text('Error: $e')),
               data: (activities) {
                 final filteredItems = activities.where((a) {
-                  return a.title.toLowerCase().contains(_searchQuery.toLowerCase());
+                  return a.title.toLowerCase().contains(
+                    _searchQuery.toLowerCase(),
+                  );
                 }).toList();
 
                 if (filteredItems.isEmpty) {
@@ -86,7 +88,9 @@ class _ActivityListScreenState extends ConsumerState<ActivityListScreen> {
                         item.title,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text('${item.type.name.toUpperCase()} | ID: ${item.id}'),
+                      subtitle: Text(
+                        '${item.type.name.toUpperCase()} | ID: ${item.id}',
+                      ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -125,7 +129,10 @@ class _ActivityListScreenState extends ConsumerState<ActivityListScreen> {
         title: const Text('Delete Activity?'),
         content: const Text('Are you sure you want to delete this activity?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
           TextButton(
             onPressed: () async {
               await ref.read(activityRepositoryProvider).deleteActivity(id);

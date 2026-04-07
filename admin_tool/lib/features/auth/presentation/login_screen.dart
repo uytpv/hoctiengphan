@@ -34,7 +34,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     });
 
     try {
-      await ref.read(authNotifierProvider.notifier).signInWithEmailAndPassword(
+      await ref
+          .read(authNotifierProvider.notifier)
+          .signInWithEmailAndPassword(
             _emailController.text.trim(),
             _passwordController.text,
           );
@@ -53,9 +55,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
     } catch (e) {
       debugPrint("Login error: $e");
-      setState(
-        () => error = "Invalid email or password. Please try again.",
-      );
+      setState(() => error = "Invalid email or password. Please try again.");
     } finally {
       if (mounted) setState(() => isLoading = false);
     }

@@ -12,9 +12,10 @@ class Lesson with _$Lesson {
     int? week, // Optionally link directly to a week in study plan
     String? description, // Mô tả ngắn gọn nội dung bài học
     @Default(LessonContent()) LessonContent lessonContent, // Phần 1: Bài học
-    @Default([]) List<String> grammarIds,                 // Phần 2: Ngữ pháp (Danh sách ID liên kết)
-    @Default(LessonSpeaking()) LessonSpeaking speaking,   // Phần 3: Bài nói
-    @Default([]) List<String> exerciseIds,               // Phần 4: Bài tập (Danh sách ID)
+    @Default([])
+    List<String> grammarIds, // Phần 2: Ngữ pháp (Danh sách ID liên kết)
+    @Default(LessonSpeaking()) LessonSpeaking speaking, // Phần 3: Bài nói
+    @Default([]) List<String> exerciseIds, // Phần 4: Bài tập (Danh sách ID)
   }) = _Lesson;
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
@@ -23,21 +24,23 @@ class Lesson with _$Lesson {
 @freezed
 class LessonContent with _$LessonContent {
   const factory LessonContent({
-    @Default('') String text,          // Nội dung bài học (Markdown/HTML)
-    String? videoUrl,                  // Link video bài giảng (nếu có)
+    @Default('') String text, // Nội dung bài học (Markdown/HTML)
+    String? videoUrl, // Link video bài giảng (nếu có)
     @Default([]) List<String> imageIds, // Các hình ảnh minh họa trong bài
   }) = _LessonContent;
 
-  factory LessonContent.fromJson(Map<String, dynamic> json) => _$LessonContentFromJson(json);
+  factory LessonContent.fromJson(Map<String, dynamic> json) =>
+      _$LessonContentFromJson(json);
 }
 
 @freezed
 class LessonSpeaking with _$LessonSpeaking {
   const factory LessonSpeaking({
-    @Default('') String text,          // Nội dung bài mẫu/hội thoại
-    String? audioUrl,                  // Audio nghe mẫu
-    String? conversationUrl,           // Script hoặc tài liệu hội thoại đi kèm
+    @Default('') String text, // Nội dung bài mẫu/hội thoại
+    String? audioUrl, // Audio nghe mẫu
+    String? conversationUrl, // Script hoặc tài liệu hội thoại đi kèm
   }) = _LessonSpeaking;
 
-  factory LessonSpeaking.fromJson(Map<String, dynamic> json) => _$LessonSpeakingFromJson(json);
+  factory LessonSpeaking.fromJson(Map<String, dynamic> json) =>
+      _$LessonSpeakingFromJson(json);
 }
