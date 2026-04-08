@@ -94,10 +94,12 @@ class _LessonScreenState extends ConsumerState<LessonScreen>
       }
 
       // Load linked grammars
-      final grammarIds =
-          (data['grammarIds'] as List<dynamic>?)?.cast<String>() ?? [];
-      final exercises_ =
-          (data['exerciseIds'] as List<dynamic>?)?.cast<String>() ?? [];
+      final grammarIds = data['grammarIds'] is List
+          ? (data['grammarIds'] as List).cast<String>()
+          : <String>[];
+      final exercises_ = data['exerciseIds'] is List
+          ? (data['exerciseIds'] as List).cast<String>()
+          : <String>[];
 
       // NOTE: seed uses 'grammars' (plural), exercises uses 'exercises'
       final grammarDocs = await Future.wait(grammarIds.map(
@@ -755,12 +757,18 @@ class _LessonContentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Raw value may be Quill Delta JSON string or plain text
-    final contentMap = lesson['lessonContent'] as Map<String, dynamic>?;
-    final rawContent = contentMap?['text'] ??
-        lesson['content'] ??
-        lesson['contentFi'] ??
-        '';
+    final contentRaw = lesson['lessonContent'];
+    String rawContent = '';
+    
+    if (contentRaw is Map<String, dynamic>) {
+      rawContent = contentRaw['text']?.toString() ?? '';
+    } else if (contentRaw is String) {
+      rawContent = contentRaw;
+    }
+
+    if (rawContent.isEmpty) {
+      rawContent = (lesson['content'] ?? lesson['contentFi'] ?? '').toString();
+    }
 
     return ListView(
       padding: const EdgeInsets.all(20),
@@ -809,9 +817,16 @@ class _SpeakingSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final speakingMap = lesson['speaking'] as Map<String, dynamic>?;
-    final text = speakingMap?['text'] as String? ?? '';
-    final audioUrl = speakingMap?['audioUrl'] as String? ?? '';
+    final speakingRaw = lesson['speaking'];
+    String text = '';
+    String audioUrl = '';
+
+    if (speakingRaw is Map<String, dynamic>) {
+      text = speakingRaw['text']?.toString() ?? '';
+      audioUrl = speakingRaw['audioUrl']?.toString() ?? '';
+    } else if (speakingRaw is String) {
+      text = speakingRaw;
+    }
 
     return ListView(
       padding: const EdgeInsets.all(20),

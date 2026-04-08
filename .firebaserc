@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "hoc-tieng-phan"
-  }
+  },
+  "targets": {
+    "hoc-tieng-phan": {
+      "hosting": {
+        "app": [
+          "htpfe"
+        ],
+        "admin": [
+          "hoc-tieng-phan"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
