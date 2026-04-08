@@ -17,9 +17,7 @@ service cloud.firestore {
 
     match /vocabularies/{vocId} {
       allow read: if request.auth != null;
-      // Cho phép tất cả user đăng nhập được TẠO từ vựng mới (Global Shared)
       allow create: if request.auth != null;
-      // Chỉ admin mới có quyền sửa/xóa các từ vựng đã có
       allow update, delete: if isAdmin();
     }
 
@@ -43,13 +41,12 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
-    // Activity Collection
     match /activities/{activityId} {
       allow read: if true;
       allow write: if isAdmin();
     }
 
-    // Study Plan Collections
+    // Study Plan Collections - public read (no auth needed)
     match /study_plans/{planId} {
       allow read: if true;
       allow write: if isAdmin();
@@ -66,13 +63,21 @@ service cloud.firestore {
     }
 
     // 2. DỮ LIỆU NGƯỜI DÙNG CÁ NHÂN (USER DATA)
-    // Chỉ bảo vệ dữ liệu cá nhân: UID phải trùng khớp
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
-      // Quản trị viên có toàn quyền đọc/ghi tất cả profile
       allow read, write: if isAdmin();
       
-      // Cho phép truy cập vào các sub-collections (progress, notebook_vocabularies, notebook_grammar)
+      match /{allSubcollections=**} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+        allow read, write: if isAdmin();
+      }
+    }
+
+    // 3. USER PROGRESS (tiến độ học tập)
+    match /user_progress/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if isAdmin();
+
       match /{allSubcollections=**} {
         allow read, write: if request.auth != null && request.auth.uid == userId;
         allow read, write: if isAdmin();

@@ -1,0 +1,130 @@
+{
+  "@@locale": "fi",
+  "@@last_modified": "2026-04-08",
+
+  "appName": "Opi Suomea",
+  "@appName": { "description": "App name" },
+
+  "loginTitle": "Kirjaudu sisään",
+  "@loginTitle": { "description": "Login screen title" },
+
+  "loginSubtitle": "Jatka oppimista",
+  "@loginSubtitle": { "description": "Login screen subtitle" },
+
+  "loginWithGoogle": "Jatka Googlella",
+  "@loginWithGoogle": { "description": "Google sign-in button" },
+
+  "studyPlans": "Opiskelusuunnitelmat",
+  "@studyPlans": { "description": "Study plans screen title" },
+
+  "weeks": "Viikkoa",
+  "@weeks": { "description": "Weeks label" },
+
+  "week": "Viikko",
+  "@week": { "description": "Week singular" },
+
+  "days": "Päivää",
+  "@days": { "description": "Days label" },
+
+  "day": "Päivä",
+  "@day": { "description": "Day singular" },
+
+  "activities": "Harjoitusta",
+  "@activities": { "description": "Activities label" },
+
+  "lesson": "Oppitunti",
+  "@lesson": { "description": "Lesson" },
+
+  "exercise": "Harjoitus",
+  "@exercise": { "description": "Exercise" },
+
+  "grammar": "Kielioppi",
+  "@grammar": { "description": "Grammar" },
+
+  "vocabulary": "Sanasto",
+  "@vocabulary": { "description": "Vocabulary" },
+
+  "markAsDone": "Merkitse valmiiksi",
+  "@markAsDone": { "description": "Mark as done button" },
+
+  "lessonCompleted": "Oppitunti suoritettu!",
+  "@lessonCompleted": { "description": "Lesson completed message" },
+
+  "submitExercise": "Lähetä vastaukset",
+  "@submitExercise": { "description": "Submit exercise button" },
+
+  "retryExercise": "Yritä uudelleen",
+  "@retryExercise": { "description": "Retry exercise button" },
+
+  "completeExercise": "Merkitse valmiiksi",
+  "@completeExercise": { "description": "Complete exercise button" },
+
+  "exerciseResult": "Tulos",
+  "@exerciseResult": { "description": "Exercise result title" },
+
+  "score": "Pisteet",
+  "@score": { "description": "Score label" },
+
+  "correctAnswers": "{correct}/{total} oikein",
+  "@correctAnswers": {
+    "description": "Correct answers count",
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "done": "Valmis",
+  "@done": { "description": "Done status" },
+
+  "inProgress": "Kesken",
+  "@inProgress": { "description": "In progress status" },
+
+  "todo": "Tekemättä",
+  "@todo": { "description": "Todo status" },
+
+  "settings": "Asetukset",
+  "@settings": { "description": "Settings title" },
+
+  "secondaryLanguage": "Toinen kieli",
+  "@secondaryLanguage": { "description": "Secondary language label" },
+
+  "languageVietnamese": "Tiếng Việt",
+  "@languageVietnamese": { "description": "Vietnamese language option" },
+
+  "languageEnglish": "English",
+  "@languageEnglish": { "description": "English language option" },
+
+  "signOut": "Kirjaudu ulos",
+  "@signOut": { "description": "Sign out button" },
+
+  "profile": "Profiili",
+  "@profile": { "description": "Profile label" },
+
+  "home": "Koti",
+  "@home": { "description": "Home tab" },
+
+  "progress": "Edistyminen",
+  "@progress": { "description": "Progress tab" },
+
+  "completed": "Suoritettu",
+  "@completed": { "description": "Completed label" },
+
+  "continueBtn": "Jatka",
+  "@continueBtn": { "description": "Continue button" },
+
+  "back": "Takaisin",
+  "@back": { "description": "Back button" },
+
+  "roadmap": "Oppimispolku",
+  "@roadmap": { "description": "Roadmap/learning path" },
+
+  "loading": "Ladataan...",
+  "@loading": { "description": "Loading message" },
+
+  "error": "Virhe",
+  "@error": { "description": "Error label" },
+
+  "retry": "Yritä uudelleen",
+  "@retry": { "description": "Retry button" }
+}
