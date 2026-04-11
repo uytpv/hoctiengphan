@@ -31,13 +31,20 @@ class _GrammarFormDialogState extends ConsumerState<GrammarFormDialog> {
   QuillController _loadDelta(String jsonStr) {
     if (jsonStr.isEmpty) return QuillController.basic();
     try {
-      final doc = Document.fromJson(jsonDecode(jsonStr));
+      // Try parsing as JSON Delta
+      final dynamic json = jsonDecode(jsonStr);
+      final doc = Document.fromJson(json);
       return QuillController(
         document: doc,
         selection: const TextSelection.collapsed(offset: 0),
       );
     } catch (e) {
-      return QuillController.basic();
+      // If parsing fails, treat as plain text
+      final doc = Document()..insert(0, jsonStr);
+      return QuillController(
+        document: doc,
+        selection: const TextSelection.collapsed(offset: 0),
+      );
     }
   }
 

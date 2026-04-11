@@ -13,12 +13,11 @@ _$ExerciseImpl _$$ExerciseImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String? ?? '',
       type: json['type'] as String? ?? '',
       readingText: json['readingText'] as String?,
-      content: json['content'] as String? ?? '',
-      questions:
-          (json['questions'] as List<dynamic>?)
-              ?.map((e) => e as Map<String, dynamic>)
-              .toList() ??
-          const [],
+      content: json['instruction'] as String? ?? '',
+      questions: json['questions'] == null
+          ? const []
+          : const _QuestionsConverter()
+              .fromJson(json['questions'] as List<dynamic>),
     );
 
 Map<String, dynamic> _$$ExerciseImplToJson(_$ExerciseImpl instance) =>
@@ -28,6 +27,6 @@ Map<String, dynamic> _$$ExerciseImplToJson(_$ExerciseImpl instance) =>
       'description': instance.description,
       'type': instance.type,
       'readingText': instance.readingText,
-      'content': instance.content,
-      'questions': instance.questions,
+      'instruction': instance.content,
+      'questions': const _QuestionsConverter().toJson(instance.questions),
     };

@@ -1,0 +1,19 @@
+{
+  "name": "lessons/images/1775622207968_011-01.jpg",
+  "bucket": "hoc-tieng-phan.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1775622208095,
+  "contentType": "image/jpeg",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "7e2b849f-060a-4202-9f50-549a07e21c6f"
+  ],
+  "etag": "udRzf/XeVGszXPAMxylb83wBibg",
+  "customMetadata": {},
+  "timeCreated": "2026-04-08T04:23:28.096Z",
+  "updated": "2026-04-08T04:23:28.096Z",
+  "size": 45022,
+  "md5Hash": "CzEvjb3RqVLe3kKPPTMQCA==",
+  "crc32c": "852376089"
+}

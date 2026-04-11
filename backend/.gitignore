@@ -55,3 +55,5 @@ pnpm-lock.yaml
 /.history
 
 hoc-tieng-phan-firebase-adminsdk-fbsvc-cbfffbc13f.json
+
+.env

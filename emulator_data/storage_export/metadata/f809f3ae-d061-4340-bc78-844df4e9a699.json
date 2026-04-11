@@ -1,0 +1,19 @@
+{
+  "name": "exercises/media/aae87179-c671-45a6-9056-fb415b45caf9.mp3",
+  "bucket": "hoc-tieng-phan.firebasestorage.app",
+  "metageneration": 1,
+  "generation": 1775553802166,
+  "contentType": "audio/mp3",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "3ea1bbb9-24c6-4863-95b3-be789372365a"
+  ],
+  "etag": "NKMeu5QkFjgG7ghib7pCIYfz8lY",
+  "customMetadata": {},
+  "timeCreated": "2026-04-07T09:23:22.166Z",
+  "updated": "2026-04-07T09:23:22.166Z",
+  "size": 188839,
+  "md5Hash": "QdlfxzB+dG9uvbXeesynNA==",
+  "crc32c": "3311250039"
+}
