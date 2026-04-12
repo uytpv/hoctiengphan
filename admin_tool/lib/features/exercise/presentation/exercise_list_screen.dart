@@ -3,26 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../data/exercise_repository.dart';
 
-class ExerciseListScreen extends ConsumerStatefulWidget {
+import 'providers/exercise_filter_provider.dart';
+import 'providers/filtered_exercises_provider.dart';
+
+class ExerciseListScreen extends ConsumerWidget {
   const ExerciseListScreen({super.key});
 
   @override
-  ConsumerState<ExerciseListScreen> createState() => _ExerciseListScreenState();
-}
-
-class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
-  final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final exercisesAsync = ref.watch(exercisesStreamProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final exercisesAsync = ref.watch(paginatedExercisesProvider);
+    final allExercisesAsync = ref.watch(filteredExercisesProvider);
+    final filters = ref.watch(exerciseFilterProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -52,58 +43,70 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
-              controller: _searchController,
+              onChanged: (val) =>
+                  ref.read(exerciseFilterProvider.notifier).updateSearch(val),
               decoration: const InputDecoration(
                 hintText: 'Search exercise...',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
-              onChanged: (v) => setState(() => _searchQuery = v),
             ),
           ),
           Expanded(
             child: exercisesAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (e, s) => Center(child: Text('Error: $e')),
-              data: (exercises) {
-                final filteredExercises = exercises.where((ex) {
-                  return ex.title.toLowerCase().contains(
-                    _searchQuery.toLowerCase(),
-                  );
-                }).toList();
+              data: (items) {
+                final totalItems = allExercisesAsync.value?.length ?? 0;
+                final totalPages = (totalItems / filters.pageSize).ceil();
 
-                if (filteredExercises.isEmpty) {
+                if (items.isEmpty && filters.searchQuery.isEmpty) {
                   return const Center(child: Text('No exercises found.'));
                 }
 
-                return ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: filteredExercises.length,
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemBuilder: (context, index) {
-                    final item = filteredExercises[index];
-                    return ListTile(
-                      title: Text(
-                        item.title,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                if (items.isEmpty && filters.searchQuery.isNotEmpty) {
+                  return const Center(child: Text('No exercises match search.'));
+                }
+
+                return Column(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        itemCount: items.length,
+                        separatorBuilder: (context, index) => const Divider(),
+                        itemBuilder: (context, index) {
+                          final item = items[index];
+                          return ListTile(
+                            title: Text(
+                              item.title,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text('${item.type} | ID: ${item.id}'),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon:
+                                      const Icon(Icons.edit, color: Colors.blue),
+                                  onPressed: () =>
+                                      context.go('/exercises/edit/${item.id}'),
+                                ),
+                                IconButton(
+                                  icon:
+                                      const Icon(Icons.delete, color: Colors.red),
+                                  onPressed: () =>
+                                      _confirmDelete(context, ref, item.id),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                      subtitle: Text('${item.type} | ID: ${item.id}'),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () =>
-                                context.go('/exercises/edit/${item.id}'),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () => _confirmDelete(item.id),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                    ),
+                    _buildPagination(ref, filters, totalItems, totalPages),
+                  ],
                 );
               },
             ),
@@ -113,7 +116,50 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
     );
   }
 
-  void _confirmDelete(String id) {
+  Widget _buildPagination(
+    WidgetRef ref,
+    ExerciseFilterState filters,
+    int totalItems,
+    int totalPages,
+  ) {
+    if (totalItems == 0) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Total: $totalItems items',
+            style: const TextStyle(color: Colors.grey),
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: filters.pageIndex > 0
+                    ? () => ref
+                        .read(exerciseFilterProvider.notifier)
+                        .setPage(filters.pageIndex - 1)
+                    : null,
+                icon: const Icon(Icons.chevron_left),
+              ),
+              Text('Page ${filters.pageIndex + 1} of $totalPages'),
+              IconButton(
+                onPressed: filters.pageIndex < totalPages - 1
+                    ? () => ref
+                        .read(exerciseFilterProvider.notifier)
+                        .setPage(filters.pageIndex + 1)
+                    : null,
+                icon: const Icon(Icons.chevron_right),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _confirmDelete(BuildContext context, WidgetRef ref, String id) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -129,7 +175,7 @@ class _ExerciseListScreenState extends ConsumerState<ExerciseListScreen> {
           TextButton(
             onPressed: () async {
               await ref.read(exerciseRepositoryProvider).deleteExercise(id);
-              if (mounted) Navigator.pop(context);
+              if (context.mounted) Navigator.pop(context);
             },
             child: const Text('Delete', style: TextStyle(color: Colors.red)),
           ),

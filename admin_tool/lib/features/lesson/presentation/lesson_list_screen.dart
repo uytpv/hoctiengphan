@@ -11,7 +11,8 @@ class LessonListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final lessonsAsync = ref.watch(filteredLessonsProvider);
+    final lessonsAsync = ref.watch(paginatedLessonsProvider);
+    final allLessonsAsync = ref.watch(filteredLessonsProvider);
     final filters = ref.watch(lessonFilterProvider);
 
     return Scaffold(
@@ -52,18 +53,71 @@ class LessonListScreen extends ConsumerWidget {
             child: lessonsAsync.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (err, stack) => Center(child: Text('Error: $err')),
-              data: (items) => SingleChildScrollView(
-                padding: const EdgeInsets.all(24),
-                child: Card(
-                  elevation: 4,
-                  shadowColor: Colors.black12,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              data: (items) {
+                final totalItems = allLessonsAsync.value?.length ?? 0;
+                final totalPages = (totalItems / filters.pageSize).ceil();
+
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(24),
+                  child: Card(
+                    elevation: 4,
+                    shadowColor: Colors.black12,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      children: [
+                        _buildTable(context, ref, items, filters),
+                        _buildPagination(ref, filters, totalItems, totalPages),
+                      ],
+                    ),
                   ),
-                  child: _buildTable(context, ref, items, filters),
-                ),
-              ),
+                );
+              },
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPagination(
+    WidgetRef ref,
+    LessonFilterState filters,
+    int totalItems,
+    int totalPages,
+  ) {
+    if (totalItems == 0) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Total: $totalItems items',
+            style: const TextStyle(color: Colors.grey),
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: filters.pageIndex > 0
+                    ? () => ref
+                        .read(lessonFilterProvider.notifier)
+                        .setPage(filters.pageIndex - 1)
+                    : null,
+                icon: const Icon(Icons.chevron_left),
+              ),
+              Text('Page ${filters.pageIndex + 1} of $totalPages'),
+              IconButton(
+                onPressed: filters.pageIndex < totalPages - 1
+                    ? () => ref
+                        .read(lessonFilterProvider.notifier)
+                        .setPage(filters.pageIndex + 1)
+                    : null,
+                icon: const Icon(Icons.chevron_right),
+              ),
+            ],
           ),
         ],
       ),

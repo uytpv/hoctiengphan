@@ -39,3 +39,18 @@ final filteredLessonsProvider = Provider<AsyncValue<List<Lesson>>>((ref) {
     return filtered;
   });
 });
+
+final paginatedLessonsProvider = Provider<AsyncValue<List<Lesson>>>((ref) {
+  final filteredLessonsAsync = ref.watch(filteredLessonsProvider);
+  final filters = ref.watch(lessonFilterProvider);
+
+  return filteredLessonsAsync.whenData((all) {
+    int start = filters.pageIndex * filters.pageSize;
+    if (start >= all.length) return [];
+
+    int end = start + filters.pageSize;
+    if (end > all.length) end = all.length;
+
+    return all.sublist(start, end);
+  });
+});

@@ -9,12 +9,12 @@ class _QuestionsConverter
 
   @override
   List<Map<String, dynamic>> fromJson(List<dynamic> json) {
-    return json.map((e) {
+    return json.map<Map<String, dynamic>>((e) {
       if (e is Map) {
         return Map<String, dynamic>.from(e);
       } else if (e is String) {
         // Handle cases where questions were imported as simple strings
-        return {'text': e};
+        return <String, dynamic>{'text': e};
       }
       return <String, dynamic>{};
     }).toList();
