@@ -2,3 +2,8 @@ firebase-debug.log
 firestore-debug.log
 node_modules
 docs\Suomen-mestari-1-suomen-kielen-oppikirja-aikuisille.pdf
+emulator_data\storage_export\blobs
+emulator_data\storage_export\metadata
+emulator_data\auth_export\accounts.json
+emulator_data\firestore_export\all_namespaces\all_kinds
+firestore-debug.log
