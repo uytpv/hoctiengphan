@@ -1,1 +1,5 @@
 include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    file_names: false # DTH Constitution Rule III.3 requires PascalCase for files

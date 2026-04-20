@@ -12,16 +12,16 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const firebase_module_1 = require("./firebase/firebase.module");
 const auth_module_1 = require("./auth/auth.module");
-const vocabulary_module_1 = require("./vocabulary/vocabulary.module");
+const VocabularyModule_1 = require("./vocabulary/VocabularyModule");
 const grammar_module_1 = require("./grammar/grammar.module");
-const study_plan_module_1 = require("./study-plan/study-plan.module");
+const StudyPlanModule_1 = require("./study-plan/StudyPlanModule");
 const progress_module_1 = require("./progress/progress.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [firebase_module_1.FirebaseModule, auth_module_1.AuthModule, vocabulary_module_1.VocabularyModule, grammar_module_1.GrammarModule, study_plan_module_1.StudyPlanModule, progress_module_1.ProgressModule],
+        imports: [firebase_module_1.FirebaseModule, auth_module_1.AuthModule, VocabularyModule_1.VocabularyModule, grammar_module_1.GrammarModule, StudyPlanModule_1.StudyPlanModule, progress_module_1.ProgressModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

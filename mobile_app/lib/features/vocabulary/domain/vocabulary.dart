@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'vocabulary.freezed.dart';
-part 'vocabulary.g.dart';
+part 'Vocabulary.freezed.dart';
+part 'Vocabulary.g.dart';
 
 @freezed
 class Vocabulary with _$Vocabulary {

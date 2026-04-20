@@ -1,0 +1,13 @@
+{
+  "name": "@hoctiengphan/shared-types",
+  "version": "1.0.0",
+  "description": "Shared business logic types for Opi Suomea project",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

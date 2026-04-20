@@ -7,3 +7,4 @@ emulator_data\storage_export\metadata
 emulator_data\auth_export\accounts.json
 emulator_data\firestore_export\all_namespaces\all_kinds
 firestore-debug.log
+.venv
