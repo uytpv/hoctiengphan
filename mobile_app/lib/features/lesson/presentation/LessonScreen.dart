@@ -38,7 +38,7 @@ class LessonScreen extends ConsumerStatefulWidget {
 }
 
 class _LessonScreenState extends ConsumerState<LessonScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   Map<String, dynamic>? _lesson;
   List<Map<String, dynamic>> _grammars = [];
   List<Map<String, dynamic>> _exercises = [];
@@ -48,23 +48,35 @@ class _LessonScreenState extends ConsumerState<LessonScreen>
   bool _done = false;
 
   late TabController _tabController;
-  _LessonSection _activeSection = _LessonSection.overview;
+  List<_LessonSection> _visibleSections = _LessonSection.values;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(
-      length: _LessonSection.values.length,
+      length: _visibleSections.length,
       vsync: this,
     );
-    _tabController.addListener(() {
-      if (!_tabController.indexIsChanging) {
-        setState(() {
-          _activeSection = _LessonSection.values[_tabController.index];
-        });
-      }
-    });
+    _tabController.addListener(_handleTabChange);
     _load();
+  }
+
+  void _handleTabChange() {
+    if (!_tabController.indexIsChanging) {
+      // Index updated
+    }
+  }
+
+  void _initializeTabController(int length) {
+    if (length <= 0) return;
+    _tabController.removeListener(_handleTabChange);
+    _tabController.dispose();
+    _tabController = TabController(
+      length: length,
+      vsync: this,
+      initialIndex: 0,
+    );
+    _tabController.addListener(_handleTabChange);
   }
 
   @override
@@ -95,10 +107,10 @@ class _LessonScreenState extends ConsumerState<LessonScreen>
 
       // Load linked grammars
       final grammarIds = data['grammarIds'] is List
-          ? (data['grammarIds'] as List).cast<String>()
+          ? (data['grammarIds'] as List).map((e) => e.toString()).toList()
           : <String>[];
       final exercises_ = data['exerciseIds'] is List
-          ? (data['exerciseIds'] as List).cast<String>()
+          ? (data['exerciseIds'] as List).map((e) => e.toString()).toList()
           : <String>[];
 
       // NOTE: seed uses 'grammars' (plural), exercises uses 'exercises'
@@ -110,16 +122,50 @@ class _LessonScreenState extends ConsumerState<LessonScreen>
       ));
 
       if (!mounted) return;
+
+      // Determine visible sections
+      final List<_LessonSection> active = [_LessonSection.overview];
+      
+      final content = data['content'];
+      if (content != null && content.toString().trim().isNotEmpty && content.toString() != '[]') {
+        active.add(_LessonSection.content);
+      }
+
+      final speakingData = data['speaking'];
+      final speakingText = (speakingData is Map)
+          ? (speakingData['text'] ?? '')
+          : (speakingData ?? '');
+      if (speakingText.toString().trim().isNotEmpty) {
+        active.add(_LessonSection.speaking);
+      }
+
+      final finalGrammars = grammarDocs
+          .where((d) => d.exists)
+          .map((d) => {'id': d.id, ...d.data()!})
+          .toList();
+      if (finalGrammars.isNotEmpty) {
+        active.add(_LessonSection.grammar);
+      }
+
+      final finalExercises = exerciseDocs
+          .where((d) => d.exists)
+          .map((d) => {'id': d.id, ...d.data()!})
+          .toList();
+      if (finalExercises.isNotEmpty) {
+        active.add(_LessonSection.exercise);
+      }
+
       setState(() {
         _lesson = data;
-        _grammars = grammarDocs
-            .where((d) => d.exists)
-            .map((d) => {'id': d.id, ...d.data()!})
-            .toList();
-        _exercises = exerciseDocs
-            .where((d) => d.exists)
-            .map((d) => {'id': d.id, ...d.data()!})
-            .toList();
+        _grammars = finalGrammars;
+        _exercises = finalExercises;
+        
+        if (active.isNotEmpty) {
+          if (active.length != _visibleSections.length) {
+            _initializeTabController(active.length);
+          }
+          _visibleSections = active;
+        }
         _loading = false;
       });
     } catch (e, st) {
@@ -158,7 +204,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen>
                   lang: lang,
                   done: _done,
                   marking: _marking,
-                  activeSection: _activeSection,
+                  visibleSections: _visibleSections,
                   tabController: _tabController,
                   planId: widget.planId,
                   weekId: widget.weekId,
@@ -182,7 +228,7 @@ class _LessonContent extends StatelessWidget {
     required this.lang,
     required this.done,
     required this.marking,
-    required this.activeSection,
+    required this.visibleSections,
     required this.tabController,
     required this.planId,
     required this.weekId,
@@ -198,7 +244,7 @@ class _LessonContent extends StatelessWidget {
   final String lang;
   final bool done;
   final bool marking;
-  final _LessonSection activeSection;
+  final List<_LessonSection> visibleSections;
   final TabController tabController;
   final String planId, weekId, dayId, activityId;
   final VoidCallback onMarkDone;
@@ -212,7 +258,6 @@ class _LessonContent extends StatelessWidget {
 
     return Column(
       children: [
-        // ── Top header with gradient ──────────────
         _LessonHeader(
           title: title,
           weekNum: weekNum,
@@ -222,46 +267,41 @@ class _LessonContent extends StatelessWidget {
           onBack: onBack,
         ),
 
-        // ── Tab bar ──────────────────────────────
         _SectionTabBar(
           tabController: tabController,
+          visibleSections: visibleSections,
           lang: lang,
-          grammarsCount: grammars.length,
-          exercisesCount: exercises.length,
+          lesson: lesson,
         ),
 
-        // ── Tab content ──────────────────────────
         Expanded(
           child: TabBarView(
             controller: tabController,
-            children: [
-              // 1. Overview / Description
-              _OverviewSection(lesson: lesson, lang: lang),
-
-              // 2. Lesson Content
-              _LessonContentSection(lesson: lesson, lang: lang),
-
-              // 3. Speaking / Dialogue
-              _SpeakingSection(lesson: lesson, lang: lang),
-
-              // 4. Grammar
-              _GrammarSection(grammars: grammars, lang: lang),
-
-              // 5. Exercises
-              _ExerciseSection(
-                exercises: exercises,
-                lang: lang,
-                planId: planId,
-                weekId: weekId,
-                dayId: dayId,
-                activityId: activityId,
-                context: context,
-              ),
-            ],
+            children: visibleSections.map((section) {
+              switch (section) {
+                case _LessonSection.overview:
+                  return _OverviewSection(lesson: lesson, lang: lang);
+                case _LessonSection.content:
+                  return _LessonContentSection(lesson: lesson, lang: lang);
+                case _LessonSection.speaking:
+                  return _SpeakingSection(lesson: lesson, lang: lang);
+                case _LessonSection.grammar:
+                  return _GrammarSection(grammars: grammars, lang: lang);
+                case _LessonSection.exercise:
+                  return _ExerciseSection(
+                    exercises: exercises,
+                    lang: lang,
+                    planId: planId,
+                    weekId: weekId,
+                    dayId: dayId,
+                    activityId: activityId,
+                    context: context,
+                  );
+              }
+            }).toList(),
           ),
         ),
 
-        // ── Complete button ───────────────────────
         _CompleteBar(
           done: done,
           marking: marking,
@@ -310,7 +350,6 @@ class _LessonHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back + status
               Row(
                 children: [
                   IconButton(
@@ -351,7 +390,6 @@ class _LessonHeader extends StatelessWidget {
 
               const SizedBox(height: 4),
 
-              // Breadcrumb chips
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Wrap(
@@ -371,7 +409,6 @@ class _LessonHeader extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              // Title
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
@@ -431,90 +468,259 @@ class _WhiteChip extends StatelessWidget {
 // ─────────────────────────────────────────────
 // Section tab bar
 // ─────────────────────────────────────────────
-class _SectionTabBar extends StatelessWidget {
+class _SectionTabBar extends StatelessWidget implements PreferredSizeWidget {
   const _SectionTabBar({
     required this.tabController,
+    required this.visibleSections,
     required this.lang,
-    required this.grammarsCount,
-    required this.exercisesCount,
+    required this.lesson,
   });
 
   final TabController tabController;
+  final List<_LessonSection> visibleSections;
   final String lang;
-  final int grammarsCount;
-  final int exercisesCount;
+  final Map<String, dynamic> lesson;
+
+  @override
+  Size get preferredSize => const Size.fromHeight(48);
 
   @override
   Widget build(BuildContext context) {
-    final tabs = [
-      _tabItem(icon: Icons.info_outline, label: lang == 'vi' ? 'Tổng quan' : 'Overview'),
-      _tabItem(icon: Icons.menu_book_rounded, label: lang == 'vi' ? 'Nội dung' : 'Content'),
-      _tabItem(icon: Icons.record_voice_over_rounded, label: lang == 'vi' ? 'Hội thoại' : 'Speaking'),
-      _tabItem(
-        icon: Icons.auto_stories_rounded,
-        label: lang == 'vi' ? 'Ngữ pháp' : 'Grammar',
-        badge: grammarsCount,
-      ),
-      _tabItem(
-        icon: Icons.edit_note_rounded,
-        label: lang == 'vi' ? 'Bài tập' : 'Exercises',
-        badge: exercisesCount,
-      ),
-    ];
-
+    final grammarCount = (lesson['grammarIds'] as List? ?? []).length;
+    final exerciseCount = (lesson['exerciseIds'] as List? ?? []).length;
     return Container(
       color: AppColors.surface,
-      child: TabBar(
-        controller: tabController,
-        isScrollable: true,
-        tabAlignment: TabAlignment.start,
-        labelColor: AppColors.primary,
-        unselectedLabelColor: AppColors.neutral,
-        indicatorColor: AppColors.primary,
-        indicatorWeight: 2.5,
-        dividerColor: AppColors.border,
-        labelPadding: const EdgeInsets.symmetric(horizontal: 4),
-        tabs: tabs,
+      child: Row(
+        children: [
+          Expanded(
+            child: TabBar(
+              controller: tabController,
+              isScrollable: true,
+              tabAlignment: TabAlignment.start,
+              labelColor: AppColors.primary,
+              unselectedLabelColor: AppColors.neutral,
+              indicatorColor: AppColors.primary,
+              indicatorWeight: 3,
+              labelStyle: AppTextStyles.labelMd.copyWith(fontWeight: FontWeight.w700),
+              unselectedLabelStyle: AppTextStyles.labelMd,
+              tabs: visibleSections.map((section) {
+                switch (section) {
+                  case _LessonSection.overview:
+                    return Tab(text: lang == 'vi' ? 'Tổng quan' : 'Overview');
+                  case _LessonSection.content:
+                    return Tab(text: lang == 'vi' ? 'Bài học' : 'Content');
+                  case _LessonSection.speaking:
+                    return Tab(text: lang == 'vi' ? 'Luyện nói' : 'Speaking');
+                  case _LessonSection.grammar:
+                    return Tab(text: lang == 'vi' ? 'Ngữ pháp ($grammarCount)' : 'Grammar ($grammarCount)');
+                  case _LessonSection.exercise:
+                    return Tab(text: lang == 'vi' ? 'Bài tập ($exerciseCount)' : 'Exercises ($exerciseCount)');
+                }
+              }).toList(),
+            ),
+          ),
+          _LessonActionMenu(lesson: lesson, lang: lang),
+        ],
+      ),
+    );
+  }
+}
+
+class _LessonActionMenu extends StatelessWidget {
+  const _LessonActionMenu({required this.lesson, required this.lang});
+  final Map<String, dynamic> lesson;
+  final String lang;
+
+  void _showInfo(BuildContext context, String type) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _LessonInfoSheet(
+        type: type,
+        lesson: lesson,
+        lang: lang,
       ),
     );
   }
 
-  Widget _tabItem({
-    required IconData icon,
-    required String label,
-    int badge = 0,
-  }) {
-    return Tab(
-      height: 48,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 16),
-            const SizedBox(width: 6),
-            Text(label, style: const TextStyle(fontSize: 12.5)),
-            if (badge > 0) ...[
-              const SizedBox(width: 5),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  '$badge',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ],
-        ),
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.surface,
+        border: Border(left: BorderSide(color: AppColors.borderLight)),
       ),
+      child: PopupMenuButton<String>(
+        icon: const Icon(Icons.info_outline_rounded, color: AppColors.neutral, size: 22),
+        tooltip: lang == 'vi' ? 'Thông tin bài học' : 'Lesson info',
+        onSelected: (value) => _showInfo(context, value),
+        itemBuilder: (context) => [
+          PopupMenuItem(
+            value: 'stats',
+            child: Row(
+              children: [
+                const Icon(Icons.list_alt_rounded, size: 20, color: AppColors.primary),
+                const SizedBox(width: 12),
+                Text(
+                  lang == 'vi' ? 'Nội dung bài học' : 'What\'s in this lesson',
+                  style: AppTextStyles.bodyMd,
+                ),
+              ],
+            ),
+          ),
+          PopupMenuItem(
+            value: 'legend',
+            child: Row(
+              children: [
+                const Icon(Icons.help_outline_rounded, size: 20, color: Color(0xFFE67E22)),
+                const SizedBox(width: 12),
+                Text(
+                  lang == 'vi' ? 'Giải thích ký hiệu' : 'Symbols Legend',
+                  style: AppTextStyles.bodyMd,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LessonInfoSheet extends StatelessWidget {
+  const _LessonInfoSheet({
+    required this.type,
+    required this.lesson,
+    required this.lang,
+  });
+  final String type;
+  final Map<String, dynamic> lesson;
+  final String lang;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      ),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 30),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 36,
+            height: 4,
+            decoration: BoxDecoration(
+              color: AppColors.border,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 24),
+
+          if (type == 'stats') ...[
+            _SectionHeader(
+              icon: Icons.list_alt_rounded,
+              color: AppColors.primary,
+              label: lang == 'vi' ? 'Nội dung bài học' : 'What\'s in this lesson',
+              sublabel: lang == 'vi' ? 'Tổng quan các phần' : 'Overview of all sections',
+            ),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: _LessonStatsContent(lesson: lesson, lang: lang),
+            ),
+          ] else ...[
+            _SectionHeader(
+              icon: Icons.help_outline_rounded,
+              color: const Color(0xFFE67E22),
+              label: lang == 'vi' ? 'Giải thích ký hiệu' : 'Symbols Legend',
+              sublabel: lang == 'vi' ? 'Các biểu tượng trong bài' : 'Meaning of icons used',
+            ),
+            const SizedBox(height: 20),
+            _LegendCard(lang: lang),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _LessonStatsContent extends StatelessWidget {
+  const _LessonStatsContent({required this.lesson, required this.lang});
+  final Map<String, dynamic> lesson;
+  final String lang;
+
+  @override
+  Widget build(BuildContext context) {
+    final grammars = lesson['grammarIds'] as List? ?? [];
+    final exercises = lesson['exerciseIds'] as List? ?? [];
+    final speakingText = (lesson['speaking'] is Map)
+        ? (lesson['speaking']['text'] ?? '')
+        : (lesson['speaking'] ?? '');
+    final hasSpeaking = speakingText.toString().trim().isNotEmpty;
+
+    return Column(
+      children: [
+        _StatRow(
+          icon: Icons.article_rounded,
+          color: const Color(0xFF3498DB),
+          label: lang == 'vi' ? 'Nội dung chính' : 'Main Content',
+          value: '1',
+        ),
+        const SizedBox(height: 12),
+        _StatRow(
+          icon: Icons.record_voice_over_rounded,
+          color: const Color(0xFF32AE88),
+          label: lang == 'vi' ? 'Hội thoại mẫu' : 'Dialogue',
+          value: hasSpeaking ? '1' : '0',
+        ),
+        const SizedBox(height: 12),
+        _StatRow(
+          icon: Icons.auto_stories_rounded,
+          color: const Color(0xFFFF6B35),
+          label: lang == 'vi' ? 'Ngữ pháp' : 'Grammar',
+          value: '${grammars.length}',
+        ),
+        const SizedBox(height: 12),
+        _StatRow(
+          icon: Icons.edit_note_rounded,
+          color: const Color(0xFF6C63FF),
+          label: lang == 'vi' ? 'Bài tập' : 'Exercises',
+          value: '${exercises.length}',
+        ),
+      ],
+    );
+  }
+}
+
+class _StatRow extends StatelessWidget {
+  const _StatRow({required this.icon, required this.color, required this.label, required this.value});
+  final IconData icon;
+  final Color color;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(8)),
+          child: Icon(icon, size: 20, color: color),
+        ),
+        const SizedBox(width: 12),
+        Text(label, style: AppTextStyles.bodyMd),
+        const Spacer(),
+        Text(value, style: AppTextStyles.labelLg.copyWith(color: AppColors.primary)),
+      ],
     );
   }
 }
@@ -534,7 +740,6 @@ class _OverviewSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        // Short description card
         if (description.isNotEmpty) ...[
           _SectionCard(
             icon: Icons.info_outline,
@@ -545,81 +750,7 @@ class _OverviewSection extends StatelessWidget {
               style: AppTextStyles.bodyLg.copyWith(height: 1.7),
             ),
           ),
-          const SizedBox(height: 16),
         ],
-
-        // ── Legend card (Merkkien selitykset) ────
-        _LegendCard(lang: lang),
-
-        const SizedBox(height: 16),
-
-        // Quick stats
-        _SectionCard(
-          icon: Icons.list_alt_rounded,
-          iconColor: const Color(0xFF6C63FF),
-          title: lang == 'vi' ? 'Nội dung bài học' : 'What\'s in this lesson',
-          child: Column(
-            children: [
-              _QuickStatRow(
-                icon: Icons.menu_book_rounded,
-                color: const Color(0xFF0056D2),
-                label: lang == 'vi' ? 'Nội dung học' : 'Reading content',
-              ),
-              const SizedBox(height: 10),
-              _QuickStatRow(
-                icon: Icons.record_voice_over_rounded,
-                color: const Color(0xFF32AE88),
-                label: lang == 'vi' ? 'Hội thoại mẫu' : 'Dialogue practice',
-              ),
-              if ((lesson['grammarIds'] as List?)?.isNotEmpty == true) ...[
-                const SizedBox(height: 10),
-                _QuickStatRow(
-                  icon: Icons.auto_stories_rounded,
-                  color: const Color(0xFFFF6B35),
-                  label: lang == 'vi' ? 'Bài học ngữ pháp' : 'Grammar points',
-                ),
-              ],
-              if ((lesson['exerciseIds'] as List?)?.isNotEmpty == true) ...[
-                const SizedBox(height: 10),
-                _QuickStatRow(
-                  icon: Icons.edit_note_rounded,
-                  color: const Color(0xFF6C63FF),
-                  label: lang == 'vi' ? 'Bài tập thực hành' : 'Practice exercises',
-                ),
-              ],
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _QuickStatRow extends StatelessWidget {
-  const _QuickStatRow({
-    required this.icon,
-    required this.color,
-    required this.label,
-  });
-  final IconData icon;
-  final Color color;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 36,
-          height: 36,
-          decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(icon, size: 18, color: color),
-        ),
-        const SizedBox(width: 12),
-        Text(label, style: AppTextStyles.bodyMd),
       ],
     );
   }
@@ -679,19 +810,13 @@ class _LegendCard extends StatelessWidget {
       ),
     ];
 
-    return _SectionCard(
-      icon: Icons.info_rounded,
-      iconColor: AppColors.neutral,
-      title: 'Merkkien selitykset',
-      subtitle: lang == 'vi' ? 'Giải thích ký hiệu' : 'Symbol guide',
-      child: Column(
-        children: items
-            .map((item) => Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: _LegendRow(item: item),
-                ))
-            .toList(),
-      ),
+    return Column(
+      children: items
+          .map((item) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _LegendRow(item: item),
+              ))
+          .toList(),
     );
   }
 }
@@ -773,18 +898,16 @@ class _LessonContentSection extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
-        // Header chip
         _SectionHeader(
           icon: Icons.menu_book_rounded,
           color: AppColors.primary,
-          label: lang == 'vi' ? 'Nội dung học tập' : 'Lesson Content',
+          label: lang == 'vi' ? 'Nội dung bài học' : 'Lesson Content',
           sublabel: lang == 'vi'
               ? 'Đọc kỹ nội dung bên dưới'
               : 'Read through the content below',
         ),
         const SizedBox(height: 16),
 
-        // Content block — render Quill Delta (or plain text)
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(24),
@@ -834,18 +957,16 @@ class _SpeakingSection extends StatelessWidget {
         _SectionHeader(
           icon: Icons.record_voice_over_rounded,
           color: const Color(0xFF32AE88),
-          label: lang == 'vi' ? 'Hội thoại mẫu' : 'Dialogue',
+          label: lang == 'vi' ? 'Luyện nói' : 'Speaking Practice',
           sublabel: lang == 'vi'
               ? 'Lắng nghe và luyện nói theo'
               : 'Listen and repeat after the model',
         ),
         const SizedBox(height: 16),
 
-        // Audio player card
         _AudioPlayerCard(audioUrl: audioUrl, lang: lang),
         const SizedBox(height: 16),
 
-        // Dialogue text
         Container(
           width: double.infinity,
           padding: const EdgeInsets.all(24),
@@ -879,7 +1000,6 @@ class _SpeakingSection extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 14),
-                    // Render as Quill Delta (may contain text + images)
                     QuillContentRenderer(deltaJson: text),
                   ],
                 )
@@ -893,7 +1013,6 @@ class _SpeakingSection extends StatelessWidget {
 
         const SizedBox(height: 16),
 
-        // Pair exercise hint
         _HintCard(
           icon: Icons.people_alt_rounded,
           color: const Color(0xFF9B59B6),
@@ -906,7 +1025,6 @@ class _SpeakingSection extends StatelessWidget {
   }
 }
 
-// Audio player widget (placeholder — play supported via audioUrl)
 class _AudioPlayerCard extends StatefulWidget {
   const _AudioPlayerCard({required this.audioUrl, required this.lang});
   final String audioUrl;

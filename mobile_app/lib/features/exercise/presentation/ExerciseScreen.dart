@@ -62,8 +62,9 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
   int _calcScore(List questions) {
     int correct = 0;
     for (int i = 0; i < questions.length; i++) {
-      final q = questions[i] as Map<String, dynamic>;
-      final correctIdx = q['correctIndex'] as int? ?? 0;
+      final q = questions[i];
+      if (q is! Map) continue;
+      final correctIdx = (q['correctIndex'] as num?)?.toInt() ?? 0;
       if (_answers[i] == correctIdx) correct++;
     }
     return correct;
@@ -297,9 +298,11 @@ class _QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final prompt = question['prompt'] as String? ?? '';
-    final options =
-        (question['options'] as List?)?.cast<String>() ?? [];
-    final correctIdx = question['correctIndex'] as int? ?? 0;
+    final options = (question['options'] as List?)
+            ?.map((e) => e.toString())
+            .toList() ??
+        [];
+    final correctIdx = (question['correctIndex'] as num?)?.toInt() ?? 0;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),

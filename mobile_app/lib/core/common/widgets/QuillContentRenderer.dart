@@ -162,8 +162,7 @@ class _Op {
   static _Op? fromJson(dynamic json) {
     if (json is! Map<String, dynamic>) return null;
     final insert = json['insert'];
-    final attrs =
-        (json['attributes'] as Map<String, dynamic>?) ?? {};
+    final attrs = (json['attributes'] as Map<String, dynamic>?) ?? {};
 
     if (insert is String) {
       return _Op.text(insert, attrs.isEmpty ? null : attrs);

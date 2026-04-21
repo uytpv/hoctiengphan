@@ -73,7 +73,21 @@ class _StudyPlanDetailScreenState
       body: weeksAsync.when(
         loading: () =>
             const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text(e.toString())),
+        error: (err, stack) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 48, color: Colors.red),
+              const SizedBox(height: 16),
+              const Text('Lỗi tải dữ liệu / Data Load Error'),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () => ref.invalidate(weekListProvider(widget.planId)),
+                child: const Text('Thử lại / Retry'),
+              ),
+            ],
+          ),
+        ),
         data: (weeks) => Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

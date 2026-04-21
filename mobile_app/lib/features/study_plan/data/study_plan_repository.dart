@@ -123,13 +123,16 @@ class StudyPlanRepository {
     if (!doc.exists) return {};
 
     final data = doc.data() ?? {};
-    final activities =
-        (data['activities'] as Map<String, dynamic>?) ?? {};
+    final activities = data['activities'] as Map?;
+    if (activities == null) return {};
+
     return activities.map(
-      (key, value) => MapEntry(
-          key,
-          (value as Map<String, dynamic>)['status'] as String? ??
-              'todo'),
+      (key, value) {
+        final status = (value is Map)
+            ? (value['status'] as String? ?? 'todo')
+            : 'todo';
+        return MapEntry(key as String, status);
+      },
     );
   }
 }
