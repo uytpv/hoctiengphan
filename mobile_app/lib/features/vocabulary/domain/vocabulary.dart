@@ -1,16 +1,19 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'Vocabulary.freezed.dart';
-part 'Vocabulary.g.dart';
+part 'vocabulary.freezed.dart';
+part 'vocabulary.g.dart';
 
 @freezed
 class Vocabulary with _$Vocabulary {
   const factory Vocabulary({
     required String id,
     required String finnish,
+    String? pronunciation,
     String? english,
     required String vietnamese,
     required String lessonId,
+    String? audioUrl,
+    String? imageUrl,
     @Default(false) bool isGlobal,
     String? authorId,
   }) = _Vocabulary;

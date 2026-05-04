@@ -12,8 +12,7 @@ part of 'grammar_topic.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 GrammarTopic _$GrammarTopicFromJson(Map<String, dynamic> json) {
   return _GrammarTopic.fromJson(json);
@@ -40,17 +39,11 @@ mixin _$GrammarTopic {
 /// @nodoc
 abstract class $GrammarTopicCopyWith<$Res> {
   factory $GrammarTopicCopyWith(
-    GrammarTopic value,
-    $Res Function(GrammarTopic) then,
-  ) = _$GrammarTopicCopyWithImpl<$Res, GrammarTopic>;
+          GrammarTopic value, $Res Function(GrammarTopic) then) =
+      _$GrammarTopicCopyWithImpl<$Res, GrammarTopic>;
   @useResult
-  $Res call({
-    String id,
-    String chapter,
-    String title,
-    String? desc,
-    dynamic content,
-  });
+  $Res call(
+      {String id, String chapter, String title, String? desc, dynamic content});
 }
 
 /// @nodoc
@@ -74,31 +67,28 @@ class _$GrammarTopicCopyWithImpl<$Res, $Val extends GrammarTopic>
     Object? desc = freezed,
     Object? content = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            chapter: null == chapter
-                ? _value.chapter
-                : chapter // ignore: cast_nullable_to_non_nullable
-                      as String,
-            title: null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                      as String,
-            desc: freezed == desc
-                ? _value.desc
-                : desc // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            content: freezed == content
-                ? _value.content
-                : content // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      chapter: null == chapter
+          ? _value.chapter
+          : chapter // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      desc: freezed == desc
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ) as $Val);
   }
 }
 
@@ -106,18 +96,12 @@ class _$GrammarTopicCopyWithImpl<$Res, $Val extends GrammarTopic>
 abstract class _$$GrammarTopicImplCopyWith<$Res>
     implements $GrammarTopicCopyWith<$Res> {
   factory _$$GrammarTopicImplCopyWith(
-    _$GrammarTopicImpl value,
-    $Res Function(_$GrammarTopicImpl) then,
-  ) = __$$GrammarTopicImplCopyWithImpl<$Res>;
+          _$GrammarTopicImpl value, $Res Function(_$GrammarTopicImpl) then) =
+      __$$GrammarTopicImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String chapter,
-    String title,
-    String? desc,
-    dynamic content,
-  });
+  $Res call(
+      {String id, String chapter, String title, String? desc, dynamic content});
 }
 
 /// @nodoc
@@ -125,9 +109,8 @@ class __$$GrammarTopicImplCopyWithImpl<$Res>
     extends _$GrammarTopicCopyWithImpl<$Res, _$GrammarTopicImpl>
     implements _$$GrammarTopicImplCopyWith<$Res> {
   __$$GrammarTopicImplCopyWithImpl(
-    _$GrammarTopicImpl _value,
-    $Res Function(_$GrammarTopicImpl) _then,
-  ) : super(_value, _then);
+      _$GrammarTopicImpl _value, $Res Function(_$GrammarTopicImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of GrammarTopic
   /// with the given fields replaced by the non-null parameter values.
@@ -140,43 +123,40 @@ class __$$GrammarTopicImplCopyWithImpl<$Res>
     Object? desc = freezed,
     Object? content = freezed,
   }) {
-    return _then(
-      _$GrammarTopicImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        chapter: null == chapter
-            ? _value.chapter
-            : chapter // ignore: cast_nullable_to_non_nullable
-                  as String,
-        title: null == title
-            ? _value.title
-            : title // ignore: cast_nullable_to_non_nullable
-                  as String,
-        desc: freezed == desc
-            ? _value.desc
-            : desc // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        content: freezed == content
-            ? _value.content
-            : content // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-      ),
-    );
+    return _then(_$GrammarTopicImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      chapter: null == chapter
+          ? _value.chapter
+          : chapter // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      desc: freezed == desc
+          ? _value.desc
+          : desc // ignore: cast_nullable_to_non_nullable
+              as String?,
+      content: freezed == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$GrammarTopicImpl implements _GrammarTopic {
-  const _$GrammarTopicImpl({
-    required this.id,
-    required this.chapter,
-    required this.title,
-    this.desc,
-    this.content,
-  });
+  const _$GrammarTopicImpl(
+      {required this.id,
+      required this.chapter,
+      required this.title,
+      this.desc,
+      this.content});
 
   factory _$GrammarTopicImpl.fromJson(Map<String, dynamic> json) =>
       _$$GrammarTopicImplFromJson(json);
@@ -211,14 +191,8 @@ class _$GrammarTopicImpl implements _GrammarTopic {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    chapter,
-    title,
-    desc,
-    const DeepCollectionEquality().hash(content),
-  );
+  int get hashCode => Object.hash(runtimeType, id, chapter, title, desc,
+      const DeepCollectionEquality().hash(content));
 
   /// Create a copy of GrammarTopic
   /// with the given fields replaced by the non-null parameter values.
@@ -230,18 +204,19 @@ class _$GrammarTopicImpl implements _GrammarTopic {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GrammarTopicImplToJson(this);
+    return _$$GrammarTopicImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _GrammarTopic implements GrammarTopic {
-  const factory _GrammarTopic({
-    required final String id,
-    required final String chapter,
-    required final String title,
-    final String? desc,
-    final dynamic content,
-  }) = _$GrammarTopicImpl;
+  const factory _GrammarTopic(
+      {required final String id,
+      required final String chapter,
+      required final String title,
+      final String? desc,
+      final dynamic content}) = _$GrammarTopicImpl;
 
   factory _GrammarTopic.fromJson(Map<String, dynamic> json) =
       _$GrammarTopicImpl.fromJson;

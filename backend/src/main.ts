@@ -16,6 +16,17 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
+  // Export swagger.json in development mode
+  if (process.env.NODE_ENV !== 'production') {
+    const fs = require('fs');
+    const path = require('path');
+    fs.writeFileSync(
+      path.join(__dirname, '..', 'swagger.json'),
+      JSON.stringify(document, null, 2),
+    );
+    console.log('Swagger JSON exported to swagger.json');
+  }
+
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

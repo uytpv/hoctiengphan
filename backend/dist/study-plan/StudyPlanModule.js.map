@@ -1,1 +1,0 @@
-{"version":3,"file":"StudyPlanModule.js","sourceRoot":"","sources":["../../src/study-plan/StudyPlanModule.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,+DAA4D;AAC5D,yDAAsD;AAM/C,IAAM,eAAe,GAArB,MAAM,eAAe;CAAG,CAAA;AAAlB,0CAAe;0BAAf,eAAe;IAJ3B,IAAA,eAAM,EAAC;QACN,WAAW,EAAE,CAAC,yCAAmB,CAAC;QAClC,SAAS,EAAE,CAAC,mCAAgB,CAAC;KAC9B,CAAC;GACW,eAAe,CAAG"}

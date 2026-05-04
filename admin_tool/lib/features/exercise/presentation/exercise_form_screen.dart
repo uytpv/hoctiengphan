@@ -4,7 +4,9 @@ import 'package:file_picker/file_picker.dart' as fp;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:uuid/uuid.dart';
 import 'package:go_router/go_router.dart';
+import 'package:just_audio/just_audio.dart';
 import '../domain/exercise.dart';
+import '../domain/question.dart';
 import '../data/exercise_repository.dart';
 import 'widgets/exercise_preview_widget.dart';
 
@@ -29,6 +31,7 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
   bool _isUploading = false;
   bool _isLoading = false;
   Exercise? _exercise;
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -57,9 +60,7 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
           _typeController.text = exercise.type;
           _readingTextController.text = exercise.readingText ?? '';
           _contentController.text = exercise.content;
-          _questions = List<Map<String, dynamic>>.from(
-            exercise.questions.map((e) => Map<String, dynamic>.from(e)),
-          );
+          _questions = exercise.questions.map((q) => q.toJson()).toList();
           _isLoading = false;
         });
       }
@@ -80,7 +81,22 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
     _typeController.dispose();
     _readingTextController.dispose();
     _contentController.dispose();
+    _audioPlayer.dispose();
     super.dispose();
+  }
+
+  Future<void> _playAudio(String url) async {
+    try {
+      if (url.isEmpty) return;
+      await _audioPlayer.setUrl(url);
+      await _audioPlayer.play();
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Audio play failed: $e')));
+      }
+    }
   }
 
   void _forceUpdate() {
@@ -149,8 +165,7 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
                               ),
                               const SizedBox(height: 16),
                               DropdownButtonFormField<String>(
-                                value:
-                                    [
+                                initialValue: [
                                       'multiple-choice',
                                       'fill-in-blanks',
                                       'true-false',
@@ -396,6 +411,14 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
                 children: [
                   Expanded(child: _buildField(index, 'audioUrl', 'Audio URL')),
                   IconButton(
+                    icon: const Icon(Icons.play_arrow),
+                    tooltip: 'Play Audio',
+                    onPressed: () {
+                      final url = _questions[index]['audioUrl']?.toString() ?? '';
+                      _playAudio(url);
+                    },
+                  ),
+                  IconButton(
                     icon: const Icon(Icons.upload_file),
                     tooltip: 'Upload Audio',
                     onPressed: () =>
@@ -514,7 +537,7 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
 
   Future<void> _uploadFile(int index, String key, fp.FileType type) async {
     try {
-      fp.FilePickerResult? result = await fp.FilePicker.pickFiles(
+      final result = await fp.FilePicker.pickFiles(
         type: type,
         withData: true,
       );
@@ -564,7 +587,7 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
             ? _readingTextController.text
             : null,
         content: _contentController.text,
-        questions: _questions,
+        questions: _questions.map((q) => Question.fromJson(q)).toList(),
       );
 
       final repository = ref.read(exerciseRepositoryProvider);

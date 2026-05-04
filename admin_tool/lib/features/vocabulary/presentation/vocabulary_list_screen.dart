@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/vocabulary_provider.dart';
 import '../models/vocabulary.dart';
 import '../repositories/vocabulary_repository.dart';
-import '../../lesson/domain/lesson.dart';
+
 import 'widgets/vocabulary_form_dialog.dart';
 
 class VocabularyListScreen extends ConsumerWidget {
@@ -106,7 +106,7 @@ class VocabularyListScreen extends ConsumerWidget {
           const SizedBox(width: 16),
           Expanded(
             child: DropdownButtonFormField<String>(
-              value: filters.lessonId,
+              initialValue: filters.lessonId,
               decoration: InputDecoration(
                 labelText: 'Filter by Lesson',
                 border: OutlineInputBorder(

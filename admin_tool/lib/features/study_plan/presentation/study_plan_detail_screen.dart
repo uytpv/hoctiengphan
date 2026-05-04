@@ -141,7 +141,9 @@ class _ActivitiesSummary extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (activityIds.isEmpty) return const Text('0 hoạt động');
+    if (activityIds.isEmpty) {
+      return const Text('0 hoạt động');
+    }
 
     final activitiesAsync = ref.watch(activitiesStreamProvider);
     return activitiesAsync.when(
@@ -250,8 +252,9 @@ class StudyDayActivityManagementDialog extends ConsumerWidget {
                         itemCount: allActivities.length,
                         itemBuilder: (context, index) {
                           final activity = allActivities[index];
-                          if (day.activityIds.contains(activity.id))
+                          if (day.activityIds.contains(activity.id)) {
                             return const SizedBox();
+                          }
                           return ListTile(
                             dense: true,
                             leading: _getTypeIcon(activity.type),

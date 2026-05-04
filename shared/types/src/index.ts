@@ -37,22 +37,66 @@ export interface Roadmap {
   weeks: Week[];
 }
 
+export interface BilingualText {
+  fi: string;
+  vi: string;
+  en?: string;
+}
+
+export type ExerciseType = 'MULTIPLE_CHOICE' | 'FILL_IN_BLANK' | 'MATCHING' | 'TRUE_FALSE';
+
+export interface Question {
+  prompt: string;
+  type: ExerciseType;
+  options?: string[];
+  correctIndex?: number;
+  correctText?: string;
+  explanation?: string;
+}
+
+export interface MultiQuestionExercise {
+  id: string;
+  titleFi: string;
+  titleVi?: string;
+  instructionFi?: string;
+  instructionVi?: string;
+  questions: Question[];
+  lessonId?: string;
+}
+
+export interface Exercise {
+  id: string;
+  type: ExerciseType;
+  question: BilingualText;
+  options?: string[]; // For MULTIPLE_CHOICE or MATCHING
+  correctAnswer: string | string[] | number; // Single value or list of valid answers
+  explanation?: BilingualText;
+  lessonId: string;
+  difficulty: number; // 1-5
+  tags?: string[]; // e.g. ["verb", "kpt-change"]
+}
+
 export interface Vocabulary {
+  id?: string;
   finnish: string;
-  pronunciation: string;
+  pronunciation?: string;
   english: string;
   vietnamese: string;
+  wordType?: 'noun' | 'verb' | 'adj' | 'adv' | 'phrase' | 'other';
+  chapter?: string; // e.g. "SM1-K1"
   lessonId?: string;
   categoryIds?: string[];
   authorUid?: string | null;
+  audioUrl?: string;
+  imageUrl?: string;
   createdAt: Timestamp;
 }
 
 export interface GrammarLesson {
   chapter: string;
-  title: string;
-  desc: string;
-  content: string;
+  title: BilingualText;
+  desc: BilingualText;
+  content: string; // Markdown supported
 }
 
 // 2. USER INDIVIDUAL DATA

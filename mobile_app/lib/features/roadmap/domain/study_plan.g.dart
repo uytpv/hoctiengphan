@@ -26,38 +26,31 @@ Map<String, dynamic> _$$StudyPlanImplToJson(_$StudyPlanImpl instance) =>
 
 _$StudyDaysImpl _$$StudyDaysImplFromJson(Map<String, dynamic> json) =>
     _$StudyDaysImpl(
-      monday:
-          (json['monday'] as List<dynamic>?)
+      monday: (json['monday'] as List<dynamic>?)
               ?.map((e) => StudyTask.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      tuesday:
-          (json['tuesday'] as List<dynamic>?)
+      tuesday: (json['tuesday'] as List<dynamic>?)
               ?.map((e) => StudyTask.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      wednesday:
-          (json['wednesday'] as List<dynamic>?)
+      wednesday: (json['wednesday'] as List<dynamic>?)
               ?.map((e) => StudyTask.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      thursday:
-          (json['thursday'] as List<dynamic>?)
+      thursday: (json['thursday'] as List<dynamic>?)
               ?.map((e) => StudyTask.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      friday:
-          (json['friday'] as List<dynamic>?)
+      friday: (json['friday'] as List<dynamic>?)
               ?.map((e) => StudyTask.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      saturday:
-          (json['saturday'] as List<dynamic>?)
+      saturday: (json['saturday'] as List<dynamic>?)
               ?.map((e) => StudyTask.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      sunday:
-          (json['sunday'] as List<dynamic>?)
+      sunday: (json['sunday'] as List<dynamic>?)
               ?.map((e) => StudyTask.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],

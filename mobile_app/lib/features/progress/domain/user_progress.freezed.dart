@@ -12,8 +12,7 @@ part of 'user_progress.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserProgress _$UserProgressFromJson(Map<String, dynamic> json) {
   return _UserProgress.fromJson(json);
@@ -38,15 +37,13 @@ mixin _$UserProgress {
 /// @nodoc
 abstract class $UserProgressCopyWith<$Res> {
   factory $UserProgressCopyWith(
-    UserProgress value,
-    $Res Function(UserProgress) then,
-  ) = _$UserProgressCopyWithImpl<$Res, UserProgress>;
+          UserProgress value, $Res Function(UserProgress) then) =
+      _$UserProgressCopyWithImpl<$Res, UserProgress>;
   @useResult
-  $Res call({
-    String weekId,
-    Map<String, bool> completedTasks,
-    double progressPercentage,
-  });
+  $Res call(
+      {String weekId,
+      Map<String, bool> completedTasks,
+      double progressPercentage});
 }
 
 /// @nodoc
@@ -68,23 +65,20 @@ class _$UserProgressCopyWithImpl<$Res, $Val extends UserProgress>
     Object? completedTasks = null,
     Object? progressPercentage = null,
   }) {
-    return _then(
-      _value.copyWith(
-            weekId: null == weekId
-                ? _value.weekId
-                : weekId // ignore: cast_nullable_to_non_nullable
-                      as String,
-            completedTasks: null == completedTasks
-                ? _value.completedTasks
-                : completedTasks // ignore: cast_nullable_to_non_nullable
-                      as Map<String, bool>,
-            progressPercentage: null == progressPercentage
-                ? _value.progressPercentage
-                : progressPercentage // ignore: cast_nullable_to_non_nullable
-                      as double,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      weekId: null == weekId
+          ? _value.weekId
+          : weekId // ignore: cast_nullable_to_non_nullable
+              as String,
+      completedTasks: null == completedTasks
+          ? _value.completedTasks
+          : completedTasks // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      progressPercentage: null == progressPercentage
+          ? _value.progressPercentage
+          : progressPercentage // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
   }
 }
 
@@ -92,16 +86,14 @@ class _$UserProgressCopyWithImpl<$Res, $Val extends UserProgress>
 abstract class _$$UserProgressImplCopyWith<$Res>
     implements $UserProgressCopyWith<$Res> {
   factory _$$UserProgressImplCopyWith(
-    _$UserProgressImpl value,
-    $Res Function(_$UserProgressImpl) then,
-  ) = __$$UserProgressImplCopyWithImpl<$Res>;
+          _$UserProgressImpl value, $Res Function(_$UserProgressImpl) then) =
+      __$$UserProgressImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String weekId,
-    Map<String, bool> completedTasks,
-    double progressPercentage,
-  });
+  $Res call(
+      {String weekId,
+      Map<String, bool> completedTasks,
+      double progressPercentage});
 }
 
 /// @nodoc
@@ -109,9 +101,8 @@ class __$$UserProgressImplCopyWithImpl<$Res>
     extends _$UserProgressCopyWithImpl<$Res, _$UserProgressImpl>
     implements _$$UserProgressImplCopyWith<$Res> {
   __$$UserProgressImplCopyWithImpl(
-    _$UserProgressImpl _value,
-    $Res Function(_$UserProgressImpl) _then,
-  ) : super(_value, _then);
+      _$UserProgressImpl _value, $Res Function(_$UserProgressImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of UserProgress
   /// with the given fields replaced by the non-null parameter values.
@@ -122,33 +113,31 @@ class __$$UserProgressImplCopyWithImpl<$Res>
     Object? completedTasks = null,
     Object? progressPercentage = null,
   }) {
-    return _then(
-      _$UserProgressImpl(
-        weekId: null == weekId
-            ? _value.weekId
-            : weekId // ignore: cast_nullable_to_non_nullable
-                  as String,
-        completedTasks: null == completedTasks
-            ? _value._completedTasks
-            : completedTasks // ignore: cast_nullable_to_non_nullable
-                  as Map<String, bool>,
-        progressPercentage: null == progressPercentage
-            ? _value.progressPercentage
-            : progressPercentage // ignore: cast_nullable_to_non_nullable
-                  as double,
-      ),
-    );
+    return _then(_$UserProgressImpl(
+      weekId: null == weekId
+          ? _value.weekId
+          : weekId // ignore: cast_nullable_to_non_nullable
+              as String,
+      completedTasks: null == completedTasks
+          ? _value._completedTasks
+          : completedTasks // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
+      progressPercentage: null == progressPercentage
+          ? _value.progressPercentage
+          : progressPercentage // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$UserProgressImpl implements _UserProgress {
-  const _$UserProgressImpl({
-    required this.weekId,
-    final Map<String, bool> completedTasks = const {},
-    this.progressPercentage = 0.0,
-  }) : _completedTasks = completedTasks;
+  const _$UserProgressImpl(
+      {required this.weekId,
+      final Map<String, bool> completedTasks = const {},
+      this.progressPercentage = 0.0})
+      : _completedTasks = completedTasks;
 
   factory _$UserProgressImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProgressImplFromJson(json);
@@ -179,22 +168,16 @@ class _$UserProgressImpl implements _UserProgress {
         (other.runtimeType == runtimeType &&
             other is _$UserProgressImpl &&
             (identical(other.weekId, weekId) || other.weekId == weekId) &&
-            const DeepCollectionEquality().equals(
-              other._completedTasks,
-              _completedTasks,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._completedTasks, _completedTasks) &&
             (identical(other.progressPercentage, progressPercentage) ||
                 other.progressPercentage == progressPercentage));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    weekId,
-    const DeepCollectionEquality().hash(_completedTasks),
-    progressPercentage,
-  );
+  int get hashCode => Object.hash(runtimeType, weekId,
+      const DeepCollectionEquality().hash(_completedTasks), progressPercentage);
 
   /// Create a copy of UserProgress
   /// with the given fields replaced by the non-null parameter values.
@@ -206,16 +189,17 @@ class _$UserProgressImpl implements _UserProgress {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserProgressImplToJson(this);
+    return _$$UserProgressImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _UserProgress implements UserProgress {
-  const factory _UserProgress({
-    required final String weekId,
-    final Map<String, bool> completedTasks,
-    final double progressPercentage,
-  }) = _$UserProgressImpl;
+  const factory _UserProgress(
+      {required final String weekId,
+      final Map<String, bool> completedTasks,
+      final double progressPercentage}) = _$UserProgressImpl;
 
   factory _UserProgress.fromJson(Map<String, dynamic> json) =
       _$UserProgressImpl.fromJson;

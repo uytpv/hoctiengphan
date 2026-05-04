@@ -6,8 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'firebase_options.dart';
-import 'core/navigation/AppRouter.dart';
-import 'core/theme/AppTheme.dart';
+import 'core/navigation/app_router.dart';
+import 'core/theme/app_theme.dart';
 
 // Toggle this to true if you are running Firebase Emulators locally
 const bool useEmulator = true;

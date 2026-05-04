@@ -9,8 +9,7 @@ part of 'user_progress.dart';
 _$UserProgressImpl _$$UserProgressImplFromJson(Map<String, dynamic> json) =>
     _$UserProgressImpl(
       weekId: json['weekId'] as String,
-      completedTasks:
-          (json['completedTasks'] as Map<String, dynamic>?)?.map(
+      completedTasks: (json['completedTasks'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, e as bool),
           ) ??
           const {},

@@ -51,7 +51,9 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
         _error = "Lỗi khi đổi mật khẩu: ${e.toString().split(']').last.trim()}";
       });
     } finally {
-      if (mounted) setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 
@@ -84,9 +86,12 @@ class _ChangePasswordDialogState extends ConsumerState<ChangePasswordDialog> {
               ),
               obscureText: true,
               validator: (value) {
-                if (value == null || value.isEmpty)
+                if (value == null || value.isEmpty) {
                   return 'Vui lòng nhập mật khẩu';
-                if (value.length < 6) return 'Mật khẩu phải có ít nhất 6 ký tự';
+                }
+                if (value.length < 6) {
+                  return 'Mật khẩu phải có ít nhất 6 ký tự';
+                }
                 return null;
               },
             ),

@@ -12,8 +12,7 @@ part of 'study_plan.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 StudyPlan _$StudyPlanFromJson(Map<String, dynamic> json) {
   return _StudyPlan.fromJson(json);
@@ -68,31 +67,28 @@ class _$StudyPlanCopyWithImpl<$Res, $Val extends StudyPlan>
     Object? title = null,
     Object? days = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            month: null == month
-                ? _value.month
-                : month // ignore: cast_nullable_to_non_nullable
-                      as int,
-            week: null == week
-                ? _value.week
-                : week // ignore: cast_nullable_to_non_nullable
-                      as int,
-            title: null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                      as String,
-            days: null == days
-                ? _value.days
-                : days // ignore: cast_nullable_to_non_nullable
-                      as StudyDays,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as int,
+      week: null == week
+          ? _value.week
+          : week // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      days: null == days
+          ? _value.days
+          : days // ignore: cast_nullable_to_non_nullable
+              as StudyDays,
+    ) as $Val);
   }
 
   /// Create a copy of StudyPlan
@@ -110,9 +106,8 @@ class _$StudyPlanCopyWithImpl<$Res, $Val extends StudyPlan>
 abstract class _$$StudyPlanImplCopyWith<$Res>
     implements $StudyPlanCopyWith<$Res> {
   factory _$$StudyPlanImplCopyWith(
-    _$StudyPlanImpl value,
-    $Res Function(_$StudyPlanImpl) then,
-  ) = __$$StudyPlanImplCopyWithImpl<$Res>;
+          _$StudyPlanImpl value, $Res Function(_$StudyPlanImpl) then) =
+      __$$StudyPlanImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, int month, int week, String title, StudyDays days});
@@ -126,9 +121,8 @@ class __$$StudyPlanImplCopyWithImpl<$Res>
     extends _$StudyPlanCopyWithImpl<$Res, _$StudyPlanImpl>
     implements _$$StudyPlanImplCopyWith<$Res> {
   __$$StudyPlanImplCopyWithImpl(
-    _$StudyPlanImpl _value,
-    $Res Function(_$StudyPlanImpl) _then,
-  ) : super(_value, _then);
+      _$StudyPlanImpl _value, $Res Function(_$StudyPlanImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of StudyPlan
   /// with the given fields replaced by the non-null parameter values.
@@ -141,43 +135,40 @@ class __$$StudyPlanImplCopyWithImpl<$Res>
     Object? title = null,
     Object? days = null,
   }) {
-    return _then(
-      _$StudyPlanImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        month: null == month
-            ? _value.month
-            : month // ignore: cast_nullable_to_non_nullable
-                  as int,
-        week: null == week
-            ? _value.week
-            : week // ignore: cast_nullable_to_non_nullable
-                  as int,
-        title: null == title
-            ? _value.title
-            : title // ignore: cast_nullable_to_non_nullable
-                  as String,
-        days: null == days
-            ? _value.days
-            : days // ignore: cast_nullable_to_non_nullable
-                  as StudyDays,
-      ),
-    );
+    return _then(_$StudyPlanImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as int,
+      week: null == week
+          ? _value.week
+          : week // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      days: null == days
+          ? _value.days
+          : days // ignore: cast_nullable_to_non_nullable
+              as StudyDays,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$StudyPlanImpl implements _StudyPlan {
-  const _$StudyPlanImpl({
-    required this.id,
-    required this.month,
-    required this.week,
-    required this.title,
-    required this.days,
-  });
+  const _$StudyPlanImpl(
+      {required this.id,
+      required this.month,
+      required this.week,
+      required this.title,
+      required this.days});
 
   factory _$StudyPlanImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudyPlanImplFromJson(json);
@@ -224,18 +215,19 @@ class _$StudyPlanImpl implements _StudyPlan {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StudyPlanImplToJson(this);
+    return _$$StudyPlanImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _StudyPlan implements StudyPlan {
-  const factory _StudyPlan({
-    required final String id,
-    required final int month,
-    required final int week,
-    required final String title,
-    required final StudyDays days,
-  }) = _$StudyPlanImpl;
+  const factory _StudyPlan(
+      {required final String id,
+      required final int month,
+      required final int week,
+      required final String title,
+      required final StudyDays days}) = _$StudyPlanImpl;
 
   factory _StudyPlan.fromJson(Map<String, dynamic> json) =
       _$StudyPlanImpl.fromJson;
@@ -288,15 +280,14 @@ abstract class $StudyDaysCopyWith<$Res> {
   factory $StudyDaysCopyWith(StudyDays value, $Res Function(StudyDays) then) =
       _$StudyDaysCopyWithImpl<$Res, StudyDays>;
   @useResult
-  $Res call({
-    List<StudyTask> monday,
-    List<StudyTask> tuesday,
-    List<StudyTask> wednesday,
-    List<StudyTask> thursday,
-    List<StudyTask> friday,
-    List<StudyTask> saturday,
-    List<StudyTask> sunday,
-  });
+  $Res call(
+      {List<StudyTask> monday,
+      List<StudyTask> tuesday,
+      List<StudyTask> wednesday,
+      List<StudyTask> thursday,
+      List<StudyTask> friday,
+      List<StudyTask> saturday,
+      List<StudyTask> sunday});
 }
 
 /// @nodoc
@@ -322,39 +313,36 @@ class _$StudyDaysCopyWithImpl<$Res, $Val extends StudyDays>
     Object? saturday = null,
     Object? sunday = null,
   }) {
-    return _then(
-      _value.copyWith(
-            monday: null == monday
-                ? _value.monday
-                : monday // ignore: cast_nullable_to_non_nullable
-                      as List<StudyTask>,
-            tuesday: null == tuesday
-                ? _value.tuesday
-                : tuesday // ignore: cast_nullable_to_non_nullable
-                      as List<StudyTask>,
-            wednesday: null == wednesday
-                ? _value.wednesday
-                : wednesday // ignore: cast_nullable_to_non_nullable
-                      as List<StudyTask>,
-            thursday: null == thursday
-                ? _value.thursday
-                : thursday // ignore: cast_nullable_to_non_nullable
-                      as List<StudyTask>,
-            friday: null == friday
-                ? _value.friday
-                : friday // ignore: cast_nullable_to_non_nullable
-                      as List<StudyTask>,
-            saturday: null == saturday
-                ? _value.saturday
-                : saturday // ignore: cast_nullable_to_non_nullable
-                      as List<StudyTask>,
-            sunday: null == sunday
-                ? _value.sunday
-                : sunday // ignore: cast_nullable_to_non_nullable
-                      as List<StudyTask>,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      monday: null == monday
+          ? _value.monday
+          : monday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      tuesday: null == tuesday
+          ? _value.tuesday
+          : tuesday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      wednesday: null == wednesday
+          ? _value.wednesday
+          : wednesday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      thursday: null == thursday
+          ? _value.thursday
+          : thursday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      friday: null == friday
+          ? _value.friday
+          : friday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      saturday: null == saturday
+          ? _value.saturday
+          : saturday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      sunday: null == sunday
+          ? _value.sunday
+          : sunday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+    ) as $Val);
   }
 }
 
@@ -362,20 +350,18 @@ class _$StudyDaysCopyWithImpl<$Res, $Val extends StudyDays>
 abstract class _$$StudyDaysImplCopyWith<$Res>
     implements $StudyDaysCopyWith<$Res> {
   factory _$$StudyDaysImplCopyWith(
-    _$StudyDaysImpl value,
-    $Res Function(_$StudyDaysImpl) then,
-  ) = __$$StudyDaysImplCopyWithImpl<$Res>;
+          _$StudyDaysImpl value, $Res Function(_$StudyDaysImpl) then) =
+      __$$StudyDaysImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    List<StudyTask> monday,
-    List<StudyTask> tuesday,
-    List<StudyTask> wednesday,
-    List<StudyTask> thursday,
-    List<StudyTask> friday,
-    List<StudyTask> saturday,
-    List<StudyTask> sunday,
-  });
+  $Res call(
+      {List<StudyTask> monday,
+      List<StudyTask> tuesday,
+      List<StudyTask> wednesday,
+      List<StudyTask> thursday,
+      List<StudyTask> friday,
+      List<StudyTask> saturday,
+      List<StudyTask> sunday});
 }
 
 /// @nodoc
@@ -383,9 +369,8 @@ class __$$StudyDaysImplCopyWithImpl<$Res>
     extends _$StudyDaysCopyWithImpl<$Res, _$StudyDaysImpl>
     implements _$$StudyDaysImplCopyWith<$Res> {
   __$$StudyDaysImplCopyWithImpl(
-    _$StudyDaysImpl _value,
-    $Res Function(_$StudyDaysImpl) _then,
-  ) : super(_value, _then);
+      _$StudyDaysImpl _value, $Res Function(_$StudyDaysImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of StudyDays
   /// with the given fields replaced by the non-null parameter values.
@@ -400,59 +385,57 @@ class __$$StudyDaysImplCopyWithImpl<$Res>
     Object? saturday = null,
     Object? sunday = null,
   }) {
-    return _then(
-      _$StudyDaysImpl(
-        monday: null == monday
-            ? _value._monday
-            : monday // ignore: cast_nullable_to_non_nullable
-                  as List<StudyTask>,
-        tuesday: null == tuesday
-            ? _value._tuesday
-            : tuesday // ignore: cast_nullable_to_non_nullable
-                  as List<StudyTask>,
-        wednesday: null == wednesday
-            ? _value._wednesday
-            : wednesday // ignore: cast_nullable_to_non_nullable
-                  as List<StudyTask>,
-        thursday: null == thursday
-            ? _value._thursday
-            : thursday // ignore: cast_nullable_to_non_nullable
-                  as List<StudyTask>,
-        friday: null == friday
-            ? _value._friday
-            : friday // ignore: cast_nullable_to_non_nullable
-                  as List<StudyTask>,
-        saturday: null == saturday
-            ? _value._saturday
-            : saturday // ignore: cast_nullable_to_non_nullable
-                  as List<StudyTask>,
-        sunday: null == sunday
-            ? _value._sunday
-            : sunday // ignore: cast_nullable_to_non_nullable
-                  as List<StudyTask>,
-      ),
-    );
+    return _then(_$StudyDaysImpl(
+      monday: null == monday
+          ? _value._monday
+          : monday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      tuesday: null == tuesday
+          ? _value._tuesday
+          : tuesday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      wednesday: null == wednesday
+          ? _value._wednesday
+          : wednesday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      thursday: null == thursday
+          ? _value._thursday
+          : thursday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      friday: null == friday
+          ? _value._friday
+          : friday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      saturday: null == saturday
+          ? _value._saturday
+          : saturday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+      sunday: null == sunday
+          ? _value._sunday
+          : sunday // ignore: cast_nullable_to_non_nullable
+              as List<StudyTask>,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$StudyDaysImpl implements _StudyDays {
-  const _$StudyDaysImpl({
-    final List<StudyTask> monday = const [],
-    final List<StudyTask> tuesday = const [],
-    final List<StudyTask> wednesday = const [],
-    final List<StudyTask> thursday = const [],
-    final List<StudyTask> friday = const [],
-    final List<StudyTask> saturday = const [],
-    final List<StudyTask> sunday = const [],
-  }) : _monday = monday,
-       _tuesday = tuesday,
-       _wednesday = wednesday,
-       _thursday = thursday,
-       _friday = friday,
-       _saturday = saturday,
-       _sunday = sunday;
+  const _$StudyDaysImpl(
+      {final List<StudyTask> monday = const [],
+      final List<StudyTask> tuesday = const [],
+      final List<StudyTask> wednesday = const [],
+      final List<StudyTask> thursday = const [],
+      final List<StudyTask> friday = const [],
+      final List<StudyTask> saturday = const [],
+      final List<StudyTask> sunday = const []})
+      : _monday = monday,
+        _tuesday = tuesday,
+        _wednesday = wednesday,
+        _thursday = thursday,
+        _friday = friday,
+        _saturday = saturday,
+        _sunday = sunday;
 
   factory _$StudyDaysImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudyDaysImplFromJson(json);
@@ -532,10 +515,8 @@ class _$StudyDaysImpl implements _StudyDays {
             other is _$StudyDaysImpl &&
             const DeepCollectionEquality().equals(other._monday, _monday) &&
             const DeepCollectionEquality().equals(other._tuesday, _tuesday) &&
-            const DeepCollectionEquality().equals(
-              other._wednesday,
-              _wednesday,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._wednesday, _wednesday) &&
             const DeepCollectionEquality().equals(other._thursday, _thursday) &&
             const DeepCollectionEquality().equals(other._friday, _friday) &&
             const DeepCollectionEquality().equals(other._saturday, _saturday) &&
@@ -545,15 +526,14 @@ class _$StudyDaysImpl implements _StudyDays {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_monday),
-    const DeepCollectionEquality().hash(_tuesday),
-    const DeepCollectionEquality().hash(_wednesday),
-    const DeepCollectionEquality().hash(_thursday),
-    const DeepCollectionEquality().hash(_friday),
-    const DeepCollectionEquality().hash(_saturday),
-    const DeepCollectionEquality().hash(_sunday),
-  );
+      runtimeType,
+      const DeepCollectionEquality().hash(_monday),
+      const DeepCollectionEquality().hash(_tuesday),
+      const DeepCollectionEquality().hash(_wednesday),
+      const DeepCollectionEquality().hash(_thursday),
+      const DeepCollectionEquality().hash(_friday),
+      const DeepCollectionEquality().hash(_saturday),
+      const DeepCollectionEquality().hash(_sunday));
 
   /// Create a copy of StudyDays
   /// with the given fields replaced by the non-null parameter values.
@@ -565,20 +545,21 @@ class _$StudyDaysImpl implements _StudyDays {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StudyDaysImplToJson(this);
+    return _$$StudyDaysImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _StudyDays implements StudyDays {
-  const factory _StudyDays({
-    final List<StudyTask> monday,
-    final List<StudyTask> tuesday,
-    final List<StudyTask> wednesday,
-    final List<StudyTask> thursday,
-    final List<StudyTask> friday,
-    final List<StudyTask> saturday,
-    final List<StudyTask> sunday,
-  }) = _$StudyDaysImpl;
+  const factory _StudyDays(
+      {final List<StudyTask> monday,
+      final List<StudyTask> tuesday,
+      final List<StudyTask> wednesday,
+      final List<StudyTask> thursday,
+      final List<StudyTask> friday,
+      final List<StudyTask> saturday,
+      final List<StudyTask> sunday}) = _$StudyDaysImpl;
 
   factory _StudyDays.fromJson(Map<String, dynamic> json) =
       _$StudyDaysImpl.fromJson;
@@ -633,13 +614,12 @@ abstract class $StudyTaskCopyWith<$Res> {
   factory $StudyTaskCopyWith(StudyTask value, $Res Function(StudyTask) then) =
       _$StudyTaskCopyWithImpl<$Res, StudyTask>;
   @useResult
-  $Res call({
-    String id,
-    String title,
-    String detail,
-    String iconType,
-    String? grammarLink,
-  });
+  $Res call(
+      {String id,
+      String title,
+      String detail,
+      String iconType,
+      String? grammarLink});
 }
 
 /// @nodoc
@@ -663,31 +643,28 @@ class _$StudyTaskCopyWithImpl<$Res, $Val extends StudyTask>
     Object? iconType = null,
     Object? grammarLink = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            title: null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                      as String,
-            detail: null == detail
-                ? _value.detail
-                : detail // ignore: cast_nullable_to_non_nullable
-                      as String,
-            iconType: null == iconType
-                ? _value.iconType
-                : iconType // ignore: cast_nullable_to_non_nullable
-                      as String,
-            grammarLink: freezed == grammarLink
-                ? _value.grammarLink
-                : grammarLink // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      detail: null == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconType: null == iconType
+          ? _value.iconType
+          : iconType // ignore: cast_nullable_to_non_nullable
+              as String,
+      grammarLink: freezed == grammarLink
+          ? _value.grammarLink
+          : grammarLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -695,18 +672,16 @@ class _$StudyTaskCopyWithImpl<$Res, $Val extends StudyTask>
 abstract class _$$StudyTaskImplCopyWith<$Res>
     implements $StudyTaskCopyWith<$Res> {
   factory _$$StudyTaskImplCopyWith(
-    _$StudyTaskImpl value,
-    $Res Function(_$StudyTaskImpl) then,
-  ) = __$$StudyTaskImplCopyWithImpl<$Res>;
+          _$StudyTaskImpl value, $Res Function(_$StudyTaskImpl) then) =
+      __$$StudyTaskImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String title,
-    String detail,
-    String iconType,
-    String? grammarLink,
-  });
+  $Res call(
+      {String id,
+      String title,
+      String detail,
+      String iconType,
+      String? grammarLink});
 }
 
 /// @nodoc
@@ -714,9 +689,8 @@ class __$$StudyTaskImplCopyWithImpl<$Res>
     extends _$StudyTaskCopyWithImpl<$Res, _$StudyTaskImpl>
     implements _$$StudyTaskImplCopyWith<$Res> {
   __$$StudyTaskImplCopyWithImpl(
-    _$StudyTaskImpl _value,
-    $Res Function(_$StudyTaskImpl) _then,
-  ) : super(_value, _then);
+      _$StudyTaskImpl _value, $Res Function(_$StudyTaskImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of StudyTask
   /// with the given fields replaced by the non-null parameter values.
@@ -729,43 +703,40 @@ class __$$StudyTaskImplCopyWithImpl<$Res>
     Object? iconType = null,
     Object? grammarLink = freezed,
   }) {
-    return _then(
-      _$StudyTaskImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        title: null == title
-            ? _value.title
-            : title // ignore: cast_nullable_to_non_nullable
-                  as String,
-        detail: null == detail
-            ? _value.detail
-            : detail // ignore: cast_nullable_to_non_nullable
-                  as String,
-        iconType: null == iconType
-            ? _value.iconType
-            : iconType // ignore: cast_nullable_to_non_nullable
-                  as String,
-        grammarLink: freezed == grammarLink
-            ? _value.grammarLink
-            : grammarLink // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$StudyTaskImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      detail: null == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String,
+      iconType: null == iconType
+          ? _value.iconType
+          : iconType // ignore: cast_nullable_to_non_nullable
+              as String,
+      grammarLink: freezed == grammarLink
+          ? _value.grammarLink
+          : grammarLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$StudyTaskImpl implements _StudyTask {
-  const _$StudyTaskImpl({
-    required this.id,
-    required this.title,
-    required this.detail,
-    required this.iconType,
-    this.grammarLink,
-  });
+  const _$StudyTaskImpl(
+      {required this.id,
+      required this.title,
+      required this.detail,
+      required this.iconType,
+      this.grammarLink});
 
   factory _$StudyTaskImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudyTaskImplFromJson(json);
@@ -815,18 +786,19 @@ class _$StudyTaskImpl implements _StudyTask {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StudyTaskImplToJson(this);
+    return _$$StudyTaskImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _StudyTask implements StudyTask {
-  const factory _StudyTask({
-    required final String id,
-    required final String title,
-    required final String detail,
-    required final String iconType,
-    final String? grammarLink,
-  }) = _$StudyTaskImpl;
+  const factory _StudyTask(
+      {required final String id,
+      required final String title,
+      required final String detail,
+      required final String iconType,
+      final String? grammarLink}) = _$StudyTaskImpl;
 
   factory _StudyTask.fromJson(Map<String, dynamic> json) =
       _$StudyTaskImpl.fromJson;

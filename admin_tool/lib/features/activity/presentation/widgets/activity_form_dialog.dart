@@ -76,7 +76,7 @@ class _ActivityFormDialogState extends ConsumerState<ActivityFormDialog> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<ActivityType>(
-                value: _type,
+                initialValue: _type,
                 decoration: const InputDecoration(
                   labelText: 'Activity Type',
                   border: OutlineInputBorder(),
@@ -88,14 +88,16 @@ class _ActivityFormDialogState extends ConsumerState<ActivityFormDialog> {
                   );
                 }).toList(),
                 onChanged: (val) {
-                  if (val != null) setState(() => _type = val);
+                  if (val != null) {
+                    setState(() => _type = val);
+                  }
                 },
               ),
               const SizedBox(height: 16),
               if (_type == ActivityType.lesson)
                 lessonsAsync.when(
                   data: (items) => DropdownButtonFormField<String>(
-                    value: _selectedLessonId,
+                    initialValue: _selectedLessonId,
                     decoration: const InputDecoration(
                       labelText: 'Target Lesson',
                       border: OutlineInputBorder(),
@@ -108,7 +110,9 @@ class _ActivityFormDialogState extends ConsumerState<ActivityFormDialog> {
                           ),
                         )
                         .toList(),
-                    onChanged: (val) => setState(() => _selectedLessonId = val),
+                    onChanged: (val) {
+                      setState(() => _selectedLessonId = val);
+                    },
                   ),
                   loading: () => const CircularProgressIndicator(),
                   error: (e, s) => Text('Error loading lessons: $e'),
@@ -116,7 +120,7 @@ class _ActivityFormDialogState extends ConsumerState<ActivityFormDialog> {
               if (_type == ActivityType.exercise)
                 exercisesAsync.when(
                   data: (items) => DropdownButtonFormField<String>(
-                    value: _selectedExerciseId,
+                    initialValue: _selectedExerciseId,
                     decoration: const InputDecoration(
                       labelText: 'Target Exercise',
                       border: OutlineInputBorder(),
@@ -129,8 +133,9 @@ class _ActivityFormDialogState extends ConsumerState<ActivityFormDialog> {
                           ),
                         )
                         .toList(),
-                    onChanged: (val) =>
-                        setState(() => _selectedExerciseId = val),
+                    onChanged: (val) {
+                      setState(() => _selectedExerciseId = val);
+                    },
                   ),
                   loading: () => const CircularProgressIndicator(),
                   error: (e, s) => Text('Error loading exercises: $e'),
@@ -190,12 +195,15 @@ class _ActivityFormDialogState extends ConsumerState<ActivityFormDialog> {
         } else {
           await repository.updateActivity(activity);
         }
-        if (mounted) Navigator.pop(context);
+        if (mounted) {
+          Navigator.pop(context);
+        }
       } catch (e) {
-        if (mounted)
+        if (mounted) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text('Error: $e')));
+        }
       }
     }
   }

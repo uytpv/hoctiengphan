@@ -24,7 +24,7 @@ class ExercisePreviewWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.blue.withValues(alpha: 0.1),
             offset: const Offset(0, 4),
             blurRadius: 10,
           ),
@@ -313,11 +313,12 @@ class ExercisePreviewWidget extends StatelessWidget {
   }
 
   Widget _buildFillInBlanksText(String text) {
-    if (text.isEmpty)
+    if (text.isEmpty) {
       return const Text(
         'Enter text with [[answer]] blanks',
         style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
       );
+    }
 
     final RegExp regex = RegExp(r'\[\[(.*?)\]\]');
     final matches = regex.allMatches(text);

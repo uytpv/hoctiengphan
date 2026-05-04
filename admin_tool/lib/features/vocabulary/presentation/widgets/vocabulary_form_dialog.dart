@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/vocabulary.dart';
-import '../../../lesson/domain/lesson.dart';
+// import '../../../lesson/domain/lesson.dart';
 import '../../providers/vocabulary_provider.dart';
 import '../../repositories/vocabulary_repository.dart';
+import 'package:file_picker/file_picker.dart' as fp;
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart' as p;
+import 'package:audioplayers/audioplayers.dart';
 
 class VocabularyFormDialog extends ConsumerStatefulWidget {
   final Vocabulary? vocabulary;
@@ -29,6 +33,8 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
 
   String? _selectedLessonId;
   bool _isSaving = false;
+  AudioPlayer? _audioPlayer;
+  bool _isPlaying = false;
 
   @override
   void initState() {
@@ -49,6 +55,14 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
     _categoryController = TextEditingController(text: v?.category ?? '');
 
     _selectedLessonId = v?.lessonId;
+    _audioPlayer = AudioPlayer();
+    _audioPlayer?.onPlayerStateChanged.listen((state) {
+      if (mounted) {
+        setState(() {
+          _isPlaying = state == PlayerState.playing;
+        });
+      }
+    });
   }
 
   @override
@@ -62,6 +76,7 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
     _exampleController.dispose();
     _exampleTranslationController.dispose();
     _categoryController.dispose();
+    _audioPlayer?.dispose();
     super.dispose();
   }
 
@@ -102,6 +117,71 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
       }
     } finally {
       if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
+  Future<void> _pickAndUploadFile(
+    String type,
+    TextEditingController controller,
+  ) async {
+    try {
+      final result = await fp.FilePicker.pickFiles(
+        type: type == 'audio' ? fp.FileType.audio : fp.FileType.image,
+        allowMultiple: false,
+      );
+
+      if (result == null || result.files.isEmpty) return;
+
+      setState(() => _isSaving = true);
+
+      final file = result.files.first;
+      final fileName =
+          '${DateTime.now().millisecondsSinceEpoch}_${p.basename(file.name)}';
+      final path = 'vocabulary/$type/$fileName';
+
+      final ref = FirebaseStorage.instance.ref().child(path);
+
+      UploadTask uploadTask;
+      if (file.bytes != null) {
+        uploadTask = ref.putData(file.bytes!);
+      } else {
+        // Fallback for non-web if needed, but admin tool is likely web
+        return;
+      }
+
+      final snapshot = await uploadTask;
+      final url = await snapshot.ref.getDownloadURL();
+
+      setState(() {
+        controller.text = url;
+        _isSaving = false;
+      });
+    } catch (e) {
+      setState(() => _isSaving = false);
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Upload failed: $e')));
+      }
+    }
+  }
+
+  void _playAudio() async {
+    final url = _audioUrlController.text.trim();
+    if (url.isEmpty) return;
+
+    try {
+      if (_isPlaying) {
+        await _audioPlayer?.stop();
+      } else {
+        await _audioPlayer?.play(UrlSource(url));
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error playing audio: $e')));
+      }
     }
   }
 
@@ -171,7 +251,7 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<String>(
-                        value: _selectedLessonId,
+                        initialValue: _selectedLessonId,
                         decoration: const InputDecoration(
                           labelText: 'Lesson',
                           border: OutlineInputBorder(),
@@ -188,8 +268,11 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
                             ),
                           ),
                         ],
-                        onChanged: (val) =>
-                            setState(() => _selectedLessonId = val),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedLessonId = val;
+                          });
+                        },
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -205,22 +288,55 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
                   ],
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  controller: _imageUrlController,
-                  decoration: const InputDecoration(
-                    labelText: 'Image URL',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.image),
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _imageUrlController,
+                        decoration: const InputDecoration(
+                          labelText: 'Image URL',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.image),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed:
+                          _isSaving
+                              ? null
+                              : () => _pickAndUploadFile('image', _imageUrlController),
+                      icon: const Icon(Icons.upload_file),
+                      tooltip: 'Upload Image',
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  controller: _audioUrlController,
-                  decoration: const InputDecoration(
-                    labelText: 'Audio URL',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.volume_up),
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _audioUrlController,
+                        decoration: const InputDecoration(
+                          labelText: 'Audio URL',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.volume_up),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed:
+                          _isSaving
+                              ? null
+                              : () => _pickAndUploadFile('audio', _audioUrlController),
+                      icon: const Icon(Icons.upload_file),
+                      tooltip: 'Upload Audio',
+                    ),
+                    IconButton(
+                      onPressed: _playAudio,
+                      icon: Icon(_isPlaying ? Icons.stop : Icons.play_arrow),
+                      tooltip: 'Preview Audio',
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
                 TextFormField(

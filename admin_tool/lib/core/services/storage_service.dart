@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart' as fp;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';

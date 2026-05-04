@@ -124,7 +124,9 @@ class ActivityListScreen extends ConsumerWidget {
     int totalItems,
     int totalPages,
   ) {
-    if (totalItems == 0) return const SizedBox.shrink();
+    if (totalItems == 0) {
+      return const SizedBox.shrink();
+    }
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -182,7 +184,9 @@ class ActivityListScreen extends ConsumerWidget {
           TextButton(
             onPressed: () async {
               await ref.read(activityRepositoryProvider).deleteActivity(id);
-              if (context.mounted) Navigator.pop(context);
+              if (context.mounted) {
+                Navigator.pop(context);
+              }
             },
             child: const Text('Delete', style: TextStyle(color: Colors.red)),
           ),

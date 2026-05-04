@@ -57,9 +57,26 @@
 ## III. Kiến trúc & Thiết kế (Architecture & Design)
 1. **Logic Centralization**: Logic nghiệp vụ phức tạp phải được tập trung tại tầng Manager/Service/State (ví dụ: `TimerState`). Tuyệt đối không viết logic tính toán trong phương thức render của UI.
 2. **Type Centralization**: Sử dụng `@hoctiengphan/shared-types` cho logic nghiệp vụ dùng chung. Không viết lại các định dạng đã tồn tại.
-3. **Naming Convention**: `PascalCase` cho Classes/Components/Files, `camelCase` cho biến và các trường dữ liệu API.
-4. **Premium Aesthetics**: Giao diện phải mang lại cảm giác cao cấp (Wow effect), sử dụng typography hiện đại, màu sắc hài hòa và micro-animations. Không sử dụng các giá trị mặc định thô sơ.
+3. **Naming Convention**: 
+   - **Dart/Flutter**: `snake_case` cho tên files, `PascalCase` cho Classes/Components.
+   - **TypeScript/NestJS**: `kebab-case` cho tên files, `PascalCase` cho Classes/Interfaces.
+   - **Variables**: Luôn sử dụng `camelCase` cho biến và các trường dữ liệu API.
+4. **Finnish-First UI**: 
+   - Ưu tiên hiển thị tiếng Phần Lan ở vị trí nổi bật nhất. 
+   - Tiếng Việt/Anh đóng vai trò hỗ trợ (subtext, tooltip hoặc toggle). 
+   - Localization logic phải được tách biệt rõ ràng (Rule III.1).
+5. **Human-Centric Data**: 
+   - Thiết kế schema dữ liệu (Vocabulary, Exercise) hướng tới việc nhập liệu thủ công dễ dàng (User-friendly JSON/Markdown).
 
-## IV. Giao tiếp dữ liệu (Data Communication)
-1. **CamelCase Standard**: Tất cả Request Bodies, Response Fields và Variable Names phải là `camelCase`.
-2. **Strict Typing**: Tuyệt đối không sử dụng `any`. Mọi dữ liệu phải có interface/type rõ ràng.
+## V. Flutter Admin Tool Patterns
+1. **Import Strategy**: Luôn sử dụng package imports (`package:admin_tool/features/...`) thay vì relative imports cho các features để tránh lỗi khi di chuyển file.
+2. **Rich Text Management**: Sử dụng `flutter_quill` cho các trường nội dung dài (ví dụ: `readingText`). Lưu trữ dưới dạng JSON Delta để giữ nguyên định dạng.
+3. **Data Schema Patterns**: 
+   - `activities` đóng vai trò là container, liên kết tới `lessons` hoặc `exercises` qua `type` và `contentId`.
+   - `Exercises` hỗ trợ nhiều `type` (`multipleChoice`, `fillInBlanks`, `trueFalse`) trong cùng một collection.
+4. **UI Hardening**:
+   - Sử dụng `initialValue` cho `DropdownButtonFormField` thay vì `value` để tránh lỗi state khi rebuild.
+   - Luôn sử dụng `Freezed` `.copyWith()` để cập nhật state trong Provider.
+5. **Lint Standards**: 
+   - Tắt `invalid_annotation_target` trong `analysis_options.yaml` khi làm việc với `freezed` và `json_serializable`.
+   - Luôn sử dụng ngoặc nhọn `{}` cho các câu lệnh điều kiện (Standard Flutter Lint).

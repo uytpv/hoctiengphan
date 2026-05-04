@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'Vocabulary.dart';
+part of 'vocabulary.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,8 +12,7 @@ part of 'Vocabulary.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Vocabulary _$VocabularyFromJson(Map<String, dynamic> json) {
   return _Vocabulary.fromJson(json);
@@ -23,9 +22,12 @@ Vocabulary _$VocabularyFromJson(Map<String, dynamic> json) {
 mixin _$Vocabulary {
   String get id => throw _privateConstructorUsedError;
   String get finnish => throw _privateConstructorUsedError;
+  String? get pronunciation => throw _privateConstructorUsedError;
   String? get english => throw _privateConstructorUsedError;
   String get vietnamese => throw _privateConstructorUsedError;
   String get lessonId => throw _privateConstructorUsedError;
+  String? get audioUrl => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
   bool get isGlobal => throw _privateConstructorUsedError;
   String? get authorId => throw _privateConstructorUsedError;
 
@@ -42,19 +44,20 @@ mixin _$Vocabulary {
 /// @nodoc
 abstract class $VocabularyCopyWith<$Res> {
   factory $VocabularyCopyWith(
-    Vocabulary value,
-    $Res Function(Vocabulary) then,
-  ) = _$VocabularyCopyWithImpl<$Res, Vocabulary>;
+          Vocabulary value, $Res Function(Vocabulary) then) =
+      _$VocabularyCopyWithImpl<$Res, Vocabulary>;
   @useResult
-  $Res call({
-    String id,
-    String finnish,
-    String? english,
-    String vietnamese,
-    String lessonId,
-    bool isGlobal,
-    String? authorId,
-  });
+  $Res call(
+      {String id,
+      String finnish,
+      String? pronunciation,
+      String? english,
+      String vietnamese,
+      String lessonId,
+      String? audioUrl,
+      String? imageUrl,
+      bool isGlobal,
+      String? authorId});
 }
 
 /// @nodoc
@@ -74,45 +77,57 @@ class _$VocabularyCopyWithImpl<$Res, $Val extends Vocabulary>
   $Res call({
     Object? id = null,
     Object? finnish = null,
+    Object? pronunciation = freezed,
     Object? english = freezed,
     Object? vietnamese = null,
     Object? lessonId = null,
+    Object? audioUrl = freezed,
+    Object? imageUrl = freezed,
     Object? isGlobal = null,
     Object? authorId = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            finnish: null == finnish
-                ? _value.finnish
-                : finnish // ignore: cast_nullable_to_non_nullable
-                      as String,
-            english: freezed == english
-                ? _value.english
-                : english // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            vietnamese: null == vietnamese
-                ? _value.vietnamese
-                : vietnamese // ignore: cast_nullable_to_non_nullable
-                      as String,
-            lessonId: null == lessonId
-                ? _value.lessonId
-                : lessonId // ignore: cast_nullable_to_non_nullable
-                      as String,
-            isGlobal: null == isGlobal
-                ? _value.isGlobal
-                : isGlobal // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            authorId: freezed == authorId
-                ? _value.authorId
-                : authorId // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      finnish: null == finnish
+          ? _value.finnish
+          : finnish // ignore: cast_nullable_to_non_nullable
+              as String,
+      pronunciation: freezed == pronunciation
+          ? _value.pronunciation
+          : pronunciation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      english: freezed == english
+          ? _value.english
+          : english // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vietnamese: null == vietnamese
+          ? _value.vietnamese
+          : vietnamese // ignore: cast_nullable_to_non_nullable
+              as String,
+      lessonId: null == lessonId
+          ? _value.lessonId
+          : lessonId // ignore: cast_nullable_to_non_nullable
+              as String,
+      audioUrl: freezed == audioUrl
+          ? _value.audioUrl
+          : audioUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isGlobal: null == isGlobal
+          ? _value.isGlobal
+          : isGlobal // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authorId: freezed == authorId
+          ? _value.authorId
+          : authorId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -120,20 +135,21 @@ class _$VocabularyCopyWithImpl<$Res, $Val extends Vocabulary>
 abstract class _$$VocabularyImplCopyWith<$Res>
     implements $VocabularyCopyWith<$Res> {
   factory _$$VocabularyImplCopyWith(
-    _$VocabularyImpl value,
-    $Res Function(_$VocabularyImpl) then,
-  ) = __$$VocabularyImplCopyWithImpl<$Res>;
+          _$VocabularyImpl value, $Res Function(_$VocabularyImpl) then) =
+      __$$VocabularyImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String finnish,
-    String? english,
-    String vietnamese,
-    String lessonId,
-    bool isGlobal,
-    String? authorId,
-  });
+  $Res call(
+      {String id,
+      String finnish,
+      String? pronunciation,
+      String? english,
+      String vietnamese,
+      String lessonId,
+      String? audioUrl,
+      String? imageUrl,
+      bool isGlobal,
+      String? authorId});
 }
 
 /// @nodoc
@@ -141,9 +157,8 @@ class __$$VocabularyImplCopyWithImpl<$Res>
     extends _$VocabularyCopyWithImpl<$Res, _$VocabularyImpl>
     implements _$$VocabularyImplCopyWith<$Res> {
   __$$VocabularyImplCopyWithImpl(
-    _$VocabularyImpl _value,
-    $Res Function(_$VocabularyImpl) _then,
-  ) : super(_value, _then);
+      _$VocabularyImpl _value, $Res Function(_$VocabularyImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of Vocabulary
   /// with the given fields replaced by the non-null parameter values.
@@ -152,59 +167,74 @@ class __$$VocabularyImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? finnish = null,
+    Object? pronunciation = freezed,
     Object? english = freezed,
     Object? vietnamese = null,
     Object? lessonId = null,
+    Object? audioUrl = freezed,
+    Object? imageUrl = freezed,
     Object? isGlobal = null,
     Object? authorId = freezed,
   }) {
-    return _then(
-      _$VocabularyImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        finnish: null == finnish
-            ? _value.finnish
-            : finnish // ignore: cast_nullable_to_non_nullable
-                  as String,
-        english: freezed == english
-            ? _value.english
-            : english // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        vietnamese: null == vietnamese
-            ? _value.vietnamese
-            : vietnamese // ignore: cast_nullable_to_non_nullable
-                  as String,
-        lessonId: null == lessonId
-            ? _value.lessonId
-            : lessonId // ignore: cast_nullable_to_non_nullable
-                  as String,
-        isGlobal: null == isGlobal
-            ? _value.isGlobal
-            : isGlobal // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        authorId: freezed == authorId
-            ? _value.authorId
-            : authorId // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$VocabularyImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      finnish: null == finnish
+          ? _value.finnish
+          : finnish // ignore: cast_nullable_to_non_nullable
+              as String,
+      pronunciation: freezed == pronunciation
+          ? _value.pronunciation
+          : pronunciation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      english: freezed == english
+          ? _value.english
+          : english // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vietnamese: null == vietnamese
+          ? _value.vietnamese
+          : vietnamese // ignore: cast_nullable_to_non_nullable
+              as String,
+      lessonId: null == lessonId
+          ? _value.lessonId
+          : lessonId // ignore: cast_nullable_to_non_nullable
+              as String,
+      audioUrl: freezed == audioUrl
+          ? _value.audioUrl
+          : audioUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageUrl: freezed == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isGlobal: null == isGlobal
+          ? _value.isGlobal
+          : isGlobal // ignore: cast_nullable_to_non_nullable
+              as bool,
+      authorId: freezed == authorId
+          ? _value.authorId
+          : authorId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$VocabularyImpl implements _Vocabulary {
-  const _$VocabularyImpl({
-    required this.id,
-    required this.finnish,
-    this.english,
-    required this.vietnamese,
-    required this.lessonId,
-    this.isGlobal = false,
-    this.authorId,
-  });
+  const _$VocabularyImpl(
+      {required this.id,
+      required this.finnish,
+      this.pronunciation,
+      this.english,
+      required this.vietnamese,
+      required this.lessonId,
+      this.audioUrl,
+      this.imageUrl,
+      this.isGlobal = false,
+      this.authorId});
 
   factory _$VocabularyImpl.fromJson(Map<String, dynamic> json) =>
       _$$VocabularyImplFromJson(json);
@@ -214,11 +244,17 @@ class _$VocabularyImpl implements _Vocabulary {
   @override
   final String finnish;
   @override
+  final String? pronunciation;
+  @override
   final String? english;
   @override
   final String vietnamese;
   @override
   final String lessonId;
+  @override
+  final String? audioUrl;
+  @override
+  final String? imageUrl;
   @override
   @JsonKey()
   final bool isGlobal;
@@ -227,7 +263,7 @@ class _$VocabularyImpl implements _Vocabulary {
 
   @override
   String toString() {
-    return 'Vocabulary(id: $id, finnish: $finnish, english: $english, vietnamese: $vietnamese, lessonId: $lessonId, isGlobal: $isGlobal, authorId: $authorId)';
+    return 'Vocabulary(id: $id, finnish: $finnish, pronunciation: $pronunciation, english: $english, vietnamese: $vietnamese, lessonId: $lessonId, audioUrl: $audioUrl, imageUrl: $imageUrl, isGlobal: $isGlobal, authorId: $authorId)';
   }
 
   @override
@@ -237,11 +273,17 @@ class _$VocabularyImpl implements _Vocabulary {
             other is _$VocabularyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.finnish, finnish) || other.finnish == finnish) &&
+            (identical(other.pronunciation, pronunciation) ||
+                other.pronunciation == pronunciation) &&
             (identical(other.english, english) || other.english == english) &&
             (identical(other.vietnamese, vietnamese) ||
                 other.vietnamese == vietnamese) &&
             (identical(other.lessonId, lessonId) ||
                 other.lessonId == lessonId) &&
+            (identical(other.audioUrl, audioUrl) ||
+                other.audioUrl == audioUrl) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             (identical(other.isGlobal, isGlobal) ||
                 other.isGlobal == isGlobal) &&
             (identical(other.authorId, authorId) ||
@@ -250,16 +292,8 @@ class _$VocabularyImpl implements _Vocabulary {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    finnish,
-    english,
-    vietnamese,
-    lessonId,
-    isGlobal,
-    authorId,
-  );
+  int get hashCode => Object.hash(runtimeType, id, finnish, pronunciation,
+      english, vietnamese, lessonId, audioUrl, imageUrl, isGlobal, authorId);
 
   /// Create a copy of Vocabulary
   /// with the given fields replaced by the non-null parameter values.
@@ -271,20 +305,24 @@ class _$VocabularyImpl implements _Vocabulary {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$VocabularyImplToJson(this);
+    return _$$VocabularyImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _Vocabulary implements Vocabulary {
-  const factory _Vocabulary({
-    required final String id,
-    required final String finnish,
-    final String? english,
-    required final String vietnamese,
-    required final String lessonId,
-    final bool isGlobal,
-    final String? authorId,
-  }) = _$VocabularyImpl;
+  const factory _Vocabulary(
+      {required final String id,
+      required final String finnish,
+      final String? pronunciation,
+      final String? english,
+      required final String vietnamese,
+      required final String lessonId,
+      final String? audioUrl,
+      final String? imageUrl,
+      final bool isGlobal,
+      final String? authorId}) = _$VocabularyImpl;
 
   factory _Vocabulary.fromJson(Map<String, dynamic> json) =
       _$VocabularyImpl.fromJson;
@@ -294,11 +332,17 @@ abstract class _Vocabulary implements Vocabulary {
   @override
   String get finnish;
   @override
+  String? get pronunciation;
+  @override
   String? get english;
   @override
   String get vietnamese;
   @override
   String get lessonId;
+  @override
+  String? get audioUrl;
+  @override
+  String? get imageUrl;
   @override
   bool get isGlobal;
   @override

@@ -3,13 +3,22 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FirebaseModule } from './firebase/firebase.module';
 import { AuthModule } from './auth/auth.module';
-import { VocabularyModule } from './vocabulary/VocabularyModule';
+import { VocabularyModule } from './vocabulary/vocabulary.module';
 import { GrammarModule } from './grammar/grammar.module';
-import { StudyPlanModule } from './study-plan/StudyPlanModule';
+import { StudyPlanModule } from './study-plan/study-plan.module';
 import { ProgressModule } from './progress/progress.module';
+import { ExerciseModule } from './exercise/exercise.module';
 
 @Module({
-  imports: [FirebaseModule, AuthModule, VocabularyModule, GrammarModule, StudyPlanModule, ProgressModule],
+  imports: [
+    FirebaseModule,
+    AuthModule,
+    VocabularyModule,
+    GrammarModule,
+    StudyPlanModule,
+    ProgressModule,
+    ExerciseModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

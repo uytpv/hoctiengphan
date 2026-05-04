@@ -27,10 +27,9 @@ mixin _$Exercise {
   String get type =>
       throw _privateConstructorUsedError; // fill-in-blanks, true-false, multiple-choice, etc.
   String? get readingText => throw _privateConstructorUsedError;
-  String get content =>
-      throw _privateConstructorUsedError; // Instructions/Markdown
-  List<Map<String, dynamic>> get questions =>
-      throw _privateConstructorUsedError;
+  @JsonKey(name: 'instruction')
+  String get content => throw _privateConstructorUsedError;
+  List<Question> get questions => throw _privateConstructorUsedError;
 
   /// Serializes this Exercise to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,8 +52,8 @@ abstract class $ExerciseCopyWith<$Res> {
     String description,
     String type,
     String? readingText,
-    String content,
-    List<Map<String, dynamic>> questions,
+    @JsonKey(name: 'instruction') String content,
+    List<Question> questions,
   });
 }
 
@@ -110,7 +109,7 @@ class _$ExerciseCopyWithImpl<$Res, $Val extends Exercise>
             questions: null == questions
                 ? _value.questions
                 : questions // ignore: cast_nullable_to_non_nullable
-                      as List<Map<String, dynamic>>,
+                      as List<Question>,
           )
           as $Val,
     );
@@ -132,8 +131,8 @@ abstract class _$$ExerciseImplCopyWith<$Res>
     String description,
     String type,
     String? readingText,
-    String content,
-    List<Map<String, dynamic>> questions,
+    @JsonKey(name: 'instruction') String content,
+    List<Question> questions,
   });
 }
 
@@ -188,7 +187,7 @@ class __$$ExerciseImplCopyWithImpl<$Res>
         questions: null == questions
             ? _value._questions
             : questions // ignore: cast_nullable_to_non_nullable
-                  as List<Map<String, dynamic>>,
+                  as List<Question>,
       ),
     );
   }
@@ -203,8 +202,8 @@ class _$ExerciseImpl implements _Exercise {
     this.description = '',
     this.type = '',
     this.readingText,
-    this.content = '',
-    final List<Map<String, dynamic>> questions = const [],
+    @JsonKey(name: 'instruction') this.content = '',
+    final List<Question> questions = const [],
   }) : _questions = questions;
 
   factory _$ExerciseImpl.fromJson(Map<String, dynamic> json) =>
@@ -225,14 +224,12 @@ class _$ExerciseImpl implements _Exercise {
   @override
   final String? readingText;
   @override
-  @JsonKey()
+  @JsonKey(name: 'instruction')
   final String content;
-  // Instructions/Markdown
-  final List<Map<String, dynamic>> _questions;
-  // Instructions/Markdown
+  final List<Question> _questions;
   @override
   @JsonKey()
-  List<Map<String, dynamic>> get questions {
+  List<Question> get questions {
     if (_questions is EqualUnmodifiableListView) return _questions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_questions);
@@ -296,8 +293,8 @@ abstract class _Exercise implements Exercise {
     final String description,
     final String type,
     final String? readingText,
-    final String content,
-    final List<Map<String, dynamic>> questions,
+    @JsonKey(name: 'instruction') final String content,
+    final List<Question> questions,
   }) = _$ExerciseImpl;
 
   factory _Exercise.fromJson(Map<String, dynamic> json) =
@@ -314,9 +311,10 @@ abstract class _Exercise implements Exercise {
   @override
   String? get readingText;
   @override
-  String get content; // Instructions/Markdown
+  @JsonKey(name: 'instruction')
+  String get content;
   @override
-  List<Map<String, dynamic>> get questions;
+  List<Question> get questions;
 
   /// Create a copy of Exercise
   /// with the given fields replaced by the non-null parameter values.
