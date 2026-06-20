@@ -25,7 +25,10 @@
 ## Student & Progress Tracking
 - [x] Implement UserProfile and Enrollment models.
 - [x] Build Student Management table with progress bars.
-- [ ] Implement actual progress update logic when a student completes an activity in the mobile app.
+- [/] Implement actual progress update logic (Backend core implemented, needs UI sync).
+    - [x] Task completion tracking in Firestore.
+    - [x] Exercise-linked progress updates.
+    - [ ] Aggregated progress calculation (Percentage per chapter).
 - [ ] Add pagination for Student and Vocabulary lists (Performance).
 
 ## Security & DevOps

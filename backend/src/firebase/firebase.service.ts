@@ -15,7 +15,11 @@ export class FirebaseService implements OnModuleInit {
         admin.initializeApp({
           projectId: 'hoctiengphan-dev',
         });
-        console.log('Firebase Admin SDK initialized (Emulator Mode: ' + (process.env.NODE_ENV !== 'production') + ')');
+        console.log(
+          'Firebase Admin SDK initialized (Emulator Mode: ' +
+            (process.env.NODE_ENV !== 'production') +
+            ')',
+        );
       }
     } catch (error) {
       console.error('Firebase Admin SDK init error:', error);

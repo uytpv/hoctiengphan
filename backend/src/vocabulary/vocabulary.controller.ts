@@ -1,11 +1,27 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, Query, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { VocabularyService } from './vocabulary.service';
 import { CreateVocabularyDto } from './dto/create-vocabulary.dto';
 import { UpdateVocabularyDto } from './dto/update-vocabulary.dto';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
 import { CurrentUser } from '../auth/decorators/user.decorator';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import * as admin from 'firebase-admin';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 @ApiTags('Vocabulary')
 @ApiBearerAuth()
@@ -19,16 +35,19 @@ export class VocabularyController {
   @ApiResponse({ status: 200, description: 'List of vocabulary words' })
   getVocabulary(
     @Query('category') category?: string,
-    @Query('authorId') authorId?: string,
+    @Query('authorUid') authorUid?: string,
   ) {
-    return this.vocabularyService.findAll(category, authorId);
+    return this.vocabularyService.findAll(category, authorUid);
   }
 
   @Post('vocabulary/personal')
   @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'Add personal vocabulary word' })
   @ApiResponse({ status: 201, description: 'Personal word added' })
-  addPersonalVocabulary(@CurrentUser() user: any, @Body() dto: CreateVocabularyDto) {
+  addPersonalVocabulary(
+    @CurrentUser() user: admin.auth.DecodedIdToken,
+    @Body() dto: CreateVocabularyDto,
+  ) {
     return this.vocabularyService.addPersonal(user.uid, dto);
   }
 
@@ -44,7 +63,10 @@ export class VocabularyController {
   @UseGuards(AdminGuard)
   @ApiOperation({ summary: 'Update a vocabulary word' })
   @ApiResponse({ status: 200, description: 'Word updated' })
-  updateVocabularyWord(@Param('wordId') wordId: string, @Body() dto: UpdateVocabularyDto) {
+  updateVocabularyWord(
+    @Param('wordId') wordId: string,
+    @Body() dto: UpdateVocabularyDto,
+  ) {
     return this.vocabularyService.update(wordId, dto);
   }
 

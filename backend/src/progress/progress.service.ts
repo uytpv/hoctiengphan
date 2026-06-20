@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { FirebaseService } from '../firebase/firebase.service';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { RoadmapProgress } from '@hoctiengphan/shared-types';
 
 @Injectable()
 export class ProgressService {
@@ -10,23 +11,56 @@ export class ProgressService {
     return this.firebaseService.getFirestore().collection('userProgress');
   }
 
-  async getUserProgress(uid: string) {
-    const snapshot = await this.collection.doc(uid).collection('completedTasks').get();
-    return snapshot.docs.map(doc => doc.id); // Trả về array taskId
+  async getUserProgress(uid: string): Promise<RoadmapProgress> {
+    const docRef = this.collection.doc(uid);
+    const doc = await docRef.get();
+
+    const completedTasksSnapshot = await docRef
+      .collection('completedTasks')
+      .get();
+
+    const completedTasks: Record<string, boolean> = {};
+    completedTasksSnapshot.docs.forEach((d) => {
+      completedTasks[d.id] = true;
+    });
+
+    if (!doc.exists) {
+      return {
+        completedTasks,
+        updatedAt: new Date() as any,
+      };
+    }
+
+    const data = doc.data() as any;
+    return {
+      completedTasks,
+      updatedAt: data.updatedAt || new Date(),
+    } as RoadmapProgress;
   }
 
   async updateTaskProgress(uid: string, dto: UpdateTaskDto) {
-    const taskRef = this.collection.doc(uid).collection('completedTasks').doc(dto.taskId);
-    
+    const userProgressRef = this.collection.doc(uid);
+    const taskRef = userProgressRef.collection('completedTasks').doc(dto.taskId);
+
+    const now = new Date();
+
     if (dto.isCompleted) {
       await taskRef.set({
-        completedAt: new Date(),
+        completedAt: now,
         isCompleted: true,
       });
-      return { taskId: dto.taskId, isCompleted: true };
     } else {
       await taskRef.delete();
-      return { taskId: dto.taskId, isCompleted: false };
     }
+
+    // Cập nhật timestamp cho document cha
+    await userProgressRef.set(
+      {
+        updatedAt: now,
+      },
+      { merge: true },
+    );
+
+    return { taskId: dto.taskId, isCompleted: dto.isCompleted };
   }
 }

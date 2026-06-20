@@ -4,6 +4,6 @@ import { VocabularyService } from './vocabulary.service';
 
 @Module({
   controllers: [VocabularyController],
-  providers: [VocabularyService]
+  providers: [VocabularyService],
 })
 export class VocabularyModule {}

@@ -13,8 +13,15 @@ export interface Task {
   id: string; // m1w1d1t1
   title: string;
   detail: string;
-  iconType: "Users" | "Monitor" | string;
-  activityType: 'vocabulary' | 'grammar' | 'reading' | 'listening' | 'video' | 'quiz' | 'general';
+  iconType: string;
+  activityType:
+    | 'vocabulary'
+    | 'grammar'
+    | 'reading'
+    | 'listening'
+    | 'video'
+    | 'quiz'
+    | 'general';
   lessonReferenceId?: string; // Trỏ đến Grammar Lesson ID hoặc Vocab Lesson ID
   externalMediaUrl?: string; // Dùng cho Video (YouTube), Music, News
 }
@@ -53,6 +60,21 @@ export interface GrammarLesson {
   desc: string;
   content: string; // HTML string or Rich Text JSON
 }
+
+export interface Lesson {
+  id: string;
+  title: string;
+  chapter: string; // e.g. "Kappale 1"
+  description?: string;
+  content: string; // Markdown text containing shortcodes
+  vocabIds: string[];
+  exerciseIds: string[];
+  audioUrls: string[];
+  grammarIds: string[];
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
 
 // 2. DỮ LIỆU NGƯỜI DÙNG CÁ NHÂN (USER DATA)
 

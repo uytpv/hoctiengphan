@@ -24,6 +24,7 @@ mixin _$Question {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'text')
   String get prompt => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
   ExerciseType get type => throw _privateConstructorUsedError;
   List<String>? get options => throw _privateConstructorUsedError;
   List<String>? get correctAnswers => throw _privateConstructorUsedError;
@@ -53,7 +54,7 @@ abstract class $QuestionCopyWith<$Res> {
   $Res call({
     String id,
     @JsonKey(name: 'text') String prompt,
-    ExerciseType type,
+    @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson) ExerciseType type,
     List<String>? options,
     List<String>? correctAnswers,
     String? correctAnswer,
@@ -162,7 +163,7 @@ abstract class _$$QuestionImplCopyWith<$Res>
   $Res call({
     String id,
     @JsonKey(name: 'text') String prompt,
-    ExerciseType type,
+    @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson) ExerciseType type,
     List<String>? options,
     List<String>? correctAnswers,
     String? correctAnswer,
@@ -263,6 +264,7 @@ class _$QuestionImpl implements _Question {
   const _$QuestionImpl({
     required this.id,
     @JsonKey(name: 'text') required this.prompt,
+    @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
     this.type = ExerciseType.multipleChoice,
     final List<String>? options,
     final List<String>? correctAnswers,
@@ -285,7 +287,7 @@ class _$QuestionImpl implements _Question {
   @JsonKey(name: 'text')
   final String prompt;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
   final ExerciseType type;
   final List<String>? _options;
   @override
@@ -392,6 +394,7 @@ abstract class _Question implements Question {
   const factory _Question({
     required final String id,
     @JsonKey(name: 'text') required final String prompt,
+    @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
     final ExerciseType type,
     final List<String>? options,
     final List<String>? correctAnswers,
@@ -413,6 +416,7 @@ abstract class _Question implements Question {
   @JsonKey(name: 'text')
   String get prompt;
   @override
+  @JsonKey(fromJson: _typeFromJson, toJson: _typeToJson)
   ExerciseType get type;
   @override
   List<String>? get options;

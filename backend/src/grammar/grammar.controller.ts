@@ -1,10 +1,24 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  UseGuards,
+} from '@nestjs/common';
 import { GrammarService } from './grammar.service';
 import { CreateGrammarDto } from './dto/create-grammar.dto';
 import { UpdateGrammarDto } from './dto/update-grammar.dto';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 @ApiTags('Grammar')
 @ApiBearerAuth()
@@ -40,7 +54,10 @@ export class GrammarController {
   @UseGuards(AdminGuard)
   @ApiOperation({ summary: 'Update a grammar topic' })
   @ApiResponse({ status: 200, description: 'Topic updated' })
-  updateGrammarTopic(@Param('grammarId') grammarId: string, @Body() dto: UpdateGrammarDto) {
+  updateGrammarTopic(
+    @Param('grammarId') grammarId: string,
+    @Body() dto: UpdateGrammarDto,
+  ) {
     return this.grammarService.update(grammarId, dto);
   }
 

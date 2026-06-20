@@ -1,0 +1,637 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/vocabulary": {
+      "get": {
+        "operationId": "VocabularyController_getVocabulary",
+        "parameters": [
+          {
+            "name": "category",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorUid",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of vocabulary words"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get vocabulary list",
+        "tags": [
+          "Vocabulary"
+        ]
+      }
+    },
+    "/vocabulary/personal": {
+      "post": {
+        "operationId": "VocabularyController_addPersonalVocabulary",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVocabularyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Personal word added"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Add personal vocabulary word",
+        "tags": [
+          "Vocabulary"
+        ]
+      }
+    },
+    "/admin/vocabulary": {
+      "post": {
+        "operationId": "VocabularyController_createVocabularyWord",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVocabularyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Global word created"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Create a global vocabulary word",
+        "tags": [
+          "Vocabulary"
+        ]
+      }
+    },
+    "/admin/vocabulary/{wordId}": {
+      "put": {
+        "operationId": "VocabularyController_updateVocabularyWord",
+        "parameters": [
+          {
+            "name": "wordId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVocabularyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Word updated"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Update a vocabulary word",
+        "tags": [
+          "Vocabulary"
+        ]
+      },
+      "delete": {
+        "operationId": "VocabularyController_deleteVocabularyWord",
+        "parameters": [
+          {
+            "name": "wordId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Word deleted"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Delete a vocabulary word",
+        "tags": [
+          "Vocabulary"
+        ]
+      }
+    },
+    "/grammar/topics": {
+      "get": {
+        "operationId": "GrammarController_getGrammarTopics",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of grammar topics"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get all grammar topics",
+        "tags": [
+          "Grammar"
+        ]
+      }
+    },
+    "/grammar/{grammarId}": {
+      "get": {
+        "operationId": "GrammarController_getGrammarDetail",
+        "parameters": [
+          {
+            "name": "grammarId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Grammar topic detail"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get grammar topic detail",
+        "tags": [
+          "Grammar"
+        ]
+      }
+    },
+    "/admin/grammar": {
+      "post": {
+        "operationId": "GrammarController_createGrammarTopic",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGrammarDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Topic created"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Create a new grammar topic",
+        "tags": [
+          "Grammar"
+        ]
+      }
+    },
+    "/admin/grammar/{grammarId}": {
+      "put": {
+        "operationId": "GrammarController_updateGrammarTopic",
+        "parameters": [
+          {
+            "name": "grammarId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGrammarDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Topic updated"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Update a grammar topic",
+        "tags": [
+          "Grammar"
+        ]
+      },
+      "delete": {
+        "operationId": "GrammarController_deleteGrammarTopic",
+        "parameters": [
+          {
+            "name": "grammarId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Topic deleted"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Delete a grammar topic",
+        "tags": [
+          "Grammar"
+        ]
+      }
+    },
+    "/studyPlan": {
+      "get": {
+        "operationId": "StudyPlanController_getStudyPlan",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Study plan details"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get study plan",
+        "tags": [
+          "Study Plan"
+        ]
+      }
+    },
+    "/admin/studyPlan": {
+      "put": {
+        "operationId": "StudyPlanController_updateStudyPlan",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStudyPlanDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Study plan updated"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Update study plan",
+        "tags": [
+          "Study Plan"
+        ]
+      }
+    },
+    "/user/progress": {
+      "get": {
+        "operationId": "ProgressController_getUserProgress",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User progress details"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get user progress",
+        "tags": [
+          "Progress"
+        ]
+      }
+    },
+    "/user/progress/task": {
+      "post": {
+        "operationId": "ProgressController_updateTaskProgress",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task progress updated"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Update task progress",
+        "tags": [
+          "Progress"
+        ]
+      }
+    },
+    "/exercises/lesson/{lessonId}": {
+      "get": {
+        "operationId": "ExerciseController_getExercisesByLesson",
+        "parameters": [
+          {
+            "name": "lessonId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of exercises (without answers)"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get all exercises for a lesson",
+        "tags": [
+          "Exercise"
+        ]
+      }
+    },
+    "/exercises/{id}": {
+      "get": {
+        "operationId": "ExerciseController_getExerciseById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The exercise data (without answers)"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get exercise by ID",
+        "tags": [
+          "Exercise"
+        ]
+      }
+    },
+    "/exercises/submit": {
+      "post": {
+        "operationId": "ExerciseController_submitAnswer",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitExerciseDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Result of the submission"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Submit an exercise answer",
+        "tags": [
+          "Exercise"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Opi Suomea API",
+    "description": "The Opi Suomea project API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "andromeda",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateVocabularyDto": {
+        "type": "object",
+        "properties": {
+          "finnish": {
+            "type": "string"
+          },
+          "english": {
+            "type": "string"
+          },
+          "vietnamese": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "audioUrl": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finnish",
+          "vietnamese"
+        ]
+      },
+      "UpdateVocabularyDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateGrammarDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "chapter": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "chapter",
+          "title",
+          "content"
+        ]
+      },
+      "UpdateGrammarDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateStudyPlanDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateTaskDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "SubmitExerciseDto": {
+        "type": "object",
+        "properties": {
+          "exerciseId": {
+            "type": "string",
+            "description": "ID of the exercise being submitted"
+          },
+          "answers": {
+            "type": "object",
+            "description": "Map of question index to answer index or text",
+            "example": {
+              "0": 1,
+              "1": "correct answer"
+            }
+          },
+          "answer": {
+            "type": "object",
+            "description": "Single answer for simple exercises"
+          },
+          "taskId": {
+            "type": "string",
+            "description": "ID of the task in the roadmap"
+          },
+          "planId": {
+            "type": "string",
+            "description": "ID of the study plan"
+          },
+          "activityId": {
+            "type": "string",
+            "description": "Legacy activity ID"
+          }
+        },
+        "required": [
+          "exerciseId"
+        ]
+      }
+    }
+  }
+}

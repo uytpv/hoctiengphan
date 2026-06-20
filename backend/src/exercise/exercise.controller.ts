@@ -3,7 +3,13 @@ import { ExerciseService } from './exercise.service';
 import { SubmitExerciseDto } from './dto/submit-exercise.dto';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { CurrentUser } from '../auth/decorators/user.decorator';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import * as admin from 'firebase-admin';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 @ApiTags('Exercise')
 @ApiBearerAuth()
@@ -14,7 +20,10 @@ export class ExerciseController {
   @Get('lesson/:lessonId')
   @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'Get all exercises for a lesson' })
-  @ApiResponse({ status: 200, description: 'List of exercises (without answers)' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of exercises (without answers)',
+  })
   getExercisesByLesson(@Param('lessonId') lessonId: string) {
     return this.exerciseService.getExercisesByLesson(lessonId);
   }
@@ -22,7 +31,10 @@ export class ExerciseController {
   @Get(':id')
   @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'Get exercise by ID' })
-  @ApiResponse({ status: 200, description: 'The exercise data (without answers)' })
+  @ApiResponse({
+    status: 200,
+    description: 'The exercise data (without answers)',
+  })
   getExerciseById(@Param('id') id: string) {
     return this.exerciseService.getOne(id);
   }
@@ -31,7 +43,10 @@ export class ExerciseController {
   @UseGuards(AuthGuard)
   @ApiOperation({ summary: 'Submit an exercise answer' })
   @ApiResponse({ status: 200, description: 'Result of the submission' })
-  submitAnswer(@CurrentUser() user: any, @Body() dto: SubmitExerciseDto) {
+  submitAnswer(
+    @CurrentUser() user: admin.auth.DecodedIdToken,
+    @Body() dto: SubmitExerciseDto,
+  ) {
     return this.exerciseService.submitAnswer(user.uid, dto);
   }
 }

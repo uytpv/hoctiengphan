@@ -10,9 +10,9 @@ _$QuestionImpl _$$QuestionImplFromJson(Map<String, dynamic> json) =>
     _$QuestionImpl(
       id: json['id'] as String,
       prompt: json['text'] as String,
-      type:
-          $enumDecodeNullable(_$ExerciseTypeEnumMap, json['type']) ??
-          ExerciseType.multipleChoice,
+      type: json['type'] == null
+          ? ExerciseType.multipleChoice
+          : _typeFromJson(json['type']),
       options: (json['options'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -32,7 +32,7 @@ Map<String, dynamic> _$$QuestionImplToJson(_$QuestionImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'text': instance.prompt,
-      'type': instance.type.toJson(),
+      'type': _typeToJson(instance.type),
       'options': instance.options,
       'correctAnswers': instance.correctAnswers,
       'correctAnswer': instance.correctAnswer,
@@ -43,10 +43,3 @@ Map<String, dynamic> _$$QuestionImplToJson(_$QuestionImpl instance) =>
       'videoUrl': instance.videoUrl,
       'explanation': instance.explanation,
     };
-
-const _$ExerciseTypeEnumMap = {
-  ExerciseType.multipleChoice: 'multipleChoice',
-  ExerciseType.fillInBlank: 'fillInBlank',
-  ExerciseType.matching: 'matching',
-  ExerciseType.trueFalse: 'trueFalse',
-};

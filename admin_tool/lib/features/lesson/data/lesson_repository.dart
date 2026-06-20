@@ -19,8 +19,21 @@ class LessonRepository {
   CollectionReference<Lesson> get _typedCollection => _firestore
       .collection('lessons')
       .withConverter<Lesson>(
-        fromFirestore: (snapshot, _) =>
-            Lesson.fromJson(snapshot.data()!..['id'] = snapshot.id),
+        fromFirestore: (snapshot, _) {
+          final data = snapshot.data()!;
+          data['id'] = snapshot.id;
+          if (data['createdAt'] is Timestamp) {
+            data['createdAt'] = (data['createdAt'] as Timestamp)
+                .toDate()
+                .toIso8601String();
+          }
+          if (data['updatedAt'] is Timestamp) {
+            data['updatedAt'] = (data['updatedAt'] as Timestamp)
+                .toDate()
+                .toIso8601String();
+          }
+          return Lesson.fromJson(data);
+        },
         toFirestore: (lesson, _) => lesson.toJson()..remove('id'),
       );
 
@@ -38,7 +51,10 @@ class LessonRepository {
       ..sort((a, b) => a.chapter.compareTo(b.chapter));
   }
 
-  Future<void> createLesson(Lesson lesson) => _typedCollection.add(lesson);
+  Future<String> createLesson(Lesson lesson) async {
+    final docRef = await _typedCollection.add(lesson);
+    return docRef.id;
+  }
 
   Future<void> updateLesson(Lesson lesson) =>
       _typedCollection.doc(lesson.id).set(lesson, SetOptions(merge: true));

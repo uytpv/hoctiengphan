@@ -3,7 +3,13 @@ import { ProgressService } from './progress.service';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { CurrentUser } from '../auth/decorators/user.decorator';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import * as admin from 'firebase-admin';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 @ApiTags('Progress')
 @ApiBearerAuth()
@@ -15,14 +21,17 @@ export class ProgressController {
   @Get()
   @ApiOperation({ summary: 'Get user progress' })
   @ApiResponse({ status: 200, description: 'User progress details' })
-  getUserProgress(@CurrentUser() user: any) {
+  getUserProgress(@CurrentUser() user: admin.auth.DecodedIdToken) {
     return this.progressService.getUserProgress(user.uid);
   }
 
   @Post('task')
   @ApiOperation({ summary: 'Update task progress' })
   @ApiResponse({ status: 200, description: 'Task progress updated' })
-  updateTaskProgress(@CurrentUser() user: any, @Body() dto: UpdateTaskDto) {
+  updateTaskProgress(
+    @CurrentUser() user: admin.auth.DecodedIdToken,
+    @Body() dto: UpdateTaskDto,
+  ) {
     return this.progressService.updateTaskProgress(user.uid, dto);
   }
 }

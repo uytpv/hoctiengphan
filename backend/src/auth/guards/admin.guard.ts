@@ -1,4 +1,9 @@
-import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+} from '@nestjs/common';
 import { AuthGuard } from './auth.guard';
 import { FirebaseService } from '../../firebase/firebase.service';
 
@@ -12,17 +17,24 @@ export class AdminGuard extends AuthGuard implements CanActivate {
     const isAuth = await super.canActivate(context);
     if (!isAuth) return false;
 
-    const request = context.switchToHttp().getRequest();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const request = context.switchToHttp().getRequest<any>();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const user = request.user;
-    
+
     // Check if user document contains isAdmin: true
     try {
-      const userDoc = await this.firebaseService.getFirestore().collection('users').doc(user.uid).get();
+      const userDoc = await this.firebaseService
+        .getFirestore()
+        .collection('users')
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        .doc(user.uid as string)
+        .get();
       if (!userDoc.exists || userDoc.data()?.isAdmin !== true) {
         throw new ForbiddenException('Admin access is required.');
       }
       return true;
-    } catch(e) {
+    } catch (e) {
       if (e instanceof ForbiddenException) throw e;
       throw new ForbiddenException('Access denied.');
     }

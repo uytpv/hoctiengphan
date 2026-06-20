@@ -4,6 +4,6 @@ import { GrammarService } from './grammar.service';
 
 @Module({
   controllers: [GrammarController],
-  providers: [GrammarService]
+  providers: [GrammarService],
 })
 export class GrammarModule {}

@@ -27,10 +27,11 @@ class ExerciseRepository {
     );
   }
 
-  Future<void> createExercise(Exercise exercise) async {
+  Future<String> createExercise(Exercise exercise) async {
     final data = exercise.toJson();
     data.remove('id');
-    await _collection.add(data);
+    final docRef = await _collection.add(data);
+    return docRef.id;
   }
 
   Future<void> updateExercise(Exercise exercise) async {

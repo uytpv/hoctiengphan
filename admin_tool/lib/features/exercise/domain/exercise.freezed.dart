@@ -29,6 +29,7 @@ mixin _$Exercise {
   String? get readingText => throw _privateConstructorUsedError;
   @JsonKey(name: 'instruction')
   String get content => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _questionsFromJson, toJson: _questionsToJson)
   List<Question> get questions => throw _privateConstructorUsedError;
 
   /// Serializes this Exercise to a JSON map.
@@ -53,6 +54,7 @@ abstract class $ExerciseCopyWith<$Res> {
     String type,
     String? readingText,
     @JsonKey(name: 'instruction') String content,
+    @JsonKey(fromJson: _questionsFromJson, toJson: _questionsToJson)
     List<Question> questions,
   });
 }
@@ -132,6 +134,7 @@ abstract class _$$ExerciseImplCopyWith<$Res>
     String type,
     String? readingText,
     @JsonKey(name: 'instruction') String content,
+    @JsonKey(fromJson: _questionsFromJson, toJson: _questionsToJson)
     List<Question> questions,
   });
 }
@@ -203,6 +206,7 @@ class _$ExerciseImpl implements _Exercise {
     this.type = '',
     this.readingText,
     @JsonKey(name: 'instruction') this.content = '',
+    @JsonKey(fromJson: _questionsFromJson, toJson: _questionsToJson)
     final List<Question> questions = const [],
   }) : _questions = questions;
 
@@ -228,7 +232,7 @@ class _$ExerciseImpl implements _Exercise {
   final String content;
   final List<Question> _questions;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: _questionsFromJson, toJson: _questionsToJson)
   List<Question> get questions {
     if (_questions is EqualUnmodifiableListView) return _questions;
     // ignore: implicit_dynamic_type
@@ -294,6 +298,7 @@ abstract class _Exercise implements Exercise {
     final String type,
     final String? readingText,
     @JsonKey(name: 'instruction') final String content,
+    @JsonKey(fromJson: _questionsFromJson, toJson: _questionsToJson)
     final List<Question> questions,
   }) = _$ExerciseImpl;
 
@@ -314,6 +319,7 @@ abstract class _Exercise implements Exercise {
   @JsonKey(name: 'instruction')
   String get content;
   @override
+  @JsonKey(fromJson: _questionsFromJson, toJson: _questionsToJson)
   List<Question> get questions;
 
   /// Create a copy of Exercise

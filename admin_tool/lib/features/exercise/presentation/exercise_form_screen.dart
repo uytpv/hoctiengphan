@@ -8,6 +8,7 @@ import 'package:just_audio/just_audio.dart';
 import '../domain/exercise.dart';
 import '../domain/question.dart';
 import '../data/exercise_repository.dart';
+import 'package:admin_tool/features/activity/data/activity_repository.dart';
 import 'widgets/exercise_preview_widget.dart';
 
 class ExerciseFormScreen extends ConsumerStatefulWidget {
@@ -593,11 +594,21 @@ class _ExerciseFormScreenState extends ConsumerState<ExerciseFormScreen> {
       final repository = ref.read(exerciseRepositoryProvider);
       try {
         setState(() => _isUploading = true);
+        String savedId;
         if (_exercise == null && widget.exerciseId == null) {
-          await repository.createExercise(updatedExercise);
+          savedId = await repository.createExercise(updatedExercise);
         } else {
+          savedId = _exercise?.id ?? widget.exerciseId!;
           await repository.updateExercise(updatedExercise);
         }
+
+        // Tự động đồng bộ sang Activity
+        await ref.read(activityRepositoryProvider).upsertExerciseActivity(
+          savedId,
+          updatedExercise.title,
+          updatedExercise.description,
+        );
+
         if (mounted) {
           context.pop();
         }

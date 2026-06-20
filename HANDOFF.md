@@ -1,39 +1,62 @@
 # Project Handoff: Opi Suomea (Học Tiếng Phần)
-**Date:** 2026-05-03
-**Status:** Feature Complete (Admin Tool Core Modules)
+**Date:** 2026-06-20 (Current Session)
+**Status:** Restructuring Completed, Data Migrated, Deployed to Production
 
-## 🎯 Current Focus
-Completing the Admin Tool modules and preparing for comprehensive functional testing.
+---
 
-## ✅ Work Completed This Session (2026-05-03)
-### 1. Admin Tool Implementation (Major Progress)
-- **Vocabulary Module**: Completed full CRUD (list, create, edit, delete). Added search by Finnish/Vietnamese/English and lesson filtering.
-- **Study Plan Module**: Implemented list and detail views. Added functionality to assign activities (Exercises/Lessons) to specific days.
-- **Exercise Module**: Built a comprehensive form supporting multiple types: `multipleChoice`, `fillInBlanks`, `trueFalse`.
-- **Rich Text Integration**: Successfully integrated `flutter_quill` for `readingText` in Exercises, saving/loading as JSON Delta.
+## 🎯 Production Deployment Status
+All components have been compiled, built, and successfully deployed to Firebase production:
+- **Admin CMS Tool (Flutter Web)**: Deployed to [https://hoc-tieng-phan.web.app](https://hoc-tieng-phan.web.app)
+- **Student Mobile App (Flutter Web)**: Deployed to [https://htpfe.web.app](https://htpfe.web.app)
+- **Database (Cloud Firestore)**: Successfully migrated all local emulator collections to production using the migration script.
+- **Security Rules**: Deployed latest `firestore.rules` and `storage.rules` to production.
 
-### 2. Infrastructure & Security
-- **Firestore Rules**: Updated `firestore.rules` to include `vocabularies`, `study_plans`, `activities`, and `exercises` with proper `isAdmin` checks.
-- **Lint Hardening**: Identified and planned fixes for all lint warnings (13 errors/warnings). Added `invalid_annotation_target: ignore` to `analysis_options.yaml`.
+---
 
-### 3. Architecture & Patterns
-- **Polymorphic Activities**: Standardized how `activities` link to `lessons` or `exercises`.
-- **Import Policy**: Standardized on `package:admin_tool/features/...` imports.
+## ✅ Work Completed in This Session
+### 1. Architectural Restructuring (Interactive Document-Centric)
+- **Model Re-design**: Redesigned `Lesson` structure to support embedding vocabulary, audio, exercises, and videos as inline shortcodes (`[vocab:id|text]`, `[audio:url]`, `[exercise:id]`, `[video:id]`) directly in the Markdown text.
+- **Custom Markdown AST Syntax**: Refactored the raw regex parser in both Admin Tool and Mobile App to use a standard AST `InlineSyntax` class extending `markdown.InlineSyntax`. This allows Flutter's markdown renderer to correctly map shortcodes to beautiful, interactive custom inline widgets instead of displaying raw HTML/text.
+- **Firestore Schema Synchronization**: Restructured `Lessons`, `Activities`, `Grammars`, and `Exercises` collections to align with the new model and verified static compilation (`flutter analyze` with 0 errors).
 
-## 🏗️ Architecture Summary
-### Backend (NestJS + Firestore)
-- Collections: `vocabularies`, `lessons`, `activities`, `exercises`, `study_plans`.
+### 2. Audio & TTS Pronunciation Integration
+- **Native TTS Fallback**: Integrated the `flutter_tts` package. In both the Student App's vocabulary bottom sheet and the Admin CMS preview, clicking a vocabulary word plays high-quality Finnish (`fi-FI`) audio natively. If an audio file MP3 is missing, the system uses TTS as a fallback.
+- **Interactive Speakers**: Updated speaker buttons to toggle icons dynamically (Volume 🔊 to Stop ⏹️), allowing users to immediately stop audio playback.
+- **Admin Vocabulary Audio**: Replaced placeholders in `VocabularyListScreen` with working audio buttons (`_VocabListPlayButton`) to test Finnish pronunciations directly from the manager table.
 
-### Admin Tool (Flutter Web)
-- Features structured in `lib/features/`.
-- Using `riverpod` for state and `go_router` for navigation.
+### 3. Bugs Fixed
+- **Mobile Load Error**: Fixed a critical firestore query error in the Mobile App's `StudyPlanRepository` where student progress tracking was looking up the wrong collection path. Progress is verified to track correctly under `user_progress/{uid}/plans/{planId}`.
+- **Firestore Timestamp mapping**: Resolved a runtime crash in Admin Tool's `lesson_repository.dart` where Firestore `Timestamp` values were not correctly converted to Dart's `DateTime` instances.
 
-## 🚀 Immediate Next Steps
-1. **Functional Testing**: Verify all CRUD operations in the Admin Tool (Create/Edit/Delete/List) for all modules.
-2. **Lint Resolution**: Apply the planned fixes for curly braces, unused imports, and deprecated `DropdownButtonFormField` usage.
-3. **Seeding & Content**: Start entering real learning content using the new Admin Tool.
+### 4. Database Migration
+- Successfully executed `backend/migrate-emulator-to-production.js`, clearing and fully syncing the production Firestore with:
+  - 1,888 vocabularies
+  - 73 lessons
+  - 63 categories
+  - 80 activities
+  - 94 grammars
+  - 240 exercises
+  - 50 study plan weeks / plans
 
-## 📌 References
-- **TODO List**: [TODO.md](file:///c:/Users/UY/works/hoctiengphan/TODO.md)
-- **Implementation Plan (Lint)**: [implementation_plan.md](file:///C:/Users/UY/.gemini/antigravity/brain/00cbd135-2e06-4b8a-ab1d-7084bc81bfa0/implementation_plan.md)
-- **Key Files**: `vocabulary_screen.dart`, `study_plan_detail_screen.dart`, `exercise_form_screen.dart`.
+---
+
+## 🏗️ Technical Architecture & Schema
+- **Database**: Cloud Firestore (Production ID: `hoc-tieng-phan`).
+- **Main Collections**:
+  - `vocabularies`: Vocabulary metadata and fallback audio.
+  - `lessons`: Markdown-centric content containing shortcodes.
+  - `activities`: Intermediate wrappers linking weekly study plan days to lessons or exercises.
+  - `exercises`: Multi-format quizzes (`multipleChoice`, `fillInBlanks`, `trueFalse`).
+  - `study_plans` / `study_plan_weeks`: Lộ trình học theo tuần cho học viên.
+  - `user_progress`: Student progress tracker map.
+
+---
+
+## 🚀 Immediate Next Steps (For Next Session)
+1. **TTS Platform Check**:
+   - Verify the `flutter_tts` package initialization on actual Android/iOS emulators. If a `MissingPluginException` occurs, execute `flutter run` afresh from the terminal to build and link native packages.
+2. **Audio File Upload Support**:
+   - Implement the feature in the Admin CMS to allow uploading custom MP3 recordings directly to Firebase Storage.
+3. **Database Performance Hardening**:
+   - Monitor database queries on production to see if any custom Firestore indexes are required as traffic grows.
+   - Implement pagination/lazy-loading for the Admin Tool tables (Students, Vocabulary) to optimize read costs.

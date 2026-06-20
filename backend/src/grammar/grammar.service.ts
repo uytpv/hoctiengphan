@@ -14,8 +14,13 @@ export class GrammarService {
 
   async findAllTopics(): Promise<Partial<GrammarTopic>[]> {
     // Only fetch specific fields
-    const snapshot = await this.collection.select('id', 'chapter', 'title', 'desc').get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any));
+    const snapshot = await this.collection
+      .select('chapter', 'title', 'desc')
+      .get();
+    return snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Partial<GrammarTopic>[];
   }
 
   async findOne(id: string): Promise<GrammarTopic> {
@@ -29,15 +34,13 @@ export class GrammarService {
     await this.collection.doc(id).set({
       ...data,
       createdAt: new Date(),
-      updatedAt: new Date(),
     });
-    return { id, ...data } as any;
+    return { id, ...data } as unknown as GrammarTopic;
   }
 
   async update(id: string, dto: UpdateGrammarDto) {
     await this.collection.doc(id).update({
       ...dto,
-      updatedAt: new Date(),
     });
     return { id, ...dto };
   }

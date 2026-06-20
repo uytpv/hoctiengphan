@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import * as fs from 'fs';
+import * as path from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,8 +20,6 @@ async function bootstrap() {
 
   // Export swagger.json in development mode
   if (process.env.NODE_ENV !== 'production') {
-    const fs = require('fs');
-    const path = require('path');
     fs.writeFileSync(
       path.join(__dirname, '..', 'swagger.json'),
       JSON.stringify(document, null, 2),
@@ -29,4 +29,6 @@ async function bootstrap() {
 
   await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+bootstrap().catch((err) => {
+  console.error('Error during bootstrap:', err);
+});

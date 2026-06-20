@@ -34,6 +34,64 @@ class ActivityRepository {
   Future<void> updateActivity(Activity activity) =>
       _collection.doc(activity.id).set(activity);
 
+  Future<Activity?> getActivityByLessonId(String lessonId) async {
+    final query = await _collection.where('lessonId', isEqualTo: lessonId).get();
+    if (query.docs.isNotEmpty) {
+      return query.docs.first.data();
+    }
+    return null;
+  }
+
+  Future<String> upsertLessonActivity(String lessonId, String title, String description) async {
+    final query = await _collection.where('lessonId', isEqualTo: lessonId).get();
+    if (query.docs.isNotEmpty) {
+      final doc = query.docs.first;
+      final existingActivity = doc.data();
+      final updated = existingActivity.copyWith(
+        title: title,
+        description: description,
+      );
+      await updateActivity(updated);
+      return doc.id;
+    } else {
+      final activity = Activity(
+        id: '',
+        title: title,
+        description: description,
+        type: ActivityType.lesson,
+        lessonId: lessonId,
+        isPublic: true,
+        createdAt: DateTime.now(),
+      );
+      return await createActivityAndGetId(activity);
+    }
+  }
+
+  Future<String> upsertExerciseActivity(String exerciseId, String title, String description) async {
+    final query = await _collection.where('exerciseId', isEqualTo: exerciseId).get();
+    if (query.docs.isNotEmpty) {
+      final doc = query.docs.first;
+      final existingActivity = doc.data();
+      final updated = existingActivity.copyWith(
+        title: title,
+        description: description,
+      );
+      await updateActivity(updated);
+      return doc.id;
+    } else {
+      final activity = Activity(
+        id: '',
+        title: title,
+        description: description,
+        type: ActivityType.exercise,
+        exerciseId: exerciseId,
+        isPublic: true,
+        createdAt: DateTime.now(),
+      );
+      return await createActivityAndGetId(activity);
+    }
+  }
+
   Future<void> deleteActivity(String id) => _collection.doc(id).delete();
 
   Stream<List<Activity>> getActivities() => _collection.snapshots().map(

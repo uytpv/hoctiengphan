@@ -29,9 +29,7 @@ class StudyPlanListScreen extends ConsumerWidget {
           ),
           const SizedBox(width: 8),
           ElevatedButton.icon(
-            onPressed: () {
-              // Open Form for new plan (manual)
-            },
+            onPressed: () => _handleAddPlan(context, ref),
             icon: const Icon(Icons.add),
             label: const Text('ADD PLAN'),
           ),
@@ -287,6 +285,82 @@ class StudyPlanListScreen extends ConsumerWidget {
         description: updatedData['description']!,
       );
       ref.read(studyPlanRepositoryProvider).updatePlan(updatedPlan);
+    }
+  }
+
+  Future<void> _handleAddPlan(BuildContext context, WidgetRef ref) async {
+    final titleController = TextEditingController();
+    final descController = TextEditingController();
+
+    final result = await showDialog<Map<String, String>>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Thêm lộ trình mới'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: titleController,
+              decoration: const InputDecoration(
+                labelText: 'Tên lộ trình',
+                hintText: 'VD: Finnish level A1 - giáo trình A1',
+              ),
+              autofocus: true,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: descController,
+              decoration: const InputDecoration(
+                labelText: 'Mô tả (không bắt buộc)',
+              ),
+              maxLines: 2,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Hủy'),
+          ),
+          TextButton(
+            onPressed: () {
+              if (titleController.text.trim().isEmpty) {
+                return;
+              }
+              Navigator.pop(context, {
+                'title': titleController.text.trim(),
+                'description': descController.text.trim(),
+              });
+            },
+            child: const Text('Tạo'),
+          ),
+        ],
+      ),
+    );
+
+    if (result != null) {
+      final newPlan = StudyPlan(
+        id: '', // Sẽ được tự động sinh bởi Firestore
+        title: result['title']!,
+        description: result['description'] ?? '',
+        durationWeeks: 0, // Mới tạo sẽ trống (0 tuần)
+        isDefault: false,
+        createdAt: DateTime.now(),
+      );
+
+      try {
+        final newPlanId = await ref.read(studyPlanRepositoryProvider).createPlan(newPlan);
+        
+        if (context.mounted) {
+          context.go('/study-plans/$newPlanId');
+        }
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Lỗi khi tạo lộ trình: $e')),
+          );
+        }
+      }
     }
   }
 }

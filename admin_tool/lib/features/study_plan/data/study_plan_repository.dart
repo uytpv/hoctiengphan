@@ -67,6 +67,16 @@ class StudyPlanRepository {
         .get();
     return snapshot.docs.map((doc) => doc.data()).toList();
   }
+
+  Future<List<StudyPlan>> getPlansOnce() async {
+    final snapshot = await _planCollection.get();
+    return snapshot.docs.map((doc) => doc.data()).toList();
+  }
+
+  Future<List<StudyPlanWeek>> getAllWeeksOnce() async {
+    final snapshot = await _weekCollection.get();
+    return snapshot.docs.map((doc) => doc.data()).toList();
+  }
 }
 
 final studyPlanRepositoryProvider = Provider(

@@ -2,7 +2,16 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { FirebaseService } from '../firebase/firebase.service';
 import { ProgressService } from '../progress/progress.service';
 import { SubmitExerciseDto } from './dto/submit-exercise.dto';
-import { Exercise } from '../../../shared/types/src/index';
+import { MultiQuestionExercise, Question } from '@hoctiengphan/shared-types';
+
+export interface FeedbackItem {
+  questionIndex: number;
+  isCorrect: boolean;
+  correctAnswer: string | number | undefined;
+  explanation?: string;
+}
+
+type PublicQuestion = Omit<Question, 'correctIndex' | 'correctText'>;
 
 @Injectable()
 export class ExerciseService {
@@ -20,28 +29,35 @@ export class ExerciseService {
     if (!doc.exists) {
       throw new NotFoundException('Exercise not found');
     }
-    const data = doc.data();
-    // Omit answers for questions
+    const data = doc.data() as MultiQuestionExercise;
+
+    // Omit answers for questions for public view
     if (data.questions && Array.isArray(data.questions)) {
-      data.questions = data.questions.map((q: any) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      data.questions = data.questions.map((q: Question): PublicQuestion => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { correctIndex, correctText, ...publicQ } = q;
         return publicQ;
-      });
+      }) as any;
     }
-    return { id: doc.id, ...data };
+    return { ...data, id: doc.id };
   }
 
   async getExercisesByLesson(lessonId: string) {
-    const snapshot = await this.collection.where('lessonId', '==', lessonId).get();
-    return snapshot.docs.map(doc => {
-      const data = doc.data();
+    const snapshot = await this.collection
+      .where('lessonId', '==', lessonId)
+      .get();
+    return snapshot.docs.map((doc) => {
+      const data = doc.data() as MultiQuestionExercise;
       if (data.questions && Array.isArray(data.questions)) {
-        data.questions = data.questions.map((q: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        data.questions = data.questions.map((q: Question): PublicQuestion => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { correctIndex, correctText, ...publicQ } = q;
           return publicQ;
-        });
+        }) as any;
       }
-      return { id: doc.id, ...data };
+      return { ...data, id: doc.id };
     });
   }
 
@@ -51,86 +67,60 @@ export class ExerciseService {
       throw new NotFoundException('Exercise not found');
     }
 
-    const exerciseData = doc.data();
+    const exerciseData = doc.data() as MultiQuestionExercise;
     let score = 0;
-    let total = 1;
-    let results: any[] = [];
+    const questions = exerciseData.questions || [];
+    const total = questions.length || 1;
+    const feedback: FeedbackItem[] = [];
 
-    if (exerciseData.questions && Array.isArray(exerciseData.questions) && dto.answers) {
-      total = exerciseData.questions.length;
-      results = exerciseData.questions.map((q: any, index: number) => {
-        const userAnswer = dto.answers[index.toString()];
+    if (questions.length > 0 && dto.answers) {
+      for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
+        const userAnswer = dto.answers[i.toString()];
         let isCorrect = false;
 
-        if (q.type === 'MULTIPLE_CHOICE' || !q.type) {
+        if (q.type === 'MULTIPLE_CHOICE' || q.type === 'TRUE_FALSE') {
           isCorrect = userAnswer === q.correctIndex;
         } else if (q.type === 'FILL_IN_BLANK') {
-          const userStr = String(userAnswer || '').trim().toLowerCase();
-          const correctStr = String(q.correctText || '').trim().toLowerCase();
+          const userStr = String(userAnswer || '')
+            .trim()
+            .toLowerCase();
+          const correctStr = String(q.correctText || '')
+            .trim()
+            .toLowerCase();
           isCorrect = userStr === correctStr;
         }
 
         if (isCorrect) score++;
-        return {
-          index,
+
+        feedback.push({
+          questionIndex: i,
           isCorrect,
-          correctIndex: q.correctIndex,
-          correctText: q.correctText,
-        };
-      });
-    } else {
-      // Fallback for single question or old format
-      const isCorrect = this.checkAnswer(exerciseData as Exercise, dto.answer);
-      if (isCorrect) score = 1;
-      results = [{ isCorrect, correctIndex: (exerciseData as any).correctIndex }];
+          correctAnswer:
+            q.type === 'FILL_IN_BLANK' ? q.correctText : q.correctIndex,
+          explanation: q.explanation,
+        });
+      }
     }
 
     const percentage = (score / total) * 100;
+    const percentageRounded = Math.round(percentage * 100) / 100;
+    const passed = percentageRounded >= 70;
 
-    // Mark activity as completed if score is passing (e.g. > 70% or just any score)
-    if (percentage >= 70 && dto.planId && dto.activityId) {
-       // Using firestore directly here for simplicity, but could be in a service
-       const db = this.firebaseService.getFirestore();
-       // Try both studyPlans and study_plans as we saw discrepancy
-       try {
-         await db.collection('studyPlans').doc(dto.planId).collection('activities').doc(dto.activityId).update({
-           isCompleted: true,
-           score: percentage,
-           updatedAt: new Date()
-         });
-       } catch (e) {
-         // Fallback to study_plans
-         await db.collection('study_plans').doc(dto.planId).collection('activities').doc(dto.activityId).update({
-           isCompleted: true,
-           score: percentage,
-           updatedAt: new Date()
-         });
-       }
+    // Mark task as completed if passed
+    if (passed && uid && dto.taskId) {
+      await this.progressService.updateTaskProgress(uid, {
+        taskId: dto.taskId,
+        isCompleted: true,
+      });
     }
 
     return {
       score,
       total,
-      percentage,
-      results,
+      percentage: percentageRounded,
+      passed,
+      feedback,
     };
-  }
-
-  private checkAnswer(exercise: Exercise, userAnswer: any): boolean {
-    const correct = (exercise as any).correctIndex ?? exercise.correctAnswer;
-
-    if (Array.isArray(correct)) {
-      if (!Array.isArray(userAnswer)) return false;
-      return (
-        correct.length === userAnswer.length &&
-        correct.every((val, index) => val === userAnswer[index])
-      );
-    }
-
-    if (typeof correct === 'number' || typeof userAnswer === 'number') {
-      return correct?.toString() === userAnswer?.toString();
-    }
-
-    return correct === userAnswer;
   }
 }

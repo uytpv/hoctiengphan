@@ -135,3 +135,28 @@ export interface StudyPlan {
   createdAt: Timestamp;
   updatedAt: Timestamp;
 }
+
+export interface GrammarTopic {
+  id: string;
+  chapter: string;
+  title: string | BilingualText;
+  desc?: string | BilingualText;
+  content: any;
+  createdAt?: Timestamp | any;
+  updatedAt?: Timestamp | any;
+}
+
+export interface Lesson {
+  id: string;
+  title: string;
+  chapter: string; // e.g. "Kappale 1"
+  description?: string;
+  content: string; // Markdown text containing shortcodes
+  vocabIds: string[];
+  exerciseIds: string[];
+  audioUrls: string[];
+  grammarIds: string[];
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+

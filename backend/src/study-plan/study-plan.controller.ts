@@ -3,7 +3,12 @@ import { StudyPlanService } from './study-plan.service';
 import { UpdateStudyPlanDto } from './dto/update-study-plan.dto';
 import { AuthGuard } from '../auth/guards/auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 @ApiTags('Study Plan')
 @ApiBearerAuth()

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import '../providers/vocabulary_provider.dart';
 import '../models/vocabulary.dart';
 import '../repositories/vocabulary_repository.dart';
@@ -296,26 +298,7 @@ class VocabularyListScreen extends ConsumerWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.volume_up,
-                          color: Colors.green,
-                          size: 18,
-                        ),
-                        onPressed: () {
-                          // TODO: Implement audio playback using voc.audioUrl
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'Audio playback not implemented yet',
-                              ),
-                            ),
-                          );
-                        },
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        tooltip: 'Listen',
-                      ),
+                      _VocabListPlayButton(audioUrl: voc.audioUrl, text: voc.finnish),
                       const SizedBox(width: 4),
                       IconButton(
                         icon: const Icon(
@@ -424,5 +407,92 @@ class VocabularyListScreen extends ConsumerWidget {
       await ref.read(vocabularyRepositoryProvider).deleteVocabulary(voc.id);
       ref.invalidate(vocabularyListProvider);
     }
+  }
+}
+
+/// Nút phát âm thanh từ vựng trong bảng danh sách (hỗ trợ Web/Native TTS)
+class _VocabListPlayButton extends StatefulWidget {
+  final String? audioUrl;
+  final String text;
+  const _VocabListPlayButton({this.audioUrl, required this.text});
+
+  @override
+  State<_VocabListPlayButton> createState() => _VocabListPlayButtonState();
+}
+
+class _VocabListPlayButtonState extends State<_VocabListPlayButton> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  final FlutterTts _flutterTts = FlutterTts();
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _flutterTts.setStartHandler(() {
+      if (mounted) setState(() => _isPlaying = true);
+    });
+    _flutterTts.setCompletionHandler(() {
+      if (mounted) setState(() => _isPlaying = false);
+    });
+    _flutterTts.setErrorHandler((msg) {
+      if (mounted) setState(() => _isPlaying = false);
+    });
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    _flutterTts.stop();
+    super.dispose();
+  }
+
+  Future<void> _play() async {
+    if (_isPlaying) {
+      try {
+        if (widget.audioUrl != null && widget.audioUrl!.isNotEmpty) {
+          await _audioPlayer.stop();
+        } else {
+          await _flutterTts.stop();
+        }
+        setState(() => _isPlaying = false);
+      } catch (_) {}
+      return;
+    }
+
+    try {
+      if (widget.audioUrl != null && widget.audioUrl!.isNotEmpty) {
+        setState(() => _isPlaying = true);
+        await _audioPlayer.play(UrlSource(widget.audioUrl!));
+        _audioPlayer.onPlayerComplete.first.then((_) {
+          if (mounted) setState(() => _isPlaying = false);
+        });
+      } else {
+        await _flutterTts.setLanguage("fi-FI");
+        await _flutterTts.setSpeechRate(0.45);
+        await _flutterTts.speak(widget.text);
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isPlaying = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Lỗi âm thanh: $e')),
+        );
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        _isPlaying ? Icons.stop : Icons.volume_up,
+        color: _isPlaying ? Colors.red : Colors.green,
+        size: 18,
+      ),
+      onPressed: _play,
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(),
+      tooltip: _isPlaying ? 'Stop' : 'Listen',
+    );
   }
 }

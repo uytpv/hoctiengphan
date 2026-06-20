@@ -12,43 +12,75 @@ export class VocabularyService {
     return this.firebaseService.getFirestore().collection('vocabulary');
   }
 
-  async findAll(category?: string, authorId?: string): Promise<Vocabulary[]> {
-    let query: FirebaseFirestore.Query<FirebaseFirestore.DocumentData> = this.collection;
-    
+  private mapDocToVocabulary(
+    doc: FirebaseFirestore.DocumentSnapshot,
+  ): Vocabulary {
+    const data = doc.data() as Partial<Vocabulary>;
+    return {
+      id: doc.id,
+      ...data,
+    } as Vocabulary;
+  }
+
+  async findAll(category?: string, authorUid?: string): Promise<Vocabulary[]> {
+    let query: FirebaseFirestore.Query<FirebaseFirestore.DocumentData> =
+      this.collection;
+
     if (category) {
       query = query.where('category', '==', category);
     }
-    if (authorId) {
-       query = query.where('authorId', '==', authorId);
+    if (authorUid) {
+      query = query.where('authorUid', '==', authorUid);
     }
 
     const snapshot = await query.get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Vocabulary));
+    return snapshot.docs.map((doc) => this.mapDocToVocabulary(doc));
   }
 
-  async addPersonal(uid: string, dto: CreateVocabularyDto): Promise<Vocabulary> {
-    const docRef = await this.collection.add({
+  async addPersonal(
+    uid: string,
+    dto: CreateVocabularyDto,
+  ): Promise<Vocabulary> {
+    const now = new Date();
+    const data = {
       ...dto,
-      authorId: uid,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    return { id: docRef.id, ...dto, authorId: uid } as any;
+      authorUid: uid,
+      createdAt: now,
+    };
+    const docRef = await this.collection.add(data);
+    return {
+      id: docRef.id,
+      ...dto,
+      authorUid: uid,
+      createdAt: {
+        seconds: Math.floor(now.getTime() / 1000),
+        nanoseconds: (now.getTime() % 1000) * 1000000,
+      },
+    } as Vocabulary;
   }
 
   async createGlobal(dto: CreateVocabularyDto): Promise<Vocabulary> {
-    const docRef = await this.collection.add({
+    const now = new Date();
+    const data = {
       ...dto,
-      authorId: null,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    return { id: docRef.id, ...dto, authorId: null } as any;
+      authorUid: null,
+      createdAt: now,
+    };
+    const docRef = await this.collection.add(data);
+    return {
+      id: docRef.id,
+      ...dto,
+      authorUid: null,
+      createdAt: {
+        seconds: Math.floor(now.getTime() / 1000),
+        nanoseconds: (now.getTime() % 1000) * 1000000,
+      },
+    } as Vocabulary;
   }
 
   async update(id: string, dto: UpdateVocabularyDto) {
     const docRef = this.collection.doc(id);
-    await docRef.update({ ...dto, updatedAt: new Date() });
+    await docRef.update({ ...dto });
     return { id, ...dto };
   }
 
