@@ -29,6 +29,7 @@
 - **Phân quyền (Security Rules)**: Tuân thủ nghiêm ngặt 3 cấp độ: `isAuthenticated`, `isOwner(uid)`, và `isAdmin`.
 - **Đồng bộ hóa**: Model trên Flutter phải khớp hoàn toàn với DTOs/Schemas trên NestJS.
 - **Validating**: Dữ liệu vào backend phải được kiểm tra qua Class Validator (DTOs).
+- **Đồng bộ dữ liệu (Database Sync)**: TUYỆT ĐỐI KHÔNG thực hiện đồng bộ hoặc di trú dữ liệu từ dev local lên production nếu chưa có yêu cầu cụ thể của USER. Đây là luật hiến pháp bắt buộc không được vi phạm.
 
 ## 5. Workflow
 1. **Khởi động**: Chạy Firebase Emulator: `npm run emulator:start` (từ root).

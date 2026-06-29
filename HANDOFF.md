@@ -1,62 +1,44 @@
 # Project Handoff: Opi Suomea (Học Tiếng Phần)
-**Date:** 2026-06-20 (Current Session)
-**Status:** Restructuring Completed, Data Migrated, Deployed to Production
+**Date:** 2026-06-21 (Current Session)
+**Status:** Feature Completed, Deployed to Production, Bug Fixes & Mobile Responsive Layouts Completed
 
 ---
 
 ## 🎯 Production Deployment Status
 All components have been compiled, built, and successfully deployed to Firebase production:
-- **Admin CMS Tool (Flutter Web)**: Deployed to [https://hoc-tieng-phan.web.app](https://hoc-tieng-phan.web.app)
-- **Student Mobile App (Flutter Web)**: Deployed to [https://htpfe.web.app](https://htpfe.web.app)
-- **Database (Cloud Firestore)**: Successfully migrated all local emulator collections to production using the migration script.
+- **Admin CMS Tool (Flutter Web)**: Deployed to [https://hoc-tieng-phan.web.app](https://hoc-tieng-phan.web.app) (Site Target: `hoc-tieng-phan`)
+- **Student Mobile App (Flutter Web)**: Deployed to [https://htpfe.web.app](https://htpfe.web.app) (Site Target: `htpfe`)
 - **Security Rules**: Deployed latest `firestore.rules` and `storage.rules` to production.
 
 ---
 
 ## ✅ Work Completed in This Session
-### 1. Architectural Restructuring (Interactive Document-Centric)
-- **Model Re-design**: Redesigned `Lesson` structure to support embedding vocabulary, audio, exercises, and videos as inline shortcodes (`[vocab:id|text]`, `[audio:url]`, `[exercise:id]`, `[video:id]`) directly in the Markdown text.
-- **Custom Markdown AST Syntax**: Refactored the raw regex parser in both Admin Tool and Mobile App to use a standard AST `InlineSyntax` class extending `markdown.InlineSyntax`. This allows Flutter's markdown renderer to correctly map shortcodes to beautiful, interactive custom inline widgets instead of displaying raw HTML/text.
-- **Firestore Schema Synchronization**: Restructured `Lessons`, `Activities`, `Grammars`, and `Exercises` collections to align with the new model and verified static compilation (`flutter analyze` with 0 errors).
 
-### 2. Audio & TTS Pronunciation Integration
-- **Native TTS Fallback**: Integrated the `flutter_tts` package. In both the Student App's vocabulary bottom sheet and the Admin CMS preview, clicking a vocabulary word plays high-quality Finnish (`fi-FI`) audio natively. If an audio file MP3 is missing, the system uses TTS as a fallback.
-- **Interactive Speakers**: Updated speaker buttons to toggle icons dynamically (Volume 🔊 to Stop ⏹️), allowing users to immediately stop audio playback.
-- **Admin Vocabulary Audio**: Replaced placeholders in `VocabularyListScreen` with working audio buttons (`_VocabListPlayButton`) to test Finnish pronunciations directly from the manager table.
+### 1. Grammar Embed & Preview Integration
+- **Markdown Grammar Editor**: Refactored the Grammar form inside `grammar_form_dialog.dart` to support direct Markdown input, allowing admins to write tables and lists easily.
+- **Embedded Grammar Shortcode**: Added a toolbar button inside `lesson_edit_screen.dart` to select and embed Grammar articles using `[grammar:id]` syntax.
+- **AST Parser Integration**: Custom `GrammarSyntax` was added to `markdown_preview.dart` (Admin CMS) and `markdown_content_renderer.dart` (Student App) to render the embedded grammar as a premium-styled card (with audio and tables).
 
-### 3. Bugs Fixed
-- **Mobile Load Error**: Fixed a critical firestore query error in the Mobile App's `StudyPlanRepository` where student progress tracking was looking up the wrong collection path. Progress is verified to track correctly under `user_progress/{uid}/plans/{planId}`.
-- **Firestore Timestamp mapping**: Resolved a runtime crash in Admin Tool's `lesson_repository.dart` where Firestore `Timestamp` values were not correctly converted to Dart's `DateTime` instances.
+### 2. Rule Enforcement (Hiến pháp Dự án)
+- **Database Safety Rule**: Created `.agents/AGENTS.md` (Workspace Rules) and updated `CLAUDE.md` to append the mandatory rule: **"TUYỆT ĐỐI KHÔNG tự động đồng bộ/di trú dữ liệu (Firestore, Auth, Storage, v.v.) từ dev local lên production nếu chưa có yêu cầu cụ thể từ USER."**
+- Guaranteed database safety: No local database sync or seeding script was run during this deployment.
 
-### 4. Database Migration
-- Successfully executed `backend/migrate-emulator-to-production.js`, clearing and fully syncing the production Firestore with:
-  - 1,888 vocabularies
-  - 73 lessons
-  - 63 categories
-  - 80 activities
-  - 94 grammars
-  - 240 exercises
-  - 50 study plan weeks / plans
+### 3. Critical Bug Fixes
+- **Web Audio Upload Fix**: Fixed the `Null check operator used on a null value` error on Web when picking `.mp3` files by adding `withData: true` to the `FilePicker.pickFiles()` calls in `grammar_form_dialog.dart`, `lesson_edit_screen.dart`, and `vocabulary_form_dialog.dart`.
+- **Text Size Adjustment**: Increased base font sizes in `MarkdownStyleSheet` across both apps (Body to 18, Headings up to 28, and Tables to 16) to make Finnish dialogues and conjugation tables highly readable.
+
+### 4. Responsive Mobile Roadmap Layout
+- **Mobile Drill-Down Flow**: Solved the severely squished 3-column Row layout (Weeks -> Days -> Lessons) on mobile devices (width < 600px) which made text display vertically.
+- **Flow Steps**:
+  - Step 1: Shows Week list as full-width cards. Selecting a week loads the day list.
+  - Step 2: Shows Day list (Mon-Sun) as full-width cards. Clicking Back returns to Weeks.
+  - Step 3: Shows Activity list (lessons/exercises) full width. Clicking Back returns to Days.
+- Modified: [study_plan_detail_screen.dart](file:///c:/Users/UY/works/hoctiengphan/mobile_app/lib/features/study_plan/presentation/study_plan_detail_screen.dart).
 
 ---
 
-## 🏗️ Technical Architecture & Schema
-- **Database**: Cloud Firestore (Production ID: `hoc-tieng-phan`).
-- **Main Collections**:
-  - `vocabularies`: Vocabulary metadata and fallback audio.
-  - `lessons`: Markdown-centric content containing shortcodes.
-  - `activities`: Intermediate wrappers linking weekly study plan days to lessons or exercises.
-  - `exercises`: Multi-format quizzes (`multipleChoice`, `fillInBlanks`, `trueFalse`).
-  - `study_plans` / `study_plan_weeks`: Lộ trình học theo tuần cho học viên.
-  - `user_progress`: Student progress tracker map.
-
----
-
-## 🚀 Immediate Next Steps (For Next Session)
-1. **TTS Platform Check**:
-   - Verify the `flutter_tts` package initialization on actual Android/iOS emulators. If a `MissingPluginException` occurs, execute `flutter run` afresh from the terminal to build and link native packages.
-2. **Audio File Upload Support**:
-   - Implement the feature in the Admin CMS to allow uploading custom MP3 recordings directly to Firebase Storage.
-3. **Database Performance Hardening**:
-   - Monitor database queries on production to see if any custom Firestore indexes are required as traffic grows.
-   - Implement pagination/lazy-loading for the Admin Tool tables (Students, Vocabulary) to optimize read costs.
+## 🚀 Future Steps & Notes
+1. **Local Emulator Testing**:
+   - Run `npm run emulator:start` in root to test local features with emulator data safely.
+2. **Review User Feedback**:
+   - Check user feedback for the newly deployed mobile responsive roadmap and the grammar editor.

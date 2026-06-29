@@ -128,6 +128,7 @@ class _VocabularyFormDialogState extends ConsumerState<VocabularyFormDialog> {
       final result = await fp.FilePicker.pickFiles(
         type: type == 'audio' ? fp.FileType.audio : fp.FileType.image,
         allowMultiple: false,
+        withData: true,
       );
 
       if (result == null || result.files.isEmpty) return;

@@ -59,20 +59,43 @@ class _StudyPlanDetailScreenState
   Widget build(BuildContext context) {
     final weeksAsync = ref.watch(weekListProvider(widget.planId));
     final lang = ref.watch(languageProvider);
+    final isMobile = MediaQuery.of(context).size.width < 600;
 
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.surface,
         elevation: 0,
-        leading: BackButton(onPressed: () => context.go('/')),
-        title: Text('Lộ trình',
-            style: AppTextStyles.headingSm.copyWith(
-                color: AppColors.surfaceDark)),
+        leading: BackButton(
+          onPressed: () {
+            if (isMobile) {
+              if (_selectedDayId != null) {
+                setState(() => _selectedDayId = null);
+                return;
+              } else if (_selectedWeekId != null) {
+                setState(() {
+                  _selectedWeekId = null;
+                  _resolvedWeek = null;
+                });
+                return;
+              }
+            }
+            context.go('/');
+          },
+        ),
+        title: Text(
+          isMobile
+              ? (_selectedDayId != null
+                  ? (_resolvedWeek?.days.firstWhere((d) => d.id == _selectedDayId, orElse: () => _resolvedWeek!.days.first).name ?? 'Bài học')
+                  : (_selectedWeekId != null
+                      ? (_resolvedWeek?.title ?? 'Chọn ngày')
+                      : 'Lộ trình'))
+              : 'Lộ trình',
+          style: AppTextStyles.headingSm.copyWith(color: AppColors.surfaceDark),
+        ),
       ),
       body: weeksAsync.when(
-        loading: () =>
-            const Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -88,43 +111,76 @@ class _StudyPlanDetailScreenState
             ],
           ),
         ),
-        data: (weeks) => Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Left: week list
-            _WeekSidebar(
-              weeks: weeks,
-              selectedId: _selectedWeekId,
-              onSelect: (week) => _selectWeek(week),
-            ),
-            const VerticalDivider(width: 1),
-            // Middle: day list
-            if (_resolvedWeek != null)
-              _DayList(
+        data: (weeks) {
+          if (isMobile) {
+            if (_selectedWeekId == null) {
+              return _WeekSidebar(
+                weeks: weeks,
+                selectedId: _selectedWeekId,
+                onSelect: (week) => _selectWeek(week),
+                isMobile: true,
+              );
+            } else if (_selectedDayId == null) {
+              return _DayList(
                 week: _resolvedWeek!,
                 selectedDayId: _selectedDayId,
                 lang: lang,
                 isLoading: _loadingWeek,
-                onSelect: (id) =>
-                    setState(() => _selectedDayId = id),
+                onSelect: (id) => setState(() => _selectedDayId = id),
+                isMobile: true,
+              );
+            } else {
+              return _ActivityPanel(
+                week: _resolvedWeek!,
+                dayId: _selectedDayId!,
+                lang: lang,
+                progress: _progress,
+                planId: widget.planId,
+                onActivityDone: _loadProgress,
+              );
+            }
+          }
+
+          // Desktop/Tablet Row layout
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Left: week list
+              _WeekSidebar(
+                weeks: weeks,
+                selectedId: _selectedWeekId,
+                onSelect: (week) => _selectWeek(week),
+                isMobile: false,
               ),
-            const VerticalDivider(width: 1),
-            // Right: activity list
-            if (_resolvedWeek != null && _selectedDayId != null)
-              Expanded(
-                child: _ActivityPanel(
+              const VerticalDivider(width: 1),
+              // Middle: day list
+              if (_resolvedWeek != null)
+                _DayList(
                   week: _resolvedWeek!,
-                  dayId: _selectedDayId!,
+                  selectedDayId: _selectedDayId,
                   lang: lang,
-                  progress: _progress,
-                  planId: widget.planId,
-                  onActivityDone: _loadProgress,
+                  isLoading: _loadingWeek,
+                  onSelect: (id) => setState(() => _selectedDayId = id),
+                  isMobile: false,
                 ),
-              )
-            else
-              const Expanded(child: _HintPanel()),
-          ],
-        ),
+              const VerticalDivider(width: 1),
+              // Right: activity list
+              if (_resolvedWeek != null && _selectedDayId != null)
+                Expanded(
+                  child: _ActivityPanel(
+                    week: _resolvedWeek!,
+                    dayId: _selectedDayId!,
+                    lang: lang,
+                    progress: _progress,
+                    planId: widget.planId,
+                    onActivityDone: _loadProgress,
+                  ),
+                )
+              else
+                const Expanded(child: _HintPanel()),
+            ],
+          );
+        },
       ),
     );
   }
@@ -135,13 +191,60 @@ class _WeekSidebar extends StatelessWidget {
     required this.weeks,
     required this.selectedId,
     required this.onSelect,
+    required this.isMobile,
   });
   final List<StudyPlanWeek> weeks;
   final String? selectedId;
   final ValueChanged<StudyPlanWeek> onSelect;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
+    if (isMobile) {
+      return ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        itemCount: weeks.length,
+        itemBuilder: (context, i) {
+          final w = weeks[i];
+          return Card(
+            margin: const EdgeInsets.only(bottom: 12),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: const BorderSide(color: AppColors.border, width: 1),
+            ),
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: const Icon(
+                  Icons.calendar_view_week_outlined,
+                  color: AppColors.primary,
+                ),
+              ),
+              title: Text(
+                w.title,
+                style: AppTextStyles.bodyMd.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.surfaceDark,
+                ),
+              ),
+              trailing: const Icon(
+                Icons.chevron_right,
+                color: AppColors.neutral,
+              ),
+              onTap: () => onSelect(w),
+            ),
+          );
+        },
+      );
+    }
+
     return SizedBox(
       width: 120,
       child: ListView.builder(
@@ -191,15 +294,100 @@ class _DayList extends StatelessWidget {
     required this.lang,
     required this.isLoading,
     required this.onSelect,
+    required this.isMobile,
   });
   final StudyPlanWeek week;
   final String? selectedDayId;
   final String lang;
   final bool isLoading;
   final ValueChanged<String> onSelect;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
+    if (isMobile) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              week.title,
+              style: AppTextStyles.headingSm,
+            ),
+          ),
+          const Divider(height: 1),
+          if (isLoading)
+            const Expanded(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
+          else
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                itemCount: week.days.length,
+                itemBuilder: (context, i) {
+                  final day = week.days[i];
+                  final hasActivities = day.activityIds.isNotEmpty;
+                  return Card(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      side: const BorderSide(color: AppColors.border, width: 1),
+                    ),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      leading: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.blue.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.today_outlined,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      title: Text(
+                        day.name,
+                        style: AppTextStyles.bodyMd.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.surfaceDark,
+                        ),
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (hasActivities)
+                            Container(
+                              margin: const EdgeInsets.only(right: 8),
+                              width: 8,
+                              height: 8,
+                              decoration: const BoxDecoration(
+                                color: AppColors.primary,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          const Icon(
+                            Icons.chevron_right,
+                            color: AppColors.neutral,
+                          ),
+                        ],
+                      ),
+                      onTap: () => onSelect(day.id),
+                    ),
+                  );
+                },
+              ),
+            ),
+        ],
+      );
+    }
+
     return SizedBox(
       width: 160,
       child: Column(

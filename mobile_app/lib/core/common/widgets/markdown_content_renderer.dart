@@ -60,6 +60,19 @@ class VideoSyntax extends md.InlineSyntax {
   }
 }
 
+class GrammarSyntax extends md.InlineSyntax {
+  GrammarSyntax() : super(r'\[grammar:([^\]]+)\]');
+
+  @override
+  bool onMatch(md.InlineParser parser, Match match) {
+    final id = match.group(1)!;
+    final element = md.Element.empty('grammar');
+    element.attributes['id'] = id;
+    parser.addNode(element);
+    return true;
+  }
+}
+
 /// Trình render nội dung bài học bằng Markdown có hỗ trợ các shortcode tương tác.
 class MarkdownContentRenderer extends StatelessWidget {
   final String content;
@@ -89,6 +102,7 @@ class MarkdownContentRenderer extends StatelessWidget {
         AudioSyntax(),
         ExerciseSyntax(),
         VideoSyntax(),
+        GrammarSyntax(),
       ],
       builders: {
         'vocab': VocabElementBuilder(onTap: (vocabId, text) {
@@ -101,13 +115,18 @@ class MarkdownContentRenderer extends StatelessWidget {
         'audio': AudioElementBuilder(onPlay: onAudioPlayed),
         'exercise': ExerciseElementBuilder(onCompleted: onExerciseCompleted),
         'video': VideoElementBuilder(),
+        'grammar': GrammarElementBuilder(onVocabTapped: onVocabTapped, onAudioPlayed: onAudioPlayed),
       },
       styleSheet: MarkdownStyleSheet(
-        p: const TextStyle(fontSize: 16, height: 1.6, color: Colors.black87),
-        h1: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, height: 1.5, color: Colors.blueAccent),
-        h2: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, height: 1.5, color: Colors.blueAccent),
-        h3: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, height: 1.5, color: Colors.blueAccent),
-        listBullet: const TextStyle(fontSize: 16),
+        p: const TextStyle(fontSize: 18, height: 1.6, color: Colors.black87),
+        h1: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, height: 1.5, color: Colors.blueAccent),
+        h2: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, height: 1.5, color: Colors.blueAccent),
+        h3: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold, height: 1.5, color: Colors.blueAccent),
+        listBullet: const TextStyle(fontSize: 18),
+        tableBorder: TableBorder.all(color: Colors.grey.shade300, width: 0.8),
+        tableHead: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+        tableBody: const TextStyle(fontSize: 16, color: Colors.black87),
+        tableCellsPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       ),
     );
   }
@@ -1002,6 +1021,319 @@ class _EmbeddedExerciseWidgetState extends State<_EmbeddedExerciseWidget> {
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       onChanged: (val) => setState(() => _inputText = val),
+    );
+  }
+}
+
+class GrammarElementBuilder extends MarkdownElementBuilder {
+  final Function(String vocabId)? onVocabTapped;
+  final Function(String audioUrl)? onAudioPlayed;
+
+  GrammarElementBuilder({this.onVocabTapped, this.onAudioPlayed});
+
+  @override
+  Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    final id = element.attributes['id'] ?? '';
+    if (id.isEmpty) return const SizedBox.shrink();
+
+    return _EmbeddedGrammarWidget(
+      grammarId: id,
+      onVocabTapped: onVocabTapped,
+      onAudioPlayed: onAudioPlayed,
+    );
+  }
+}
+
+class _EmbeddedGrammarWidget extends StatefulWidget {
+  final String grammarId;
+  final Function(String vocabId)? onVocabTapped;
+  final Function(String audioUrl)? onAudioPlayed;
+
+  const _EmbeddedGrammarWidget({
+    required this.grammarId,
+    this.onVocabTapped,
+    this.onAudioPlayed,
+  });
+
+  @override
+  State<_EmbeddedGrammarWidget> createState() => _EmbeddedGrammarWidgetState();
+}
+
+class _EmbeddedGrammarWidgetState extends State<_EmbeddedGrammarWidget> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  bool _isPlaying = false;
+  bool _isLoading = true;
+  Map<String, dynamic>? _grammarData;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadGrammar();
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadGrammar() async {
+    try {
+      final doc = await FirebaseFirestore.instance.collection('grammars').doc(widget.grammarId).get();
+      if (mounted) {
+        if (doc.exists) {
+          setState(() {
+            _grammarData = doc.data();
+            _isLoading = false;
+          });
+        } else {
+          setState(() => _isLoading = false);
+        }
+      }
+    } catch (e) {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _toggleAudio(String url) async {
+    if (_isPlaying) {
+      await _audioPlayer.stop();
+      setState(() => _isPlaying = false);
+    } else {
+      if (widget.onAudioPlayed != null) {
+        widget.onAudioPlayed!(url);
+      }
+      setState(() => _isPlaying = true);
+      await _audioPlayer.play(UrlSource(url));
+      _audioPlayer.onPlayerComplete.first.then((_) {
+        if (mounted) setState(() => _isPlaying = false);
+      });
+    }
+  }
+
+  void _showVocabBottomSheet(BuildContext context, String vocabId, String originalText) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return FutureBuilder<DocumentSnapshot>(
+          future: FirebaseFirestore.instance.collection('vocabularies').doc(vocabId).get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SizedBox(
+                height: 200,
+                child: Center(child: CircularProgressIndicator()),
+              );
+            }
+
+            if (snapshot.hasError || !snapshot.hasData || !snapshot.data!.exists) {
+              return Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      originalText,
+                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Không tìm thấy thông tin chi tiết của từ vựng này.'),
+                  ],
+                ),
+              );
+            }
+
+            final data = snapshot.data!.data() as Map<String, dynamic>;
+            final finnish = data['finnish'] ?? originalText;
+            final vietnamese = data['vietnamese'] ?? '';
+            final english = data['english'] ?? '';
+            final pronunciation = data['pronunciation'] ?? '';
+            final audioUrl = data['audioUrl'] ?? '';
+
+            return Container(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              finnish,
+                              style: const TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                            if (pronunciation.isNotEmpty)
+                              Text(
+                                '/$pronunciation/',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontStyle: FontStyle.italic,
+                                  color: Color(0xFF757575),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                      _VocabAudioButton(audioUrl: audioUrl, text: finnish),
+                    ],
+                  ),
+                  const Divider(height: 24),
+                  const Text(
+                    'Nghĩa tiếng Việt:',
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    vietnamese,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                  if (english.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Tiếng Anh:',
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      english,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                  const SizedBox(height: 16),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoading) {
+      return Container(
+        height: 100,
+        alignment: Alignment.center,
+        child: const CircularProgressIndicator(strokeWidth: 2),
+      );
+    }
+
+    if (_grammarData == null) {
+      return Container(
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.purple.withValues(alpha: 0.05),
+          border: Border.all(color: Colors.purple.withValues(alpha: 0.15)),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.school, color: Colors.purple),
+            const SizedBox(width: 8),
+            Text(
+              'Không tìm thấy chủ đề ngữ pháp nhúng (ID: ${widget.grammarId})',
+              style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.purple),
+            ),
+          ],
+        ),
+      );
+    }
+
+    final title = _grammarData!['title'] ?? 'Ngữ pháp';
+    final content = _grammarData!['content'] ?? '';
+    final audioUrl = _grammarData!['audioUrl'] as String?;
+
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.purple.withValues(alpha: 0.02),
+        border: Border.all(color: Colors.purple.withValues(alpha: 0.15), width: 1.5),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    const Icon(Icons.school, color: Colors.purple, size: 22),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.purple,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (audioUrl != null && audioUrl.isNotEmpty)
+                IconButton.filledTonal(
+                  onPressed: () => _toggleAudio(audioUrl),
+                  icon: Icon(_isPlaying ? Icons.stop : Icons.volume_up),
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.purple.withValues(alpha: 0.1),
+                    foregroundColor: Colors.purple,
+                    visualDensity: VisualDensity.compact,
+                  ),
+                ),
+            ],
+          ),
+          const Divider(height: 24, color: Colors.purple),
+          
+          MarkdownBody(
+            data: content,
+            selectable: true,
+            extensionSet: md.ExtensionSet.gitHubFlavored,
+            inlineSyntaxes: [
+              VocabSyntax(),
+              AudioSyntax(),
+            ],
+            builders: {
+              'vocab': VocabElementBuilder(onTap: (vocabId, text) {
+                if (widget.onVocabTapped != null) {
+                  widget.onVocabTapped!(vocabId);
+                } else {
+                  _showVocabBottomSheet(context, vocabId, text);
+                }
+              }),
+              'audio': AudioElementBuilder(onPlay: widget.onAudioPlayed),
+            },
+            styleSheet: MarkdownStyleSheet(
+              p: const TextStyle(fontSize: 16, height: 1.6, color: Color(0xFF0F1114)),
+              h1: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.purple.shade800),
+              h2: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple.shade800),
+              h3: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.purple.shade800),
+              tableBorder: TableBorder.all(color: Colors.purple.withValues(alpha: 0.15), width: 1),
+              tableHead: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xFF0F1114)),
+              tableBody: const TextStyle(fontSize: 15, color: Color(0xFF0F1114)),
+              tableCellsPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

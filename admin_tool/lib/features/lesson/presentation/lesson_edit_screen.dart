@@ -240,6 +240,20 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
     );
   }
 
+  // 5. Chèn Ngữ pháp (Grammar)
+  Future<void> _showAddGrammarDialog() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return _AddGrammarDialog(
+          onGrammarSelected: (grammarId) {
+            _insertTextAtCursor('[grammar:$grammarId]');
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.lessonId != null && widget.lessonId != 'new') {
@@ -494,6 +508,12 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
                                 color: Colors.green,
                                 onPressed: _showAddExerciseDialog,
                               ),
+                              _ToolbarButton(
+                                icon: Icons.history_edu,
+                                tooltip: 'Nhúng Ngữ pháp',
+                                color: Colors.purple,
+                                onPressed: _showAddGrammarDialog,
+                              ),
                             ],
                           ),
                         ),
@@ -605,6 +625,9 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
       final audioMatches = RegExp(r'\[audio:([^\]]+)\]').allMatches(contentText);
       final audioUrls = audioMatches.map((m) => m.group(1)!).toSet().toList();
 
+      final grammarMatches = RegExp(r'\[grammar:([^\]]+)\]').allMatches(contentText);
+      final grammarIds = grammarMatches.map((m) => m.group(1)!).toSet().toList();
+
       final lesson = Lesson(
         id: _originalLesson?.id ?? '',
         title: _titleController.text,
@@ -614,7 +637,7 @@ class _LessonEditScreenState extends ConsumerState<LessonEditScreen> {
         vocabIds: vocabIds,
         exerciseIds: exerciseIds,
         audioUrls: audioUrls,
-        grammarIds: _originalLesson?.grammarIds ?? [],
+        grammarIds: grammarIds,
         createdAt: _originalLesson?.createdAt ?? DateTime.now(),
         updatedAt: DateTime.now(),
       );
@@ -925,7 +948,10 @@ class _AddAudioDialogState extends State<_AddAudioDialog> {
   String? _uploadError;
 
   Future<void> _uploadAudio() async {
-    final result = await FilePicker.pickFiles(type: FileType.audio);
+    final result = await FilePicker.pickFiles(
+      type: FileType.audio,
+      withData: true,
+    );
     if (result == null || result.files.isEmpty) return;
 
     setState(() {
@@ -1669,6 +1695,96 @@ class _AddLessonLinkDialogState extends State<AddLessonLinkDialog> {
                   Navigator.pop(context);
                 },
           child: const Text('Gán liên kết'),
+        ),
+      ],
+    );
+  }
+}
+
+/// Dialog chèn Ngữ pháp (Grammar)
+class _AddGrammarDialog extends StatefulWidget {
+  final Function(String id) onGrammarSelected;
+  const _AddGrammarDialog({required this.onGrammarSelected});
+
+  @override
+  State<_AddGrammarDialog> createState() => _AddGrammarDialogState();
+}
+
+class _AddGrammarDialogState extends State<_AddGrammarDialog> {
+  String _searchQuery = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Nhúng bài Ngữ pháp'),
+      content: SizedBox(
+        width: 500,
+        height: 400,
+        child: Column(
+          children: [
+            TextField(
+              decoration: const InputDecoration(
+                hintText: 'Tìm bài ngữ pháp theo tiêu đề...',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (val) => setState(() => _searchQuery = val),
+            ),
+            const SizedBox(height: 12),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance.collection('grammars').snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  final docs = snapshot.data!.docs;
+                  final filtered = docs.where((doc) {
+                    final data = doc.data() as Map<String, dynamic>;
+                    final title = (data['title'] ?? '').toString().toLowerCase();
+                    final slug = (data['slug'] ?? '').toString().toLowerCase();
+                    final q = _searchQuery.toLowerCase();
+                    return title.contains(q) || slug.contains(q);
+                  }).toList();
+
+                  if (filtered.isEmpty) {
+                    return const Center(
+                      child: Text('Không tìm thấy bài ngữ pháp nào.'),
+                    );
+                  }
+
+                  return ListView.separated(
+                    itemCount: filtered.length,
+                    separatorBuilder: (context, index) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      final doc = filtered[index];
+                      final data = doc.data() as Map<String, dynamic>;
+                      final title = data['title'] ?? 'Ngữ pháp';
+                      final slug = data['slug'] ?? '';
+
+                      return ListTile(
+                        leading: const Icon(Icons.history_edu, color: Colors.purple),
+                        title: Text(title.toString(), style: const TextStyle(fontWeight: FontWeight.bold)),
+                        subtitle: Text('ID: ${doc.id} ${slug.isNotEmpty ? "- Chương: $slug" : ""}'),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () {
+                          widget.onGrammarSelected(doc.id);
+                          Navigator.pop(context);
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Hủy'),
         ),
       ],
     );
