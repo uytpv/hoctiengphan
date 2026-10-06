@@ -1,0 +1,182 @@
+{
+  "title": "Tuần 23: Đi Khám Bác sĩ, Toa thuốc Điện tử & Hoàn thành Chương 9",
+  "description": "Hoàn tất Chương 9 (Kappale 9): Hội thoại phòng khám bác sĩ, lấy thuốc tại hiệu thuốc và bài kiểm tra tổng kết 9 chương.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "theme": "Giao tiếp Thực tế: Đi Khám Bác sĩ (Lääkärissä)",
+      "activities": [
+        {
+          "activityId": "w23_d1_act1",
+          "type": "LESSON",
+          "title": "Bài học: Đối thoại tại Phòng khám Bác sĩ (Trang 248-251)",
+          "description": "Học các câu hỏi của bác sĩ và cách trả lời mô tả cơn đau.",
+          "durationMinutes": 35,
+          "targetRefId": "w23_d1_giaotiep_laakarissa_terveyskeskus",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc hội thoại giữa Bác sĩ và Bệnh nhân."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Ghi nhớ các câu chỉ dẫn: 'Avatkaa suu', 'Hengittäkää syvään'."
+            }
+          ]
+        },
+        {
+          "activityId": "w23_d1_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Giao tiếp tại phòng khám & nhà thuốc",
+          "description": "Luyện phản xạ các tình huống khám chữa bệnh.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w23_d1_terveyskeskus_laakarissa",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Chọn đáp án xử lý tình huống chính xác trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "theme": "Immersion Thực tế: Mua thuốc Toa Điện tử tại Apteekki",
+      "activities": [
+        {
+          "activityId": "w23_d2_act1",
+          "type": "SIGN",
+          "title": "Immersion: Hệ thống Toa thuốc Điện tử Kanta & Hiệu thuốc",
+          "description": "Tìm hiểu cách lấy thuốc theo đơn trực tuyến và chính sách đổi thuốc tương đương (Lääkevaihto).",
+          "durationMinutes": 25,
+          "targetRefId": "sign_apteekki_resepti",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học các thuật ngữ: Resepti, Kanta.fi, Farmaseutti."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "theme": "Luyện Nghe & Nói Phản xạ: Mô tả Bệnh lý Toàn diện",
+      "activities": [
+        {
+          "activityId": "w23_d3_act1",
+          "type": "LESSON",
+          "title": "Luyện nói phản xạ: Tự mô tả triệu chứng và yêu cầu giúp đỡ",
+          "description": "Rèn luyện khả năng nói lưu loát khi cần miêu tả bệnh lý cá nhân.",
+          "durationMinutes": 30,
+          "targetRefId": "w23_d1_giaotiep_laakarissa_terveyskeskus",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Tập nói các câu mô tả triệu chứng kéo dài bao lâu."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "theme": "Thực hành Giải Bài tập Giáo trình: Harjoitus 1 - 20",
+      "activities": [
+        {
+          "activityId": "w23_d4_act1",
+          "type": "LESSON",
+          "title": "Bài tập thực hành: Harjoitus 1 - 20 Chương 9 (Trang 252-257)",
+          "description": "Giải bài tập tổng hợp về tân ngữ Objekti và từ vựng y tế.",
+          "durationMinutes": 35,
+          "targetRefId": "w23_d4_baitap_harjoitus1_20",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập điền tân ngữ đúng dạng."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Kiểm tra và củng cố ngữ pháp."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "theme": "Đề Kiểm tra Toàn diện Đánh giá Năng lực: Kappale 9",
+      "activities": [
+        {
+          "activityId": "w23_d5_act1",
+          "type": "LESSON",
+          "title": "Đề kiểm tra đánh giá năng lực: Kappale 9 (Trang 258-260)",
+          "description": "Thực hiện bài kiểm tra trắc nghiệm tổng hợp toàn bộ Chương 9.",
+          "durationMinutes": 30,
+          "targetRefId": "w23_d5_kiemtra_tongket_kappale9",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài kiểm tra tương tác bên dưới."
+            }
+          ]
+        },
+        {
+          "activityId": "w23_d5_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Kiểm tra tổng kết Chương 9",
+          "description": "Hoàn thành các câu hỏi đánh giá chuẩn A1.3.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w23_d5_kiemtra_kappale9",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Chọn đáp án chính xác nhất."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 6,
+      "theme": "Ôn tập Tổng hợp Toàn bộ 9 Chương Giáo trình",
+      "activities": [
+        {
+          "activityId": "w23_d6_act1",
+          "type": "LESSON",
+          "title": "Đại ôn tập: Tổng hợp Hệ thống Ngữ pháp 9 Chương Suomen Mestari 1",
+          "description": "Hệ thống hóa toàn bộ các điểm ngữ pháp nền tảng từ Chương 1 đến Chương 9.",
+          "durationMinutes": 40,
+          "targetRefId": "w22_d3_nguphap_objekti_saannot",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Xem lại bảng KPT, 6 nhóm động từ, 6 cách vị trí và thì quá khứ đơn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 7,
+      "theme": "Tổng kết Hoàn thành Toàn bộ 9 Chương Sách: Cán mốc 95.8%",
+      "activities": [
+        {
+          "activityId": "w23_d7_act1",
+          "type": "LESSON",
+          "title": "Tổng kết Hoàn thành 9 Chương Giáo trình: Sẵn sàng cho Tuần Thi thử Cuối cùng!",
+          "description": "Tự hào vinh danh nỗ lực vượt bậc của bạn trước khi bước vào kỳ thi thử tốt nghiệp toàn diện!",
+          "durationMinutes": 20,
+          "targetRefId": "w23_d7_tongket_kappale9",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Chúc mừng bạn đã chinh phục trọn vẹn 9 chương sách!"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

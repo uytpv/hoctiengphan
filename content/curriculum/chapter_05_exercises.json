@@ -1,0 +1,142 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w12_d2_kello_aika",
+      "title": "Cách xem giờ đồng hồ (Paljonko kello on?)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi đồng hồ chỉ 7:30 (bảy giờ rưỡi), người Phần Lan nói:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kello on puoli kahdeksan (nửa của tám giờ)",
+            "Kello on puoli seitsemän",
+            "Kello on seitsemän ja kolmekymmentä"
+          ],
+          "correctIndex": 0,
+          "explanation": "ĐẶC TRƯNG TIẾNG PHẦN: 'puoli + số tiếp theo' = nửa tiếng trước giờ đó. 7:30 = puoli kahdeksan (nửa của 8h)."
+        },
+        {
+          "prompt": "Cụm từ 'varttia yli kymmenen' chỉ mấy giờ?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "10:15 (10 giờ qua 15 phút)",
+            "9:45",
+            "10:45"
+          ],
+          "correctIndex": 0,
+          "explanation": "'vartti' = 15 phút, 'yli' = qua/hơn. 'varttia yli kymmenen' = 10 giờ 15 phút."
+        },
+        {
+          "prompt": "Cụm từ 'kymmentä vaille kaksi' chỉ mấy giờ?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "1:50 (2 giờ kém 10 phút)",
+            "2:10",
+            "10:02"
+          ],
+          "correctIndex": 0,
+          "explanation": "'vaille' = kém/thiếu. 'kymmentä vaille kaksi' = kém 10 phút là đến 2 giờ."
+        }
+      ]
+    },
+    {
+      "id": "ex_w13_d1_verbityypit_5",
+      "title": "Phân loại và chia 5 Nhóm động từ (Verbityypit 1 - 5)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Động từ 'syödä' (ăn) và 'juoda' (uống) thuộc nhóm động từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Nhóm 2 (Verbityyppi 2: tận cùng -da/-dä)",
+            "Nhóm 1",
+            "Nhóm 3"
+          ],
+          "correctIndex": 0,
+          "explanation": "Nhóm 2 kết thúc bằng -da/-dä. Bỏ -da/-dä để tìm thân từ: syö-, juo-."
+        },
+        {
+          "prompt": "Động từ 'tulla' (đến) và 'mennä' (đi) thuộc nhóm động từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Nhóm 3 (Verbityyppi 3: -la/-lä, -na/-nä, -ra/-rä, -sta/-stä)",
+            "Nhóm 2",
+            "Nhóm 4"
+          ],
+          "correctIndex": 0,
+          "explanation": "Nhóm 3 khi chia ngôi minä phải chèn thêm nguyên âm 'e': tulla -> tul- -> minä tulen."
+        },
+        {
+          "prompt": "Động từ 'herätä' (thức dậy) và 'pelata' (chơi thể thao) thuộc nhóm 4 (-ata/-ätä). Khi chia ngôi 'minä', từ biến đổi thế nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Bỏ -t-, nhân đôi nguyên âm rồi thêm -n: herää- -> herään, pelaa- -> pelaan",
+            "herätän, pelatän",
+            "herän, pelan"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc nhóm 4: -t- biến mất, nguyên âm kéo dài: herätä -> herään, pelata -> pelaan."
+        }
+      ]
+    },
+    {
+      "id": "ex_w13_d3_dongtu_dongtu",
+      "title": "Cấu trúc kết hợp: Động từ + Động từ (Infinitive)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "'Tôi muốn học tiếng Phần Lan' được dịch sang tiếng Phần là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minä haluan opiskella suomea.",
+            "Minä haluan opiskelen suomea.",
+            "Minä haluaa opiskella suomea."
+          ],
+          "correctIndex": 0,
+          "explanation": "Động từ thứ hai đi sau 'haluta' luôn ở thể nguyên mẫu (Infinitive 1): haluan + opiskella."
+        },
+        {
+          "prompt": "'Bạn có thể giúp tôi được không?' là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Voitko auttaa minua?",
+            "Voitko autat minua?",
+            "Osaatko auttaa minua?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'voida' (có thể) + nguyên mẫu 'auttaa': Voitko auttaa...?"
+        }
+      ]
+    },
+    {
+      "id": "ex_w14_d5_kiemtra_kappale5",
+      "title": "Đề kiểm tra đánh giá năng lực toàn diện Chương 5",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi hỏi bạn 'Mihin aikaan sinä heräät aamulla?' (Mấy giờ bạn thức dậy buổi sáng?), câu trả lời chuẩn là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Herään kello seitsemän.",
+            "Herään puoli seitsemän kello.",
+            "Herään aika seitsemän."
+          ],
+          "correctIndex": 0,
+          "explanation": "Herään kello seitsemän = Tôi thức dậy lúc 7 giờ."
+        },
+        {
+          "prompt": "Chia động từ 'tarvita' (cần thiết - Nhóm 5) cho ngôi 'me' (chúng tôi):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "me tarvitsemme (chèn đuôi -se-)",
+            "me tarvimme",
+            "me tarvitamme"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc nhóm 5 (-ita/-itä): Thay -ita bằng -itse- rồi thêm đuôi cá nhân: tarvita -> tarvitse- -> me tarvitsemme."
+        }
+      ]
+    }
+  ]
+}

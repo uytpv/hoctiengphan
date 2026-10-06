@@ -1,0 +1,155 @@
+{
+  "id": "week_12",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 12,
+  "title": "Tháng 3 - Tuần 12: Khởi động Chương 5: Sinh hoạt hàng ngày & Xem giờ",
+  "description": "Bắt đầu Chương 5 (Kappale 5): Từ vựng sinh hoạt từ sáng đến tối (Trang 117-119), Cách xem giờ đồng hồ Paljonko kello on? (Trang 120-122), Văn hóa cà phê số 1 thế giới Kahvikulttuuri & Pulla.",
+  "chapter": "Kappale 5",
+  "bookPages": "117-122, 126-128",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w12_d1_act1",
+          "type": "lesson_full",
+          "title": "Kappale 5: Từ vựng Các hoạt động sinh hoạt trong ngày (Trang 117-119)",
+          "goal": "Nắm vững danh sách động từ sinh hoạt từ thức dậy đến đi ngủ.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w12_d1_tuvung_sinhhoat_hangngay",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học các động từ herätä, nousta ylös, keittää kahvia, lähteä töihin."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w12_d2_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Cách xem giờ đồng hồ (Paljonko kello on?) (Trang 120-122)",
+          "goal": "Làm chủ 4 cách xem giờ: đúng, rưỡi (puoli), hơn (yli), kém (vaille).",
+          "estimatedMinutes": 30,
+          "targetRefId": "w12_d2_nguphap_xemgio_kello",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học quy tắc puoli, yli, vaille."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác xem giờ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w12_d3_act1",
+          "type": "immersion_sign",
+          "title": "Immersion Văn hóa: Cà phê Phần Lan - Quán quân tiêu thụ thế giới",
+          "goal": "Khám phá nét văn hóa Kahvitauko và bánh quế Korvapuusti.",
+          "estimatedMinutes": 15,
+          "targetRefId": "sign_kahvikulttuuri_suomi",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang về văn hóa cà phê Phần Lan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w12_d4_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 3 - 9 Chương 5 (Trang 126-128)",
+          "goal": "Rèn luyện giải bài tập xem giờ và điền động từ sinh hoạt.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w12_d1_tuvung_sinhhoat_hangngay",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành giải bài tập trong sách."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w12_d5_act1",
+          "type": "lesson_slice",
+          "title": "Thực hành: Kể lại một ngày sinh hoạt của bạn bằng tiếng Phần",
+          "goal": "Tự viết thời gian biểu một ngày của chính mình.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w12_d1_tuvung_sinhhoat_hangngay",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Viết 5 câu miêu tả thời gian biểu trong ngày."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w12_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 12 (Kappale 5)",
+          "goal": "Ôn tập toàn bộ kiến thức tuần 12.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w12_d7_tonghop_tuan12",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tóm tắt tuần 12."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w12_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi thư giãn (Ota rennosti)",
+          "goal": "Thư giãn nạp năng lượng.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w12_d7_tonghop_tuan12",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi cuối tuần."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

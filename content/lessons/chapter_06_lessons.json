@@ -1,0 +1,108 @@
+{
+  "lessons": [
+    {
+      "id": "w15_d1_tuvung_talotyypit_huoneet",
+      "title": "Kappale 6: Các loại nhà ở & Các phòng trong căn hộ (Trang 149-152)",
+      "chapter": "Kappale 6",
+      "week": 15,
+      "description": "Khám phá kiến trúc nhà ở Phần Lan và các phòng chức năng trong căn nhà.",
+      "content": "# 🏡 Kappale 6: Asuminen ja koti (Nhà ở và tổ ấm)\n\nChào mừng bạn đến với **Chương 6 (Kappale 6)** của *Suomen Mestari 1*! Hôm nay chúng ta sẽ tìm hiểu về không gian sống và các tiện ích nhà ở tại Phần Lan.\n\n---\n\n### 🏢 1. 4 Loại hình nhà ở phổ biến tại Phần Lan\n1. 🏬 **Kerrostalo**: Chung cư cao tầng (phổ biến nhất tại các trung tâm thành phố).\n2. 🏘️ **Rivitalo**: Nhà liền kề (mỗi căn hộ có cửa đi riêng và một mảnh sân vườn nhỏ xinh xắn *takapiha*).\n3. 🏡 **Omakotitalo**: Nhà biệt lập riêng biệt (thường có sân vườn rộng, garage riêng và phòng sauna củi).\n4. 🏡 **Paritalo**: Nhà song lập (2 gia đình chung một vách ngăn đôi).\n\n---\n\n### 🚪 2. Các phòng trong nhà (Huoneet)\n* **Eteinen**: Tiền sảnh lối vào nhà (nơi cởi áo khoác ấm và tháo giày dép - văn hóa Phần Lan tuyệt đối không mang giày dép vào trong nhà!).\n* **Keittiö**: Phòng bếp (*Keittokomero* = góc bếp nhỏ).\n* **Olohuone**: Phòng khách / phòng sinh hoạt chung.\n* **Makuuhuone**: Phòng ngủ.\n* **Kylpyhuone (KPH)**: Phòng tắm.\n* **Sauna**: Phòng tắm hơi sauna.\n* **Parveke**: Ban công kính đón nắng.\n\n---\n\n### 📝 3. Thử thách tương tác\n[exercise:ex_w15_d1_asumissanasto]"
+    },
+    {
+      "id": "w15_d2_tuvung_huonekalut",
+      "title": "Từ vựng: Đồ nội thất & Thiết bị gia dụng (Trang 153-154)",
+      "chapter": "Kappale 6",
+      "week": 15,
+      "description": "Bộ từ vựng trang bị trọn vẹn cho một căn hộ mới chuyển đến.",
+      "content": "# 🛋️ Từ vựng: Đồ nội thất (Huonekalut) & Thiết bị gia dụng (Kodinkoneet)\n\n---\n\n### 🪑 1. Đồ nội thất căn bản\n* **sohva**: ghế sofa êm ái\n* **nojatuoli**: ghế bành tựa lưng\n* **pöytä**: cái bàn (*ruokapöytä* = bàn ăn, *kirjoituspöytä* = bàn học/viết)\n* **tuoli**: cái ghế\n* **sänky**: chiếc giường ngủ\n* **kirjahylly**: kệ sách\n* **vaatekaappi**: tủ đựng quần áo\n* **matto**: tấm thảm trải sàn\n* **verhot**: rèm cửa sổ\n* **lamppu**: đèn chiếu sáng\n\n---\n\n### ⚡ 2. Thiết bị gia dụng hiện đại\n* **jääkaappi**: tủ lạnh (*pakastin* = tủ đông)\n* **hella / liesi**: bếp nấu điện/từ\n* **uuni**: lò nướng\n* **mikroaaltouuni (mikro)**: lò vi sóng\n* **tiskikone / astianpesukone**: máy rửa chén bát\n* **pesukone / pyykinpesukone**: máy giặt quần áo"
+    },
+    {
+      "id": "sign_huoltoyhtio_isannoitsija",
+      "title": "Immersion Thực tế: Ban quản lý tòa nhà (Huoltoyhtiö & Isännöitsijä)",
+      "chapter": "Kappale 6",
+      "week": 15,
+      "description": "Ai là người sửa ống nước, mở khóa cửa khi bạn quên chìa tại chung cư Phần Lan?",
+      "content": "# 🔧 Immersion Đời sống: HUOLTOYHTIÖ & ISÄNNÖITSIJÄ\n\nTại mọi chung cư Phần Lan, ngay lối vào tầng 1 luôn dán một bảng thông tin quan trọng nhất:\n\n> # 🏢 HUOLTOYHTIÖ (Công ty bảo trì kỹ thuật)\n> # 👨‍💼 ISÄNNÖITSIJÄ (Ban quản lý vận hành tòa nhà)\n\n---\n\n### 📞 Khi nào bạn cần gọi Huoltoyhtiö?\n* 🔑 **Ovenavaus**: Bạn lỡ quên chìa khóa trong nhà và bị khóa ngoài cửa (gọi thợ huolto đến mở cửa cứu viện, phí khoảng 30 - 50 €).\n* 🚰 **Hana vuotaa**: Vòi nước bồn rửa mặt bị rò rỉ.\n* ❄️ **Patteri on kylmä**: Lò sưởi ấm trong phòng mùa đông không nóng."
+    },
+    {
+      "id": "sign_vuokraovi_oikotie",
+      "title": "Immersion Đời sống: Giải mã tin đăng thuê nhà Oikotie / Vuokraovi",
+      "chapter": "Kappale 6",
+      "week": 15,
+      "description": "Bí quyết đọc hiểu hợp đồng thuê nhà và các chi phí điện, nước, internet tại Phần Lan.",
+      "content": "# 🔑 Immersion Thực tế: Đọc tin thuê nhà Phần Lan\n\nKhi thuê nhà trên *Oikotie.fi* hoặc *Lumo.fi*, bạn sẽ thấy các thông số:\n\n* 🏠 **Vuokra**: Tiền thuê nhà hàng tháng (ví dụ: *750 €/kk*).\n* 💧 **Vesimaksu**: Tiền nước (thường là *20 - 25 € / người / tháng*).\n* 🛡️ **Vakuus / Takuuvuokra**: Tiền đặt cọc nhà (thường bằng 1 - 2 tháng tiền thuê).\n* 🔌 **Sähkösopimus**: Hợp đồng tiền điện (người thuê tự ký trực tiếp với công ty điện lực như Helen, Fortum).\n* 📜 **Kotivakuutus**: Bảo hiểm nhà ở (bắt buộc 100% chủ nhà Phần Lan đều yêu cầu người thuê phải mua trước khi nhận chìa khóa)."
+    },
+    {
+      "id": "w15_d7_tonghop_tuan15",
+      "title": "Tổng kết & Củng cố Tuần 15 (Kappale 6)",
+      "chapter": "Kappale 6",
+      "week": 15,
+      "description": "Ôn tập các loại nhà, các phòng, đồ nội thất và thủ tục thuê nhà.",
+      "content": "# 🏆 Tổng kết & Củng cố Tuần 15\n\n* ✅ Phân biệt rõ ràng *kerrostalo, rivitalo, omakotitalo*.\n* ✅ Thuộc toàn bộ tên các phòng trong nhà và đồ gia dụng thiết yếu.\n* ✅ Đọc hiểu thông số tin rao nhà đất và biết cách liên hệ ban quản lý *huoltoyhtiö*."
+    },
+    {
+      "id": "w16_d1_nguphap_paikansijat_6",
+      "title": "Ngữ pháp: Hệ thống 6 Cách chỉ Vị trí Nơi chốn (Paikansijat) (Trang 155-156)",
+      "chapter": "Kappale 6",
+      "week": 16,
+      "description": "Giải mã hệ thống hậu tố vị trí không gian 3 chiều hoàn hảo của tiếng Phần Lan.",
+      "content": "# 🧭 Ngữ pháp: 6 Cách chỉ Vị trí Nơi chốn (Paikansijat)\n\nTrong tiếng Phần Lan, thay vì dùng các giới từ rời (*in, from, to, on*) như tiếng Anh, ngôn ngữ này gắn trực tiếp các hậu tố biểu đạt không gian vào sau danh từ!\n\n---\n\n### 📦 1. Nhóm vị trí BÊN TRONG (Sisäpaikansijat)\n\n| Hướng chuyển động | Tên cách ngữ pháp | Hậu tố | Ví dụ câu | Dịch nghĩa |\n| :--- | :--- | :--- | :--- | :--- |\n| **Mihin?** (Đi vào trong) | **Illatiivi** | **-Vn / -hVn / -seen** | *Menen **taloon**.* | Tôi đi **vào trong nhà**. |\n| **Missä?** (Ở bên trong) | **Inessiivi** | **-ssa / -ssä** | *Olen **talossa**.* | Tôi đang **ở trong nhà**. |\n| **Mistä?** (Từ trong ra) | **Elatiivi** | **-sta / -stä** | *Tulen **talosta**.* | Tôi đi **từ trong nhà ra**. |\n\n---\n\n### 🏞️ 2. Nhóm vị trí BÊN NGOÀI / BỀ MẶT (Ulkopaikansijat)\n\n| Hướng chuyển động | Tên cách ngữ pháp | Hậu tố | Ví dụ câu | Dịch nghĩa |\n| :--- | :--- | :--- | :--- | :--- |\n| **Mille?** (Đi lên bề mặt/tới) | **Allatiivi** | **-lle** | *Menen **torille**.* | Tôi đi **ra quảng trường chợ**. |\n| **Millä?** (Ở trên bề mặt) | **Adessiivi** | **-lla / -llä** | *Olen **torilla**.* | Tôi đang **ở ngoài chợ**. |\n| **Miltä?** (Từ bề mặt rời đi)| **Ablatiivi** | **-lta / -ltä** | *Tulen **torilta**.* | Tôi đi **từ chợ về**. |\n\n---\n\n### 📝 3. Bài tập tương tác vị trí nơi chốn\n[exercise:ex_w16_d1_paikansijat_6]"
+    },
+    {
+      "id": "w16_d2_nguphap_huoneessa_on",
+      "title": "Ngữ pháp: Cấu trúc tồn tại vị trí 'Huoneessa on...' (Trang 156)",
+      "chapter": "Kappale 6",
+      "week": 16,
+      "description": "Cách miêu tả đồ đạc trong một không gian: 'Ở trong... có một...'",
+      "content": "# 📍 Ngữ pháp: Cấu trúc tồn tại nơi chốn (Eksistentiaalilause)\n\nKhi muốn miêu tả trong một căn phòng hay một địa điểm có cái gì (tương đương với *There is / There are*):\n> 👉 **[Địa điểm ở dạng -ssa / -lla] + ON + [Đồ vật tồn tại]**\n\n---\n\n### 💡 Các câu ví dụ sinh động\n* *Keittiössä on jääkaappi ja pöytä.* (Trong bếp có một chiếc tủ lạnh và một cái bàn).\n* *Olohuoneessa on mukava sohva.* (Trong phòng khách có một bộ sofa êm ái).\n* *Pöydällä on tietokone ja kirja.* (Trên bàn có máy tính và quyển sách).\n* *Pihalla on kaksi autoa.* (Ngoài sân có 2 chiếc ô tô)."
+    },
+    {
+      "id": "w16_d4_nguphap_imperatiivi",
+      "title": "Ngữ pháp: Thể Mệnh lệnh cơ bản & Chỉ đường (Trang 157)",
+      "chapter": "Kappale 6",
+      "week": 16,
+      "description": "Cách ra mệnh lệnh lịch sự và chỉ dẫn đường đi trong thành phố.",
+      "content": "# 🚶 Ngữ pháp: Thể Mệnh lệnh (Imperatiivi) & Chỉ đường\n\n---\n\n### 🗣️ 1. Thể mệnh lệnh ngôi Sinä (Bạn hãy...)\nLấy **Thân từ cấp YẾU** của động từ:\n* *tulla* -> **Tule!** (Hãy đến đây!)\n* *mennä* -> **Mene!** (Hãy đi đi!)\n* *ottaa* -> **Ota!** (Hãy lấy đi!)\n* *katsoa* -> **Katso!** (Hãy nhìn kìa!)\n* *odottaa* -> **Odota!** (Hãy đợi một chút!)\n\n---\n\n### 🗺️ 2. Mẫu câu chỉ đường\n* **Mene suoraan eteenpäin.** = Hãy đi thẳng về phía trước.\n* **Käänny oikealle.** = Hãy rẽ sang phải.\n* **Käänny vasemmalle.** = Hãy rẽ sang trái.\n* **Se on kadun toisella puolella.** = Nó nằm ở phía bên kia đường.\n\n---\n\n### 📝 3. Bài tập tương tác\n[exercise:ex_w16_d4_imperatiivi_ohjeet]"
+    },
+    {
+      "id": "sign_jarjestyssaannot_kierratys",
+      "title": "Immersion Đời sống: Nội quy chung cư & Phân loại rác (Kierrätys)",
+      "chapter": "Kappale 6",
+      "week": 16,
+      "description": "Hiểu quy định giờ yên tĩnh Hiljaisuus 22-07 và cách bảo vệ môi trường chuẩn Phần Lan.",
+      "content": "# ♻️ Immersion Thực tế: NỘI QUY CHUNG CƯ & PHÂN LOẠI RÁC\n\nỞ Phần Lan, hai điều tuyệt đối phải tuân thủ khi sống tại chung cư:\n\n---\n\n### 🤫 1. Giờ yên tĩnh (Hiljaisuus / Yörauha)\nTừ **22:00 đêm đến 07:00 sáng hôm sau**, tòa nhà bước vào giờ yên tĩnh tuyệt đối: không mở nhạc lớn, không bật máy giặt, không khoan đục tường.\n\n---\n\n### 🗑️ 2. Nhà rác chung cư (Jätekatos / Kierrätys)\nPhần Lan là một trong những quốc gia tái chế rác hàng đầu thế giới:\n* 🔵 **Paperi**: Báo, tạp chí, giấy in.\n* 📦 **Kartonki**: Thùng carton, vỏ hộp sữa giấy (phải gấp dẹp trước khi bỏ vào thùng).\n* 🍾 **Lasi**: Chai lọ thủy tinh trong suốt và có màu.\n* 🥫 **Metalli**: Vỏ lon nhôm, đồ kim loại nhỏ.\n* 🟡 **Muovi**: Bao bì nhựa thực phẩm.\n* 🍏 **Biojäte**: Rác hữu cơ, vỏ rau củ, thức ăn thừa (bỏ vào túi giấy phân hủy sinh học).\n* ⚫ **Sekajäte**: Rác thải sinh hoạt vô cơ còn lại."
+    },
+    {
+      "id": "w16_d7_tonghop_tuan16",
+      "title": "Tổng kết & Củng cố Tuần 16 (Kappale 6)",
+      "chapter": "Kappale 6",
+      "week": 16,
+      "description": "Ôn tập 6 cách vị trí nơi chốn, cấu trúc Huoneessa on và thể mệnh lệnh chỉ đường.",
+      "content": "# 🏆 Tổng kết & Củng cố Tuần 16\n\n* ✅ Nắm chắc bộ 6 cách vị trí nơi chốn (*Missä, Mistä, Mihin, Millä, Miltä, Mille*).\n* ✅ Biết cách miêu tả đồ vật trong phòng bằng cấu trúc *Huoneessa on...*.\n* ✅ Biết cách chỉ đường và dùng thể mệnh lệnh *Mene suoraan, Käänny oikealle*.\n* ✅ Hiểu nội quy chung cư và văn hóa phân loại rác bảo vệ môi trường."
+    },
+    {
+      "id": "w17_d1_baitap_harjoitus19_25",
+      "title": "Bài tập thực hành: Harjoitus 19 - 25 Chương 6 (Trang 168-175)",
+      "chapter": "Kappale 6",
+      "week": 17,
+      "description": "Thực hành giải bài tập hình ảnh vị trí đồ vật và chia đuôi nơi chốn.",
+      "content": "# ✍️ Bài tập thực hành: Harjoitus 19 - 25 (Trang 168-175)\n\nTuần thứ 17 là tuần tổng lực rèn luyện chia các cách vị trí nơi chốn trong mọi ngữ cảnh đời thực."
+    },
+    {
+      "id": "w17_d5_kiemtra_tongket_kappale6",
+      "title": "Đề kiểm tra đánh giá năng lực toàn diện: Kappale 6 (Trang 182-183)",
+      "chapter": "Kappale 6",
+      "week": 17,
+      "description": "Đề kiểm tra chuẩn hóa tổng kết toàn diện kiến thức Chương 6.",
+      "content": "# 🎓 Đề kiểm tra năng lực toàn diện: Kappale 6\n\nKiểm tra 3 trụ cột:\n1. Từ vựng Nhà cửa, Đồ đạc và Tiện nghi căn hộ.\n2. Hệ thống 6 cách vị trí nơi chốn Paikansijat.\n3. Kỹ năng chỉ đường và thể mệnh lệnh Imperatiivi.\n\n---\n\n### ✍️ Bắt đầu làm bài kiểm tra tương tác\n[exercise:ex_w17_d5_kiemtra_kappale6]"
+    },
+    {
+      "id": "w17_d7_tongket_kappale6",
+      "title": "Tổng kết Tháng thứ 4: Vượt mốc 70% toàn bộ giáo trình!",
+      "chapter": "Kappale 6",
+      "week": 17,
+      "description": "Hoàn tất trọn vẹn Chương 6: Sẵn sàng bước sang Chương 7 (Du lịch & Quá khứ đơn).",
+      "content": "# 🏆 Chúc mừng bạn đã hoàn thành xuất sắc Chương 6!\n\nBạn đã đi qua **17 / 24 tuần (Hơn 70% toàn bộ giáo trình Suomen Mestari 1)**!\nHệ thống biến cách nơi chốn - viên ngọc quý của ngữ pháp Phần Lan - đã nằm trọn vẹn trong tay bạn.\n\nTuần tới, chúng ta sẽ bước sang **Chương 7 (Tuần 18 - 19): Thành phố, Du lịch, Thể mệnh lệnh mở rộng và Thì quá khứ đơn giản (Imperfekti)**!"
+    }
+  ]
+}

@@ -58,6 +58,12 @@ class AdminSidebar extends StatelessWidget {
             onTap: () => context.go('/study-plans'),
           ),
           _SidebarItem(
+            icon: Icons.music_video,
+            title: 'Immersion Hub',
+            isSelected: location.startsWith('/immersion'),
+            onTap: () => context.go('/immersion'),
+          ),
+          _SidebarItem(
             icon: Icons.group,
             title: 'Students',
             isSelected: location.startsWith('/students'),

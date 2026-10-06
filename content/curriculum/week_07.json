@@ -1,0 +1,174 @@
+{
+  "id": "week_07",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 7,
+  "title": "Tháng 2 - Tuần 7: Ngữ pháp Sở hữu cách Genetiivi & Số nhiều T-monikko",
+  "description": "Trọng tâm ngữ pháp Chương 3: Giao tiếp đăng ký khóa học Pedro ilmoittautuu kurssille (Track 35), Sở hữu cách Genetiivi đuôi -n và KPT, Danh từ số nhiều đuôi -t (T-monikko), và Giải bài tập Harjoitus 1 - 9.",
+  "chapter": "Kappale 3",
+  "bookPages": "63-67, 69-71",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w7_d1_act1",
+          "type": "lesson_slice",
+          "title": "Giao tiếp: Pedro đăng ký khóa học tiếng Phần (Trang 63-65)",
+          "goal": "Học cách giao tiếp tại bàn đăng ký học vụ và nộp giấy tờ tùy thân.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w7_d1_giaotiep_dangky_khoahoc",
+          "notes": "Audio Track 35",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe đối thoại mẫu Track 35."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w7_d2_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Sở hữu cách Genetiivi (Đuôi -n) (Trang 66-67)",
+          "goal": "Làm chủ cách tạo sở hữu cách và biến đổi KPT cấp yếu.",
+          "estimatedMinutes": 30,
+          "targetRefId": "w7_d2_nguphap_genetiivi",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học quy tắc thêm đuôi -n và KPT: Pekka -> Pekan."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác Genetiivi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w7_d3_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Danh từ số nhiều đuôi -t (T-monikko) (Trang 67)",
+          "goal": "Biết cách tạo danh từ số nhiều làm chủ ngữ.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w7_d3_nguphap_t_monikko",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học công thức Thân từ cấp yếu + t: talot, pöydät."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác số nhiều."
+            }
+          ]
+        },
+        {
+          "id": "w7_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Biển hiệu: Cung văn hóa & Trung tâm học tập (Opisto)",
+          "goal": "Hiểu hệ thống giáo dục người lớn Kansalaisopisto tại Phần Lan.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_opisto_kurssit",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang về trường cộng đồng Opisto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w7_d4_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 1 - 9 Chương 3 (Trang 68-70)",
+          "goal": "Thực hành giải bài tập chia Genetiivi và T-monikko.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w7_d5_baitap_harjoitus1_9",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Giải các bài tập chia đuôi danh từ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w7_d5_act2",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 10 - 15 Chương 3 (Trang 71-73)",
+          "goal": "Hoàn thiện các bài tập tính từ và thời tiết.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w7_d5_baitap_harjoitus1_9",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành bài tập đọc hiểu và điền từ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w7_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 7 (Kappale 3)",
+          "goal": "Ôn tập Genetiivi và T-monikko.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w7_d7_tonghop_tuan7",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tóm tắt kiến thức tuần 7."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w7_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi nạp năng lượng (Ota rennosti)",
+          "goal": "Thư giãn trước tuần hoàn thiện Chương 3.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w7_d7_tonghop_tuan7",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thư giãn cuối tuần."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

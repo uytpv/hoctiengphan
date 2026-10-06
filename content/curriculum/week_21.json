@@ -1,0 +1,204 @@
+{
+  "title": "Tuần 21: Phủ định Thì Quá khứ (-nut/-neet), Hậu giới từ Vị trí & Bài tập Chương 8",
+  "description": "Hoàn thiện Chương 8 (Kappale 8): Nắm vững cấu trúc phủ định quá khứ, các hậu giới từ vị trí và kiểm tra năng lực.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "theme": "Ngữ pháp: Phủ định Thì Quá khứ (Imperfektin kielto)",
+      "activities": [
+        {
+          "activityId": "w21_d1_act1",
+          "type": "LESSON",
+          "title": "Bài học: Phủ định Thì Quá khứ (-nut / -nyt / -neet) (Trang 221-224)",
+          "description": "Học cách tạo câu phủ định quá khứ với trợ động từ en/et/ei... và phân từ quá khứ.",
+          "durationMinutes": 35,
+          "targetRefId": "w21_d1_nguphap_imperfekti_kielto_nut",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nắm vững công thức: en/et/ei + -nut/-nyt (số ít) hoặc -neet (số nhiều)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học các trường hợp biến âm theo nhóm động từ."
+            }
+          ]
+        },
+        {
+          "activityId": "w21_d1_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Phủ định thì Quá khứ",
+          "description": "Thực hành chuyển câu khẳng định quá khứ sang phủ định.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w21_d1_imperfekti_kielto",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập trắc nghiệm trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "theme": "Immersion Thực tế: Trải nghiệm Tàu hỏa VR",
+      "activities": [
+        {
+          "activityId": "w21_d2_act1",
+          "type": "SIGN",
+          "title": "Immersion: Đi tàu hỏa liên tỉnh Phần Lan (VR)",
+          "description": "Khám phá các tiện ích trên tàu VR: Toa nhà hàng, toa yên tĩnh, gửi xe đạp.",
+          "durationMinutes": 25,
+          "targetRefId": "sign_vr_juna_liput",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học các thuật ngữ: Ravintolavaunu, Hiljainen vaunu, Pyöräpaikka."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "theme": "Ngữ pháp: Hậu giới từ Vị trí (Postpositiot)",
+      "activities": [
+        {
+          "activityId": "w21_d3_act1",
+          "type": "LESSON",
+          "title": "Bài học: Hậu giới từ Vị trí kết hợp Genetiivi (Trang 225-227)",
+          "description": "Học các từ edessä, takana, vieressä, päällä, alla, välissä kết hợp danh từ sở hữu -n.",
+          "durationMinutes": 30,
+          "targetRefId": "w21_d3_nguphap_postpositiot_genetiivi",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ghi nhớ quy tắc danh từ đi trước luôn phải ở cách Genetiivi (-n)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học thuộc bảng 7 hậu giới từ thông dụng nhất."
+            }
+          ]
+        },
+        {
+          "activityId": "w21_d3_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Hậu giới từ vị trí",
+          "description": "Luyện tập đặt câu với hậu giới từ chỉ vị trí đồ vật và địa điểm.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w21_d3_postpositiot",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Hoàn thành bài tập trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "theme": "Thực hành Giải Bài tập Giáo trình: Harjoitus 1 - 18",
+      "activities": [
+        {
+          "activityId": "w21_d4_act1",
+          "type": "LESSON",
+          "title": "Bài tập thực hành: Harjoitus 1 - 18 Chương 8 (Trang 228-232)",
+          "description": "Giải bài tập tổng hợp về thì quá khứ khẳng định, phủ định và hậu giới từ.",
+          "durationMinutes": 35,
+          "targetRefId": "w21_d4_baitap_harjoitus1_18",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập chia động từ quá khứ trong câu chuyện ngắn."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Đối chiếu và phân tích cấu trúc ngữ pháp."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "theme": "Đề Kiểm tra Toàn diện Đánh giá Năng lực: Kappale 8",
+      "activities": [
+        {
+          "activityId": "w21_d5_act1",
+          "type": "LESSON",
+          "title": "Đề kiểm tra đánh giá năng lực: Kappale 8 (Trang 233-235)",
+          "description": "Thực hiện bài kiểm tra trắc nghiệm tổng hợp toàn bộ Chương 8.",
+          "durationMinutes": 30,
+          "targetRefId": "w21_d5_kiemtra_tongket_kappale8",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài kiểm tra tương tác bên dưới."
+            }
+          ]
+        },
+        {
+          "activityId": "w21_d5_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Kiểm tra tổng kết Chương 8",
+          "description": "Hoàn thành các câu hỏi đánh giá chuẩn A1.3.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w21_d5_kiemtra_kappale8",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Chọn đáp án chính xác nhất."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 6,
+      "theme": "Kể chuyện Quá khứ: Kể về Kỳ nghỉ vừa qua của bạn",
+      "activities": [
+        {
+          "activityId": "w21_d6_act1",
+          "type": "LESSON",
+          "title": "Thực hành viết: Viime loma (Kỳ nghỉ gần đây nhất)",
+          "description": "Viết đoạn văn ngắn 8-10 câu kể về kỳ nghỉ hoặc một chuyến đi bằng thì quá khứ.",
+          "durationMinutes": 30,
+          "targetRefId": "w20_d1_tuvung_kulkuvalineet_liikenne",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Sử dụng cả câu khẳng định (matkustin, kävin) và phủ định (en ajanut)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Áp dụng phương tiện giao thông (-lla) và hậu giới từ vị trí."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 7,
+      "theme": "Tổng kết Hoàn thành Chương 8: Chinh phục mốc 87.5%",
+      "activities": [
+        {
+          "activityId": "w21_d7_act1",
+          "type": "LESSON",
+          "title": "Tổng kết Hoàn thành Chương 8: Chinh phục mốc 87.5%!",
+          "description": "Tự hào vinh danh nỗ lực vượt bậc của bạn trước khi bước vào chương cuối cùng của giáo trình!",
+          "durationMinutes": 20,
+          "targetRefId": "w21_d7_tongket_kappale8",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi và chuẩn bị tinh thần bước vào chặng về đích!"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -24,21 +24,29 @@ import 'features/grammar/presentation/grammar_list_screen.dart';
 import 'features/exercise/presentation/exercise_list_screen.dart';
 import 'features/exercise/presentation/exercise_form_screen.dart';
 import 'features/student/presentation/student_list_screen.dart';
+import 'features/immersion/presentation/immersion_list_screen.dart';
 import 'firebase_options.dart';
+
+// Bật true nếu muốn kết nối tới Firebase Emulator cục bộ (8080, 9099, 9199)
+// Mặc định false để khi chạy local vẫn kết nối trực tiếp đến database Production (hoc-tieng-phan).
+const bool useEmulator = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  if (kDebugMode) {
+  if (kDebugMode && useEmulator) {
     try {
       FirebaseFirestore.instance.useFirestoreEmulator('127.0.0.1', 8080);
       await FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
       FirebaseStorage.instance.useStorageEmulator('127.0.0.1', 9199);
+      debugPrint('Connected to Firebase Emulators.');
     } catch (e) {
       debugPrint('Emulator config failed: $e');
     }
+  } else {
+    debugPrint('Connected to Production Firebase (hoc-tieng-phan).');
   }
 
   runApp(const ProviderScope(child: OpiSuomeaAdminApp()));
@@ -139,6 +147,10 @@ final _routerProvider = Provider<GoRouter>((ref) {
                 },
               ),
             ],
+          ),
+          GoRoute(
+            path: '/immersion',
+            builder: (context, state) => const ImmersionListScreen(),
           ),
           GoRoute(
             path: '/students',

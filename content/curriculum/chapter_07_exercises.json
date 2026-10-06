@@ -1,0 +1,131 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w18_d1_matkustussanasto",
+      "title": "Từ vựng: Du lịch, Khách sạn & Đi lại trong thành phố",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi đặt phòng tại khách sạn Phần Lan, 'yhden hengen huone' và 'kahden hengen huone' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Phòng đơn (1 người) và phòng đôi (2 người)",
+            "Phòng tầng 1 và phòng tầng 2",
+            "Phòng có bếp và phòng không có bếp"
+          ],
+          "correctIndex": 0,
+          "explanation": "henki = người; yhden hengen huone = phòng cho 1 người (phòng đơn); kahden hengen huone = phòng đôi."
+        },
+        {
+          "prompt": "Cụm từ nào dùng để hỏi 'Bữa sáng có bao gồm trong giá phòng không?'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kuuluuko aamiainen hintaan?",
+            "Missä aamiainen on?",
+            "Paljonko huone maksaa?"
+          ],
+          "correctIndex": 0,
+          "explanation": "Kuulua hintaan = bao gồm trong giá; aamiainen = bữa sáng."
+        }
+      ]
+    },
+    {
+      "id": "ex_w18_d3_sanatyypit_i_e_nen",
+      "title": "Ngữ pháp: Các nhóm biến cách danh từ đuôi -i, -e, -nen",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Danh từ kết thúc bằng đuôi '-nen' (ví dụ: 'nainen', 'suomalainen') biến đổi thân từ như thế nào khi chia cách (ở đâu / cho ai)?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đuôi '-nen' biến đổi thành '-se-' (nainen -> naisella, suomalainen -> suomalaiselle)",
+            "Đuôi '-nen' biến đổi thành '-te-'",
+            "Giữ nguyên đuôi '-nen' rồi thêm hậu tố"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc sanatyypit -nen: đuôi -nen luôn chuyển thành -se- trước mọi hậu tố cách (nainen -> naisessa, suomalainen -> suomalaisesta)."
+        },
+        {
+          "prompt": "Từ cổ gốc Phần Lan 'kieli' (ngôn ngữ / cái lưỡi) khi chia 'bằng tiếng Phần Lan' (kielellä) hay 'trong ngôn ngữ' (kielessä) có thân từ là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kiele- (nguyên âm -i đổi thành -e-)",
+            "kieli- (giữ nguyên)",
+            "kielu-"
+          ],
+          "correctIndex": 0,
+          "explanation": "Từ cổ gốc Phần Lan có tận cùng bằng -i đổi thành -e- khi gắn đuôi biến cách: kieli -> kiele-, nimi -> nime-, mäki -> mäe-."
+        },
+        {
+          "prompt": "Danh từ kết thúc bằng nguyên âm '-e' (ví dụ: 'huone', 'kirje', 'vaate') khi chia cách sẽ:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Nhân đôi nguyên âm -e thành '-ee-' (huoneessa, kirjeessä, vaatteessa)",
+            "Bỏ nguyên âm -e đi",
+            "Thêm phụ âm -s vào giữa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc từ tận cùng bằng -e: thân từ luôn có -ee- kéo dài: huone -> huonee- -> huoneessa."
+        }
+      ]
+    },
+    {
+      "id": "ex_w19_d2_imperatiivi_monikko",
+      "title": "Ngữ pháp: Thể Mệnh lệnh Số ít và Số nhiều / Lịch sự",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi nói lịch sự hoặc ra lệnh cho nhiều người 'Xin mời vào!' (động từ 'tulla'), ta dùng hình thức nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Tulkaa sisään!",
+            "Tule sisään!",
+            "Tuletko sisään?"
+          ],
+          "correctIndex": 0,
+          "explanation": "Thể mệnh lệnh số nhiều/lịch sự của tulla là 'Tulkaa!'. Số ít thân mật là 'Tule!'."
+        },
+        {
+          "prompt": "Dạng phủ định mệnh lệnh số nhiều 'Xin quý vị đừng hút thuốc ở đây!' (tupakoida) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Älkää tupakoiko täällä!",
+            "Älä tupakoi täällä!",
+            "Ei tupakoi täällä!"
+          ],
+          "correctIndex": 0,
+          "explanation": "Phủ định mệnh lệnh số nhiều dùng 'Älkää' + động từ ở dạng thân kết thúc bằng -ko/-kö: Älkää tupakoiko!"
+        }
+      ]
+    },
+    {
+      "id": "ex_w19_d5_kiemtra_kappale7",
+      "title": "Đề kiểm tra đánh giá năng lực toàn diện Chương 7",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Chọn câu viết đúng ngữ pháp biến cách nhóm từ: 'Tôi sống trong căn phòng mới của người phụ nữ Phần Lan':",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Asun suomalaisen naisen uudessa huoneessa.",
+            "Asun suomalainen nainen uusi huone.",
+            "Asun suomalaisessa naisessa huoneesta."
+          ],
+          "correctIndex": 0,
+          "explanation": "suomalainen -> suomalaisen (sở hữu genetiivi), nainen -> naisen, uusi -> uudessa (tính từ chia cách theo danh từ huone -> huoneessa)."
+        },
+        {
+          "prompt": "'Kirpputori' (chợ trời Phần Lan) thường hoạt động theo mô hình nào đặc trưng?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Người bán thuê bàn / ô kệ (itsepalvelukirpputori), dán mã giá và thu tiền tại quầy thu ngân chung",
+            "Chỉ bán đồ điện tử mới",
+            "Chỉ mở cửa vào ban đêm"
+          ],
+          "correctIndex": 0,
+          "explanation": "Itsepalvelukirpputori là mô hình chợ trời tự phục vụ vô cùng đặc sắc của Phần Lan: người bán dán mã vạch lên từng món và hệ thống quầy thanh toán tự động gom tiền."
+        }
+      ]
+    }
+  ]
+}

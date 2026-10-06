@@ -1,0 +1,151 @@
+{
+  "id": "week_14",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 14,
+  "title": "Tháng 4 - Tuần 14: Hoàn thiện Chương 5 & Khởi động Chương 6",
+  "description": "Hoàn thiện 100% bài tập Chương 5 (Harjoitus 20 - 29), Đọc hiểu văn bản dài, Khởi động Chương 6 (Etsitään asuntoa - Tìm nhà), và Đề kiểm tra đánh giá năng lực toàn diện Kappale 5 (Vượt mốc 58% giáo trình).",
+  "chapter": "Kappale 5",
+  "bookPages": "136-148",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w14_d1_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 20 - 29 Chương 5 (Trang 136-140)",
+          "goal": "Giải quyết toàn bộ bài tập còn lại của Chương 5.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w14_d1_baitap_harjoitus20_29",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập đọc hiểu và chia động từ tổng hợp."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w14_d2_act1",
+          "type": "lesson_slice",
+          "title": "Đọc hiểu: Một ngày bận rộn của người đi làm tại Phần Lan",
+          "goal": "Đọc hiểu văn bản dài vận dụng toàn bộ từ vựng và ngữ pháp đã học.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w14_d1_baitap_harjoitus20_29",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bài và trả lời câu hỏi đọc hiểu."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w14_d3_act1",
+          "type": "lesson_slice",
+          "title": "Khởi động Chương 6: Hội thoại Pedro ja Hanna etsivät asuntoa (Trang 146-148)",
+          "goal": "Làm quen với chủ đề tìm nhà và chuyển nhà tại Phần Lan.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w14_d3_khoidong_kappale6",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc đoạn hội thoại tìm nhà thuê."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w14_d4_act1",
+          "type": "lesson_full",
+          "title": "Đề kiểm tra đánh giá năng lực toàn diện: Kappale 5 (Trang 144-145)",
+          "goal": "Kiểm tra toàn diện trước khi bước sang Chương 6.",
+          "estimatedMinutes": 30,
+          "targetRefId": "w14_d5_kiemtra_tongket_kappale5",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài kiểm tra tương tác tổng kết Chương 5."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w14_d5_act2",
+          "type": "custom",
+          "title": "Tổng kết Giai đoạn 3: Vượt mốc 58% chặng đường!",
+          "goal": "Nhìn lại hành trình 14 tuần đã qua.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w14_d7_tongket_kappale5",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bản tổng kết tuần 14."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w14_d6_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi thư giãn (Ota rennosti)",
+          "goal": "Nạp năng lượng chuẩn bị đón nhận Chương 6: Nhà cửa & Nơi chốn Paikansijat.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w14_d7_tongket_kappale5",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thư giãn cuối tuần."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w14_d7_act1",
+          "type": "custom",
+          "title": "Thư giãn ngày Chủ nhật",
+          "goal": "Chuẩn bị cho tuần mới.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w14_d7_tongket_kappale5",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

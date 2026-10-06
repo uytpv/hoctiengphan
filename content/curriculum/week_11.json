@@ -1,0 +1,151 @@
+{
+  "id": "week_11",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 11,
+  "title": "Tháng 3 - Tuần 11: Hoàn thiện Chương 4 & Khởi động Chương 5",
+  "description": "Hoàn thiện 100% bài tập Chương 4 (Harjoitus 19 - 27), Đọc hiểu văn bản dài, Khởi động Chương 5 (Meidän tavallinen päivä), Thẻ thành viên siêu thị Phần Lan S-Etukortti & K-Plussa, và Đề kiểm tra đánh giá năng lực Kappale 4 (Gần 50% chặng đường).",
+  "chapter": "Kappale 4",
+  "bookPages": "108-116",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w11_d1_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 19 - 27 (Trang 108-113)",
+          "goal": "Giải quyết toàn bộ bài tập còn lại của Chương 4.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w11_d1_baitap_harjoitus19_27",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập tổng hợp cấu trúc Minulla on và Partitiivi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w11_d2_act1",
+          "type": "lesson_slice",
+          "title": "Khởi động Chương 5: Hội thoại Meidän tavallinen päivä (Trang 114-116)",
+          "goal": "Làm quen với các mốc thời gian và hoạt động sinh hoạt trong ngày.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w11_d3_khoidong_kappale5",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc hội thoại về lịch trình một ngày của gia đình Phần Lan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w11_d3_act1",
+          "type": "immersion_sign",
+          "title": "Immersion Đời sống: Thẻ tích điểm S-Etukortti & K-Plussa",
+          "goal": "Hiểu nét văn hóa tích điểm tiêu dùng của người Phần.",
+          "estimatedMinutes": 15,
+          "targetRefId": "sign_k_plussa_s_etukortti",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang về thẻ S-Etukortti và K-Plussa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w11_d4_act1",
+          "type": "exercise_set",
+          "title": "Thực hành viết đoạn văn: Gia đình và bạn bè tôi",
+          "goal": "Ứng dụng tổng hợp từ vựng và ngữ pháp Chương 4 vào bài viết thực tế.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w11_d1_baitap_harjoitus19_27",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Viết đoạn văn 6 câu tự giới thiệu gia đình bằng tiếng Phần."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w11_d5_act1",
+          "type": "lesson_full",
+          "title": "Đề kiểm tra đánh giá năng lực toàn diện: Kappale 4 (Trang 112-113)",
+          "goal": "Đánh giá toàn diện 4 kỹ năng trước khi sang Chương 5.",
+          "estimatedMinutes": 30,
+          "targetRefId": "w11_d6_kiemtra_tongket_kappale4",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài kiểm tra tương tác tổng kết Chương 4."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w11_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết Tháng thứ 3: Chạm mốc gần 50% chặng đường!",
+          "goal": "Tự hào nhìn lại chặng đường 11 tuần đã chinh phục.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w11_d7_tongket_kappale4",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bản tổng kết và tự thưởng cho mình một buổi tối thư giãn!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w11_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi thư giãn (Ota rennosti)",
+          "goal": "Chuẩn bị bước sang Chương 5: Sinh hoạt & 5 Nhóm động từ.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w11_d7_tonghop_tuan11",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thư giãn nạp năng lượng."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

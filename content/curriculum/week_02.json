@@ -1,0 +1,266 @@
+{
+  "id": "week_02",
+  "planId": "suomen_mestari_1",
+  "weekNumber": 2,
+  "title": "Tháng 1 - Tuần 2: Ngữ pháp Động từ Olla & Hoàn thiện Chương 1",
+  "description": "Làm chủ động từ cốt lõi 'olla' (khẳng định & phủ định), câu hỏi nghi vấn -ko/-kö, quốc tịch & ngôn ngữ, các ngày trong tuần và hoàn tất toàn bộ bài tập Harjoitus 11–22 của Chương 1.",
+  "chapter": "Kappale 1",
+  "bookPages": "16-17, 23-27",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w2_d1_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Đại từ nhân xưng & Động từ Olla thể khẳng định (Trang 23)",
+          "goal": "Ghi nhớ bảng chia 6 ngôi của động từ quan trọng nhất trong tiếng Phần Lan 'olla' (là/ở/thì).",
+          "estimatedMinutes": 25,
+          "targetRefId": "w2_d1_daitunhansung_dongtuolla",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học thuộc 6 đại từ nhân xưng: minä, sinä, hän, me, te, he và cách chia động từ olla ở văn viết: olen, olet, on, olemme, olette, ovat."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm quen với dạng văn nói đời thường (Puhekieli): mä oon, sä oot, se on, me ollaan, te ootte, ne on."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập tương tác chia động từ Olla."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w2_d2_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Động từ Olla thể phủ định (Trang 23-24)",
+          "goal": "Làm chủ cấu trúc câu phủ định: Động từ phủ định biến đổi theo ngôi (en, et, ei, emme, ette, eivät) kết hợp với 'ole'.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w2_d2_nguphap_phudinh_olla",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nắm vững quy tắc phủ định: Từ phủ định là một động từ chia theo ngôi, động từ chính giữ nguyên dạng gốc 'ole'."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "So sánh 6 cặp khẳng định - phủ định tương ứng."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập tương tác Harjoitus 11 chuyển đổi câu khẳng định sang phủ định."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w2_d3_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Câu hỏi Có/Không với đuôi -ko / -kö (Trang 24)",
+          "goal": "Đặt câu hỏi nghi vấn Có/Không bằng cách đảo động từ lên đầu câu kèm theo tiếp vị ngữ -ko/-kö và cách trả lời Kyllä / Ei.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w2_d3_cauhoi_kophaykhong",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Công thức tạo câu hỏi: Động từ + -ko/-kö + Chủ ngữ (Oletko sinä...? Onko tämä...?)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Cách trả lời: Khẳng định (Kyllä, olen) vs Phủ định (Ei, en ole)."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập tương tác đặt câu hỏi và câu trả lời."
+            }
+          ]
+        },
+        {
+          "id": "w2_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Biển báo: Giờ mở cửa - AUKIOLOAJAT (Ma-Pe, La, Su)",
+          "goal": "Đọc hiểu chính xác các ký hiệu ngày viết tắt (Ma-Pe, La, Su) và từ vựng mở cửa trên thực tế Phần Lan.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_aukioloajat",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nhận diện biển báo Aukioloajat: từ viết tắt Ma-Pe (ngày trong tuần), Arkisin, La, Su, Pyhäisin."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Ghi chú cụm từ 'Avoinna 24h' (mở cửa liên tục) và 'Suljettu' (đóng cửa)."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm trắc nghiệm tương tác đọc hiểu biển báo giờ mở cửa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w2_d4_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng & Mẫu câu: Quốc gia, Ngôn ngữ & Quốc tịch (Trang 25)",
+          "goal": "Hỏi và trả lời quê quán, quốc tịch và tiếng mẹ đẻ: Mistä sinä olet kotoisin? Puhutko suomea?",
+          "estimatedMinutes": 25,
+          "targetRefId": "w2_d4_quocgia_ngonngu_quoctich",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học bảng đối chiếu Đất nước (Maa) - Ngôn ngữ (Kieli) - Quốc tịch (Kansallisuus với đuôi -lainen/-läinen)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Luyện 3 mẫu câu hỏi quê quán: Mistä olet kotoisin?, Minkämaalainen sinä olet?, Mitä kieltä puhut?."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập tương tác ghép quốc gia, quốc tịch và ngôn ngữ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w2_d5_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Các ngày trong tuần, Thời khóa biểu & Harjoitus 17, 18, 19 (Trang 25-26)",
+          "goal": "Sử dụng thành thạo từ vựng các thứ trong tuần, trục thời gian hôm qua - hôm nay - ngày mai và chia động từ.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w2_d5_luyentap_harjoitus171819",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ôn tập trục thời gian: toissapäivänä -> eilen -> tänään -> huomenna -> ylihuomenna."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm tương tác Harjoitus 17: Điền thứ trong tuần theo mốc thời gian."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm tương tác Harjoitus 18 & 19: Điền đại từ nhân xưng và dạng đúng của động từ olla."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w2_d6_act1",
+          "type": "lesson_slice",
+          "title": "Đọc hiểu nhân vật: Pedro, Olga & Alex & Bài tập Harjoitus 20, 21, 22 (Trang 27)",
+          "goal": "Đọc hiểu 3 đoạn văn giới thiệu hoàn chỉnh và hoàn thành bài tập nghe hỏi đáp Harjoitus 22.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w2_d6_docquocgia_harjoitus202122",
+          "notes": "Audio Track 14",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc hiểu 3 đoạn văn giới thiệu về Pedro (Brazil), Olga (Nga) và Alex (Anh)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập trắc nghiệm đọc hiểu Harjoitus 20 tương tác."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Nghe Track 14 và làm bài tập phản xạ Harjoitus 22 tương tác."
+            }
+          ]
+        },
+        {
+          "id": "w2_d6_act2",
+          "type": "immersion_music",
+          "title": "Immersion Âm Nhạc: Bài hát 7 ngày trong tuần Viikonpäivät",
+          "goal": "Ghi nhớ tự nhiên 7 ngày trong tuần qua giai điệu bài hát thiếu nhi vui nhộn.",
+          "estimatedMinutes": 10,
+          "targetRefId": "song_viikonpaivat",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe bài hát Viikonpäivälaulu (maanantai, tiistai, keskiviikko, torstai, perjantai, lauantai, sunnuntai)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Hát nhẩm theo lời bài hát để chuẩn hóa trọng âm âm tiết đầu tiên."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập tương tác về các ngày trong tuần từ bài hát."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w2_d7_act1",
+          "type": "exercise_set",
+          "title": "Kiểm tra đánh giá năng lực: Hoàn tất Toàn bộ Chương 1 (20 câu)",
+          "goal": "Hoàn thành bài thi trắc nghiệm & điền từ tổng hợp toàn bộ 4 kỹ năng của Chương 1 Suomen Mestari 1.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w2_d7_kiemtra_danhgia_kappale1",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Tự tin bước vào bài thi đánh giá năng lực toàn diện gồm 20 câu hỏi trọng tâm."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Hệ thống sẽ chấm điểm tự động và phản hồi giải thích chi tiết cho từng câu."
+            }
+          ]
+        },
+        {
+          "id": "w2_d7_act2",
+          "type": "immersion_movie",
+          "title": "Immersion Thư Giãn: Cuộc sống Phần Lan & Chúc mừng hoàn thành Chương 1",
+          "goal": "Thư giãn nạp năng lượng sau khi hoàn tất Chương 1 và chuẩn bị bước sang Chương 2.",
+          "estimatedMinutes": 15,
+          "targetRefId": "video_cuocsong_phanlan",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Điểm lại các thành tựu vượt bậc bạn đã đạt được sau 2 tuần học đầu tiên."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Nghỉ ngơi thư giãn (Ota rennosti) và đón chờ các nội dung hấp dẫn ở Chương 2."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w20_d1_kulkuvalineet",
+      "title": "Từ vựng: Phương tiện Giao thông & Đi lại",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Trong tiếng Phần Lan, để nói 'Tôi đi làm bằng xe buýt', ta dùng cách ngữ pháp nào cho từ 'bussi'?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Menen töihin bussilla (-lla/llä: Adessiivi chỉ phương tiện)",
+            "Menen töihin bussissa",
+            "Menen töihin bussin"
+          ],
+          "correctIndex": 0,
+          "explanation": "Phương tiện giao thông luôn dùng cách Adessiivi (-lla / -llä): autolla, junalla, pyörällä, metrolla."
+        },
+        {
+          "prompt": "Động từ nào có nghĩa là 'lái xe' (ô tô)?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "ajaa (Minä ajan autoa)",
+            "kävellä",
+            "matkustaa"
+          ],
+          "correctIndex": 0,
+          "explanation": "ajaa = lái xe; kävellä = đi bộ; matkustaa = đi du lịch/hành trình."
+        }
+      ]
+    },
+    {
+      "id": "ex_w20_d3_imperfekti_positiivinen",
+      "title": "Ngữ pháp: Thì Quá khứ đơn (Imperfekti Khẳng định)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Dấu hiệu ngữ pháp chung cốt lõi của thì Quá khứ đơn (Imperfekti) trong tiếng Phần Lan là chữ cái nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Chữ '-i-' gắn vào thân từ của động từ",
+            "Chữ '-t-'",
+            "Chữ '-k-'"
+          ],
+          "correctIndex": 0,
+          "explanation": "Thì quá khứ đơn (Imperfekti) có dấu hiệu đặc trưng là nguyên âm '-i-': ostaa -> osti, puhua -> puhui, tulla -> tuli."
+        },
+        {
+          "prompt": "Động từ 'ostaa' (mua) ở ngôi 'hän' thì quá khứ (Anh ấy đã mua) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Hän osti",
+            "Hän ostaa",
+            "Hän ostanut"
+          ],
+          "correctIndex": 0,
+          "explanation": "ostaa -> thân từ osta- -> nguyên âm -a- đổi/thay thế bằng -i- trước -i-: osti."
+        },
+        {
+          "prompt": "Động từ 'syödä' (ăn) khi chia ở thì quá khứ 'Hôm qua tôi đã ăn phở' là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Eilen minä söin phoa (ö biến đổi trước i: söi-)",
+            "Eilen minä syön phoa",
+            "Eilen minä syöin phoa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Động từ 2 nguyên âm như syödä, juoda khi chuyển sang quá khứ nguyên âm thứ nhất biến đổi: syödä -> söi- -> söin; juoda -> joi- -> join."
+        }
+      ]
+    },
+    {
+      "id": "ex_w21_d1_imperfekti_kielto",
+      "title": "Ngữ pháp: Thì Quá khứ Phủ định (-nut / -nyt / -neet)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Cấu trúc phủ định thì Quá khứ trong tiếng Phần Lan được tạo thành như thế nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "en / et / ei / emme / ette / eivät + phân từ quá khứ (-nut/-nyt số ít, -neet số nhiều)",
+            "en / et / ei + động từ nguyên mẫu",
+            "ei ole + động từ"
+          ],
+          "correctIndex": 0,
+          "explanation": "Phủ định quá khứ = trợ động từ phủ định (en/et/ei...) + dạng phân từ quá khứ NUT/NYT (số ít) hoặc NEET (số nhiều): En ostanut, Emme ostaneet."
+        },
+        {
+          "prompt": "Câu 'Hôm qua chúng tôi đã không đi học' dịch sang tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Eilen me emme menneet kouluun.",
+            "Eilen me emme mennä kouluun.",
+            "Eilen me ei mene kouluun."
+          ],
+          "correctIndex": 0,
+          "explanation": "Chủ ngữ số nhiều 'me' đi với 'emme' và phân từ đuôi số nhiều '-neet': emme menneet."
+        }
+      ]
+    },
+    {
+      "id": "ex_w21_d3_postpositiot",
+      "title": "Ngữ pháp: Hậu giới từ Vị trí (Postpositiot)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Danh từ đứng trước các hậu giới từ như 'edessä' (phía trước), 'takana' (phía sau), 'vieressä' (bên cạnh) phải chia ở cách ngữ pháp nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Cách Sở hữu Genetiivi (-n)",
+            "Cách Partitiivi (-a/-ä)",
+            "Giữ nguyên dạng Nominatiivi"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hầu hết các hậu giới từ (Postpositiot) đòi hỏi danh từ đi trước phải ở cách Genetiivi (-n): auton edessä (trước xe ô tô), talon takana (sau nhà)."
+        }
+      ]
+    },
+    {
+      "id": "ex_w21_d5_kiemtra_kappale8",
+      "title": "Đề kiểm tra đánh giá năng lực toàn diện Chương 8",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Chọn câu viết đúng: 'Cuối tuần trước Pedro đã đi Tampere bằng tàu hỏa và anh ấy đã không lái xe':",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Viime viikonloppuna Pedro matkusti Tampereelle junalla eikä ajanut autolla.",
+            "Viime viikonloppuna Pedro matkustaa Tampereelle junassa ja ei aja autolla.",
+            "Viime viikonloppuna Pedro matkustanut junalle eikä ajanut autossa."
+          ],
+          "correctIndex": 0,
+          "explanation": "matkustaa -> matkusti (quá khứ); junalla (Adessiivi phương tiện); eikä ajanut (phủ định quá khứ: ei + kä ajanut)."
+        },
+        {
+          "prompt": "Thẻ vé vùng HSL 'AB' có hiệu lực sử dụng trên các phương tiện nào tại Helsinki và Vantaa/Espoo vùng ven?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Tất cả các phương tiện: Metro, Xe buýt, Tàu điện Trams, Phà Suomenlinna và Tàu điện commuter trains (Lähijunat)",
+            "Chỉ đi được tàu điện ngầm Metro",
+            "Chỉ đi được xe buýt màu xanh"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hệ thống vé vùng HSL là hệ thống tích hợp liên thông toàn diện cho tất cả phương tiện công cộng trong khu vực thủ đô."
+        }
+      ]
+    }
+  ]
+}

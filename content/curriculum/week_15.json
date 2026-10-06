@@ -1,0 +1,169 @@
+{
+  "id": "week_15",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 15,
+  "title": "Tháng 4 - Tuần 15: Khởi động Chương 6: Nhà cửa & Đồ nội thất",
+  "description": "Bắt đầu Chương 6 (Kappale 6): Các loại hình nhà ở Phần Lan (Trang 149-150), Các phòng trong căn hộ Huoneet (Trang 151-152), Đồ nội thất & Thiết bị gia dụng Kodinkoneet, Ban quản lý tòa nhà Huoltoyhtiö và Giải mã tin đăng thuê nhà Oikotie.",
+  "chapter": "Kappale 6",
+  "bookPages": "149-154, 158-161",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w15_d1_act1",
+          "type": "lesson_full",
+          "title": "Kappale 6: Các loại nhà ở & Các phòng trong căn hộ (Trang 149-152)",
+          "goal": "Phân biệt kerrostalo, rivitalo, omakotitalo và tên các phòng chức năng.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w15_d1_tuvung_talotyypit_huoneet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học từ vựng 4 loại hình nhà ở và các phòng."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác nhà ở."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w15_d2_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng: Đồ nội thất & Thiết bị gia dụng (Trang 153-154)",
+          "goal": "Làm chủ từ vựng bàn, ghế, tủ, giường, máy giặt, tủ lạnh.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w15_d2_tuvung_huonekalut",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học bảng đồ đạc nội thất và thiết bị gia dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w15_d3_act1",
+          "type": "immersion_sign",
+          "title": "Immersion Thực tế: Ban quản lý tòa nhà (Huoltoyhtiö & Isännöitsijä)",
+          "goal": "Hiểu vai trò của công ty bảo trì và ban quản trị chung cư.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_huoltoyhtio_isannoitsija",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang về các tình huống gọi huoltoyhtiö."
+            }
+          ]
+        },
+        {
+          "id": "w15_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Đời sống: Giải mã tin đăng thuê nhà Oikotie / Vuokraovi",
+          "goal": "Học cách đọc hiểu mẩu tin tìm nhà thuê thực tế.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_vuokraovi_oikotie",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang thuê nhà tại Phần Lan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w15_d4_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 3 - 10 Chương 6 (Trang 158-161)",
+          "goal": "Rèn luyện giải các bài tập từ vựng nhà ở và đồ đạc.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w15_d1_tuvung_talotyypit_huoneet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập điền từ trong sách giáo khoa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w15_d5_act1",
+          "type": "lesson_slice",
+          "title": "Thực hành: Miêu tả căn phòng lý tưởng của bạn",
+          "goal": "Tập viết 5 câu giới thiệu căn hộ hoặc phòng ngủ của mình.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w15_d1_tuvung_talotyypit_huoneet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Viết đoạn văn ngắn miêu tả đồ đạc trong phòng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w15_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 15 (Kappale 6)",
+          "goal": "Ôn tập toàn bộ kiến thức tuần 15.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w15_d7_tonghop_tuan15",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tóm tắt tuần 15."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w15_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi nạp năng lượng (Ota rennosti)",
+          "goal": "Thư giãn cuối tuần.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w15_d7_tonghop_tuan15",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi thư giãn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

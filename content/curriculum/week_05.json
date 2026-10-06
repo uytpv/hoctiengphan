@@ -1,0 +1,156 @@
+{
+  "id": "week_05",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 5,
+  "title": "Tháng 2 - Tuần 5: Hoàn thiện Bài tập & Kiểm tra Chương 2",
+  "description": "Tuần tổng lực giải quyết toàn bộ bài tập còn lại của Chương 2 (Harjoitus 16 - 30), Luyện nghe mua sắm giá cả văn nói vs văn viết (Track 31 & 32), Biển báo giảm giá siêu thị ALENNUS/TARJOUS, và Đề kiểm tra đánh giá năng lực hoàn tất Kappale 2.",
+  "chapter": "Kappale 2",
+  "bookPages": "49-55",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w5_d1_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 16 - 22 (Trang 49-51)",
+          "goal": "Thực hành giải các bài tập chia động từ có biến âm KPT.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w5_d1_baitap_harjoitus16_22",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập chia động từ tương tác Harjoitus 16-22."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w5_d2_act1",
+          "type": "lesson_slice",
+          "title": "Giao tiếp: Mua sắm giá cả văn nói vs văn viết (Harjoitus 30 - Trang 55)",
+          "goal": "Nghe hiểu đối thoại mua bán tại chợ Track 31 (Puhekieli) và Track 32 (Kirjakieli).",
+          "estimatedMinutes": 25,
+          "targetRefId": "w5_d3_giaotiep_hinnat_puhekieli",
+          "notes": "Audio Track 31 & Track 32",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe Track 31 và Track 32."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Ghi nhớ các câu hỏi giá và cách trả lời cân nặng (kilo, litra)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w5_d3_act1",
+          "type": "immersion_sign",
+          "title": "Immersion Biển hiệu: ALENNUS & TARJOUS (Giảm giá & Khuyến mãi)",
+          "goal": "Bí quyết nhận diện biển báo giảm giá tại siêu thị Prisma, Lidl.",
+          "estimatedMinutes": 15,
+          "targetRefId": "sign_alennus_tarjous",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang mua sắm tiết kiệm tại Phần Lan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w5_d4_act1",
+          "type": "exercise_set",
+          "title": "Hoàn thiện bài tập: Harjoitus 23 - 29 (Trang 52-54)",
+          "goal": "Giải quyết toàn bộ các bài tập đọc hiểu và phản xạ câu hỏi.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w5_d1_baitap_harjoitus16_22",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành bài tập đọc hiểu và trả lời câu hỏi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w5_d5_act1",
+          "type": "lesson_full",
+          "title": "Đề kiểm tra đánh giá năng lực toàn diện: Kappale 2 (Trang 54-55)",
+          "goal": "Kiểm tra toàn diện 4 trụ cột kiến thức Chương 2 trước khi sang Chương 3.",
+          "estimatedMinutes": 30,
+          "targetRefId": "w5_d6_kiemtra_tongket_kappale2",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Hoàn thành bài kiểm tra 10 câu trắc nghiệm tổng hợp."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w5_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết Tháng 1 & 2: Chinh phục trọn vẹn Chương 1 & Chương 2",
+          "goal": "Đánh giá lại toàn bộ chặng đường 5 tuần đã qua.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w5_d7_tongket_thang12",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tổng kết và tự hào với kết quả đạt được!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w5_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi thư giãn (Ota rennosti)",
+          "goal": "Chuẩn bị tinh thần đón nhận Chương 3: Thời tiết & Sở hữu cách.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w5_d7_tongket_thang12",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thư giãn cùng một tách cà phê Phần Lan (kahvi)!"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "title": "Tuần 22: Sức khỏe, Bộ phận Cơ thể & Ngữ pháp Tân ngữ Objekti",
+  "description": "Bắt đầu Chương 9 (Kappale 9): Từ vựng bộ phận cơ thể, triệu chứng ốm đau và bản chất tân ngữ Partitiivi vs Genetiivi.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "theme": "Kappale 9: Bộ phận Cơ thể & Triệu chứng Bệnh",
+      "activities": [
+        {
+          "activityId": "w22_d1_act1",
+          "type": "LESSON",
+          "title": "Bài học: Bộ phận Cơ thể & Sức khỏe (Trang 236-240)",
+          "description": "Học tên gọi các bộ phận cơ thể và cách diễn đạt khi bị đau ốm.",
+          "durationMinutes": 30,
+          "targetRefId": "w22_d1_tuvung_ruumiinosat_terveys",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ghi nhớ bảng từ vựng các bộ phận: pää, silmä, korva, kurkku, vatsa, selkä."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học mẫu câu diễn đạt: Minulla on päänsärky / Minua huimaa."
+            }
+          ]
+        },
+        {
+          "activityId": "w22_d1_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Bộ phận cơ thể & triệu chứng",
+          "description": "Luyện phản xạ nhận diện các triệu chứng sức khỏe.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w22_d1_ruumiinosat_oireet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập trắc nghiệm trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "theme": "Thuốc men & Hướng dẫn Sử dụng Thuốc",
+      "activities": [
+        {
+          "activityId": "w22_d2_act1",
+          "type": "LESSON",
+          "title": "Bài học: Thuốc & Chăm sóc Y tế (Trang 241-243)",
+          "description": "Học tên các loại thuốc thông dụng và cách đọc liều lượng sử dụng.",
+          "durationMinutes": 30,
+          "targetRefId": "w22_d2_tuvung_laakkeet_ja_hoito",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ghi nhớ các từ: särkylääke, kuumelääke, yskänsiirappi, laastari."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học hiểu câu hướng dẫn: Yksi tabletti päivässä ruoan jälkeen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "theme": "Ngữ pháp Trọng tâm: Quy tắc Tân ngữ Objekti",
+      "activities": [
+        {
+          "activityId": "w22_d3_act1",
+          "type": "LESSON",
+          "title": "Bài học: Quy luật Tân ngữ Objekti Toàn thể vs Bộ phận (Trang 244-247)",
+          "description": "Nắm vững nguyên lý: Câu phủ định 100% Partitiivi, hành động hoàn tất dùng Genetiivi.",
+          "durationMinutes": 35,
+          "targetRefId": "w22_d3_nguphap_objekti_saannot",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Khắc sâu quy tắc tân ngữ trong câu phủ định."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Phân biệt câu dang dở (luen kirjaa) và hoàn thành (luen kirjan)."
+            }
+          ]
+        },
+        {
+          "activityId": "w22_d3_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Phân biệt Tân ngữ Objekti",
+          "description": "Thực hành chọn dạng đúng của tân ngữ trong câu.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w22_d3_objekti_perusteet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập trắc nghiệm tương tác."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "theme": "Immersion Đời sống: Dịch vụ Y tế Công cộng Terveysasema",
+      "activities": [
+        {
+          "activityId": "w22_d4_act1",
+          "type": "SIGN",
+          "title": "Immersion: Trạm Y tế Terveysasema & Bảo hiểm Kela",
+          "description": "Khám phá quy trình khám bệnh công cộng và các đầu số tổng đài khẩn cấp.",
+          "durationMinutes": 25,
+          "targetRefId": "sign_terveyskeskus_kela",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Hiểu vai trò của tổng đài 116 117 và số cấp cứu 112."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Biết cách sử dụng thẻ Kela-kortti khi đi khám bệnh."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "theme": "Luyện Nghe & Nói Phản xạ: Miêu tả Tình trạng Sức khỏe",
+      "activities": [
+        {
+          "activityId": "w22_d5_act1",
+          "type": "LESSON",
+          "title": "Luyện nói phản xạ: Diễn đạt tình trạng ốm cho người khác",
+          "description": "Thực hành báo ốm xin nghỉ làm với đồng nghiệp hoặc quản lý.",
+          "durationMinutes": 30,
+          "targetRefId": "w22_d1_tuvung_ruumiinosat_terveys",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành câu: 'Hei, olen valitettavasti tänään sairas...'"
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Nêu lý do: 'Minulla on kuumetta enkä pääse töihin.'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 6,
+      "theme": "Thực hành Viết: Tin nhắn Xin nghỉ Ốm (Poissaoloviesti)",
+      "activities": [
+        {
+          "activityId": "w22_d6_act1",
+          "type": "LESSON",
+          "title": "Thực hành viết: Viết email xin nghỉ ốm bằng tiếng Phần",
+          "description": "Soạn thảo email hoặc tin nhắn chuẩn mực gửi nơi làm việc / trường học thông báo nghỉ bệnh.",
+          "durationMinutes": 30,
+          "targetRefId": "w22_d1_tuvung_ruumiinosat_terveys",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Sử dụng các từ vựng: sairasloma, lääkäri, toipua."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Ghi rõ ngày dự kiến đi làm/học trở lại."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 7,
+      "theme": "Tổng kết & Củng cố Tuần 22",
+      "activities": [
+        {
+          "activityId": "w22_d7_act1",
+          "type": "LESSON",
+          "title": "Tổng kết & Củng cố Tuần 22 (Kappale 9)",
+          "description": "Hệ thống hóa toàn bộ kiến thức tuần 22.",
+          "durationMinutes": 20,
+          "targetRefId": "w22_d7_tonghop_tuan22",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc lại bảng tóm tắt kiến thức tuần 22."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

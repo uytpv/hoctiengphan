@@ -7,11 +7,20 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/common/widgets/bilingual_label.dart';
 import '../../../core/localization/language_provider.dart';
+import 'widgets/action_detail_sheet.dart';
 
 /// Shows weeks → days → activities for a single study plan.
 class StudyPlanDetailScreen extends ConsumerStatefulWidget {
-  const StudyPlanDetailScreen({super.key, required this.planId});
+  const StudyPlanDetailScreen({
+    super.key,
+    required this.planId,
+    this.initialWeekId,
+    this.initialDayId,
+  });
+
   final String planId;
+  final String? initialWeekId;
+  final String? initialDayId;
 
   @override
   ConsumerState<StudyPlanDetailScreen> createState() =>
@@ -25,11 +34,25 @@ class _StudyPlanDetailScreenState
   Map<String, String> _progress = {};
   StudyPlanWeek? _resolvedWeek;
   bool _loadingWeek = false;
+  bool _initialSelectionDone = false;
 
   @override
   void initState() {
     super.initState();
+    _selectedWeekId = widget.initialWeekId;
+    _selectedDayId = widget.initialDayId;
     _loadProgress();
+  }
+
+  @override
+  void didUpdateWidget(covariant StudyPlanDetailScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.initialWeekId != widget.initialWeekId ||
+        oldWidget.initialDayId != widget.initialDayId) {
+      _selectedWeekId = widget.initialWeekId;
+      _selectedDayId = widget.initialDayId;
+      _initialSelectionDone = false;
+    }
   }
 
   Future<void> _loadProgress() async {
@@ -38,10 +61,10 @@ class _StudyPlanDetailScreenState
     if (mounted) setState(() => _progress = p);
   }
 
-  Future<void> _selectWeek(StudyPlanWeek raw) async {
+  Future<void> _selectWeek(StudyPlanWeek raw, {String? dayId}) async {
     setState(() {
       _selectedWeekId = raw.id;
-      _selectedDayId = null;
+      _selectedDayId = dayId;
       _resolvedWeek = raw; // show immediately with empty activities
       _loadingWeek = true;
     });
@@ -51,6 +74,9 @@ class _StudyPlanDetailScreenState
       setState(() {
         _resolvedWeek = resolved;
         _loadingWeek = false;
+        if (dayId != null) {
+          _selectedDayId = dayId;
+        }
       });
     }
   }
@@ -61,42 +87,26 @@ class _StudyPlanDetailScreenState
     final lang = ref.watch(languageProvider);
     final isMobile = MediaQuery.of(context).size.width < 600;
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.surface,
-        elevation: 0,
-        leading: BackButton(
-          onPressed: () {
-            if (isMobile) {
-              if (_selectedDayId != null) {
-                setState(() => _selectedDayId = null);
-                return;
-              } else if (_selectedWeekId != null) {
-                setState(() {
-                  _selectedWeekId = null;
-                  _resolvedWeek = null;
-                });
-                return;
-              }
-            }
-            context.go('/');
-          },
+    return weeksAsync.when(
+      loading: () => Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
+          backgroundColor: AppColors.surface,
+          elevation: 0,
+          leading: BackButton(onPressed: () => context.go('/')),
+          title: const Text('Lộ trình', style: TextStyle(color: AppColors.surfaceDark)),
         ),
-        title: Text(
-          isMobile
-              ? (_selectedDayId != null
-                  ? (_resolvedWeek?.days.firstWhere((d) => d.id == _selectedDayId, orElse: () => _resolvedWeek!.days.first).name ?? 'Bài học')
-                  : (_selectedWeekId != null
-                      ? (_resolvedWeek?.title ?? 'Chọn ngày')
-                      : 'Lộ trình'))
-              : 'Lộ trình',
-          style: AppTextStyles.headingSm.copyWith(color: AppColors.surfaceDark),
-        ),
+        body: const Center(child: CircularProgressIndicator()),
       ),
-      body: weeksAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(
+      error: (err, stack) => Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: AppBar(
+          backgroundColor: AppColors.surface,
+          elevation: 0,
+          leading: BackButton(onPressed: () => context.go('/')),
+          title: const Text('Lộ trình', style: TextStyle(color: AppColors.surfaceDark)),
+        ),
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -111,77 +121,153 @@ class _StudyPlanDetailScreenState
             ],
           ),
         ),
-        data: (weeks) {
-          if (isMobile) {
-            if (_selectedWeekId == null) {
-              return _WeekSidebar(
-                weeks: weeks,
-                selectedId: _selectedWeekId,
-                onSelect: (week) => _selectWeek(week),
-                isMobile: true,
-              );
-            } else if (_selectedDayId == null) {
-              return _DayList(
-                week: _resolvedWeek!,
-                selectedDayId: _selectedDayId,
-                lang: lang,
-                isLoading: _loadingWeek,
-                onSelect: (id) => setState(() => _selectedDayId = id),
-                isMobile: true,
-              );
-            } else {
-              return _ActivityPanel(
-                week: _resolvedWeek!,
-                dayId: _selectedDayId!,
-                lang: lang,
-                progress: _progress,
-                planId: widget.planId,
-                onActivityDone: _loadProgress,
-              );
-            }
-          }
-
-          // Desktop/Tablet Row layout
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Left: week list
-              _WeekSidebar(
-                weeks: weeks,
-                selectedId: _selectedWeekId,
-                onSelect: (week) => _selectWeek(week),
-                isMobile: false,
-              ),
-              const VerticalDivider(width: 1),
-              // Middle: day list
-              if (_resolvedWeek != null)
-                _DayList(
-                  week: _resolvedWeek!,
-                  selectedDayId: _selectedDayId,
-                  lang: lang,
-                  isLoading: _loadingWeek,
-                  onSelect: (id) => setState(() => _selectedDayId = id),
-                  isMobile: false,
-                ),
-              const VerticalDivider(width: 1),
-              // Right: activity list
-              if (_resolvedWeek != null && _selectedDayId != null)
-                Expanded(
-                  child: _ActivityPanel(
-                    week: _resolvedWeek!,
-                    dayId: _selectedDayId!,
-                    lang: lang,
-                    progress: _progress,
-                    planId: widget.planId,
-                    onActivityDone: _loadProgress,
-                  ),
-                )
-              else
-                const Expanded(child: _HintPanel()),
-            ],
-          );
-        },
       ),
+      data: (weeks) {
+        if (!_initialSelectionDone && weeks.isNotEmpty) {
+          _initialSelectionDone = true;
+          if (_selectedWeekId != null && _selectedWeekId!.isNotEmpty) {
+            final targetWeek = weeks.firstWhere(
+              (w) => w.id == _selectedWeekId,
+              orElse: () => weeks.first,
+            );
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                _selectWeek(targetWeek, dayId: _selectedDayId);
+              }
+            });
+          }
+        }
+
+        return PopScope(
+          canPop: !isMobile || (_selectedDayId == null && _selectedWeekId == null),
+          onPopInvokedWithResult: (didPop, result) {
+            if (didPop) return;
+            if (isMobile) {
+              if (_selectedDayId != null) {
+                setState(() => _selectedDayId = null);
+              } else if (_selectedWeekId != null) {
+                setState(() {
+                  _selectedWeekId = null;
+                  _resolvedWeek = null;
+                });
+              }
+            }
+          },
+          child: Scaffold(
+            backgroundColor: AppColors.background,
+            appBar: AppBar(
+              backgroundColor: AppColors.surface,
+              elevation: 0,
+              leading: BackButton(
+                onPressed: () {
+                  if (isMobile) {
+                    if (_selectedDayId != null) {
+                      setState(() => _selectedDayId = null);
+                      return;
+                    } else if (_selectedWeekId != null) {
+                      setState(() {
+                        _selectedWeekId = null;
+                        _resolvedWeek = null;
+                      });
+                      return;
+                    }
+                  }
+                  context.go('/');
+                },
+              ),
+              title: Text(
+                isMobile
+                    ? (_selectedDayId != null
+                        ? (_resolvedWeek?.days
+                                .firstWhere((d) => d.id == _selectedDayId,
+                                    orElse: () => _resolvedWeek!.days.first)
+                                .name ??
+                            'Bài học')
+                        : (_selectedWeekId != null
+                            ? (_resolvedWeek?.title ?? 'Chọn ngày')
+                            : 'Lộ trình'))
+                    : 'Lộ trình',
+                style: AppTextStyles.headingSm.copyWith(color: AppColors.surfaceDark),
+              ),
+            ),
+            body: isMobile
+                ? _buildMobileBody(weeks, lang)
+                : _buildDesktopBody(weeks, lang),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildMobileBody(List<StudyPlanWeek> weeks, String lang) {
+    if (_selectedWeekId == null) {
+      return _WeekSidebar(
+        weeks: weeks,
+        selectedId: _selectedWeekId,
+        onSelect: (week) => _selectWeek(week),
+        isMobile: true,
+      );
+    } else if (_resolvedWeek == null || _loadingWeek) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (_selectedDayId == null) {
+      return _DayList(
+        week: _resolvedWeek!,
+        selectedDayId: _selectedDayId,
+        lang: lang,
+        isLoading: _loadingWeek,
+        onSelect: (id) => setState(() => _selectedDayId = id),
+        isMobile: true,
+      );
+    } else {
+      return _ActivityPanel(
+        week: _resolvedWeek!,
+        dayId: _selectedDayId!,
+        lang: lang,
+        progress: _progress,
+        planId: widget.planId,
+        onActivityDone: _loadProgress,
+      );
+    }
+  }
+
+  Widget _buildDesktopBody(List<StudyPlanWeek> weeks, String lang) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Left: week list
+        _WeekSidebar(
+          weeks: weeks,
+          selectedId: _selectedWeekId,
+          onSelect: (week) => _selectWeek(week),
+          isMobile: false,
+        ),
+        const VerticalDivider(width: 1),
+        // Middle: day list
+        if (_resolvedWeek != null)
+          _DayList(
+            week: _resolvedWeek!,
+            selectedDayId: _selectedDayId,
+            lang: lang,
+            isLoading: _loadingWeek,
+            onSelect: (id) => setState(() => _selectedDayId = id),
+            isMobile: false,
+          ),
+        const VerticalDivider(width: 1),
+        // Right: activity list
+        if (_resolvedWeek != null && _selectedDayId != null)
+          Expanded(
+            child: _ActivityPanel(
+              week: _resolvedWeek!,
+              dayId: _selectedDayId!,
+              lang: lang,
+              progress: _progress,
+              planId: widget.planId,
+              onActivityDone: _loadProgress,
+            ),
+          )
+        else
+          const Expanded(child: _HintPanel()),
+      ],
     );
   }
 }
@@ -330,7 +416,7 @@ class _DayList extends StatelessWidget {
                 itemCount: week.days.length,
                 itemBuilder: (context, i) {
                   final day = week.days[i];
-                  final hasActivities = day.activityIds.isNotEmpty;
+                  final hasActivities = day.actions.isNotEmpty || day.activityIds.isNotEmpty;
                   return Card(
                     margin: const EdgeInsets.only(bottom: 12),
                     elevation: 0,
@@ -419,7 +505,7 @@ class _DayList extends StatelessWidget {
                   final day = week.days[i];
                   final selected = day.id == selectedDayId;
                   final hasActivities =
-                      day.activityIds.isNotEmpty;
+                      day.actions.isNotEmpty || day.activityIds.isNotEmpty;
                   return InkWell(
                     onTap: () => onSelect(day.id),
                     child: Container(
@@ -501,7 +587,38 @@ class _ActivityPanel extends ConsumerWidget {
           ),
         ),
         const Divider(height: 1),
-        if (day.activities.isEmpty && day.activityIds.isEmpty)
+        if (day.actions.isNotEmpty)
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.all(16),
+              itemCount: day.actions.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 8),
+              itemBuilder: (context, i) {
+                final action = day.actions[i];
+                final isDone = progress[action.id] == 'done';
+                return _DailyActionTile(
+                  action: action,
+                  isDone: isDone,
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (ctx) => ActionDetailSheet(
+                        action: action,
+                        planId: planId,
+                        weekId: week.id,
+                        dayId: dayId,
+                        isInitiallyDone: isDone,
+                        onStatusChanged: onActivityDone,
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          )
+        else if (day.activities.isEmpty && day.activityIds.isEmpty)
           const Expanded(child: _EmptyDayPanel())
         else if (day.activities.isEmpty &&
             day.activityIds.isNotEmpty)
@@ -536,6 +653,175 @@ class _ActivityPanel extends ConsumerWidget {
             ),
           ),
       ],
+    );
+  }
+}
+
+class _DailyActionTile extends StatelessWidget {
+  final DailyActionItem action;
+  final bool isDone;
+  final VoidCallback onTap;
+
+  const _DailyActionTile({
+    required this.action,
+    required this.isDone,
+    required this.onTap,
+  });
+
+  IconData _getTypeIcon(ActionItemType type) {
+    switch (type) {
+      case ActionItemType.lessonFull:
+      case ActionItemType.lessonSlice:
+        return Icons.school;
+      case ActionItemType.vocabularySet:
+        return Icons.spellcheck;
+      case ActionItemType.grammarPoint:
+        return Icons.auto_stories;
+      case ActionItemType.exerciseSet:
+        return Icons.assignment;
+      case ActionItemType.immersionMusic:
+        return Icons.music_note;
+      case ActionItemType.immersionMovie:
+        return Icons.movie;
+      case ActionItemType.immersionSign:
+        return Icons.traffic;
+      case ActionItemType.custom:
+        return Icons.star_border;
+    }
+  }
+
+  Color _getTypeColor(ActionItemType type) {
+    switch (type) {
+      case ActionItemType.lessonFull:
+      case ActionItemType.lessonSlice:
+        return AppColors.primary;
+      case ActionItemType.vocabularySet:
+        return const Color(0xFFFF6B35);
+      case ActionItemType.grammarPoint:
+        return const Color(0xFF32AE88);
+      case ActionItemType.exerciseSet:
+        return const Color(0xFF6C63FF);
+      case ActionItemType.immersionMusic:
+        return Colors.purple;
+      case ActionItemType.immersionMovie:
+        return Colors.deepOrange;
+      case ActionItemType.immersionSign:
+        return Colors.teal;
+      case ActionItemType.custom:
+        return Colors.blueGrey;
+    }
+  }
+
+  String _getTypeLabel(ActionItemType type) {
+    switch (type) {
+      case ActionItemType.lessonFull:
+        return 'Bài học giáo trình';
+      case ActionItemType.lessonSlice:
+        return 'Phần bài học';
+      case ActionItemType.vocabularySet:
+        return 'Luyện từ vựng';
+      case ActionItemType.grammarPoint:
+        return 'Ngữ pháp';
+      case ActionItemType.exerciseSet:
+        return 'Bài tập';
+      case ActionItemType.immersionMusic:
+        return 'Âm nhạc đời sống';
+      case ActionItemType.immersionMovie:
+        return 'Video đời sống';
+      case ActionItemType.immersionSign:
+        return 'Biển báo thực tế';
+      case ActionItemType.custom:
+        return 'Nhiệm vụ tự do';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final color = _getTypeColor(action.type);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: isDone
+                ? AppColors.done.withValues(alpha: 0.07)
+                : AppColors.surface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isDone
+                  ? AppColors.done.withValues(alpha: 0.3)
+                  : AppColors.border,
+            ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(_getTypeIcon(action.type), size: 20, color: color),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      action.title,
+                      style: AppTextStyles.bodyMd.copyWith(
+                        fontWeight: isDone ? FontWeight.normal : FontWeight.w600,
+                        color: isDone ? AppColors.neutral : AppColors.surfaceDark,
+                        decoration: isDone ? TextDecoration.lineThrough : null,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 3),
+                    Row(
+                      children: [
+                        Text(
+                          _getTypeLabel(action.type),
+                          style: AppTextStyles.caption.copyWith(color: color, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          ' • ${action.estimatedMinutes} phút',
+                          style: AppTextStyles.caption.copyWith(color: AppColors.neutral),
+                        ),
+                        if (action.steps.isNotEmpty)
+                          Text(
+                            ' • ${action.steps.length} bước',
+                            style: AppTextStyles.caption.copyWith(color: AppColors.neutral),
+                          ),
+                      ],
+                    ),
+                    if (action.goal.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        'Mục tiêu: ${action.goal}',
+                        style: AppTextStyles.caption.copyWith(color: AppColors.neutral),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              if (isDone)
+                const Icon(Icons.check_circle, color: AppColors.done, size: 22)
+              else
+                const Icon(Icons.chevron_right, color: AppColors.neutral, size: 20),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

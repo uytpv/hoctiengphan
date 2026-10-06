@@ -1,0 +1,222 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w6_d1_pedro_soittaa",
+      "title": "Nghe hiểu: Pedro gọi điện cho Mikko (Kappale 3)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi nghe điện thoại, người Phần Lan thường bắt đầu bằng:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "[Tên của mình] + puhelimessa! (hoặc chỉ xưng tên)",
+            "Moi moi!",
+            "Kuka sinä olet?"
+          ],
+          "correctIndex": 0,
+          "explanation": "Thói quen nghe điện thoại lịch sự chuẩn Phần Lan là xưng tên: 'Mikko puhelimessa' (Mikko nghe máy đây)."
+        },
+        {
+          "prompt": "Cụm từ 'Mitä kuuluu?' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Dạo này bạn thế nào? (Hỏi thăm sức khỏe/cuộc sống)",
+            "Bạn đang nghe gì đấy?",
+            "Bạn ở đâu?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Mitä kuuluu?' là câu hỏi thăm kinh điển. Đáp lại thường là 'Kiitos hyvää!' (Cảm ơn, tôi khỏe)."
+        }
+      ]
+    },
+    {
+      "id": "ex_w6_d2_adjektiivit",
+      "title": "Tính từ miêu tả trái nghĩa (Adjektiivit)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Từ trái nghĩa với 'kuuma' (nóng) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kylmä (lạnh)",
+            "lämmin (ấm)",
+            "viileä (mát)"
+          ],
+          "correctIndex": 0,
+          "explanation": "kuuma (nóng) đối lập với kylmä (lạnh)."
+        },
+        {
+          "prompt": "Từ trái nghĩa với 'kaunis' (đẹp) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "ruma (xấu)",
+            "hyvä (tốt)",
+            "pieni (nhỏ)"
+          ],
+          "correctIndex": 0,
+          "explanation": "kaunis (xinh đẹp) đối lập với ruma (xấu xí)."
+        },
+        {
+          "prompt": "Từ trái nghĩa với 'helppo' (dễ dàng) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "vaikea (khó khăn)",
+            "hauska (vui)",
+            "uusi (mới)"
+          ],
+          "correctIndex": 0,
+          "explanation": "helppo (dễ) đối lập với vaikea (khó)."
+        }
+      ]
+    },
+    {
+      "id": "ex_w6_d3_saa_vuodenajat",
+      "title": "Thời tiết & 4 Mùa (Sää ja vuodenajat)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "'Sataa lunta' có nghĩa là thời tiết như thế nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Tuyết đang rơi",
+            "Trời đang mưa",
+            "Trời có gió"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Sataa lunta' = Tuyết rơi. 'Sataa vettä' = Mưa rơi."
+        },
+        {
+          "prompt": "Mùa hè trong tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kesä",
+            "talvi (mùa đông)",
+            "syksy (mùa thu)"
+          ],
+          "correctIndex": 0,
+          "explanation": "4 mùa: kevät (mùa xuân), kesä (mùa hè), syksy (mùa thu), talvi (mùa đông)."
+        },
+        {
+          "prompt": "Câu 'Aurinko paistaa' mô tả hiện tượng gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Mặt trời đang chiếu sáng (Trời có nắng)",
+            "Trời nhiều mây",
+            "Trời có bão"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Aurinko' = Mặt trời, 'paistaa' = chiếu sáng/tỏa nắng."
+        }
+      ]
+    },
+    {
+      "id": "ex_w7_d2_genetiivi",
+      "title": "Sở hữu cách Genetiivi (Đuôi -n)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Dấu hiệu của Sở hữu cách Genetiivi số ít là thêm đuôi gì vào sau danh từ?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "-n",
+            "-ssa",
+            "-ta"
+          ],
+          "correctIndex": 0,
+          "explanation": "Genetiivi có hậu tố là '-n': ví dụ Alex -> Alexin (của Alex), Pekka -> Pekan (của Pekka)."
+        },
+        {
+          "prompt": "Cụm từ 'Quyển sách của giáo viên' được viết là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "opettajan kirja",
+            "opettaja kirja",
+            "kirjan opettaja"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chủ sở hữu đứng trước gắn đuôi -n: opettaja -> opettajan + vật sở hữu: opettajan kirja."
+        },
+        {
+          "prompt": "LƯU Ý KPT: Danh từ 'Pekka' (có phụ âm đôi kk). Khi chuyển sang sở hữu cách 'của Pekka', kk biến thành:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Pekan (kk biến thành k ở cấp yếu)",
+            "Pekkan",
+            "Pekkaan"
+          ],
+          "correctIndex": 0,
+          "explanation": "Đuôi -n tạo thành âm tiết đóng, kích hoạt quy tắc biến âm K-P-T cấp yếu: kk -> k."
+        }
+      ]
+    },
+    {
+      "id": "ex_w7_d3_t_monikko",
+      "title": "Danh từ số nhiều đuôi -t (T-monikko)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Số nhiều cơ bản (Nominatiivi monikko) trong tiếng Phần Lan được tạo bằng cách thêm đuôi gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "-t",
+            "-s",
+            "-ja"
+          ],
+          "correctIndex": 0,
+          "explanation": "Thêm đuôi '-t' vào sau thân từ: talo (1 ngôi nhà) -> talot (những ngôi nhà)."
+        },
+        {
+          "prompt": "'Các sinh viên / Những học viên' trong tiếng Phần là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "opiskelijat",
+            "opiskelijas",
+            "opiskelijan"
+          ],
+          "correctIndex": 0,
+          "explanation": "opiskelija + t = opiskelijat."
+        }
+      ]
+    },
+    {
+      "id": "ex_w8_d6_kiemtra_kappale3",
+      "title": "Đề kiểm tra đánh giá năng lực Chương 3",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Chọn câu hỏi thăm thời tiết chính xác:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Millainen sää tänään on?",
+            "Mikä sää tänään on?",
+            "Kuka sää tänään on?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Millainen sää tänään on?' = Thời tiết hôm nay thế nào? (Millainen = như thế nào)."
+        },
+        {
+          "prompt": "'Tänään on kaunis ja lämmin ilma' có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Hôm nay thời tiết đẹp và ấm áp",
+            "Hôm nay trời mưa to và gió lạnh",
+            "Hôm nay trời đầy tuyết"
+          ],
+          "correctIndex": 0,
+          "explanation": "kaunis = đẹp, lämmin = ấm áp, ilma = thời tiết/không khí."
+        },
+        {
+          "prompt": "'Helsingin yliopisto' có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đại học của Helsinki (Đại học Helsinki)",
+            "Thành phố Helsinki",
+            "Sinh viên Helsinki"
+          ],
+          "correctIndex": 0,
+          "explanation": "Helsinki -> Helsingin (Genetiivi: k biến thành g) + yliopisto (trường đại học)."
+        }
+      ]
+    }
+  ]
+}

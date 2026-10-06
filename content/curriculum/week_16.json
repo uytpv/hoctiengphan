@@ -1,0 +1,173 @@
+{
+  "id": "week_16",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 16,
+  "title": "Tháng 4 - Tuần 16: Ngữ pháp 6 Cách Vị trí Nơi chốn (Paikansijat) & Chỉ đường",
+  "description": "Trọng tâm ngữ pháp Chương 6: Hệ thống 6 cách vị trí nơi chốn Missä/Mistä/Mihin (-ssa, -sta, -on) và Millä/Miltä/Mille (-lla, -lta, -lle), Cấu trúc Huoneessa on..., Thể mệnh lệnh Imperatiivi và Văn hóa phân loại rác Kierrätys.",
+  "chapter": "Kappale 6",
+  "bookPages": "155-157, 162-167",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w16_d1_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Hệ thống 6 Cách chỉ Vị trí Nơi chốn (Paikansijat) (Trang 155-156)",
+          "goal": "Làm chủ bản đồ 3 hướng bên trong (-ssa/-sta/-on) và bên ngoài (-lla/-lta/-lle).",
+          "estimatedMinutes": 30,
+          "targetRefId": "w16_d1_nguphap_paikansijat_6",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học bảng so sánh 6 cách vị trí."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác chia đuôi vị trí."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w16_d2_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Cấu trúc tồn tại vị trí 'Huoneessa on...' (Trang 156)",
+          "goal": "Thành thạo miêu tả đồ vật có ở trong phòng hoặc trên bàn.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w16_d2_nguphap_huoneessa_on",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học công thức [Địa điểm] + on + [Vật]."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w16_d3_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Thể Mệnh lệnh cơ bản & Chỉ đường (Trang 157)",
+          "goal": "Biết cách chỉ đường: Mene suoraan, Käänny oikealle/vasemmalle.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w16_d4_nguphap_imperatiivi",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học thể mệnh lệnh ngôi sinä và các cụm từ chỉ hướng."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác chỉ đường."
+            }
+          ]
+        },
+        {
+          "id": "w16_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Đời sống: Nội quy chung cư & Phân loại rác (Kierrätys)",
+          "goal": "Hiểu quy định giờ yên tĩnh và cách phân loại 7 thùng rác chuẩn Phần Lan.",
+          "estimatedMinutes": 15,
+          "targetRefId": "sign_jarjestyssaannot_kierratys",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang văn hóa chung cư Phần Lan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w16_d4_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 11 - 18 Chương 6 (Trang 162-167)",
+          "goal": "Rèn luyện giải các bài tập chia đuôi nơi chốn trong câu.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w16_d1_nguphap_paikansijat_6",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập điền đuôi -ssa, -sta, -on."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w16_d5_act1",
+          "type": "lesson_slice",
+          "title": "Luyện tập: Hỏi và chỉ đường đến nhà ga hoặc siêu thị",
+          "goal": "Thực hành hội thoại hỏi đường ngoài phố.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w16_d4_nguphap_imperatiivi",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành câu hỏi Anteeksi, miten pääsen asemalle?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w16_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 16 (Kappale 6)",
+          "goal": "Ôn tập 6 cách vị trí và chỉ đường.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w16_d7_tonghop_tuan16",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tóm tắt tuần 16."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w16_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi nạp năng lượng (Ota rennosti)",
+          "goal": "Thư giãn cuối tuần.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w16_d7_tonghop_tuan16",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi thư giãn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

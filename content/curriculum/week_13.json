@@ -1,0 +1,159 @@
+{
+  "id": "week_13",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 13,
+  "title": "Tháng 4 - Tuần 13: Ngữ pháp Toàn cảnh 5 Nhóm Động từ (Verbityypit 1 - 5)",
+  "description": "Trọng tâm ngữ pháp Chương 5: Bản đồ phân loại 5 nhóm động từ tiếng Phần Lan, Quy tắc tìm thân từ và chia đuôi, Chuỗi động từ Verbiketju (Động từ + Động từ).",
+  "chapter": "Kappale 5",
+  "bookPages": "123-125, 129-135",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w13_d1_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Toàn cảnh 5 Nhóm động từ (Verbityypit 1 - 5) (Trang 123-125)",
+          "goal": "Làm chủ dấu hiệu nhận biết và cách chia của cả 5 nhóm động từ.",
+          "estimatedMinutes": 30,
+          "targetRefId": "w13_d1_nguphap_5_nhom_dongtu",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học bảng so sánh 5 nhóm động từ."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác nhận diện nhóm."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w13_d2_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Cấu trúc Động từ + Động từ (Verbiketju) (Trang 125)",
+          "goal": "Thành thạo ghép chuỗi trợ động từ haluta, voida, osata + Infinitive.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w13_d2_nguphap_dongtu_dongtu",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học cách kết hợp haluan opiskella, osaan uida."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác ghép câu."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w13_d3_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 10 - 15 Chương 5 (Trang 129-132)",
+          "goal": "Rèn luyện chia các nhóm động từ 2, 3, 4, 5.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w13_d1_nguphap_5_nhom_dongtu",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập chia động từ trong câu hoàn chỉnh."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w13_d4_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 16 - 19 Chương 5 (Trang 133-135)",
+          "goal": "Hoàn thiện bài tập chia câu phủ định của 5 nhóm động từ.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w13_d1_nguphap_5_nhom_dongtu",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành chuyển đổi câu khẳng định sang phủ định."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w13_d5_act1",
+          "type": "lesson_slice",
+          "title": "Luyện tập phản xạ: Đặt câu hỏi với trợ động từ voida / osata",
+          "goal": "Tập giao tiếp hỏi khả năng và yêu cầu giúp đỡ.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w13_d2_nguphap_dongtu_dongtu",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành các câu Voitko auttaa minua?, Osaatko puhua englantia?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w13_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 13 (Kappale 5)",
+          "goal": "Ôn tập 5 nhóm động từ.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w13_d7_tonghop_tuan13",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tóm tắt tuần 13."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w13_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi nạp năng lượng (Ota rennosti)",
+          "goal": "Thư giãn cuối tuần.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w13_d7_tonghop_tuan13",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi thư giãn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

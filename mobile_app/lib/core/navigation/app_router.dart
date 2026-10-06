@@ -40,6 +40,8 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: '/study-plan/:id',
             builder: (context, state) => StudyPlanDetailScreen(
               planId: state.pathParameters['id']!,
+              initialWeekId: state.uri.queryParameters['weekId'],
+              initialDayId: state.uri.queryParameters['dayId'],
             ),
           ),
           GoRoute(

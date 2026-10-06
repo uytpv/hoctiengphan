@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
@@ -5,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart' hide PlayerState;
 import 'package:flutter_tts/flutter_tts.dart';
+import '../../services/lesson_audio_manager.dart';
 
 /// Các class InlineSyntax để parse shortcodes tùy chỉnh trong Markdown
 class VocabSyntax extends md.InlineSyntax {
@@ -73,6 +75,63 @@ class GrammarSyntax extends md.InlineSyntax {
   }
 }
 
+class DialogueSyntax extends md.InlineSyntax {
+  DialogueSyntax()
+      : super(r'\[dialogue:([^\|\]]+)\|([^\|\]]+)\|([^\|\]]*)(?:\|([^\]]*))?\]');
+
+  @override
+  bool onMatch(md.InlineParser parser, Match match) {
+    final speaker = match.group(1)!.trim();
+    final finnish = match.group(2)!.trim();
+    final vietnamese = match.group(3)!.trim();
+    final note = match.group(4)?.trim() ?? '';
+    final element = md.Element.empty('dialogue');
+    element.attributes['speaker'] = speaker;
+    element.attributes['fi'] = finnish;
+    element.attributes['vi'] = vietnamese;
+    element.attributes['note'] = note;
+    parser.addNode(element);
+    return true;
+  }
+}
+
+class ReaderSyntax extends md.InlineSyntax {
+  ReaderSyntax() : super(r'\[reader:([^\|\]]+)\|([^\]]+)\]');
+
+  @override
+  bool onMatch(md.InlineParser parser, Match match) {
+    final finnish = match.group(1)!.trim();
+    final vietnamese = match.group(2)!.trim();
+    final element = md.Element.empty('reader');
+    element.attributes['fi'] = finnish;
+    element.attributes['vi'] = vietnamese;
+    parser.addNode(element);
+    return true;
+  }
+}
+
+class DialogueToggleSyntax extends md.InlineSyntax {
+  DialogueToggleSyntax() : super(r'\[dialogue_toggle(?::([^\]]+))?\]');
+
+  @override
+  bool onMatch(md.InlineParser parser, Match match) {
+    final title = match.group(1)?.trim() ?? 'Bản dịch song ngữ tiếng Việt';
+    final element = md.Element.empty('dialoguetoggle');
+    element.attributes['title'] = title;
+    parser.addNode(element);
+    return true;
+  }
+}
+
+/// Bộ điều khiển trạng thái hiển thị bản dịch cho toàn bộ bài học
+class DialogueStateController {
+  static final ValueNotifier<bool> showAllTranslations = ValueNotifier<bool>(false);
+
+  static void reset() {
+    showAllTranslations.value = false;
+  }
+}
+
 /// Trình render nội dung bài học bằng Markdown có hỗ trợ các shortcode tương tác.
 class MarkdownContentRenderer extends StatelessWidget {
   final String content;
@@ -103,6 +162,9 @@ class MarkdownContentRenderer extends StatelessWidget {
         ExerciseSyntax(),
         VideoSyntax(),
         GrammarSyntax(),
+        DialogueSyntax(),
+        ReaderSyntax(),
+        DialogueToggleSyntax(),
       ],
       builders: {
         'vocab': VocabElementBuilder(onTap: (vocabId, text) {
@@ -116,6 +178,9 @@ class MarkdownContentRenderer extends StatelessWidget {
         'exercise': ExerciseElementBuilder(onCompleted: onExerciseCompleted),
         'video': VideoElementBuilder(),
         'grammar': GrammarElementBuilder(onVocabTapped: onVocabTapped, onAudioPlayed: onAudioPlayed),
+        'dialogue': DialogueElementBuilder(),
+        'reader': ReaderElementBuilder(),
+        'dialoguetoggle': DialogueToggleElementBuilder(),
       },
       styleSheet: MarkdownStyleSheet(
         p: const TextStyle(fontSize: 18, height: 1.6, color: Colors.black87),
@@ -389,39 +454,29 @@ class _EmbeddedAudioPlayer extends StatefulWidget {
 }
 
 class _EmbeddedAudioPlayerState extends State<_EmbeddedAudioPlayer> {
-  final AudioPlayer _player = AudioPlayer();
-  bool _isPlaying = false;
-  Duration _duration = Duration.zero;
-  Duration _position = Duration.zero;
-
   @override
   void initState() {
     super.initState();
-    _player.onDurationChanged.listen((d) {
-      if (mounted) setState(() => _duration = d);
-    });
-    _player.onPositionChanged.listen((p) {
-      if (mounted) setState(() => _position = p);
-    });
-    _player.onPlayerStateChanged.listen((state) {
-      if (mounted) {
-        setState(() => _isPlaying = state == PlayerState.playing);
-      }
-    });
+    LessonAudioManager.instance.addListener(_onAudioUpdate);
   }
 
   @override
   void dispose() {
-    _player.dispose();
+    LessonAudioManager.instance.removeListener(_onAudioUpdate);
     super.dispose();
   }
 
+  void _onAudioUpdate() {
+    if (mounted) setState(() {});
+  }
+
   Future<void> _togglePlay() async {
-    if (_isPlaying) {
-      await _player.pause();
+    final manager = LessonAudioManager.instance;
+    if (manager.currentUrl == widget.audioUrl) {
+      await manager.togglePlay();
     } else {
-      if (widget.onPlay != null) widget.onPlay!(widget.audioUrl);
-      await _player.play(UrlSource(widget.audioUrl));
+      widget.onPlay?.call(widget.audioUrl);
+      await manager.play(widget.audioUrl);
     }
   }
 
@@ -433,22 +488,35 @@ class _EmbeddedAudioPlayerState extends State<_EmbeddedAudioPlayer> {
 
   @override
   Widget build(BuildContext context) {
+    final manager = LessonAudioManager.instance;
+    final isThisTrack = manager.currentUrl == widget.audioUrl;
+    final isPlaying = isThisTrack && manager.isPlaying;
+    final position = isThisTrack ? manager.position : Duration.zero;
+    final duration = isThisTrack ? manager.duration : Duration.zero;
+
+    final maxMs = duration.inMilliseconds > 0 ? duration.inMilliseconds.toDouble() : 1.0;
+    final currentMs = position.inMilliseconds.toDouble().clamp(0.0, maxMs);
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.blueAccent.withValues(alpha: 0.05),
-        border: Border.all(color: Colors.blueAccent.withValues(alpha: 0.15)),
-        borderRadius: BorderRadius.circular(12),
+        color: isPlaying ? const Color(0xFFEFF6FF) : Colors.blueAccent.withValues(alpha: 0.05),
+        border: Border.all(
+          color: isPlaying ? Colors.blueAccent : Colors.blueAccent.withValues(alpha: 0.15),
+          width: isPlaying ? 1.5 : 1.0,
+        ),
+        borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
         children: [
           IconButton.filled(
             onPressed: _togglePlay,
-            icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
+            icon: Icon(isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded, size: 28),
             style: IconButton.styleFrom(
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: const Color(0xFF0056D2),
               foregroundColor: Colors.white,
+              padding: const EdgeInsets.all(8),
             ),
           ),
           const SizedBox(width: 12),
@@ -456,33 +524,52 @@ class _EmbeddedAudioPlayerState extends State<_EmbeddedAudioPlayer> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Nghe bài hội thoại / từ vựng',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      isPlaying ? 'Đang phát âm thanh bài học...' : 'Nghe bài hội thoại / từ vựng',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.5,
+                        color: isPlaying ? const Color(0xFF0056D2) : const Color(0xFF1E293B),
+                      ),
+                    ),
+                    if (isThisTrack)
+                      Text(
+                        '${manager.speed}x',
+                        style: const TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF0056D2),
+                        ),
+                      ),
+                  ],
                 ),
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
                     trackHeight: 3,
                     thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
                     overlayShape: const RoundSliderOverlayShape(overlayRadius: 14),
+                    activeTrackColor: const Color(0xFF0056D2),
+                    inactiveTrackColor: Colors.blueAccent.withValues(alpha: 0.2),
+                    thumbColor: const Color(0xFF0056D2),
                   ),
                   child: Slider(
-                    value: _position.inMilliseconds.toDouble(),
-                    max: _duration.inMilliseconds > 0 
-                        ? _duration.inMilliseconds.toDouble() 
-                        : 1.0,
+                    value: currentMs,
+                    max: maxMs,
                     onChanged: (val) {
-                      _player.seek(Duration(milliseconds: val.toInt()));
+                      if (isThisTrack) {
+                        manager.seek(Duration(milliseconds: val.toInt()));
+                      }
                     },
-                    activeColor: Colors.blueAccent,
-                    inactiveColor: Colors.blueAccent.withValues(alpha: 0.2),
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(_formatDuration(_position), style: const TextStyle(fontSize: 12, color: Color(0xFF757575))),
-                    Text(_formatDuration(_duration), style: const TextStyle(fontSize: 12, color: Color(0xFF757575))),
+                    Text(_formatDuration(position), style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
+                    Text(_formatDuration(duration), style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
                   ],
                 ),
               ],
@@ -582,6 +669,7 @@ class _EmbeddedExerciseWidgetState extends State<_EmbeddedExerciseWidget> {
   bool _isLoading = true;
   Map<String, dynamic>? _exerciseData;
   List<dynamic> _questions = [];
+  List<dynamic> _rawQuestions = [];
   
   // Trạng thái trả lời
   int _currentIndex = 0;
@@ -603,6 +691,51 @@ class _EmbeddedExerciseWidgetState extends State<_EmbeddedExerciseWidget> {
     _loadExercise();
   }
 
+  /// Chuẩn hóa câu hỏi và xáo trộn ngẫu nhiên thứ tự các lựa chọn trắc nghiệm
+  /// để tránh tình trạng đáp án đúng luôn nằm ở vị trí đầu tiên (A).
+  List<Map<String, dynamic>> _processAndShuffleQuestions(List rawQuestions) {
+    final List<Map<String, dynamic>> normalizedQuestions = [];
+    final random = Random();
+
+    for (var q in rawQuestions) {
+      if (q is String) {
+        normalizedQuestions.add({
+          'prompt': q,
+          'type': 'FILL_IN_BLANK',
+          'correctText': '',
+          'explanation': '',
+        });
+      } else if (q is Map) {
+        final qMap = Map<String, dynamic>.from(q);
+        final type = qMap['type'] ?? 'MULTIPLE_CHOICE';
+
+        if (type == 'MULTIPLE_CHOICE' && qMap['options'] is List) {
+          final originalOptions = List<dynamic>.from(qMap['options'] as List);
+          final dynamic rawCorrectIndex = qMap['correctIndex'];
+          final int? correctIndex = rawCorrectIndex is int
+              ? rawCorrectIndex
+              : int.tryParse(rawCorrectIndex?.toString() ?? '');
+
+          if (originalOptions.length > 1 &&
+              correctIndex != null &&
+              correctIndex >= 0 &&
+              correctIndex < originalOptions.length) {
+            // Ghép từng lựa chọn với index gốc trước khi shuffle
+            final indexedEntries = originalOptions.asMap().entries.toList()..shuffle(random);
+            final shuffledOptions = indexedEntries.map((e) => e.value).toList();
+            final newCorrectIndex = indexedEntries.indexWhere((e) => e.key == correctIndex);
+
+            qMap['options'] = shuffledOptions;
+            qMap['correctIndex'] = newCorrectIndex;
+          }
+        }
+
+        normalizedQuestions.add(qMap);
+      }
+    }
+    return normalizedQuestions;
+  }
+
   Future<void> _loadExercise() async {
     try {
       final doc = await FirebaseFirestore.instance.collection('exercises').doc(widget.exerciseId).get();
@@ -611,23 +744,11 @@ class _EmbeddedExerciseWidgetState extends State<_EmbeddedExerciseWidget> {
           final data = doc.data() as Map<String, dynamic>;
           final rawQuestions = data['questions'] as List? ?? [];
           
-          // Chuẩn hóa câu hỏi để hỗ trợ tương thích ngược với bài tập cũ (List<String>)
-          final List<Map<String, dynamic>> normalizedQuestions = [];
-          for (var q in rawQuestions) {
-            if (q is String) {
-              normalizedQuestions.add({
-                'prompt': q,
-                'type': 'FILL_IN_BLANK',
-                'correctText': '',
-                'explanation': '',
-              });
-            } else if (q is Map) {
-              normalizedQuestions.add(Map<String, dynamic>.from(q));
-            }
-          }
+          final normalizedQuestions = _processAndShuffleQuestions(rawQuestions);
 
           setState(() {
             _exerciseData = data;
+            _rawQuestions = rawQuestions;
             _questions = normalizedQuestions;
             _isLoading = false;
           });
@@ -733,6 +854,7 @@ class _EmbeddedExerciseWidgetState extends State<_EmbeddedExerciseWidget> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
+                  _questions = _processAndShuffleQuestions(_rawQuestions);
                   _currentIndex = 0;
                   _selectedOption = null;
                   _inputText = '';
@@ -1191,7 +1313,7 @@ class _EmbeddedGrammarWidgetState extends State<_EmbeddedGrammarWidget> {
                   const Divider(height: 24),
                   const Text(
                     'Nghĩa tiếng Việt:',
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -1202,7 +1324,7 @@ class _EmbeddedGrammarWidgetState extends State<_EmbeddedGrammarWidget> {
                     const SizedBox(height: 12),
                     const Text(
                       'Tiếng Anh:',
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.grey),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -1310,6 +1432,9 @@ class _EmbeddedGrammarWidgetState extends State<_EmbeddedGrammarWidget> {
             inlineSyntaxes: [
               VocabSyntax(),
               AudioSyntax(),
+              DialogueSyntax(),
+              ReaderSyntax(),
+              DialogueToggleSyntax(),
             ],
             builders: {
               'vocab': VocabElementBuilder(onTap: (vocabId, text) {
@@ -1320,6 +1445,9 @@ class _EmbeddedGrammarWidgetState extends State<_EmbeddedGrammarWidget> {
                 }
               }),
               'audio': AudioElementBuilder(onPlay: widget.onAudioPlayed),
+              'dialogue': DialogueElementBuilder(),
+              'reader': ReaderElementBuilder(),
+              'dialoguetoggle': DialogueToggleElementBuilder(),
             },
             styleSheet: MarkdownStyleSheet(
               p: const TextStyle(fontSize: 16, height: 1.6, color: Color(0xFF0F1114)),
@@ -1333,6 +1461,507 @@ class _EmbeddedGrammarWidgetState extends State<_EmbeddedGrammarWidget> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Element Builder cho Hội thoại tương tác từng câu
+class DialogueElementBuilder extends MarkdownElementBuilder {
+  @override
+  Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    final speaker = element.attributes['speaker'] ?? '';
+    final fi = element.attributes['fi'] ?? '';
+    final vi = element.attributes['vi'] ?? '';
+    final note = element.attributes['note'] ?? '';
+    return _InteractiveDialogueCard(
+      speaker: speaker,
+      fi: fi,
+      vi: vi,
+      note: note,
+    );
+  }
+}
+
+/// Element Builder cho Đoạn văn đọc hiểu tương tác từng câu
+class ReaderElementBuilder extends MarkdownElementBuilder {
+  @override
+  Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    final fi = element.attributes['fi'] ?? '';
+    final vi = element.attributes['vi'] ?? '';
+    return _InteractiveReaderCard(
+      fi: fi,
+      vi: vi,
+    );
+  }
+}
+
+/// Element Builder cho Thanh điều khiển bật/tắt toàn bộ bản dịch
+class DialogueToggleElementBuilder extends MarkdownElementBuilder {
+  @override
+  Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
+    final title = element.attributes['title'] ?? 'Bản dịch song ngữ tiếng Việt';
+    return _DialogueToggleWidget(title: title);
+  }
+}
+
+/// Widget thanh bật/tắt toàn bộ bản dịch tiếng Việt
+class _DialogueToggleWidget extends StatefulWidget {
+  final String title;
+  const _DialogueToggleWidget({required this.title});
+
+  @override
+  State<_DialogueToggleWidget> createState() => _DialogueToggleWidgetState();
+}
+
+class _DialogueToggleWidgetState extends State<_DialogueToggleWidget> {
+  @override
+  void initState() {
+    super.initState();
+    DialogueStateController.showAllTranslations.addListener(_update);
+  }
+
+  @override
+  void dispose() {
+    DialogueStateController.showAllTranslations.removeListener(_update);
+    super.dispose();
+  }
+
+  void _update() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final showAll = DialogueStateController.showAllTranslations.value;
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8FAFC),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: Colors.blueAccent.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(Icons.translate, size: 18, color: Colors.blueAccent),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13.5,
+                    color: Color(0xFF1E293B),
+                  ),
+                ),
+                Text(
+                  showAll ? 'Đang hiện toàn bộ bản dịch tiếng Việt' : 'Chạm từng câu để xem dịch, hoặc bật công tắc',
+                  style: TextStyle(
+                    fontSize: 11.5,
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Switch.adaptive(
+            value: showAll,
+            activeTrackColor: Colors.blueAccent,
+            onChanged: (val) {
+              DialogueStateController.showAllTranslations.value = val;
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Nút đọc âm thanh TTS native cho câu tiếng Phần Lan
+class _SentenceTtsButton extends StatefulWidget {
+  final String text;
+  const _SentenceTtsButton({required this.text});
+
+  @override
+  State<_SentenceTtsButton> createState() => _SentenceTtsButtonState();
+}
+
+class _SentenceTtsButtonState extends State<_SentenceTtsButton> {
+  final FlutterTts _flutterTts = FlutterTts();
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _flutterTts.setStartHandler(() {
+      if (mounted) setState(() => _isPlaying = true);
+    });
+    _flutterTts.setCompletionHandler(() {
+      if (mounted) setState(() => _isPlaying = false);
+    });
+    _flutterTts.setErrorHandler((msg) {
+      if (mounted) setState(() => _isPlaying = false);
+    });
+  }
+
+  @override
+  void dispose() {
+    _flutterTts.stop();
+    super.dispose();
+  }
+
+  Future<void> _speak() async {
+    if (_isPlaying) {
+      await _flutterTts.stop();
+      if (mounted) setState(() => _isPlaying = false);
+      return;
+    }
+    try {
+      await _flutterTts.setLanguage("fi-FI");
+      await _flutterTts.setSpeechRate(0.42);
+      if (mounted) setState(() => _isPlaying = true);
+      await _flutterTts.speak(widget.text);
+    } catch (_) {
+      if (mounted) setState(() => _isPlaying = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: _speak,
+      tooltip: 'Nghe phát âm chuẩn (fi-FI)',
+      icon: Icon(
+        _isPlaying ? Icons.stop_circle : Icons.volume_up_outlined,
+        size: 18,
+        color: _isPlaying ? Colors.redAccent : const Color(0xFF0056D2),
+      ),
+      visualDensity: VisualDensity.compact,
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(minWidth: 26, minHeight: 26),
+    );
+  }
+}
+
+/// Thẻ hội thoại tương tác theo từng câu thoại chuẩn giáo trình
+class _InteractiveDialogueCard extends StatefulWidget {
+  final String speaker;
+  final String fi;
+  final String vi;
+  final String note;
+
+  const _InteractiveDialogueCard({
+    required this.speaker,
+    required this.fi,
+    required this.vi,
+    this.note = '',
+  });
+
+  @override
+  State<_InteractiveDialogueCard> createState() => _InteractiveDialogueCardState();
+}
+
+class _InteractiveDialogueCardState extends State<_InteractiveDialogueCard> {
+  bool? _localOverride;
+
+  @override
+  void initState() {
+    super.initState();
+    DialogueStateController.showAllTranslations.addListener(_onGlobalChange);
+  }
+
+  @override
+  void dispose() {
+    DialogueStateController.showAllTranslations.removeListener(_onGlobalChange);
+    super.dispose();
+  }
+
+  void _onGlobalChange() {
+    if (mounted) {
+      setState(() {
+        _localOverride = null;
+      });
+    }
+  }
+
+  bool get _isVisible =>
+      _localOverride ?? DialogueStateController.showAllTranslations.value;
+
+  Color _getSpeakerColor(String speaker) {
+    final s = speaker.trim().toLowerCase();
+    if (s.contains('alex')) return const Color(0xFF2563EB); // Royal Blue
+    if (s.contains('pedro')) return const Color(0xFF0D9488); // Teal
+    if (s.contains('olga')) return const Color(0xFF9333EA); // Purple
+    if (s.contains('hanna')) return const Color(0xFFE11D48); // Rose
+    if (s.contains('päivi') || s.contains('paivi') || s.contains('opettaja')) return const Color(0xFFD97706); // Amber
+    if (s.contains('mikko')) return const Color(0xFF4F46E5); // Indigo
+    if (s.contains('kyllikki')) return const Color(0xFF0891B2); // Cyan
+    if (s.contains('jari')) return const Color(0xFFEA580C); // Orange
+    if (s.contains('janita')) return const Color(0xFFDB2777); // Pink
+    if (s.contains('myyjä') || s.contains('myyja') || s.contains('virkailija')) return const Color(0xFF059669); // Emerald
+    return const Color(0xFF475569); // Slate
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final color = _getSpeakerColor(widget.speaker);
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 2.5),
+      decoration: BoxDecoration(
+        color: _isVisible ? color.withValues(alpha: 0.04) : Colors.transparent,
+        borderRadius: BorderRadius.circular(8),
+        border: Border(
+          bottom: BorderSide(
+            color: _isVisible ? color.withValues(alpha: 0.15) : const Color(0xFFF1F5F9),
+            width: 1,
+          ),
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: () {
+            setState(() {
+              _localOverride = !_isVisible;
+            });
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Tên người nói dạng badge inline nhỏ gọn
+                    Container(
+                      margin: const EdgeInsets.only(top: 1, right: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: color.withValues(alpha: 0.12),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        widget.speaker,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.bold,
+                          color: color,
+                        ),
+                      ),
+                    ),
+                    // Câu tiếng Phần Lan nguyên văn
+                    Expanded(
+                      child: Text(
+                        widget.fi,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          height: 1.38,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF0F172A),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    // Icon dịch gọn gàng
+                    IconButton(
+                      icon: Icon(
+                        Icons.g_translate_rounded,
+                        size: 17,
+                        color: _isVisible ? color : const Color(0xFF94A3B8),
+                      ),
+                      tooltip: _isVisible ? 'Ẩn bản dịch' : 'Xem bản dịch',
+                      visualDensity: VisualDensity.compact,
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(minWidth: 26, minHeight: 26),
+                      onPressed: () {
+                        setState(() {
+                          _localOverride = !_isVisible;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                // Bản dịch hiển thị ngay dưới câu khi mở
+                if (_isVisible) ...[
+                  Container(
+                    margin: const EdgeInsets.only(top: 4, left: 4, bottom: 2),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: color.withValues(alpha: 0.06),
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border(
+                        left: BorderSide(color: color, width: 2.5),
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.vi,
+                          style: const TextStyle(
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF334155),
+                            height: 1.35,
+                          ),
+                        ),
+                        if (widget.note.isNotEmpty) ...[
+                          const SizedBox(height: 3),
+                          Text(
+                            '💡 ${widget.note}',
+                            style: const TextStyle(
+                              fontSize: 12,
+                              color: Color(0xFF92400E),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Thẻ đọc hiểu tương tác từng câu (không kèm tên nhân vật)
+class _InteractiveReaderCard extends StatefulWidget {
+  final String fi;
+  final String vi;
+  const _InteractiveReaderCard({required this.fi, required this.vi});
+
+  @override
+  State<_InteractiveReaderCard> createState() => _InteractiveReaderCardState();
+}
+
+class _InteractiveReaderCardState extends State<_InteractiveReaderCard> {
+  bool? _localOverride;
+
+  @override
+  void initState() {
+    super.initState();
+    DialogueStateController.showAllTranslations.addListener(_onGlobalChange);
+  }
+
+  @override
+  void dispose() {
+    DialogueStateController.showAllTranslations.removeListener(_onGlobalChange);
+    super.dispose();
+  }
+
+  void _onGlobalChange() {
+    if (mounted) {
+      setState(() {
+        _localOverride = null;
+      });
+    }
+  }
+
+  bool get _isVisible =>
+      _localOverride ?? DialogueStateController.showAllTranslations.value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 2.5),
+      decoration: BoxDecoration(
+        color: _isVisible ? const Color(0xFFF8FAFC) : Colors.transparent,
+        borderRadius: BorderRadius.circular(8),
+        border: const Border(
+          bottom: BorderSide(color: Color(0xFFF1F5F9), width: 1),
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: () {
+            setState(() {
+              _localOverride = !_isVisible;
+            });
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.fi,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          height: 1.38,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF0F172A),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    IconButton(
+                      icon: Icon(
+                        Icons.g_translate_rounded,
+                        size: 17,
+                        color: _isVisible ? const Color(0xFF0056D2) : const Color(0xFF94A3B8),
+                      ),
+                      tooltip: _isVisible ? 'Ẩn bản dịch' : 'Xem bản dịch',
+                      visualDensity: VisualDensity.compact,
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(minWidth: 26, minHeight: 26),
+                      onPressed: () {
+                        setState(() {
+                          _localOverride = !_isVisible;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                if (_isVisible) ...[
+                  Container(
+                    margin: const EdgeInsets.only(top: 4, left: 4, bottom: 2),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF1F5F9),
+                      borderRadius: BorderRadius.circular(6),
+                      border: const Border(
+                        left: BorderSide(color: Color(0xFF0056D2), width: 2.5),
+                      ),
+                    ),
+                    child: Text(
+                      widget.vi,
+                      style: const TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF334155),
+                        height: 1.35,
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

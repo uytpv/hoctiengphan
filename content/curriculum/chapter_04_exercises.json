@@ -1,0 +1,189 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w9_d1_mina_itse",
+      "title": "Giới thiệu bản thân & Ngoại hình (Kappale 4)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Để nói 'Tôi có mái tóc màu nâu và đôi mắt xanh lam', câu chuẩn tiếng Phần là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minulla on ruskeat hiukset ja siniset silmät.",
+            "Minulla on ruskea hius ja sininen silmä.",
+            "Minä olen ruskeat hiukset."
+          ],
+          "correctIndex": 0,
+          "explanation": "Hiukset (tóc) và silmät (đôi mắt) luôn dùng ở dạng số nhiều: ruskeat hiukset, siniset silmät."
+        },
+        {
+          "prompt": "Từ nào sau đây có nghĩa là 'cao lớn'?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "pitkä",
+            "lyhyt (thấp)",
+            "hoikka (thanh mảnh)"
+          ],
+          "correctIndex": 0,
+          "explanation": "pitkä = dài, cao; lyhyt = ngắn, thấp."
+        }
+      ]
+    },
+    {
+      "id": "ex_w9_d2_perhesanasto",
+      "title": "Từ vựng: Cây phả hệ Gia đình (Perhe)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "'Anh/Em trai' và 'Chị/Em gái' trong tiếng Phần Lan lần lượt là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "veli ja sisko",
+            "isä ja äiti",
+            "poika ja tytär"
+          ],
+          "correctIndex": 0,
+          "explanation": "veli = anh/em trai; sisko = chị/em gái."
+        },
+        {
+          "prompt": "'Bố mẹ' (cha mẹ) trong tiếng Phần là danh từ số nhiều:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "vanhemmat",
+            "isovanhemmat (ông bà)",
+            "lapset (con cái)"
+          ],
+          "correctIndex": 0,
+          "explanation": "vanhemmat = bố mẹ; isovanhemmat = ông bà."
+        }
+      ]
+    },
+    {
+      "id": "ex_w9_d3_vaatteet_varit",
+      "title": "Từ vựng: Quần áo (Vaatteet) & Màu sắc (Värit)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Màu 'musta' và 'valkoinen' lần lượt là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "đen và trắng",
+            "đỏ và xanh lá",
+            "vàng và xanh dương"
+          ],
+          "correctIndex": 0,
+          "explanation": "musta = màu đen, valkoinen = màu trắng."
+        },
+        {
+          "prompt": "Món đồ mặc vào mùa đông ấm áp 'takki' là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "áo khoác",
+            "quần bò (farkut)",
+            "giày (kengät)"
+          ],
+          "correctIndex": 0,
+          "explanation": "takki = áo khoác; talvitakki = áo khoác mùa đông."
+        }
+      ]
+    },
+    {
+      "id": "ex_w10_d1_partitiivi_saannot",
+      "title": "Ngữ pháp: Quy tắc chia đuôi Partitiivi",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Từ 'talo' kết thúc bằng 1 nguyên âm đơn (o). Đuôi Partitiivi là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "taloa (thêm -a)",
+            "talota",
+            "talotta"
+          ],
+          "correctIndex": 0,
+          "explanation": "Luật 1 Partitiivi: Tận cùng bằng 1 nguyên âm đơn -> thêm -a/-ä: talo -> taloa."
+        },
+        {
+          "prompt": "Từ 'maa' kết thúc bằng 2 nguyên âm (aa). Đuôi Partitiivi là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "maata (thêm -ta)",
+            "maaa",
+            "maassa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Luật 2 Partitiivi: Tận cùng bằng 2 nguyên âm hoặc 1 phụ âm -> thêm -ta/-tä: maa -> maata."
+        },
+        {
+          "prompt": "Động từ 'rakastaa' (yêu thương) bắt buộc đi với cách gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Partitiivi (Minä rakastan sinua)",
+            "Genetiivi (Minä rakastan sinun)",
+            "Nominatiivi (Minä rakastan sinä)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Động từ cảm xúc 'rakastaa' luôn đòi hỏi tân ngữ ở thể Partitiivi: sinä -> sinua."
+        }
+      ]
+    },
+    {
+      "id": "ex_w10_d3_minulla_on",
+      "title": "Cấu trúc sở hữu: Minulla on... / Minulla ei ole...",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Để nói 'Tôi có một chiếc xe đạp', câu chuẩn là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minulla on polkupyörä.",
+            "Minä on polkupyörä.",
+            "Minulla olen polkupyörä."
+          ],
+          "correctIndex": 0,
+          "explanation": "Cấu trúc sở hữu: [Người ở dạng -lla/-llä] + on + [vật sở hữu]: Minulla on..."
+        },
+        {
+          "prompt": "Khi nói 'Tôi KHÔNG có ô tô', từ 'auto' bắt buộc phải chuyển sang cách gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Partitiivi: Minulla ei ole autoa.",
+            "Giữ nguyên: Minulla ei ole auto.",
+            "Genetiivi: Minulla ei ole auton."
+          ],
+          "correctIndex": 0,
+          "explanation": "NGUYÊN TẮC VÀNG: Trong câu phủ định sở hữu 'ei ole', vật sở hữu LUÔN LUÔN ở thể Partitiivi: auto -> autoa!"
+        }
+      ]
+    },
+    {
+      "id": "ex_w11_d6_kiemtra_kappale4",
+      "title": "Đề kiểm tra đánh giá năng lực toàn diện Chương 4",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Dịch câu 'Chúng tôi có hai người con':",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Meillä on kaksi lasta.",
+            "Meillä on kaksi lapsi.",
+            "Me olemme kaksi lasta."
+          ],
+          "correctIndex": 0,
+          "explanation": "Sau số đếm lớn hơn 1 (kaksi), danh từ chia ở thể Partitiivi: lapsi -> lasta."
+        },
+        {
+          "prompt": "'Pedro asuu vaimon kanssa' có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Pedro sống cùng với vợ",
+            "Pedro sống một mình",
+            "Pedro tìm kiếm vợ"
+          ],
+          "correctIndex": 0,
+          "explanation": "Giới từ 'kanssa' (cùng với) luôn đi sau danh từ ở thể Genetiivi: vaimo -> vaimon kanssa."
+        }
+      ]
+    }
+  ]
+}

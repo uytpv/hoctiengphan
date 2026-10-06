@@ -1,0 +1,198 @@
+{
+  "title": "Tuần 18: Du lịch, Khách sạn & Quy luật Biến cách Danh từ (-i, -e, -nen)",
+  "description": "Bắt đầu Chương 7 (Kappale 7): Giao tiếp đặt phòng khách sạn, tiện ích đô thị và bí quyết chia 3 nhóm danh từ trọng tâm.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "theme": "Kappale 7: Du lịch & Đặt phòng Khách sạn",
+      "activities": [
+        {
+          "activityId": "w18_d1_act1",
+          "type": "LESSON",
+          "title": "Bài học: Du lịch & Đặt phòng khách sạn (Trang 184-188)",
+          "description": "Mở đầu Chương 7: Hội thoại nhận phòng khách sạn và từ vựng du lịch.",
+          "durationMinutes": 30,
+          "targetRefId": "w18_d1_tuvung_matkustaminen_hotelli",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc kỹ hội thoại đặt phòng của Pedro tại khách sạn."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học các cụm từ: yhden hengen huone, aamiainen, kuulua hintaan."
+            }
+          ]
+        },
+        {
+          "activityId": "w18_d1_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Từ vựng du lịch & khách sạn",
+          "description": "Kiểm tra khả năng ghi nhớ từ vựng khách sạn.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w18_d1_matkustussanasto",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Trả lời các câu hỏi trắc nghiệm tương tác."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "theme": "Khám phá Tiện ích Đô thị & Địa điểm Công cộng",
+      "activities": [
+        {
+          "activityId": "w18_d2_act1",
+          "type": "LESSON",
+          "title": "Bài học: Địa điểm & Tiện ích trong Đô thị (Trang 189-191)",
+          "description": "Học tên gọi các địa điểm: rautatieasema, kirjasto, apteekki, satama, kirpputori.",
+          "durationMinutes": 30,
+          "targetRefId": "w18_d2_tuvung_kaupungilla_palvelut",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ghi nhớ bảng từ vựng các địa điểm công cộng."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Thực hành mẫu câu hỏi đường: Missä on lähin apteekki?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "theme": "Ngữ pháp Trọng tâm: Nhóm Biến cách Danh từ -i, -e, -nen",
+      "activities": [
+        {
+          "activityId": "w18_d3_act1",
+          "type": "LESSON",
+          "title": "Bài học: Phân loại 3 nhóm Biến cách Danh từ Đặc biệt",
+          "description": "Nắm vững quy tắc biến đổi thân từ cho -i (từ mới vs từ cổ), -e nhân đôi và -nen biến thành -se-.",
+          "durationMinutes": 35,
+          "targetRefId": "w18_d3_nguphap_sanatyypit_i_e_nen",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Phân biệt từ mới vay mượn giữ -i và từ cổ đổi -i thành -e-."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Ghi nhớ quy tắc nhân đôi -ee- và đuôi -nen thành -se-."
+            }
+          ]
+        },
+        {
+          "activityId": "w18_d3_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Biến cách danh từ -i, -e, -nen",
+          "description": "Thực hành nhận diện và chia dạng đúng của từ.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w18_d3_sanatyypit_i_e_nen",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập tương tác trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "theme": "Immersion Đời sống: Văn hóa Chợ Trời Kirpputori",
+      "activities": [
+        {
+          "activityId": "w18_d4_act1",
+          "type": "SIGN",
+          "title": "Immersion: Khám phá Văn hóa Chợ Trời & Kierrätyskeskus",
+          "description": "Tìm hiểu thói quen mua sắm đồ cũ và lối sống bền vững của người Phần.",
+          "durationMinutes": 25,
+          "targetRefId": "sign_kirpputori_kierratyskeskus",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bài viết về mô hình Itsepalvelukirpputori."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học các cụm từ thông dụng: Uudenveroinen, Käytetty, Kelpaako kortti?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "theme": "Luyện Nghe & Phản xạ Hội thoại Du lịch",
+      "activities": [
+        {
+          "activityId": "w18_d5_act1",
+          "type": "LESSON",
+          "title": "Luyện phát âm & Nghe đối thoại tại Khách sạn",
+          "description": "Rèn luyện ngữ điệu tự nhiên khi giao tiếp với nhân viên lễ tân.",
+          "durationMinutes": 30,
+          "targetRefId": "w18_d1_tuvung_matkustaminen_hotelli",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc to từng câu thoại theo cặp Pedro và Lễ tân."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Tự đóng vai lễ tân trả lời khách du lịch."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 6,
+      "theme": "Thực hành Viết: Đoạn văn Giới thiệu Chuyến du lịch",
+      "activities": [
+        {
+          "activityId": "w18_d6_act1",
+          "type": "LESSON",
+          "title": "Thực hành viết: Kirjoita matkasta (Viết về kỳ nghỉ)",
+          "description": "Viết đoạn văn ngắn 5-8 câu mô tả chuyến du lịch của bạn đến một thành phố ở Phần Lan.",
+          "durationMinutes": 30,
+          "targetRefId": "w18_d2_tuvung_kaupungilla_palvelut",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Sử dụng các từ vựng: matkustaa, hotelli, juna, museo, tori."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Áp dụng cấu trúc vị trí nơi chốn -ssa / -lla."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 7,
+      "theme": "Tổng kết & Củng cố Tuần 18",
+      "activities": [
+        {
+          "activityId": "w18_d7_act1",
+          "type": "LESSON",
+          "title": "Tổng kết & Củng cố Tuần 18 (Kappale 7)",
+          "description": "Hệ thống hóa toàn bộ từ vựng và ngữ pháp tuần 18.",
+          "durationMinutes": 20,
+          "targetRefId": "w18_d7_tonghop_tuan18",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ôn lại bảng tóm tắt kiến thức."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

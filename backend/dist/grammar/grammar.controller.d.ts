@@ -8,10 +8,10 @@ export declare class GrammarController {
     getGrammarDetail(grammarId: string): Promise<import("@hoctiengphan/shared-types").GrammarTopic>;
     createGrammarTopic(dto: CreateGrammarDto): Promise<import("@hoctiengphan/shared-types").GrammarTopic>;
     updateGrammarTopic(grammarId: string, dto: UpdateGrammarDto): Promise<{
+        title?: string | undefined;
         chapter?: string | undefined;
         desc?: string | undefined;
         content?: any;
-        title?: string | undefined;
         id: string;
     }>;
     deleteGrammarTopic(grammarId: string): Promise<{

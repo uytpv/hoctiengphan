@@ -4,6 +4,147 @@ enum ActivityType { lesson, exercise, grammar, vocabulary }
 
 enum ActivityStatus { todo, inProgress, done }
 
+enum ActionItemType {
+  lessonFull,
+  lessonSlice,
+  vocabularySet,
+  grammarPoint,
+  exerciseSet,
+  immersionMusic,
+  immersionMovie,
+  immersionSign,
+  custom,
+}
+
+enum ActionItemStatus { todo, inProgress, done }
+
+class ActionStep {
+  const ActionStep({
+    required this.stepNumber,
+    required this.instruction,
+    this.tip,
+    this.isDone = false,
+  });
+
+  final int stepNumber;
+  final String instruction;
+  final String? tip;
+  final bool isDone;
+
+  ActionStep copyWith({bool? isDone}) {
+    return ActionStep(
+      stepNumber: stepNumber,
+      instruction: instruction,
+      tip: tip,
+      isDone: isDone ?? this.isDone,
+    );
+  }
+
+  factory ActionStep.fromMap(Map<String, dynamic> map) {
+    return ActionStep(
+      stepNumber: (map['stepNumber'] as num?)?.toInt() ?? 1,
+      instruction: map['instruction'] as String? ?? '',
+      tip: map['tip'] as String?,
+      isDone: map['isDone'] as bool? ?? false,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'stepNumber': stepNumber,
+      'instruction': instruction,
+      if (tip != null) 'tip': tip,
+      'isDone': isDone,
+    };
+  }
+}
+
+class DailyActionItem {
+  const DailyActionItem({
+    required this.id,
+    required this.type,
+    required this.title,
+    this.goal = '',
+    this.estimatedMinutes = 15,
+    this.targetRefId,
+    this.specificItemIds = const [],
+    this.steps = const [],
+    this.externalLink,
+    this.notes,
+    this.status = ActionItemStatus.todo,
+  });
+
+  final String id;
+  final ActionItemType type;
+  final String title;
+  final String goal;
+  final int estimatedMinutes;
+  final String? targetRefId;
+  final List<String> specificItemIds;
+  final List<ActionStep> steps;
+  final String? externalLink;
+  final String? notes;
+  final ActionItemStatus status;
+
+  DailyActionItem copyWith({
+    ActionItemStatus? status,
+    List<ActionStep>? steps,
+  }) {
+    return DailyActionItem(
+      id: id,
+      type: type,
+      title: title,
+      goal: goal,
+      estimatedMinutes: estimatedMinutes,
+      targetRefId: targetRefId,
+      specificItemIds: specificItemIds,
+      steps: steps ?? this.steps,
+      externalLink: externalLink,
+      notes: notes,
+      status: status ?? this.status,
+    );
+  }
+
+  factory DailyActionItem.fromMap(Map<String, dynamic> map) {
+    final rawType = map['type'] as String? ?? 'custom';
+    final actionType = ActionItemType.values.firstWhere(
+      (e) => e.name.toLowerCase() == rawType.toLowerCase(),
+      orElse: () {
+        if (rawType == 'lesson_full') return ActionItemType.lessonFull;
+        if (rawType == 'lesson_slice') return ActionItemType.lessonSlice;
+        if (rawType == 'vocabulary_set') return ActionItemType.vocabularySet;
+        if (rawType == 'grammar_point') return ActionItemType.grammarPoint;
+        if (rawType == 'exercise_set') return ActionItemType.exerciseSet;
+        if (rawType == 'immersion_music') return ActionItemType.immersionMusic;
+        if (rawType == 'immersion_movie') return ActionItemType.immersionMovie;
+        if (rawType == 'immersion_sign') return ActionItemType.immersionSign;
+        return ActionItemType.custom;
+      },
+    );
+
+    final rawSteps = (map['steps'] as List<dynamic>?) ?? [];
+    final rawItemIds = (map['specificItemIds'] as List<dynamic>?) ?? [];
+
+    return DailyActionItem(
+      id: map['id'] as String? ?? '',
+      type: actionType,
+      title: map['title'] as String? ?? '',
+      goal: map['goal'] as String? ?? '',
+      estimatedMinutes: (map['estimatedMinutes'] as num?)?.toInt() ?? 15,
+      targetRefId: map['targetRefId'] as String?,
+      specificItemIds: rawItemIds.map((e) => e.toString()).toList(),
+      steps: rawSteps
+          .map((s) => ActionStep.fromMap(Map<String, dynamic>.from(s as Map)))
+          .toList(),
+      externalLink: map['externalLink'] as String?,
+      notes: map['notes'] as String?,
+      status: map['isCompleted'] == true
+          ? ActionItemStatus.done
+          : ActionItemStatus.todo,
+    );
+  }
+}
+
 class Activity {
   const Activity({
     required this.id,
@@ -67,6 +208,7 @@ class Day {
     required this.name,
     this.activityIds = const [],
     this.activities = const [],
+    this.actions = const [],
   });
 
   final String id;
@@ -74,6 +216,7 @@ class Day {
   final String name; // e.g. "Thứ 2", "Thứ 3"
   final List<String> activityIds;
   final List<Activity> activities;
+  final List<DailyActionItem> actions;
 
   // For UI display
   String get titleFi => name;
@@ -82,29 +225,42 @@ class Day {
   String titleFor(String lang) => name;
 
   double get progress {
+    if (actions.isNotEmpty) {
+      final done =
+          actions.where((a) => a.status == ActionItemStatus.done).length;
+      return done / actions.length;
+    }
     if (activities.isEmpty) return 0;
     final done =
         activities.where((a) => a.status == ActivityStatus.done).length;
     return done / activities.length;
   }
 
-  Day copyWith({List<Activity>? activities}) {
+  Day copyWith({
+    List<Activity>? activities,
+    List<DailyActionItem>? actions,
+  }) {
     return Day(
       id: id,
       dayNumber: dayNumber,
       name: name,
       activityIds: activityIds,
       activities: activities ?? this.activities,
+      actions: actions ?? this.actions,
     );
   }
 
   factory Day.fromMap(int index, Map<String, dynamic> map) {
     final rawIds = (map['activityIds'] as List<dynamic>?) ?? [];
+    final rawActions = (map['actions'] as List<dynamic>?) ?? [];
     return Day(
       id: '${map['dayName'] ?? index}',
-      dayNumber: index,
+      dayNumber: (map['dayIndex'] as num?)?.toInt() ?? index,
       name: map['dayName'] as String? ?? 'Ngày ${index + 1}',
       activityIds: rawIds.map((e) => e.toString()).toList(),
+      actions: rawActions
+          .map((a) => DailyActionItem.fromMap(Map<String, dynamic>.from(a as Map)))
+          .toList(),
     );
   }
 }

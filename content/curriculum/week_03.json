@@ -1,0 +1,200 @@
+{
+  "id": "week_03",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 3,
+  "title": "Tháng 1 - Tuần 3: Quốc gia, Ngôn ngữ, Quầy kem & Động từ nhóm 1",
+  "description": "Bắt đầu Chương 2 (Kappale 2): Hội thoại Minkämaalainen sinä olet?, Quốc tịch, Ngôn ngữ, Giao tiếp quầy kem Jätskikiskalla, Biển hiệu Kioski & Grilli, Chia động từ nhóm 1 khẳng định và phủ định.",
+  "chapter": "Kappale 2",
+  "bookPages": "28-34, 37-38",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w3_d1_act1",
+          "type": "lesson_full",
+          "title": "Kappale 2: Hội thoại Minkämaalainen sinä olet? (Trang 28-30)",
+          "goal": "Nghe hiểu đoạn hội thoại giới thiệu quốc tịch, nơi ở và ngôn ngữ; phân biệt văn nói Puhekieli.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w3_d1_thoai_minkamaalainen",
+          "notes": "Audio Track 15 & Track 16",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe Track 15 (Kirjakieli) và đọc theo lời thoại của Pedro và Alex."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Nghe Track 16 (Puhekieli) để so sánh cách người Phần rút gọn câu thoại."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập phản xạ tương tác cuối bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w3_d2_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng: Quốc gia, Quốc tịch & Ngôn ngữ (Trang 31-32)",
+          "goal": "Thuộc bảng quy đổi 12 quốc gia, quốc tịch và ngôn ngữ phổ biến.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w3_d2_tuvung_quocgia_ngonngu",
+          "notes": "Audio Track 17 & Track 29",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe Track 17 đọc tiểu sử các nhân vật."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Ghi nhớ 3 nguyên tắc viết hoa tên nước, viết thường quốc tịch (-lainen) và ngôn ngữ (-a/-ä)."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập nghe nối Harjoitus 12 (Track 29)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w3_d3_act1",
+          "type": "lesson_slice",
+          "title": "Giao tiếp: Mua kem tại quầy Jätskikiskalla (Trang 33-34)",
+          "goal": "Thực hành phản xạ gọi món tại quầy kem và nghe số đếm văn nói.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w3_d3_giaotiep_jatskikiskalla",
+          "notes": "Audio Track 18 & Track 19",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe đoạn hội thoại mua kem mẫu Track 18."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Luyện nghe số đếm văn nói Track 19 (yks, kaks, viis, kymppi)."
+            }
+          ]
+        },
+        {
+          "id": "w3_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Biển hiệu: KIOSKI & GRILLI",
+          "goal": "Hiểu nét văn hóa ki-ốt và đồ ăn nhanh đường phố Phần Lan.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_kioski_grilli",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bài viết về văn hóa Grilli và món Makkaraperunat."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w3_d4_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Chia Động từ nhóm 1 (Verbityyppi 1) (Trang 37-38)",
+          "goal": "Nắm vững công thức tìm thân từ và gắn đuôi 6 ngôi của động từ nhóm 1.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w3_d4_nguphap_dongtunhom1",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học cách nhận biết động từ đuôi -a/-ä và quy tắc tìm thân từ."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Ghi nhớ bảng đuôi 6 ngôi (-n, -t, nhân đôi nguyên âm, -mme, -tte, -vat/-vät)."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Hoàn thành bài tập chia động từ mẫu."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w3_d5_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Thể phủ định của Động từ nhóm 1 (Trang 38)",
+          "goal": "Làm chủ cấu trúc câu phủ định en/et/ei/emme/ette/eivät + thân từ.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w3_d5_nguphap_phudinh_nhom1",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học 6 dạng của trợ động từ phủ định ei."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập chuyển câu khẳng định sang phủ định."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w3_d6_act1",
+          "type": "immersion_music",
+          "title": "Immersion Âm nhạc: Bài hát thiếu nhi Ihme ja kumma",
+          "goal": "Thư giãn nghe nhạc và luyện thính xạ từ vựng tiếng Phần.",
+          "estimatedMinutes": 15,
+          "targetRefId": "song_lastenlaulu_kappale2",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe bài hát và đọc lời dịch song ngữ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w3_d7_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 3 (Kappale 2)",
+          "goal": "Ôn lại các điểm kiến thức trọng tâm đã học trong tuần 3.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w3_d7_tonghop_tuan3",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc lại bản tóm tắt kiến thức tuần."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

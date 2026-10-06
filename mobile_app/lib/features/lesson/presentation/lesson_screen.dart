@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/localization/language_provider.dart';
 import '../../study_plan/data/study_plan_repository.dart';
 import '../../../core/common/widgets/markdown_content_renderer.dart';
+import '../../../core/common/widgets/sticky_lesson_audio_bar.dart';
+import '../../../core/services/lesson_audio_manager.dart';
 
 class LessonScreen extends ConsumerStatefulWidget {
   const LessonScreen({
@@ -36,6 +38,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
   // Theo dõi tương tác để tính toán tiến độ
   final ScrollController _scrollController = ScrollController();
   bool _hasScrolledToBottom = false;
+  bool _isHeaderCollapsed = false;
   final Set<String> _playedAudioUrls = {};
   final Set<String> _completedExerciseIds = {};
 
@@ -52,16 +55,24 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
 
   @override
   void dispose() {
+    LessonAudioManager.instance.reset();
     _scrollController.dispose();
     super.dispose();
   }
 
   void _onScroll() {
     if (!_scrollController.hasClients) return;
+    final currentScroll = _scrollController.position.pixels;
+
+    if (!_isHeaderCollapsed && currentScroll > 50) {
+      setState(() => _isHeaderCollapsed = true);
+    } else if (_isHeaderCollapsed && currentScroll < 20) {
+      setState(() => _isHeaderCollapsed = false);
+    }
+
     if (_hasScrolledToBottom) return;
 
     final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
     // Nếu cuộn gần tới cuối trang (cách 100px)
     if (maxScroll - currentScroll <= 100) {
       setState(() {
@@ -90,7 +101,57 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
 
       // 2. Tải bài học
       final doc = await db.collection('lessons').doc(widget.lessonId).get();
-      final data = doc.data();
+      Map<String, dynamic>? data = doc.data();
+
+      // Nếu không tìm thấy trong collection 'lessons', thử tìm trong 'immersion_resources'
+      if (data == null) {
+        final immDoc = await db.collection('immersion_resources').doc(widget.lessonId).get();
+        if (immDoc.exists && immDoc.data() != null) {
+          final imm = immDoc.data()!;
+          String synthesizedContent = imm['content'] as String? ?? '';
+          if (synthesizedContent.isEmpty) {
+            final ytId = imm['youtubeVideoId'] as String? ?? '';
+            final audioUrl = imm['audioUrl'] as String? ?? '';
+            final lyrics = imm['lyrics'] as String? ?? imm['textFi'] as String? ?? '';
+            final trans = imm['translationVi'] as String? ?? '';
+            
+            final sb = StringBuffer();
+            sb.writeln('# 🎬 ${imm['title'] ?? 'Tài liệu thực tế'}');
+            sb.writeln();
+            if (imm['description'] != null && (imm['description'] as String).isNotEmpty) {
+              sb.writeln('> 💡 ${imm['description']}');
+              sb.writeln();
+            }
+            if (ytId.isNotEmpty) {
+              sb.writeln('### 📺 Xem Video / Nghe bài hát');
+              sb.writeln('[video:$ytId]');
+              sb.writeln();
+            } else if (audioUrl.isNotEmpty) {
+              sb.writeln('### 🎧 Nghe Audio');
+              sb.writeln('[audio:$audioUrl]');
+              sb.writeln();
+            }
+            if (lyrics.isNotEmpty) {
+              sb.writeln('### 📜 Nội dung tiếng Phần Lan');
+              sb.writeln(lyrics);
+              sb.writeln();
+            }
+            if (trans.isNotEmpty) {
+              sb.writeln('### 🇻🇳 Bản dịch tiếng Việt');
+              sb.writeln(trans);
+              sb.writeln();
+            }
+            synthesizedContent = sb.toString();
+          }
+
+          data = {
+            'id': immDoc.id,
+            'title': imm['title'] ?? 'Tài liệu thực tế',
+            'chapter': imm['chapter'] ?? 'Kappale 1',
+            'content': synthesizedContent,
+          };
+        }
+      }
 
       if (data == null) {
         setState(() => _loading = false);
@@ -185,6 +246,23 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     }
   }
 
+  void _handleBack() {
+    if (widget.planId.isNotEmpty) {
+      final query = <String, String>{};
+      if (widget.weekId.isNotEmpty) query['weekId'] = widget.weekId;
+      if (widget.dayId.isNotEmpty) query['dayId'] = widget.dayId;
+      final uri = Uri(
+        path: '/study-plan/${widget.planId}',
+        queryParameters: query.isEmpty ? null : query,
+      );
+      context.go(uri.toString());
+    } else if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go('/');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final lang = ref.watch(languageProvider);
@@ -207,7 +285,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
               Text(lang == 'vi' ? 'Không thể tải bài học.' : 'Unable to load lesson.'),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () => context.go('/'),
+                onPressed: _handleBack,
                 child: Text(lang == 'vi' ? 'Quay lại' : 'Go back'),
               ),
             ],
@@ -221,19 +299,26 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
     final contentText = _lesson!['content'] as String? ?? '';
     final progress = _progressPercent;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          // Header bài học với Gradient
-          _LessonHeader(
-            title: title,
-            chapter: chapter,
-            done: _done,
-            lang: lang,
-            progress: progress,
-            onBack: () => context.go('/study-plan/${widget.planId}'),
-          ),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        _handleBack();
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            // Header bài học với Gradient (co giãn khi cuộn)
+            _LessonHeader(
+              title: title,
+              chapter: chapter,
+              done: _done,
+              lang: lang,
+              progress: progress,
+              onBack: _handleBack,
+              isCollapsed: _isHeaderCollapsed,
+            ),
 
           // Vùng cuộn bài đọc tương tác chính
           Expanded(
@@ -262,6 +347,9 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
             ),
           ),
 
+          // Thanh điều khiển âm thanh cố định khi scroll
+          const StickyLessonAudioBar(),
+
           // Bottom Bar hành động hoàn thành
           _CompleteBar(
             done: _done,
@@ -272,7 +360,8 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
           ),
         ],
       ),
-    );
+    ),
+  );
   }
 }
 
@@ -284,6 +373,7 @@ class _LessonHeader extends StatelessWidget {
     required this.lang,
     required this.progress,
     required this.onBack,
+    this.isCollapsed = false,
   });
 
   final String title;
@@ -292,10 +382,13 @@ class _LessonHeader extends StatelessWidget {
   final String lang;
   final double progress;
   final VoidCallback onBack;
+  final bool isCollapsed;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeInOut,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF0056D2), Color(0xFF3587FC)],
@@ -305,110 +398,165 @@ class _LessonHeader extends StatelessWidget {
       ),
       child: SafeArea(
         bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 4, 16, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: onBack,
-                    tooltip: lang == 'vi' ? 'Quay lại' : 'Back',
-                  ),
-                  const Spacer(),
-                  if (done)
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.white.withOpacity(0.4)),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AnimatedCrossFade(
+              duration: const Duration(milliseconds: 220),
+              crossFadeState: isCollapsed ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+              firstChild: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 4, 16, 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back, color: Colors.white),
+                          onPressed: onBack,
+                          tooltip: lang == 'vi' ? 'Quay lại' : 'Back',
+                        ),
+                        const Spacer(),
+                        if (done)
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.check_circle, color: Colors.white, size: 16),
+                                const SizedBox(width: 6),
+                                Text(
+                                  lang == 'vi' ? 'Đã hoàn thành' : 'Completed',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Wrap(
+                        spacing: 6,
                         children: [
-                          const Icon(Icons.check_circle, color: Colors.white, size: 16),
-                          const SizedBox(width: 6),
-                          Text(
-                            lang == 'vi' ? 'Đã hoàn thành' : 'Completed',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
+                          if (chapter.isNotEmpty)
+                            _WhiteChip(label: chapter),
+                          _WhiteChip(
+                            label: lang == 'vi' ? 'Bài học tương tác' : 'Interactive Lesson',
+                            icon: Icons.menu_book_rounded,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        title,
+                        style: GoogleFonts.nunito(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                          height: 1.3,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    // Thanh tiến trình học
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                lang == 'vi' ? 'Tiến độ học tập:' : 'Learning Progress:',
+                                style: const TextStyle(color: Colors.white70, fontSize: 12),
+                              ),
+                              Text(
+                                '${(progress * 100).toInt()}%',
+                                style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 6),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: LinearProgressIndicator(
+                              value: progress,
+                              backgroundColor: Colors.white.withValues(alpha: 0.2),
+                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+                              minHeight: 6,
                             ),
                           ),
                         ],
                       ),
                     ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Wrap(
-                  spacing: 6,
-                  children: [
-                    if (chapter.isNotEmpty)
-                      _WhiteChip(label: chapter),
-                    _WhiteChip(
-                      label: lang == 'vi' ? 'Bài học tương tác' : 'Interactive Lesson',
-                      icon: Icons.menu_book_rounded,
-                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  title,
-                  style: GoogleFonts.nunito(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
-                    height: 1.3,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              const SizedBox(height: 12),
-              // Thanh tiến trình học
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              secondChild: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 4, 16, 6),
+                child: Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          lang == 'vi' ? 'Tiến độ học tập:' : 'Learning Progress:',
-                          style: const TextStyle(color: Colors.white70, fontSize: 12),
-                        ),
-                        Text(
-                          '${(progress * 100).toInt()}%',
-                          style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.white, size: 22),
+                      onPressed: onBack,
+                      tooltip: lang == 'vi' ? 'Quay lại' : 'Back',
+                      visualDensity: VisualDensity.compact,
                     ),
-                    const SizedBox(height: 6),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: progress,
-                        backgroundColor: Colors.white.withOpacity(0.2),
-                        valueColor: const AlwaysStoppedAnimation<Color>(Colors.greenAccent),
-                        minHeight: 6,
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: GoogleFonts.nunito(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    if (done) ...[
+                      const Icon(Icons.check_circle, color: Colors.greenAccent, size: 16),
+                      const SizedBox(width: 4),
+                    ],
+                    Text(
+                      '${(progress * 100).toInt()}%',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+            if (isCollapsed)
+              LinearProgressIndicator(
+                value: progress,
+                backgroundColor: Colors.white.withValues(alpha: 0.2),
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+                minHeight: 2,
+              ),
+          ],
         ),
       ),
     );
@@ -425,7 +573,7 @@ class _WhiteChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.2),
+        color: Colors.white.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -500,7 +648,7 @@ class _CompleteBar extends StatelessWidget {
                 ? Colors.green 
                 : !canComplete 
                     ? Colors.grey.shade300 
-                    : Colors.blueAccent.withOpacity(0.6),
+                    : Colors.blueAccent.withValues(alpha: 0.6),
             disabledForegroundColor: !canComplete ? Colors.grey.shade600 : Colors.white,
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),

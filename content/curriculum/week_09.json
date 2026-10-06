@@ -1,0 +1,173 @@
+{
+  "id": "week_09",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 9,
+  "title": "Tháng 3 - Tuần 9: Khởi động Chương 4: Bản thân, Gia đình & Quần áo",
+  "description": "Bắt đầu Chương 4 (Kappale 4): Hội thoại Minä (Trang 86-88), Cây phả hệ Gia đình Perhe (Trang 89-91), Quần áo Vaatteet & Màu sắc Värit (Trang 92-94), Cửa hàng thời trang mùa đông Phần Lan.",
+  "chapter": "Kappale 4",
+  "bookPages": "86-94, 100-102",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w9_d1_act1",
+          "type": "lesson_full",
+          "title": "Kappale 4: Hội thoại Minä - Giới thiệu bản thân & Ngoại hình (Trang 86-88)",
+          "goal": "Học cách miêu tả chiều cao, vóc dáng, màu tóc, màu mắt.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w9_d1_thoai_mina",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bài giới thiệu của Alex và Pedro."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác miêu tả ngoại hình."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w9_d2_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng: Cây phả hệ Gia đình (Perhe) (Trang 89-91)",
+          "goal": "Nắm vững danh xưng bố mẹ, con cái, anh chị em, ông bà.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w9_d2_tuvung_perhe",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học bảng phả hệ gia đình."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập trắc nghiệm gia đình."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w9_d3_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng: Quần áo (Vaatteet) & Màu sắc (Värit) (Trang 92-94)",
+          "goal": "Thuộc 10 màu sắc và tên các trang phục mùa đông.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w9_d3_tuvung_vaatteet_varit",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học bảng màu sắc và quần áo thường ngày."
+            }
+          ]
+        },
+        {
+          "id": "w9_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Biển hiệu: Cửa hàng thời trang & Bảng size Phần Lan",
+          "goal": "Biết cách mua sắm quần áo ấm tại Phần Lan.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_vaatekauppa_hm",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc cẩm nang mua sắm quần áo mùa đông."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w9_d4_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 1 - 8 Chương 4 (Trang 100-102)",
+          "goal": "Làm bài tập từ vựng gia đình và màu sắc.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w9_d1_thoai_mina",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành giải các bài tập trong sách."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w9_d5_act1",
+          "type": "lesson_slice",
+          "title": "Thực hành: Viết 5 câu giới thiệu bản thân và người thân",
+          "goal": "Tự viết đoạn văn ngắn về gia đình mình.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w9_d1_thoai_mina",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Tập viết các câu miêu tả tên, tuổi, ngoại hình."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w9_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 9 (Kappale 4)",
+          "goal": "Ôn tập toàn bộ kiến thức tuần 9.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w9_d7_tonghop_tuan9",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tóm tắt tuần 9."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w9_d7_act1",
+          "type": "custom",
+          "title": "Nghỉ ngơi nạp năng lượng (Ota rennosti)",
+          "goal": "Thư giãn cuối tuần.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w9_d7_tonghop_tuan9",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi thư giãn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

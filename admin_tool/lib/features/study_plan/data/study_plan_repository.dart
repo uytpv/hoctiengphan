@@ -56,16 +56,20 @@ class StudyPlanRepository {
 
   Stream<List<StudyPlanWeek>> getWeeksForPlan(String planId) => _weekCollection
       .where('planId', isEqualTo: planId)
-      .orderBy('weekNumber')
       .snapshots()
-      .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
+      .map((snapshot) {
+        final weeks = snapshot.docs.map((doc) => doc.data()).toList();
+        weeks.sort((a, b) => a.weekNumber.compareTo(b.weekNumber));
+        return weeks;
+      });
 
   Future<List<StudyPlanWeek>> getWeeksForPlanOnce(String planId) async {
     final snapshot = await _weekCollection
         .where('planId', isEqualTo: planId)
-        .orderBy('weekNumber')
         .get();
-    return snapshot.docs.map((doc) => doc.data()).toList();
+    final weeks = snapshot.docs.map((doc) => doc.data()).toList();
+    weeks.sort((a, b) => a.weekNumber.compareTo(b.weekNumber));
+    return weeks;
   }
 
   Future<List<StudyPlan>> getPlansOnce() async {

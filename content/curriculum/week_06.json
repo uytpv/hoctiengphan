@@ -1,0 +1,182 @@
+{
+  "id": "week_06",
+  "planId": "6iWorOc6mZtnINIFBH8a",
+  "weekNumber": 6,
+  "title": "Tháng 2 - Tuần 6: Khởi động Chương 3: Thời tiết, Gọi điện & Tính từ",
+  "description": "Bắt đầu Chương 3 (Kappale 3): Hội thoại gọi điện Pedro soittaa Mikolle (Track 33 & 34), Các cặp tính từ đối lập Adjektiivit (Track 38), Từ vựng Thời tiết Sää & 4 Mùa (Track 39), Nghe 5 đoạn hội thoại thời tiết (Track 40-44) và Phát âm nguyên âm kép Diftongit (Track 36, 37).",
+  "chapter": "Kappale 3",
+  "bookPages": "56-62, 68, 72",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w6_d1_act1",
+          "type": "lesson_full",
+          "title": "Kappale 3: Hội thoại Pedro soittaa Mikolle (Trang 56-58)",
+          "goal": "Học cách nghe gọi điện thoại và hỏi thăm thời tiết, lên lịch hẹn cuối tuần.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w6_d1_thoai_pedro_soittaa_mikolle",
+          "notes": "Audio Track 33 & 34",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe Track 33 (Kirjakieli) và Track 34 (Puhekieli)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập phản xạ hội thoại điện thoại."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w6_d2_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng: Các cặp Tính từ miêu tả đối lập (Trang 59-60)",
+          "goal": "Nắm vững 10 cặp tính từ miêu tả đối lập quan trọng nhất.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w6_d2_tuvung_adjektiivit",
+          "notes": "Audio Track 38",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học các cặp kuuma/kylmä, kaunis/ruma, helppo/vaikea."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập tương tác tính từ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w6_d3_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng: Thời tiết, 4 Mùa & 12 Tháng (Trang 61-62)",
+          "goal": "Học cách dự báo thời tiết và thuộc tên 4 mùa, 12 tháng.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w6_d3_tuvung_saa_vuodenajat",
+          "notes": "Audio Track 39",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe Track 39 về thời tiết các thành phố."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm bài tập trắc nghiệm thời tiết."
+            }
+          ]
+        },
+        {
+          "id": "w6_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Đời sống: Đọc bản tin thời tiết Selkosuomi",
+          "goal": "Làm quen với tiếng Phần giản lược trên đài Yle.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_yle_uutiset_selkosuomeksi",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bản tin thời tiết mẫu Yle Uutiset selkosuomeksi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w6_d4_act1",
+          "type": "lesson_slice",
+          "title": "Luyện nghe: 5 Đoạn hội thoại Thời tiết thực tế (Trang 72)",
+          "goal": "Rèn luyện đôi tai qua 5 mẩu hội thoại ngắn Track 40-44.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w6_d4_luyennghe_saakeskustelu",
+          "notes": "Audio Track 40-44",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe từng đoạn đối thoại Track 40, 41, 42, 43, 44."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w6_d5_act1",
+          "type": "lesson_slice",
+          "title": "Phát âm: Nguyên âm ghép (Diftongit) (Trang 68)",
+          "goal": "Phát âm chuẩn xác các cặp nguyên âm uo, yö, ie qua Track 36 & 37.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w6_d5_phatam_diftongit",
+          "notes": "Audio Track 36 & 37",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe và phát âm theo Track 36 & Track 37."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w6_d6_act1",
+          "type": "custom",
+          "title": "Tổng kết & Củng cố Tuần 6 (Kappale 3)",
+          "goal": "Ôn tập toàn bộ kiến thức tuần 6.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w6_d7_tonghop_tuan6",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc tóm tắt tuần 6."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w6_d7_act1",
+          "type": "custom",
+          "title": "Ota rennosti: Nghỉ ngơi & Thư giãn cuối tuần",
+          "goal": "Nạp năng lượng cho tuần mới.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w6_d7_tonghop_tuan6",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi thư giãn."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

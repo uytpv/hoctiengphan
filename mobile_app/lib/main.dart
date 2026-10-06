@@ -10,7 +10,8 @@ import 'core/navigation/app_router.dart';
 import 'core/theme/app_theme.dart';
 
 // Toggle this to true if you are running Firebase Emulators locally
-const bool useEmulator = true;
+// Default is false to connect to Production Firebase
+const bool useEmulator = false;
 
 Future<void> main() async {
   try {

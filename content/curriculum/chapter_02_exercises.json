@@ -1,0 +1,378 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w3_d1_minkamaalainen",
+      "title": "Quốc gia, Quốc tịch & Ngôn ngữ (Kappale 2)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Câu hỏi 'Minkämaalainen sinä olet?' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Bạn là người nước nào? (Quốc tịch gì?)",
+            "Bạn sống ở đâu?",
+            "Bạn nói tiếng gì?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Minkämaalainen' hỏi về quốc tịch/nguồn gốc xuất xứ. 'Minkä' (gì) + 'maa' (đất nước) + '-lainen' (hậu tố người)."
+        },
+        {
+          "prompt": "Người Việt Nam trong tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "vietnamilainen",
+            "vietnam",
+            "vietnamia"
+          ],
+          "correctIndex": 0,
+          "explanation": "Thêm đuôi '-lainen/-läinen' vào tên nước để tạo quốc tịch: Vietnam -> vietnamilainen."
+        },
+        {
+          "prompt": "Để nói 'Tôi nói tiếng Phần Lan', câu chuẩn là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minä puhun suomea.",
+            "Minä puhun suomalainen.",
+            "Minä puhun Suomi."
+          ],
+          "correctIndex": 0,
+          "explanation": "Động từ 'puhua' (nói) luôn đi với tân ngữ ở dạng Partitiivi: suomi -> suomea."
+        }
+      ]
+    },
+    {
+      "id": "ex_w3_d2_kielet_maat",
+      "title": "Nối Quốc gia & Ngôn ngữ (Harjoitus 12)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Đất nước 'Ranska' (Nước Pháp) nói tiếng gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "ranskaa (tiếng Pháp)",
+            "saksaa (tiếng Đức)",
+            "espanjaa (tiếng Tây Ban Nha)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ranska -> ranska / ranskaa."
+        },
+        {
+          "prompt": "Đất nước 'Saksa' (Nước Đức) nói tiếng gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "saksaa (tiếng Đức)",
+            "venäjää (tiếng Nga)",
+            "englantia (tiếng Anh)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Saksa -> saksa / saksaa."
+        },
+        {
+          "prompt": "Đất nước 'Venäjä' (Nước Nga) người dân là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "venäläinen",
+            "venäjäläinen",
+            "venäjäinen"
+          ],
+          "correctIndex": 0,
+          "explanation": "Venäjä -> venäläinen (quy tắc biến đổi đuôi -läinen)."
+        }
+      ]
+    },
+    {
+      "id": "ex_w3_d3_jatskikiskalla",
+      "title": "Giao tiếp mua kem tại quầy Jätskikiskalla",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Trong văn nói đời thường, 'jäätelökioski' (quầy kem) được người Phần gọi tắt là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "jätskikispa / jätskikiska",
+            "kioski jäätelö",
+            "jäätelökauppa"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Jätski' là tiếng lóng rất phổ biến của 'jäätelö' (kem), 'kiska' là từ lóng của 'kioski'."
+        },
+        {
+          "prompt": "Khi mua hàng, mẫu câu lịch sự 'Cho tôi xin một cây kem vani' là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Yksi vaniljajäätelö, kiitos!",
+            "Minä haluan vaniljajäätelö!",
+            "Anna minulle jäätelö!"
+          ],
+          "correctIndex": 0,
+          "explanation": "Trong văn hóa Phần Lan, chỉ cần nói '[Món đồ] + kiitos!' là cách gọi món tự nhiên và chuẩn mực nhất."
+        }
+      ]
+    },
+    {
+      "id": "ex_w3_d4_dongtunhom1",
+      "title": "Chia động từ nhóm 1 (Verbityyppi 1)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Động từ 'puhua' (nói) chia cho ngôi 'hän' (anh ấy/cô ấy) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "hän puhuu",
+            "hän puhu",
+            "hän puhuvat"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc ngôi thứ 3 số ít (hän) của nhóm 1: Bỏ đuôi -a/-ä, nhân đôi nguyên âm cuối cùng: puhu- -> puhuu."
+        },
+        {
+          "prompt": "Động từ 'asua' (sống/cư trú) chia cho ngôi 'me' (chúng tôi) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "me asumme",
+            "me asutte",
+            "me asuvat"
+          ],
+          "correctIndex": 0,
+          "explanation": "Đuôi của ngôi 'me' là '-mme': asu- + mme = asumme."
+        },
+        {
+          "prompt": "Động từ 'kysyä' (hỏi) chia cho ngôi 'he' (họ) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "he kysyvät",
+            "he kysyvat",
+            "he kysyy"
+          ],
+          "correctIndex": 0,
+          "explanation": "Do 'kysyä' chứa nguyên âm 'y' (nguyên âm trước), đuôi ngôi 'he' phải chọn '-vät' theo luật hài hòa nguyên âm."
+        }
+      ]
+    },
+    {
+      "id": "ex_w3_d5_phudinh_nhom1",
+      "title": "Thể phủ định của động từ nhóm 1",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "'Tôi không nói tiếng Nga' được dịch sang tiếng Phần là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "En puhu venäjää.",
+            "Ei puhu venäjää.",
+            "En puhun venäjää."
+          ],
+          "correctIndex": 0,
+          "explanation": "Động từ phủ định chia theo ngôi 'minä' là 'en', động từ chính giữ nguyên thân từ cấp yếu không chia đuôi cá nhân: en puhu."
+        },
+        {
+          "prompt": "'Họ không sống ở Helsinki' là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "He eivät asu Helsingissä.",
+            "He ei asu Helsingissä.",
+            "He eivät asuvat Helsingissä."
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi 'he' đi với động từ phủ định 'eivät' + thân từ 'asu'."
+        }
+      ]
+    },
+    {
+      "id": "ex_w4_d1_kpt_astevaihtelu",
+      "title": "Hiện tượng biến âm K-P-T (Astevaihtelu)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Cặp biến âm nào sau đây là biến âm K-P-T định lượng (Quantitative)?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kk -> k, tt -> t, pp -> p",
+            "k -> -, p -> v, t -> d",
+            "nt -> nn, lt -> ll, rt -> rr"
+          ],
+          "correctIndex": 0,
+          "explanation": "Biến âm định lượng là giảm từ 2 phụ âm giống nhau (âm đôi mạnh) xuống còn 1 phụ âm (âm đơn yếu): kk->k, tt->t, pp->p."
+        },
+        {
+          "prompt": "Động từ 'nukkua' (ngủ) có 'kk'. Khi chia ở ngôi 'minä' (âm tiết đóng), từ sẽ biến thành:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "nukun",
+            "nukkuun",
+            "nukkun"
+          ],
+          "correctIndex": 0,
+          "explanation": "kk biến thành k ở ngôi minä (cấp yếu): minä nukun."
+        },
+        {
+          "prompt": "Động từ 'kirjoittaa' (viết) chia ở ngôi 'hän' (âm tiết mở) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "hän kirjoittaa",
+            "hän kirjoitaa",
+            "hän kirjoitan"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi hän giữ nguyên cấp MẠNH (vahva aste): tt giữ nguyên là tt -> hän kirjoittaa."
+        }
+      ]
+    },
+    {
+      "id": "ex_w4_d2_phatam_phuamdoi",
+      "title": "Luyện phát âm phụ âm đơn vs phụ âm đôi",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Từ 'tapaa' (gặp gỡ) và 'tappaa' (giết) khác nhau ở:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Độ dài của phụ âm p: 'tapaa' p ngắn nhẹ, 'tappaa' giữ hơi môi p lâu gấp đôi",
+            "Khác nhau ở nguyên âm a",
+            "Phát âm hoàn toàn giống nhau"
+          ],
+          "correctIndex": 0,
+          "explanation": "Phụ âm đôi trong tiếng Phần Lan đòi hỏi người nói phải giữ chặt vị trí cấu âm (ngậm môi/giữ lưỡi) lâu gấp đôi trước khi nhả âm."
+        },
+        {
+          "prompt": "Từ nào sau đây có nghĩa là 'con mèo'?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kissa (phụ âm đôi ss)",
+            "kisa (cuộc thi - s đơn)",
+            "kassi (cái túi)"
+          ],
+          "correctIndex": 0,
+          "explanation": "'kissa' = con mèo. Nếu phát âm nhầm s đơn 'kisa' sẽ thành cuộc thi!"
+        }
+      ]
+    },
+    {
+      "id": "ex_w4_d3_cauhoi_koko_tudehoi",
+      "title": "Câu hỏi nghi vấn -ko/-kö & Từ để hỏi",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Để biến câu 'Sinä puhut suomea' thành câu hỏi 'Bạn có nói tiếng Phần Lan không?', ta nói:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Puhutko sinä suomea?",
+            "Sinä puhutko suomea?",
+            "Onko sinä puhut suomea?"
+          ],
+          "correctIndex": 0,
+          "explanation": "Đưa động từ lên đầu câu và gắn hậu tố -ko/-kö: Puhut + ko = Puhutko sinä suomea?"
+        },
+        {
+          "prompt": "Từ để hỏi 'Missä' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Ở đâu?",
+            "Từ đâu đến?",
+            "Đi đâu?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Missä' = Ở đâu (vị trí tĩnh). 'Mistä' = Từ đâu đến. 'Mihin' = Đi tới đâu."
+        }
+      ]
+    },
+    {
+      "id": "ex_w4_d4_sodem_hinnat",
+      "title": "Số đếm mở rộng & Giá cả (Hinnat)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Số 25 trong tiếng Phần Lan viết là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kaksikymmentäviisi",
+            "viisikymmentäkaksi",
+            "kaksikymmentä"
+          ],
+          "correctIndex": 0,
+          "explanation": "kaksi (2) + kymmentä (mươi/chục) + viisi (5) = kaksikymmentäviisi."
+        },
+        {
+          "prompt": "Giá tiền '3,50 €' đọc chuẩn là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kolme euroa viisikymmentä senttiä",
+            "kolme viisikymmentä euro",
+            "viisi euroa kolmekymmentä"
+          ],
+          "correctIndex": 0,
+          "explanation": "Sau số đếm lớn hơn 1, euro ở dạng partitiivi: 'kolme euroa' + số xu 'viisikymmentä senttiä'."
+        }
+      ]
+    },
+    {
+      "id": "ex_w5_d1_harjoitus16_22",
+      "title": "Thực hành chia động từ KPT tổng hợp",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Động từ 'lukea' (đọc): k biến mất (-) ở cấp yếu. 'Tôi đọc sách' là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minä luen kirjaa.",
+            "Minä luken kirjaa.",
+            "Minä lukeen kirjaa."
+          ],
+          "correctIndex": 0,
+          "explanation": "lukea -> thân từ cấp yếu: lue- -> minä luen."
+        },
+        {
+          "prompt": "Động từ 'tietää' (biết): t biến thành d ở cấp yếu. 'Tôi không biết' là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "En tiedä.",
+            "En tietää.",
+            "En tietä."
+          ],
+          "correctIndex": 0,
+          "explanation": "Cụm từ cửa miệng kinh điển: 'En tiedä' (Tôi không biết)."
+        }
+      ]
+    },
+    {
+      "id": "ex_w5_d5_kiemtra_kappale2",
+      "title": "Đề kiểm tra đánh giá năng lực Chương 2",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Chọn câu viết đúng ngữ pháp hoàn chỉnh:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Pedro asuu Suomessa ja puhuu portugalia.",
+            "Pedro asu Suomessa ja puhu portugali.",
+            "Pedro asuvat Suomessa ja puhuvat portugalia."
+          ],
+          "correctIndex": 0,
+          "explanation": "Pedro (hän) đi với động từ nhân đôi nguyên âm cuối: asuu, puhuu; tiếng nói ở dạng partitiivi: portugalia."
+        },
+        {
+          "prompt": "Khi muốn hỏi 'Quyển sách này giá bao nhiêu?', ta hỏi:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Paljonko tämä kirja maksaa?",
+            "Mikä tämä kirja maksaa?",
+            "Kuka tämä kirja on?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Paljonko [món đồ] maksaa?' là câu hỏi giá phổ biến và chính xác nhất."
+        },
+        {
+          "prompt": "Quy tắc K-P-T áp dụng khi nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Ở ngôi minä, sinä, me, te (âm tiết đóng) chia ở cấp YẾU; ngôi hän, he (âm tiết mở) giữ cấp MẠNH",
+            "Áp dụng cho tất cả các ngôi như nhau",
+            "Chỉ áp dụng cho câu phủ định"
+          ],
+          "correctIndex": 0,
+          "explanation": "Đây là nguyên lý cốt lõi của Astevaihtelu trong động từ nhóm 1."
+        }
+      ]
+    }
+  ]
+}

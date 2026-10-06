@@ -1,0 +1,294 @@
+{
+  "id": "week_01",
+  "planId": "suomen_mestari_1",
+  "weekNumber": 1,
+  "title": "Tháng 1 - Tuần 1: Chào hỏi, Phát âm, Bảng chữ cái & Hài hòa nguyên âm",
+  "description": "Làm quen với tiếng Phần Lan căn bản qua bài học đầu tiên (Kappale 1), bảng chữ cái, phát âm nguyên âm ngắn/dài, quy tắc Hài hòa nguyên âm sống còn, số đếm 0-10 và nhận diện biển báo Tervetuloa.",
+  "chapter": "Kappale 1",
+  "bookPages": "10-15, 18-21",
+  "days": [
+    {
+      "dayIndex": 1,
+      "dayName": "Thứ 2",
+      "actions": [
+        {
+          "id": "w1_d1_act1",
+          "type": "lesson_full",
+          "title": "Kappale 1: Hội thoại Hei ja tervetuloa! (Trang 10-11)",
+          "goal": "Nghe hiểu đoạn hội thoại làm quen đầu tiên, làm quen văn nói Puhekieli và thực hành chào hỏi tên tuổi.",
+          "estimatedMinutes": 30,
+          "targetRefId": "w1_d1_thoai_heijatervetuloa",
+          "notes": "Audio Track 02 & Track 03",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe đoạn hội thoại mẫu Track 02 (Kirjakieli) và đọc theo từng câu thoại của Alex và Pedro."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "So sánh cách phát âm chuẩn và dạng rút gọn đời thường ở Track 03 (Puhekieli): Minä olen -> Mä oon, Sinä olet -> Sä oot."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập trắc nghiệm phản xạ tương tác cuối bài để ghi nhớ kiến thức."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 2,
+      "dayName": "Thứ 3",
+      "actions": [
+        {
+          "id": "w1_d2_act1",
+          "type": "vocabulary_set",
+          "title": "Từ vựng cốt lõi & Cụm từ chào hỏi (Trang 12-13)",
+          "goal": "Làm chủ 4 lời chào theo buổi trong ngày và 25 từ vựng xuất hiện trong hội thoại Chương 1.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w1_d2_tuvung_chaohoi",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học 4 lời chào theo buổi: Hyvää huomenta!, Hyvää päivää!, Hyvää iltaa!, Hyvää yötä! / Nuku hyvin!."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm chủ 25 từ vựng căn bản của Chương 1."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập tương tác kiểm tra phản xạ lời chào."
+            }
+          ]
+        },
+        {
+          "dayIndex": 2,
+          "id": "w1_d2_act2",
+          "type": "exercise_set",
+          "title": "Luyện phát âm: Nguyên âm ngắn & dài (Trang 18)",
+          "goal": "Phân biệt chính xác nguyên âm đơn và nguyên âm đôi (ngắn vs dài) qua Harjoitus 1 & 2.",
+          "estimatedMinutes": 15,
+          "targetRefId": "w1_d2_phatam_nguyenam",
+          "notes": "Audio Track 07 & Track 08",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe Track 07 và phát âm 8 nguyên âm tiếng Phần Lan (đặc biệt chú ý Y, Ä, Ö)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Nghe Track 08 và phát âm phân biệt nguyên âm ngắn vs dài: tuli - tuuli, muta - muuta."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Hoàn thành bài tập trắc nghiệm phân biệt phát âm tương tác."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 3,
+      "dayName": "Thứ 4",
+      "actions": [
+        {
+          "id": "w1_d3_act1",
+          "type": "grammar_point",
+          "title": "Ngữ pháp: Quy tắc Hài hòa nguyên âm (Trang 19)",
+          "goal": "Hiểu bản chất tại sao tiếng Phần Lan chia đuôi từ theo -a/-ä, -ssa/-ssä (Vokaaliharmonia).",
+          "estimatedMinutes": 20,
+          "targetRefId": "w1_d3_nguphap_vokaaliharmonia",
+          "notes": "Audio Track 09",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nắm vững 3 nhóm nguyên âm: Nhóm sau (A, O, U), Nhóm trước (Ä, Ö, Y) và Nhóm trung tính (E, I)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Áp dụng quy tắc chọn đuôi tiếp vĩ ngữ (-ssa/-ssä, -ko/-kö, -a/-ä)."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập tương tác Harjoitus 3 & 4 về Hài hòa nguyên âm."
+            }
+          ]
+        },
+        {
+          "id": "w1_d3_act2",
+          "type": "immersion_sign",
+          "title": "Immersion Biển báo: Chào mừng - TERVETULOA!",
+          "goal": "Nhận diện biển hiệu Tervetuloa tại cửa hàng, sân bay và hiểu văn hóa đón tiếp Phần Lan.",
+          "estimatedMinutes": 10,
+          "targetRefId": "sign_tervetuloa",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Tìm hiểu nguồn gốc cấu tạo từ Tervetuloa (terve + tuloa)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học mẫu câu 'Tervetuloa meille!' và cách đáp lại lịch sự 'Kiitos!'."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập trắc nghiệm tương tác về biển báo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 4,
+      "dayName": "Thứ 5",
+      "actions": [
+        {
+          "id": "w1_d4_act1",
+          "type": "lesson_slice",
+          "title": "Bảng chữ cái (Aakkoset) & Số đếm 0-10 (Trang 14-16)",
+          "goal": "Học phát âm chuẩn 29 chữ cái tiếng Phần Lan và làm chủ số đếm từ 0 đến 10.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w1_d4_bangchucai_sodem",
+          "notes": "Audio Track 04 & Track 05",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe Track 04 phát âm bảng chữ cái và tập đánh vần tên cá nhân."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Nghe Track 05 đếm số từ 0 (nolla) đến 10 (kymmenen)."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập số đếm & chữ cái tương tác."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 5,
+      "dayName": "Thứ 6",
+      "actions": [
+        {
+          "id": "w1_d5_act1",
+          "type": "exercise_set",
+          "title": "Bài tập thực hành: Harjoitus 5, 6A, 6B (Trang 20-21)",
+          "goal": "Luyện tai nghe phân biệt nguyên âm và áp dụng hài hòa nguyên âm vào bài tập tương tác.",
+          "estimatedMinutes": 25,
+          "targetRefId": "w1_d5_baitap_harjoitus567",
+          "notes": "Audio Track 10",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm tương tác Harjoitus 5: Nghe Track 10 và chọn từ bạn nghe thấy."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm tương tác Harjoitus 6A: Chọn đuôi địa điểm -ssa hay -ssä cho các thành phố Phần Lan."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm tương tác Harjoitus 6B: Chọn đuôi bổ ngữ -a hay -ä cho đồ uống và món ăn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 6,
+      "dayName": "Thứ 7",
+      "actions": [
+        {
+          "id": "w1_d6_act1",
+          "type": "exercise_set",
+          "title": "Bài tập củng cố: Harjoitus 7, 8, 9, 10 (Trang 21-22)",
+          "goal": "Hoàn thành các bài tập giao tiếp theo tình huống và bài nghe chép số điện thoại.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w1_d6_ngaythang_harjoitus8910",
+          "notes": "Audio Track 11",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm tương tác Harjoitus 7: Chọn câu chào hỏi theo tình huống giao tiếp thực tế."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Làm tương tác Harjoitus 8: Nối câu đối thoại hỏi đáp chuẩn."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm tương tác Harjoitus 10: Nghe Track 11 và chọn số điện thoại của Alex, Pedro, Olga."
+            }
+          ]
+        },
+        {
+          "id": "w1_d6_act2",
+          "type": "immersion_music",
+          "title": "Immersion Âm Nhạc: Bài hát số đếm Numerolaulu (1-10)",
+          "goal": "Ghi nhớ số đếm qua giai điệu bài hát vui nhộn và làm quen với ngữ âm Phần Lan tự nhiên.",
+          "estimatedMinutes": 10,
+          "targetRefId": "song_numerolaulu",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghe bài hát thiếu nhi Numerolaulu (1-10) và đọc lời bài hát song ngữ."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Hát nhại theo nhịp điệu của bài hát."
+            },
+            {
+              "stepNumber": 3,
+              "instruction": "Làm bài tập thử thách số đếm từ bài hát."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayIndex": 7,
+      "dayName": "Chủ Nhật",
+      "actions": [
+        {
+          "id": "w1_d7_act1",
+          "type": "lesson_slice",
+          "title": "Tổng kết & Đánh giá năng lực Tuần 1",
+          "goal": "Hệ thống hóa toàn bộ kiến thức Tuần 1 và làm đề thi đánh giá năng lực tương tác.",
+          "estimatedMinutes": 20,
+          "targetRefId": "w1_d7_onluyenthuchanh_tonghop",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Điểm lại danh mục thành tựu và kiến thức đã đạt được trong tuần đầu tiên."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Hoàn thành bài kiểm tra đánh giá năng lực trắc nghiệm 8 câu hỏi tương tác."
+            }
+          ]
+        },
+        {
+          "id": "w1_d7_act2",
+          "type": "immersion_movie",
+          "title": "Immersion Video: Văn hóa chào hỏi người Phần Lan (Ota rennosti)",
+          "goal": "Tìm hiểu nét văn hóa giao tiếp độc đáo của người bản xứ và thư giãn nạp năng lượng cho Tuần 2.",
+          "estimatedMinutes": 15,
+          "targetRefId": "video_chaohoi_phanlan",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc bài viết về nét văn hóa giao tiếp: Tôn trọng không gian riêng tư và sự chân thành."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Thư giãn (Ota rennosti) và chuẩn bị tinh thần sẵn sàng cho Tuần 2."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

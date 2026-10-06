@@ -10,10 +10,10 @@ export declare class GrammarService {
     findOne(id: string): Promise<GrammarTopic>;
     create(dto: CreateGrammarDto): Promise<GrammarTopic>;
     update(id: string, dto: UpdateGrammarDto): Promise<{
+        title?: string | undefined;
         chapter?: string | undefined;
         desc?: string | undefined;
         content?: any;
-        title?: string | undefined;
         id: string;
     }>;
     remove(id: string): Promise<{

@@ -1,0 +1,120 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w22_d1_ruumiinosat_oireet",
+      "title": "Từ vựng: Bộ phận Cơ thể & Triệu chứng Bệnh",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Trong tiếng Phần Lan, 'päänsärky' và 'vatsakipu' lần lượt có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đau đầu và đau bụng",
+            "Đau họng và đau lưng",
+            "Sổ mũi và sốt cao"
+          ],
+          "correctIndex": 0,
+          "explanation": "pää = đầu, särky = cơn nhức buốt -> päänsärky = đau đầu; vatsa = bụng, kipu = cơn đau -> vatsakipu = đau bụng."
+        },
+        {
+          "prompt": "Khi nói 'Tôi bị sốt 38.5 độ', ta nói bằng tiếng Phần Lan như thế nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minulla on kuumetta 38,5 astetta.",
+            "Minulla on pää kipeä.",
+            "Minä olen sairaala."
+          ],
+          "correctIndex": 0,
+          "explanation": "kuume = cơn sốt; kuumetta = dạng Partitiivi thường đi cùng số độ sốt."
+        }
+      ]
+    },
+    {
+      "id": "ex_w22_d3_objekti_perusteet",
+      "title": "Ngữ pháp: Quy tắc Tân ngữ Objekti (Koko-objekti vs Osa-objekti)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Trong câu phủ định, tân ngữ (Objekti) LUÔN LUÔN phải ở cách ngữ pháp nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Cách Partitiivi (-a / -ä / -ta / -tä)",
+            "Cách Genetiivi (-n)",
+            "Cách Nominatiivi (nguyên mẫu)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc vàng của ngữ pháp Phần Lan: Trong câu phủ định (kieltolause), tân ngữ luôn luôn ở cách Partitiivi (ví dụ: En osta kirjaa, En syö omenaa)."
+        },
+        {
+          "prompt": "So sánh 2 câu: 'Minä luen kirjaa' và 'Minä luen kirjan'. Sự khác biệt về mặt ý nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "'luen kirjaa' = đang đọc (chưa xong, hành động dang dở); 'luen kirjan' = sẽ đọc xong trọn vẹn cả cuốn sách",
+            "'luen kirjaa' = đọc xong rồi; 'luen kirjan' = không đọc",
+            "Hai câu hoàn toàn đồng nghĩa 100%"
+          ],
+          "correctIndex": 0,
+          "explanation": "Partitiivi (kirjaa) chỉ hành động đang diễn ra chưa hoàn thành (process/incomplete). Genetiivi (kirjan) chỉ hành động hoàn tất trọn vẹn (result/complete)."
+        }
+      ]
+    },
+    {
+      "id": "ex_w23_d1_terveyskeskus_laakarissa",
+      "title": "Giao tiếp: Đi khám bác sĩ & Mua thuốc theo đơn",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Số điện thoại tư vấn y tế khẩn cấp phi cấp cứu (Päivystysapu) trên toàn Phần Lan là bao nhiêu?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "116 117 (hoặc gọi 112 khi nguy kịch tính mạng)",
+            "911",
+            "114"
+          ],
+          "correctIndex": 0,
+          "explanation": "116 117 là tổng đài y tế trực tuyến toàn quốc của Phần Lan; 112 là số cấp cứu khẩn cấp nguy hiểm tính mạng."
+        },
+        {
+          "prompt": "Thuật ngữ 'Resepti' và 'Sairasloma' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đơn thuốc bác sĩ kê và Giấy nghỉ phép ốm",
+            "Hóa đơn viện phí và Thẻ bảo hiểm",
+            "Phòng cấp cứu và Thuốc kháng sinh"
+          ],
+          "correctIndex": 0,
+          "explanation": "resepti = toa thuốc; sairasloma = thời gian nghỉ bệnh có hưởng lương/trợ cấp."
+        }
+      ]
+    },
+    {
+      "id": "ex_w23_d5_kiemtra_kappale9",
+      "title": "Đề kiểm tra đánh giá năng lực toàn diện Chương 9",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Điền dạng đúng của từ vào chỗ trống: 'Lääkäri kirjoitti minulle _____ (resepti) ja minä hain _____ (lääke) apteekista.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "reseptin (Genetiivi tân ngữ kết quả) / lääkkeet (số nhiều hoàn tất)",
+            "reseptiä / lääkettä",
+            "reseptissä / lääkkeestä"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hành động đã hoàn thành: viết xong 1 đơn thuốc (reseptin) và lấy thuốc xong (lääkkeet / lääkkeen)."
+        },
+        {
+          "prompt": "Khi đến hiệu thuốc (Apteekki) ở Phần Lan lấy thuốc theo đơn, bạn chỉ cần xuất trình giấy tờ gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Thẻ Kela-kortti hoặc Hộ chiếu/Căn cước Henkilökortti (dược sĩ sẽ tra cứu e-resepti trực tuyến)",
+            "Đơn thuốc giấy viết tay có mộc đỏ",
+            "Giấy xác nhận công ty"
+          ],
+          "correctIndex": 0,
+          "explanation": "Phần Lan sử dụng 100% hệ thống toa thuốc điện tử quốc gia (Kanta e-resepti); chỉ cần quẹt thẻ căn cước hoặc thẻ Kela là nhà thuốc có ngay đơn thuốc."
+        }
+      ]
+    }
+  ]
+}

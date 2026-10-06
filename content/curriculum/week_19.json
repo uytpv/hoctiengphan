@@ -1,0 +1,190 @@
+{
+  "title": "Tuần 19: Thể Mệnh Lệnh (Imperatiivi), Biển báo Khách sạn & Bài tập Tổng hợp Chương 7",
+  "description": "Hoàn thiện Chương 7 (Kappale 7): Thành thạo thể mệnh lệnh số ít và số nhiều lịch sự, giải bài tập và làm bài kiểm tra năng lực.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "theme": "Ngữ pháp: Thể Mệnh lệnh Số ít & Số nhiều Lịch sự",
+      "activities": [
+        {
+          "activityId": "w19_d1_act1",
+          "type": "LESSON",
+          "title": "Bài học: Thể Mệnh lệnh Imperatiivi (Trang 195-197)",
+          "description": "Học cách tạo câu mệnh lệnh số ít (Ota!), số nhiều lịch sự (Ottakaa!) và dạng phủ định (Älä / Älkää).",
+          "durationMinutes": 35,
+          "targetRefId": "w19_d1_nguphap_imperatiivi_yksikko_monikko",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học cách lấy thân từ minä cho mệnh lệnh số ít."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học cách thêm -kaa/-kää cho mệnh lệnh số nhiều/lịch sự."
+            }
+          ]
+        },
+        {
+          "activityId": "w19_d1_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Thể mệnh lệnh số ít & số nhiều",
+          "description": "Luyện tập chuyển đổi câu sang thể mệnh lệnh lịch sự.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w19_d2_imperatiivi_monikko",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Chọn đáp án mệnh lệnh đúng trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "theme": "Immersion Thực tế: Biển báo & Hướng dẫn Khách sạn",
+      "activities": [
+        {
+          "activityId": "w19_d2_act1",
+          "type": "SIGN",
+          "title": "Immersion: Đọc hiểu Biển báo Khách sạn Phần Lan",
+          "description": "Học cách đọc giờ bữa sáng, giờ phòng xông hơi Sauna và các quy định chung.",
+          "durationMinutes": 25,
+          "targetRefId": "sign_hotelli_varaus",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ghi nhớ các thuật ngữ: Huoneiden luovutus, Asiakassauna, Savuton."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "theme": "Luyện Nghe & Nói Phản xạ: Giao tiếp tại Lễ tân & Cửa hàng",
+      "activities": [
+        {
+          "activityId": "w19_d3_act1",
+          "type": "LESSON",
+          "title": "Hội thoại thực hành: Mua sắm & Hỏi dịch vụ du lịch",
+          "description": "Rèn luyện phản xạ tình huống khi mua hàng tại chợ trời hoặc hỏi nhân viên khách sạn.",
+          "durationMinutes": 30,
+          "targetRefId": "w19_d1_nguphap_imperatiivi_yksikko_monikko",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Thực hành câu: 'Olkaa hyvä ja kirjoittakaa tähän' (Xin vui lòng viết vào đây)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Thực hành trả giá và hỏi phương thức thanh toán tại chợ trời."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "theme": "Thực hành Giải Bài tập Sách Giáo trình: Harjoitus 1 - 15",
+      "activities": [
+        {
+          "activityId": "w19_d4_act1",
+          "type": "LESSON",
+          "title": "Bài tập thực hành: Harjoitus 1 - 15 Chương 7 (Trang 198-204)",
+          "description": "Luyện giải bài tập tổng hợp về biến cách danh từ và thể mệnh lệnh.",
+          "durationMinutes": 35,
+          "targetRefId": "w19_d4_baitap_harjoitus1_15",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập điền từ và chia đuôi biến cách."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Kiểm tra lại đáp án và phân tích lỗi sai nếu có."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "theme": "Đề Kiểm tra Toàn diện Đánh giá Năng lực: Kappale 7",
+      "activities": [
+        {
+          "activityId": "w19_d5_act1",
+          "type": "LESSON",
+          "title": "Đề kiểm tra đánh giá năng lực: Kappale 7 (Trang 206-208)",
+          "description": "Thực hiện bài kiểm tra trắc nghiệm tổng hợp toàn bộ Chương 7.",
+          "durationMinutes": 30,
+          "targetRefId": "w19_d5_kiemtra_tongket_kappale7",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài kiểm tra tương tác bên dưới."
+            }
+          ]
+        },
+        {
+          "activityId": "w19_d5_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Kiểm tra tổng kết Chương 7",
+          "description": "Hoàn thành các câu hỏi đánh giá chuẩn A1.2.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w19_d5_kiemtra_kappale7",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Chọn đáp án chính xác nhất."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 6,
+      "theme": "Dự án Thực tế: Lên Kế hoạch Du lịch Helsinki",
+      "activities": [
+        {
+          "activityId": "w19_d6_act1",
+          "type": "LESSON",
+          "title": "Dự án: Thiết kế Lịch trình Khám phá Thủ đô Helsinki",
+          "description": "Tự tạo lịch trình 2 ngày 1 đêm tại Helsinki: Khách sạn, phương tiện, địa điểm tham quan.",
+          "durationMinutes": 30,
+          "targetRefId": "w18_d2_tuvung_kaupungilla_palvelut",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Chọn 1 khách sạn và mô tả loại phòng đặt."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Liệt kê 3 địa điểm sẽ ghé thăm (Oodi, Tuomiokirkko, Kauppatori)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 7,
+      "theme": "Tổng kết Hoàn thành Chương 7: Cán mốc 79.2%",
+      "activities": [
+        {
+          "activityId": "w19_d7_act1",
+          "type": "LESSON",
+          "title": "Tổng kết Hoàn thành Chương 7: Chinh phục mốc 79.2%!",
+          "description": "Vinh danh chặng đường nỗ lực và chuẩn bị bước sang 2 chương cuối.",
+          "durationMinutes": 20,
+          "targetRefId": "w19_d7_tongket_kappale7",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Nghỉ ngơi và chúc mừng thành tựu đạt được!"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

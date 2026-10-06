@@ -1,0 +1,131 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w15_d1_asumissanasto",
+      "title": "Từ vựng: Các loại nhà ở & Các phòng trong nhà",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "'Kerrostalo' là loại nhà ở nào rất phổ biến tại các đô thị Phần Lan?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Tòa nhà chung cư nhiều tầng",
+            "Nhà liền kề (rivitalo)",
+            "Nhà biệt lập một gia đình (omakotitalo)"
+          ],
+          "correctIndex": 0,
+          "explanation": "kerrostalo = chung cư (kerros = tầng lầu); rivitalo = nhà dãy liền kề; omakotitalo = nhà riêng biệt lập."
+        },
+        {
+          "prompt": "Phòng khách và phòng ngủ trong tiếng Phần Lan lần lượt là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "olohuone ja makuuhuone",
+            "keittiö ja kylpyhuone",
+            "eteinen ja parveke"
+          ],
+          "correctIndex": 0,
+          "explanation": "olohuone = phòng sinh hoạt/khách; makuuhuone = phòng ngủ; keittiö = bếp; kylpyhuone = phòng tắm."
+        }
+      ]
+    },
+    {
+      "id": "ex_w16_d1_paikansijat_6",
+      "title": "Ngữ pháp: Các cách chỉ Vị trí Nơi chốn (Paikansijat)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Ba câu hỏi phương hướng vị trí bên trong 'Mihin? - Missä? - Mistä?' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đi vào đâu? - Ở trong đâu? - Từ trong đâu ra?",
+            "Ở đâu? - Khi nào? - Tại sao?",
+            "Ai? - Cái gì? - Bao nhiêu?"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hệ thống vị trí 3 hướng: Mihin (Đến đâu - Illatiivi), Missä (Ở đâu - Inessiivi -ssa), Mistä (Từ đâu - Elatiivi -sta)."
+        },
+        {
+          "prompt": "'Pedro asuu Helsingissä, mutta hän on kotoisin Brasiliasta' diễn tả điều gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Pedro sống ở Helsinki (-ssä), nhưng anh ấy đến từ Brazil (-sta)",
+            "Pedro đi tới Helsinki, rồi bay sang Brazil",
+            "Pedro sinh ra ở Helsinki"
+          ],
+          "correctIndex": 0,
+          "explanation": "Helsingissä = ở tại Helsinki (Missä); Brasiliasta = từ Brazil đến (Mistä)."
+        },
+        {
+          "prompt": "Từ 'talo' (ngôi nhà) khi chuyển sang câu trả lời 'Đi vào trong nhà' (Mihin?) là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "taloon (nhân đôi nguyên âm cuối + n)",
+            "talossa",
+            "talosta"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc Illatiivi (Mihin): Nhân đôi nguyên âm cuối và thêm n: talo -> taloon."
+        }
+      ]
+    },
+    {
+      "id": "ex_w16_d4_imperatiivi_ohjeet",
+      "title": "Ngữ pháp: Thể Mệnh lệnh & Chỉ đường",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi chỉ đường 'Mene suoraan ja käänny oikealle', câu đó có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Hãy đi thẳng và rẽ sang bên phải",
+            "Hãy dừng lại và rẽ trái",
+            "Hãy đi lùi lại phía sau"
+          ],
+          "correctIndex": 0,
+          "explanation": "Mene suoraan = Đi thẳng; käänny oikealle = rẽ phải; käänny vasemmalle = rẽ trái."
+        },
+        {
+          "prompt": "Thể mệnh lệnh ngôi 'sinä' (bạn hãy làm gì) được tạo bằng cách:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Dùng thân từ động từ cấp Yếu (Heikko vartalo) và KHÔNG thêm đuôi cá nhân",
+            "Thêm đuôi -t",
+            "Thêm đuôi -kaa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Mệnh lệnh ngôi sinä: Tule! (Hãy đến!), Syö! (Hãy ăn đi!), Katso! (Hãy nhìn kìa!)."
+        }
+      ]
+    },
+    {
+      "id": "ex_w17_d5_kiemtra_kappale6",
+      "title": "Đề kiểm tra đánh giá năng lực toàn diện Chương 6",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Ký hiệu '2h + k + kph + p, 52 m²' trong mẩu tin thuê nhà Phần Lan có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "2 phòng + bếp + phòng tắm + ban công, diện tích 52 mét vuông",
+            "2 tầng + nhà kho + bãi đỗ xe",
+            "2 người ở + bao tiền nước"
+          ],
+          "correctIndex": 0,
+          "explanation": "h = huone (phòng), k = keittiö (bếp), kph = kylpyhuone (phòng tắm), p = parveke (ban công)."
+        },
+        {
+          "prompt": "'Kirja on pöydällä' có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Quyển sách đang ở TRÊN mặt bàn (đuôi -lla: vị trí bên trên mặt phẳng)",
+            "Quyển sách ở trong ngăn kéo",
+            "Quyển sách rơi xuống gầm bàn"
+          ],
+          "correctIndex": 0,
+          "explanation": "Đuôi Adessiivi (-lla/-llä) chỉ vị trí bên trên bề mặt mở: pöydällä = trên bàn."
+        }
+      ]
+    }
+  ]
+}

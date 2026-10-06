@@ -1,0 +1,194 @@
+{
+  "title": "Tuần 20: Phương tiện Giao thông & Thì Quá khứ đơn (Imperfekti Khẳng định)",
+  "description": "Bắt đầu Chương 8 (Kappale 8): Từ vựng phương tiện di chuyển, mua vé xe và làm chủ thì quá khứ đơn khẳng định.",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "theme": "Kappale 8: Phương tiện Giao thông & Đi lại",
+      "activities": [
+        {
+          "activityId": "w20_d1_act1",
+          "type": "LESSON",
+          "title": "Bài học: Phương tiện Giao thông & Đi lại (Trang 209-213)",
+          "description": "Mở đầu Chương 8: Học tên gọi các phương tiện và cách dùng Adessiivi (-lla/-llä).",
+          "durationMinutes": 30,
+          "targetRefId": "w20_d1_tuvung_kulkuvalineet_liikenne",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Ghi nhớ bảng từ vựng phương tiện: bussi, juna, metro, ratikka, auto, pyörä."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Thực hành cấu trúc: Menen töihin bussilla / pyörällä."
+            }
+          ]
+        },
+        {
+          "activityId": "w20_d1_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Từ vựng phương tiện đi lại",
+          "description": "Luyện phản xạ cách dùng phương tiện giao thông.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w20_d1_kulkuvalineet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Làm bài tập trắc nghiệm trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "theme": "Mua vé Phương tiện Công cộng & Xem Lịch trình",
+      "activities": [
+        {
+          "activityId": "w20_d2_act1",
+          "type": "LESSON",
+          "title": "Bài học: Vé & Bảng giờ tàu xe (Trang 214-216)",
+          "description": "Học các thuật ngữ mua vé Kertalippu, Kausilippu và từ vựng sân ga bến tàu.",
+          "durationMinutes": 30,
+          "targetRefId": "w20_d2_tuvung_liput_ja_aikataulut",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học cách đọc bảng giờ: Lähtee, Saapuu, Raide, Myöhässä."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "theme": "Ngữ pháp Trọng tâm: Thì Quá khứ đơn Imperfekti Khẳng định",
+      "activities": [
+        {
+          "activityId": "w20_d3_act1",
+          "type": "LESSON",
+          "title": "Bài học: Thì Quá khứ đơn Imperfekti Khẳng định (Trang 217-220)",
+          "description": "Nắm vững nguyên lý chữ -i- của thì quá khứ và quy tắc biến đổi nguyên âm.",
+          "durationMinutes": 35,
+          "targetRefId": "w20_d3_nguphap_imperfekti_perusteet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Học quy tắc nguyên âm đơn biến mất trước -i- (ostaa -> ostin)."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Học quy tắc biến đổi nguyên âm đôi (syödä -> söin, juoda -> join)."
+            }
+          ]
+        },
+        {
+          "activityId": "w20_d3_act2",
+          "type": "EXERCISE",
+          "title": "Bài tập tương tác: Chia động từ khẳng định thì quá khứ",
+          "description": "Thực hành chia động từ quá khứ theo các ngôi nhân xưng.",
+          "durationMinutes": 15,
+          "targetRefId": "ex_w20_d3_imperfekti_positiivinen",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Hoàn thành bài tập trắc nghiệm trên ứng dụng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "theme": "Immersion Đời sống: Hệ thống Vé Vùng HSL",
+      "activities": [
+        {
+          "activityId": "w20_d4_act1",
+          "type": "SIGN",
+          "title": "Immersion: Phân vùng vé HSL ABCD & Ứng dụng di động",
+          "description": "Tìm hiểu cách chọn vùng vé chính xác khi đi lại tại khu vực thủ đô Helsinki.",
+          "durationMinutes": 25,
+          "targetRefId": "sign_hsl_lippu_vyohyke",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Hiểu quy tắc mua vé vùng kết hợp: AB, BC, ABC."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Nắm rõ quy định kiểm tra vé và tránh bị phạt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "theme": "Luyện Nghe & Phản xạ Kể chuyện Quá khứ",
+      "activities": [
+        {
+          "activityId": "w20_d5_act1",
+          "type": "LESSON",
+          "title": "Luyện nghe đối thoại: Chuyến đi cuối tuần của Alex",
+          "description": "Nghe và đọc bài đối thoại kể về chuyến đi của Alex bằng thì quá khứ.",
+          "durationMinutes": 30,
+          "targetRefId": "w20_d1_tuvung_kulkuvalineet_liikenne",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc to các câu văn kể chuyện thì quá khứ."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Gạch chân tất cả các động từ chia ở thì quá khứ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 6,
+      "theme": "Thực hành Viết: Nhật ký Ngày hôm qua (Eilen tein...)",
+      "activities": [
+        {
+          "activityId": "w20_d6_act1",
+          "type": "LESSON",
+          "title": "Thực hành viết: Kirjoita mitä teit eilen (Bạn đã làm gì hôm qua)",
+          "description": "Tập viết 6-8 câu kể về các hoạt động của bản thân trong ngày hôm qua bằng thì quá khứ.",
+          "durationMinutes": 30,
+          "targetRefId": "w20_d3_nguphap_imperfekti_perusteet",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Sử dụng các động từ: heräsin, söin, menin, työskentelin, luin."
+            },
+            {
+              "stepNumber": 2,
+              "instruction": "Kiểm tra đúng đuôi ngôi nhân xưng -in."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dayOfWeek": 7,
+      "theme": "Tổng kết & Củng cố Tuần 20",
+      "activities": [
+        {
+          "activityId": "w20_d7_act1",
+          "type": "LESSON",
+          "title": "Tổng kết & Củng cố Tuần 20 (Kappale 8)",
+          "description": "Ôn tập tổng kết toàn bộ từ vựng và thì quá khứ đơn khẳng định.",
+          "durationMinutes": 20,
+          "targetRefId": "w20_d7_tonghop_tuan20",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "instruction": "Đọc lại bảng tóm tắt kiến thức tuần 20."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

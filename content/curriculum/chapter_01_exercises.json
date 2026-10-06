@@ -1,0 +1,1497 @@
+{
+  "exercises": [
+    {
+      "id": "ex_w1_d1_chaohoi",
+      "title": "Phản xạ giao tiếp: Chào hỏi bài 1",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi một người bạn Phần Lan nói 'Hauska tutustua!' (Rất vui được làm quen), bạn nên đáp lại là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kiitos samoin! (Cảm ơn, tôi cũng vậy!)",
+            "Anteeksi! (Xin lỗi!)",
+            "Hei hei! (Tạm biệt!)"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Kiitos samoin!' là câu phản xạ lịch sự bắt buộc khi được người khác chúc hoặc nói lời làm quen."
+        },
+        {
+          "prompt": "Câu hỏi 'Onko tämä suomen kurssi?' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đây có phải là khóa học tiếng Phần Lan không?",
+            "Giáo viên tiếng Phần Lan ở đâu?",
+            "Bạn có thích học tiếng Phần Lan không?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Onko' là câu hỏi đảo ngữ 'Có phải... không?', 'tämä' = cái này/đây, 'suomen kurssi' = khóa học tiếng Phần."
+        },
+        {
+          "prompt": "Trong văn nói đời thường (Puhekieli), cụm từ 'Minä olen' (Tôi là) được rút gọn thành:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Mä oon",
+            "Sä oot",
+            "Se on"
+          ],
+          "correctIndex": 0,
+          "explanation": "Trong giao tiếp hàng ngày, người Phần Lan hầu như luôn nói 'Mä oon' thay cho 'Minä olen'."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_d2_loichao",
+      "title": "Lời chào theo buổi trong ngày",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Lúc 8:00 sáng khi gặp đồng nghiệp hoặc thầy cô giáo, bạn nên chào:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Hyvää huomenta!",
+            "Hyvää iltaa!",
+            "Hyvää yötä!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Hyvää huomenta!' dùng để chào buổi sáng từ lúc thức dậy đến khoảng 10:00."
+        },
+        {
+          "prompt": "Lời chào lịch sự trang trọng dùng được trong suốt ban ngày là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Hyvää päivää!",
+            "Moi moi!",
+            "Nuku hyvin!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Hyvää päivää!' là lời chào chuẩn mực, trang trọng nhất trong tiếng Phần Lan."
+        },
+        {
+          "prompt": "Buổi tối trước khi đi ngủ, bạn chúc người thân như thế nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Hyvää yötä! / Nuku hyvin!",
+            "Hyvää huomenta!",
+            "Tervetuloa!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Hyvää yötä' (Chúc ngủ ngon) và 'Nuku hyvin' (Ngủ ngon nhé)."
+        },
+        {
+          "prompt": "Khi bạn làm điều gì đó và người khác cảm ơn bạn 'Kiitos!', bạn đáp lại:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Ole hyvä!",
+            "Anteeksi!",
+            "Kiitos samoin!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Ole hyvä!' có nghĩa là Không có chi / Xin mời."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_d2_phatam",
+      "title": "Phân biệt nguyên âm ngắn và dài",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Hai từ 'tuli' và 'tuuli' khác nhau như thế nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "'tuli' là ngọn lửa (u ngắn), 'tuuli' là cơn gió (uu kéo dài)",
+            "'tuli' là cơn gió, 'tuuli' là ngọn lửa",
+            "Hai từ này có cùng ý nghĩa, chỉ là cách viết khác nhau"
+          ],
+          "correctIndex": 0,
+          "explanation": "Độ dài nguyên âm quyết định nghĩa của từ: tuli = ngọn lửa, tuuli = cơn gió, tulli = hải quan."
+        },
+        {
+          "prompt": "Nguyên âm nào yêu cầu khẩu hình tròn môi như huýt sáo nhưng lưỡi lại phát âm chữ /i/?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Y",
+            "Ä",
+            "Ö"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chữ 'Y' phát âm bằng cách giữ khẩu hình âm /u/ tròn xoe nhưng luồng hơi và lưỡi đẩy âm /i/."
+        },
+        {
+          "prompt": "Cặp từ nào dưới đây thể hiện sự phân biệt nguyên âm ngắn - dài trong tiếng Phần Lan?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "muta (bùn) - muuta (cái khác)",
+            "talo - kirja",
+            "kuka - mikä"
+          ],
+          "correctIndex": 0,
+          "explanation": "'muta' có nguyên âm u đơn ngắn, 'muuta' có nguyên âm đôi uu kéo dài gấp đôi."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_d3_vokaaliharmonia",
+      "title": "Quy tắc Hài hòa nguyên âm (Vokaaliharmonia)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Nhóm nguyên âm sau (Takavokaalit) bao gồm các chữ cái nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "A, O, U",
+            "Ä, Ö, Y",
+            "E, I"
+          ],
+          "correctIndex": 0,
+          "explanation": "A, O, U phát âm trầm từ cuống họng, thuộc nhóm nguyên âm sau."
+        },
+        {
+          "prompt": "Từ 'talo' (ngôi nhà) chứa nguyên âm a và o. Khi thêm đuôi 'ở trong' (-ssa / -ssä), ta chọn đuôi nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "talossa",
+            "talössä",
+            "taloissa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Vì 'talo' chứa nguyên âm sau a, o nên bắt buộc phải nhận đuôi chứa nguyên âm sau: -ssa -> talossa."
+        },
+        {
+          "prompt": "Từ 'metsä' (khu rừng) chứa nguyên âm e và ä. Khi thêm đuôi 'ở trong rừng', ta chọn đuôi nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "metsässä",
+            "metsassa",
+            "metsössä"
+          ],
+          "correctIndex": 0,
+          "explanation": "Vì 'metsä' có nguyên âm trước ä nên nhận đuôi -ssä -> metsässä."
+        },
+        {
+          "prompt": "Từ 'Helsinki' chỉ chứa hai nguyên âm trung tính e và i. Theo quy tắc, từ này sẽ nhận đuôi gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "-ssä (Helsingissä)",
+            "-ssa (Helsingissa)",
+            "Đuôi nào cũng được chấp nhận"
+          ],
+          "correctIndex": 0,
+          "explanation": "Nếu từ chỉ toàn nguyên âm trung tính e, i (không có a, o, u), từ đó sẽ nhận đuôi nguyên âm trước: -ssä -> Helsingissä."
+        },
+        {
+          "prompt": "Từ nào dưới đây VI PHẠM quy tắc Hài hòa nguyên âm và không thể tồn tại trong tiếng Phần Lan?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "talö (chứa cả a và ö)",
+            "päivä (chứa ä)",
+            "opettaja (chứa o, e, a)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Quy tắc bất di bất dịch: Nhóm (A, O, U) và nhóm (Ä, Ö, Y) không bao giờ đứng chung trong cùng một từ gốc!"
+        }
+      ]
+    },
+    {
+      "id": "ex_sign_tervetuloa",
+      "title": "Biển báo thực tế: TERVETULOA!",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Bạn thấy biển báo 'TERVETULOA' tại cửa ra vào sân bay Helsinki và các siêu thị. Từ này nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Chào mừng (Welcome)",
+            "Lối thoát hiểm (Exit)",
+            "Khu vực cấm vào (No entry)"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Tervetuloa' ghép từ 'terve' (khỏe mạnh/chào) và 'tuloa' (đến) = Chào mừng bạn đến!"
+        },
+        {
+          "prompt": "Khi người Phần Lan đón bạn đến nhà chơi, họ nói: 'Tervetuloa meille!'. 'Meille' nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đến nhà chúng tôi / Đến chỗ chúng tôi",
+            "Đến Phần Lan",
+            "Đến lớp học"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Tervetuloa meille!' = Chào mừng bạn đến nhà chúng tôi!"
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_d4_sodem",
+      "title": "Số đếm 0 - 10 & Chữ cái tiếng Phần Lan",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Số 7 trong tiếng Phần Lan là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "seitsemän",
+            "kahdeksan",
+            "kuusi",
+            "yhdeksän"
+          ],
+          "correctIndex": 0,
+          "explanation": "1: yksi, 2: kaksi, 3: kolme, 4: neljä, 5: viisi, 6: kuusi, 7: seitsemän, 8: kahdeksan, 9: yhdeksän, 10: kymmenen."
+        },
+        {
+          "prompt": "Phép tính: 'kaksi plus kolme on...' (2 + 3 = ?)",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "viisi (5)",
+            "neljä (4)",
+            "kuusi (6)"
+          ],
+          "correctIndex": 0,
+          "explanation": "2 + 3 = 5 (viisi)."
+        },
+        {
+          "prompt": "Chữ cái 'J' trong tiếng Phần Lan (như trong từ 'joo') được phát âm như thế nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Giống chữ 'D' miền Nam ('da diết') hoặc chữ 'Y' tiếng Anh ('yes')",
+            "Giống chữ 'J' tiếng Anh ('jump')",
+            "Giống chữ 'CH' tiếng Việt"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chữ J trong tiếng Phần Lan là âm bán nguyên âm /j/, phát âm là 'joo' giống như 'dô' hoặc 'yoo'."
+        },
+        {
+          "prompt": "Số 10 trong tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kymmenen",
+            "kahdeksan",
+            "nolla"
+          ],
+          "correctIndex": 0,
+          "explanation": "10 = kymmenen."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_h5_tudenhuyen",
+      "title": "Harjoitus 5: Nghe Track 10 và chọn từ bạn nghe thấy",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Câu 1: Lắng nghe Track 10, bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kuu (mặt trăng)",
+            "kyy (con rắn lục)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'kuu' với âm /u/ trầm từ vòm họng."
+        },
+        {
+          "prompt": "Câu 2: Bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "älä (đừng)",
+            "ala (lĩnh vực / ngành nghề)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'älä' với nguyên âm /æ/ e bẹt mở rộng môi."
+        },
+        {
+          "prompt": "Câu 3: Bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "tukki (khúc gỗ to)",
+            "tykki (khẩu đại bác)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'tukki' với âm /u/."
+        },
+        {
+          "prompt": "Câu 4: Bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "hylly (kệ sách)",
+            "hullu (điên rồ)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'hylly' với âm /y/ tròn môi trước."
+        },
+        {
+          "prompt": "Câu 5: Bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "söisi (nếu anh ấy ăn)",
+            "soisi (nếu chuông reo)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'söisi' với âm /ø/ tròn môi."
+        },
+        {
+          "prompt": "Câu 6: Bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "takki (áo khoác)",
+            "täkki (cái chăn mền)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'takki'."
+        },
+        {
+          "prompt": "Câu 7: Bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "syö (ăn / hãy ăn đi)",
+            "suo (đầm lầy)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'syö'."
+        },
+        {
+          "prompt": "Câu 8: Bạn nghe thấy từ nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "työ (công việc)",
+            "tuo (cái kia)"
+          ],
+          "correctIndex": 0,
+          "explanation": "Track 10 phát âm 'työ'."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_h6a_diadiem",
+      "title": "Harjoitus 6A: Chọn đuôi địa điểm -ssa hay -ssä",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Minä asun Vaasa_____ (Thành phố Vaasa có chứa nguyên âm a):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Vaasassa",
+            "Vaasässä"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Vaasa' chứa nguyên âm sau 'a' nên nhận đuôi -ssa."
+        },
+        {
+          "prompt": "2. Minä asun Jyväskylä_____ (Thành phố Jyväskylä chứa y, ä):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Jyväskylässä",
+            "Jyväskylassa"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Jyväskylä' chứa toàn nguyên âm trước y, ä nên nhận đuôi -ssä."
+        },
+        {
+          "prompt": "3. Minä asun Kotka_____ (Thành phố Kotka chứa o, a):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kotkassa",
+            "Kotkässä"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Kotka' có nguyên âm sau o, a nên nhận đuôi -ssa."
+        },
+        {
+          "prompt": "4. Minä asun Mäntsälä_____ (Mäntsälä chứa ä):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Mäntsälässä",
+            "Mäntsälassa"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Mäntsälä' chứa nguyên âm trước ä nên nhận đuôi -ssä."
+        },
+        {
+          "prompt": "5. Minä asun Pori_____ (Pori chứa o, i):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Porissa",
+            "Porissä"
+          ],
+          "correctIndex": 0,
+          "explanation": "Vì có nguyên âm sau 'o' nên 'o' quyết định nhận đuôi -ssa."
+        },
+        {
+          "prompt": "6. Minä asun Ii_____ (Thị trấn Ii chỉ chứa i):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Iissä",
+            "Iissa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Từ chỉ có nguyên âm trung tính i nên nhận đuôi -ssä."
+        },
+        {
+          "prompt": "7. Minä asun Mikkeli_____ (Mikkeli chỉ chứa i, e):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Mikkelissä",
+            "Mikkelissa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chỉ có nguyên âm trung tính i, e nên nhận đuôi -ssä."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_h6b_bongu",
+      "title": "Harjoitus 6B: Chọn đuôi đối cách -a hay -ä (Minä haluan...)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Minä haluan kahvi_____ (Tôi muốn cà phê):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kahvia",
+            "kahviä"
+          ],
+          "correctIndex": 0,
+          "explanation": "'kahvi' có nguyên âm sau a nên nhận đuôi -a."
+        },
+        {
+          "prompt": "2. Minä haluan jäätelö_____ (Tôi muốn kem):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "jäätelöä",
+            "jäätelöa"
+          ],
+          "correctIndex": 0,
+          "explanation": "'jäätelö' chứa nguyên âm trước ä, ö nên nhận đuôi -ä."
+        },
+        {
+          "prompt": "3. Minä haluan kakku_____ (Tôi muốn bánh ngọt):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kakkua",
+            "kakkyä"
+          ],
+          "correctIndex": 0,
+          "explanation": "'kakku' chứa nguyên âm sau a, u nên nhận đuôi -a."
+        },
+        {
+          "prompt": "4. Minä haluan keksi_____ (Tôi muốn bánh quy):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "keksiä",
+            "keksia"
+          ],
+          "correctIndex": 0,
+          "explanation": "'keksi' chỉ chứa nguyên âm trung tính e, i nên nhận đuôi -ä."
+        },
+        {
+          "prompt": "5. Minä haluan mehu_____ (Tôi muốn nước trái cây):",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "mehua",
+            "mehüä"
+          ],
+          "correctIndex": 0,
+          "explanation": "'mehu' chứa nguyên âm sau u nên nhận đuôi -a."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_h7_loichao",
+      "title": "Harjoitus 7: Điền câu chào hỏi theo tình huống giao tiếp",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Tình huống 1: Bạn vô tình bước chạm vào ai đó trên xe buýt, bạn nhanh chóng nói:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Anteeksi!",
+            "Ole hyvä!",
+            "Hyvää yötä!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Anteeksi!' = Xin lỗi!"
+        },
+        {
+          "prompt": "Tình huống 2: Người đó mỉm cười và thân thiện đáp lại bạn:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Ei se mitään! (Không sao đâu!)",
+            "Kiitos samoin!",
+            "Tervetuloa!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Ei se mitään!' = Không có gì đâu / Không sao cả."
+        },
+        {
+          "prompt": "Tình huống 3: Bạn đưa quyển sách cho bạn cùng lớp và bạn ấy nói 'Kiitos!', bạn đáp:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Ole hyvä!",
+            "Anteeksi!",
+            "Moi moi!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Ole hyvä!' = Xin mời / Không có gì."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_h8_noicau",
+      "title": "Harjoitus 8: Nối câu đối thoại giao tiếp chuẩn",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Khi người khác hỏi: 'Kuka sinä olet?' (Bạn là ai?), bạn trả lời:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minä olen Alex.",
+            "Tänään on tiistai.",
+            "Kiitos hyvää!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Kuka sinä olet?' hỏi tên/người, trả lời 'Minä olen...'."
+        },
+        {
+          "prompt": "Khi người khác hỏi: 'Mitä sinulle kuuluu?' (Bạn khỏe không?), bạn đáp:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kiitos hyvää! Entä sinulle?",
+            "Minä olen opiskelija.",
+            "Ole hyvä!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Kiitos hyvää! Entä sinulle?' = Cảm ơn tôi khỏe! Còn bạn thì sao?"
+        },
+        {
+          "prompt": "Khi người khác hỏi: 'Onko täällä suomen kurssi?' (Ở đây có lớp tiếng Phần không?), bạn đáp:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Joo, on.",
+            "Ei se mitään.",
+            "Nuku hyvin."
+          ],
+          "correctIndex": 0,
+          "explanation": "Câu hỏi 'Onko...?' trả lời khẳng định là 'Joo, on.' hoặc 'Kyllä, on.'"
+        },
+        {
+          "prompt": "Khi người khác hỏi: 'Mikä päivä tänään on?' (Hôm nay là thứ mấy?), bạn đáp:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Tänään on perjantai.",
+            "Minä olen Pedro.",
+            "Kiitos samoin!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Tänään on [thứ]' = Hôm nay là [thứ]."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_h10_sodienthoai",
+      "title": "Harjoitus 10: Nghe Track 11 và chọn số điện thoại chính xác",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Nghe Track 11: Số điện thoại của Alex là số nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "040 551 2893",
+            "050 318 9942",
+            "044 762 1035"
+          ],
+          "correctIndex": 0,
+          "explanation": "Alex đọc: nolla neljä nolla, viisi viisi yksi, kaksi kahdeksan yhdeksän kolme (040 551 2893)."
+        },
+        {
+          "prompt": "Nghe Track 11: Số điện thoại của Pedro là số nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "050 318 9942",
+            "040 551 2893",
+            "050 994 3182"
+          ],
+          "correctIndex": 0,
+          "explanation": "Pedro đọc: nolla viisi nolla, kolme yksi kahdeksan, yhdeksän yhdeksän neljä kaksi (050 318 9942)."
+        },
+        {
+          "prompt": "Nghe Track 11: Số điện thoại của Olga là số nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "044 762 1035",
+            "040 551 2893",
+            "050 318 9942"
+          ],
+          "correctIndex": 0,
+          "explanation": "Olga đọc: nolla neljä neljä, seitsemän kuusi kaksi, yksi nolla kolme viisi (044 762 1035)."
+        }
+      ]
+    },
+    {
+      "id": "ex_song_numerot",
+      "title": "Thử thách Bài hát số đếm 'Numerolaulu'",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Trong bài hát Numerolaulu, dãy số 'Yksi, kaksi, kolme' được tiếp nối bởi:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "neljä, viisi, kuusi",
+            "seitsemän, kahdeksan, yhdeksän",
+            "kymmenen, nolla"
+          ],
+          "correctIndex": 0,
+          "explanation": "Dãy số tự nhiên từ 1 đến 6: yksi (1), kaksi (2), kolme (3), neljä (4), viisi (5), kuusi (6)."
+        },
+        {
+          "prompt": "Từ 'kymmenen' trong lời bài hát nghĩa là số mấy?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "10",
+            "9",
+            "8"
+          ],
+          "correctIndex": 0,
+          "explanation": "'kymmenen' = 10."
+        }
+      ]
+    },
+    {
+      "id": "ex_w1_mini_test",
+      "title": "Đề kiểm tra đánh giá năng lực Tuần 1",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Lời chào 'Hyvää huomenta!' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Chào buổi sáng!",
+            "Chào buổi tối!",
+            "Chúc ngủ ngon!"
+          ],
+          "correctIndex": 0,
+          "explanation": "huomenta = buổi sáng."
+        },
+        {
+          "prompt": "2. Đáp lại lời chào 'Hauska tutustua!', người Phần Lan luôn nói:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kiitos samoin!",
+            "Ole hyvä!",
+            "Anteeksi!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Kiitos samoin!' = Cảm ơn, tôi cũng vậy."
+        },
+        {
+          "prompt": "3. Thành phố 'Turku' chứa nguyên âm sau u. Điền đuôi ở trong thành phố Turku:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Turkussa",
+            "Turkussä",
+            "Turkula"
+          ],
+          "correctIndex": 0,
+          "explanation": "Có nguyên âm u nên nhận đuôi -ssa."
+        },
+        {
+          "prompt": "4. Thành phố 'Helsinki' nhận đuôi nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Helsingissä",
+            "Helsingissa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chỉ có nguyên âm trung tính e, i nên nhận đuôi -ssä."
+        },
+        {
+          "prompt": "5. Thứ Tư trong tiếng Phần Lan là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "keskiviikko",
+            "tiistai",
+            "torstai",
+            "perjantai"
+          ],
+          "correctIndex": 0,
+          "explanation": "keskiviikko = Thứ Tư (nghĩa đen: giữa tuần)."
+        },
+        {
+          "prompt": "6. Số 8 trong tiếng Phần Lan là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kahdeksan",
+            "seitsemän",
+            "yhdeksän"
+          ],
+          "correctIndex": 0,
+          "explanation": "8 = kahdeksan."
+        },
+        {
+          "prompt": "7. Văn nói 'Mä oon' tương đương với văn viết nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minä olen",
+            "Sinä olet",
+            "Hän on"
+          ],
+          "correctIndex": 0,
+          "explanation": "Mä oon = Minä olen (Tôi là)."
+        },
+        {
+          "prompt": "8. Biển báo 'TERVETULOA' có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Chào mừng",
+            "Cấm vào",
+            "Giảm giá"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tervetuloa = Chào mừng."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d1_chia_olla",
+      "title": "Harjoitus: Bảng chia động từ Olla (Khẳng định)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Minä _____ (olla) vietnamilainen.",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "olen",
+            "olet",
+            "on",
+            "olemme"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi minä (tôi) đi với 'olen'."
+        },
+        {
+          "prompt": "2. Sinä _____ (olla) opiskelija.",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "olet",
+            "olen",
+            "on",
+            "olette"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi sinä (bạn) đi với 'olet'."
+        },
+        {
+          "prompt": "3. Hän _____ (olla) opettaja.",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "on",
+            "olen",
+            "ovat",
+            "olet"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi hän (anh ấy/cô ấy) đi với 'on'."
+        },
+        {
+          "prompt": "4. Me _____ (olla) kurssilla.",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "olemme",
+            "olette",
+            "ovat",
+            "on"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi me (chúng tôi) đi với 'olemme'."
+        },
+        {
+          "prompt": "5. Te _____ (olla) mukavia.",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "olette",
+            "olemme",
+            "on",
+            "ovat"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi te (các bạn) đi với 'olette'."
+        },
+        {
+          "prompt": "6. Alex ja Pedro _____ (olla) täällä.",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "ovat",
+            "on",
+            "olemme",
+            "olen"
+          ],
+          "correctIndex": 0,
+          "explanation": "Alex và Pedro là ngôi thứ 3 số nhiều (he) nên đi với 'ovat'."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d2_phudinh_olla",
+      "title": "Harjoitus 11: Thể phủ định của động từ Olla (Kieltomuoto)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Chuyển sang phủ định: 'Minä olen Alex.' ->",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minä en ole Alex.",
+            "Minä et ole Alex.",
+            "Minä ei ole Alex."
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi minä phủ định là: en + ole -> 'Minä en ole'."
+        },
+        {
+          "prompt": "2. Chuyển sang phủ định: 'Sinä olet opettaja.' ->",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Sinä et ole opettaja.",
+            "Sinä en ole opettaja.",
+            "Sinä ei ole opettaja."
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi sinä phủ định là: et + ole -> 'Sinä et ole'."
+        },
+        {
+          "prompt": "3. Chuyển sang phủ định: 'Pedro on suomalainen.' ->",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Pedro ei ole suomalainen.",
+            "Pedro en ole suomalainen.",
+            "Pedro eivät ole suomalainen."
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi hän/Pedro phủ định là: ei + ole -> 'Pedro ei ole'."
+        },
+        {
+          "prompt": "4. Chuyển sang phủ định: 'Me olemme väsyneitä.' ->",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Me emme ole väsyneitä.",
+            "Me ette ole väsyneitä.",
+            "Me ei ole väsyneitä."
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi me phủ định là: emme + ole -> 'Me emme ole'."
+        },
+        {
+          "prompt": "5. Chuyển sang phủ định: 'He ovat kotona.' ->",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "He eivät ole kotona.",
+            "He ei ole kotona.",
+            "He emme ole kotona."
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi he phủ định là: eivät + ole -> 'He eivät ole'."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d3_cauhoi_koko",
+      "title": "Harjoitus 13 & 14: Câu hỏi Có/Không với đuôi -ko / -kö",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Chuyển câu 'Sinä olet suomalainen.' thành câu hỏi Có/Không:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Oletko sinä suomalainen?",
+            "Onko sinä suomalainen?",
+            "Sinäkö olet suomalainen?"
+          ],
+          "correctIndex": 0,
+          "explanation": "Đưa động từ 'olet' lên đầu câu và thêm đuôi -ko theo nguyên âm o: Oletko sinä suomalainen?"
+        },
+        {
+          "prompt": "2. Chuyển câu 'Tämä on kurssi.' thành câu hỏi Có/Không:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Onko tämä kurssi?",
+            "Oletko tämä kurssi?",
+            "Onkö tämä kurssi?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'on' + -ko -> Onko tämä kurssi?"
+        },
+        {
+          "prompt": "3. Khi bạn được hỏi: 'Oletko sinä opiskelija?', nếu ĐÚNG bạn trả lời:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kyllä, olen. / Joo, olen.",
+            "Ei, en ole.",
+            "Joo, hän on."
+          ],
+          "correctIndex": 0,
+          "explanation": "'Kyllä, olen.' = Vâng, đúng vậy (ngôi tôi)."
+        },
+        {
+          "prompt": "4. Khi người ta hỏi: 'Onko Pedro englantilainen?', nếu KHÔNG PHẢI bạn đáp:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Ei, hän ei ole.",
+            "Ei, en ole.",
+            "Kyllä, hän on."
+          ],
+          "correctIndex": 0,
+          "explanation": "'Ei, hän ei ole.' = Không, anh ấy không phải."
+        }
+      ]
+    },
+    {
+      "id": "ex_sign_aukioloajat",
+      "title": "Đọc hiểu Biển báo Giờ mở cửa: AUKIOLOAJAT",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "Trên cửa kính siêu thị có bảng 'AUKIOLOAJAT: Ma-Pe 07.00 - 22.00'. 'Ma-Pe' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Từ Thứ 2 đến Thứ 6 (maanantai - perjantai)",
+            "Chỉ mở vào Thứ 2 và Thứ 6",
+            "Mở cửa cuối tuần"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ma là viết tắt của maanantai (Thứ 2), Pe là viết tắt của perjantai (Thứ 6). Ma-Pe = Thứ 2 đến Thứ 6."
+        },
+        {
+          "prompt": "Ký hiệu 'La' và 'Su' trên biển báo giờ mở cửa tương ứng với những ngày nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Lauantai (Thứ 7) và Sunnuntai (Chủ Nhật)",
+            "Lauantai (Thứ 6) và Sunnuntai (Thứ 7)",
+            "Ngày lễ và ngày tết"
+          ],
+          "correctIndex": 0,
+          "explanation": "La = Lauantai (Thứ 7), Su = Sunnuntai (Chủ Nhật)."
+        },
+        {
+          "prompt": "Dòng chữ 'Avoinna 24h' tại các trạm xăng ABC hoặc siêu thị Prisma có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Mở cửa phục vụ suốt 24 giờ mỗi ngày",
+            "Đóng cửa lúc 24 giờ",
+            "Chỉ mở cửa 24 phút"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Avoinna 24h' = Mở cửa 24/7 liên tục."
+        },
+        {
+          "prompt": "Biển báo treo chữ 'Suljettu' trên cửa có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Đang đóng cửa",
+            "Đang mở cửa",
+            "Lối vào"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Suljettu' = Đã đóng cửa."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d4_quocgia_quoctich",
+      "title": "Quốc gia, Ngôn ngữ & Quốc tịch (Maa, kieli ja kansallisuus)",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Đất nước là 'Vietnam', vậy người mang quốc tịch Việt Nam viết trong tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "vietnamilainen",
+            "Vietnam",
+            "vietnamilaisuus"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tên quốc tịch hình thành bằng cách thêm đuôi -lainen/-läinen vào tên đất nước và viết thường: vietnamilainen."
+        },
+        {
+          "prompt": "2. Đất nước Phần Lan là 'Suomi', người Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "suomalainen",
+            "suomi",
+            "suomen kieli"
+          ],
+          "correctIndex": 0,
+          "explanation": "Suomi -> suomalainen."
+        },
+        {
+          "prompt": "3. Để hỏi một người 'Bạn từ đâu đến?', câu hỏi tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Mistä sinä olet kotoisin?",
+            "Kuka sinä olet?",
+            "Mikä sinun nimi on?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Mistä sinä olet kotoisin?' = Bạn đến từ đâu?"
+        },
+        {
+          "prompt": "4. Câu hỏi 'Puhutko suomea?' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Bạn có nói tiếng Phần Lan không?",
+            "Bạn có sống ở Phần Lan không?",
+            "Khóa học tiếng Phần ở đâu?"
+          ],
+          "correctIndex": 0,
+          "explanation": "puhua = nói. Puhutko suomea? = Bạn có nói tiếng Phần không?"
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d5_thoikhoabieu",
+      "title": "Harjoitus 17: Các ngày trong tuần & Thời khóa biểu",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. 'Tänään on maanantai.' (Hôm nay là Thứ 2). 'Huomenna on...'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "tiistai (Thứ 3)",
+            "keskiviikko (Thứ 4)",
+            "sunnuntai (Chủ nhật)"
+          ],
+          "correctIndex": 0,
+          "explanation": "huomenna = ngày mai. Sau maanantai là tiistai."
+        },
+        {
+          "prompt": "2. 'Tänään on maanantai.' 'Eilen oli...'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "sunnuntai (Chủ nhật)",
+            "lauantai (Thứ 7)",
+            "perjantai (Thứ 6)"
+          ],
+          "correctIndex": 0,
+          "explanation": "eilen = hôm qua. Trước maanantai là sunnuntai."
+        },
+        {
+          "prompt": "3. 'Tänään on perjantai.' 'Ylihuomenna on...'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "sunnuntai (Chủ nhật)",
+            "lauantai (Thứ 7)",
+            "maanantai (Thứ 2)"
+          ],
+          "correctIndex": 0,
+          "explanation": "ylihuomenna = ngày kia (2 ngày nữa). Sau thứ 6 là thứ 7, ngày kia là Chủ nhật (sunnuntai)."
+        },
+        {
+          "prompt": "4. Để diễn đạt 'Vào thứ hai', trong tiếng Phần Lan ta thêm hậu tố -na thành:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "maanantaina",
+            "maanantailla",
+            "maanantaissa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hậu tố thời gian diễn đạt 'vào thứ mấy' là -na/-nä: maanantaina, tiistaina, perjantaina..."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d5_harjoitus1819",
+      "title": "Harjoitus 18 & 19: Điền đại từ nhân xưng và dạng đúng của Olla",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Điền đại từ phù hợp: '_____ olette nyt kurssilla.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Te",
+            "Me",
+            "He"
+          ],
+          "correctIndex": 0,
+          "explanation": "Động từ chia là 'olette' thì chủ ngữ bắt buộc phải là 'Te' (các bạn)."
+        },
+        {
+          "prompt": "2. Điền đại từ phù hợp: '_____ on Pedro.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Hän",
+            "Minä",
+            "Sinä"
+          ],
+          "correctIndex": 0,
+          "explanation": "Động từ chia là 'on' (ngôi thứ 3 số ít) nên chủ ngữ là 'Hän' (anh ấy)."
+        },
+        {
+          "prompt": "3. Điền động từ olla: 'Missä he _____?'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "ovat",
+            "on",
+            "olette"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chủ ngữ là 'he' (họ) thì động từ olla chia là 'ovat'."
+        },
+        {
+          "prompt": "4. Điền động từ olla: 'Me _____ kurssilla.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "olemme",
+            "olen",
+            "on"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chủ ngữ 'me' đi với 'olemme'."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d6_dochieunhanvat",
+      "title": "Harjoitus 20: Đọc hiểu 3 nhân vật Pedro, Olga, Alex",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. 'Mistä Pedro on kotoisin?' (Pedro đến từ đâu?)",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Pedro on kotoisin Brasiliasta.",
+            "Pedro on kotoisin Venäjältä.",
+            "Pedro on kotoisin Englannista."
+          ],
+          "correctIndex": 0,
+          "explanation": "Bài đọc: 'Hei! Minä olen Pedro. Olen kotoisin Brasiliasta.'"
+        },
+        {
+          "prompt": "2. 'Mitä kieltä Olga puhuu?' (Olga nói tiếng gì?)",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Olga puhuu venäjää ja suomea.",
+            "Olga puhuu vain portugalia.",
+            "Olga puhuu vain englantia."
+          ],
+          "correctIndex": 0,
+          "explanation": "Bài đọc: 'Puhun venäjää ja suomea.'"
+        },
+        {
+          "prompt": "3. 'Onko Alex suomalainen?' (Alex có phải là người Phần Lan không?)",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Ei, hän ei ole. Hän on englantilainen.",
+            "Kyllä, hän on suomalainen.",
+            "Hän on venäläinen."
+          ],
+          "correctIndex": 0,
+          "explanation": "Alex là người Anh (englantilainen), học tiếng Phần vì sống ở Phần Lan."
+        },
+        {
+          "prompt": "4. Từ 'äidinkieli' trong câu 'Äidinkieleni on portugali' có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Tiếng mẹ đẻ",
+            "Ngoại ngữ thứ hai",
+            "Khóa học tiếng"
+          ],
+          "correctIndex": 0,
+          "explanation": "äiti = mẹ, kieli = ngôn ngữ -> äidinkieli = tiếng mẹ đẻ."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d6_harjoitus22_nghe",
+      "title": "Harjoitus 22: Nghe Track 14 và chọn câu trả lời tương ứng",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Khi nghe audio hỏi: 'Mikä sinun nimi on?', câu trả lời đúng là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minun nimi on [Tên bạn].",
+            "Kiitos hyvää!",
+            "Tänään on tiistai."
+          ],
+          "correctIndex": 0,
+          "explanation": "Hỏi tên 'Mikä sinun nimi on?' -> 'Minun nimi on...' hoặc 'Olen...'"
+        },
+        {
+          "prompt": "2. Khi nghe audio hỏi: 'Mitä sinulle kuuluu?', câu trả lời chuẩn là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kiitos hyvää! Entä sinulle?",
+            "Olen opiskelija.",
+            "Ole hyvä!"
+          ],
+          "correctIndex": 0,
+          "explanation": "Hỏi thăm sức khỏe -> 'Kiitos hyvää!'"
+        },
+        {
+          "prompt": "3. Khi nghe audio hỏi: 'Puhutko suomea?', bạn đáp:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Joo, puhun vähän suomea.",
+            "Ei se mitään.",
+            "Ole hyvä!"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Joo, puhun vähän suomea.' = Vâng, tôi nói được một chút tiếng Phần."
+        }
+      ]
+    },
+    {
+      "id": "ex_song_viikonpaivat",
+      "title": "Thử thách Bài hát các ngày trong tuần 'Viikonpäivät'",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Thứ 4 trong tiếng Phần Lan là 'keskiviikko'. Tên gọi này có ý nghĩa gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Giữa tuần (keski = giữa, viikko = tuần)",
+            "Ngày đầu tuần",
+            "Ngày cuối tuần"
+          ],
+          "correctIndex": 0,
+          "explanation": "keskiviikko bắt nguồn từ keski (giữa) + viikko (tuần) = ngày giữa tuần."
+        },
+        {
+          "prompt": "2. 'Viikonloppu' (gồm lauantai và sunnuntai) có nghĩa là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Cuối tuần",
+            "Đầu tuần",
+            "Ngày làm việc"
+          ],
+          "correctIndex": 0,
+          "explanation": "viikko = tuần, loppu = kết thúc -> viikonloppu = cuối tuần."
+        }
+      ]
+    },
+    {
+      "id": "ex_w2_d7_kiemtra_chuong1",
+      "title": "Bài kiểm tra đánh giá năng lực Hoàn tất Chương 1",
+      "type": "MULTIPLE_CHOICE",
+      "questions": [
+        {
+          "prompt": "1. Điền dạng đúng của động từ olla: 'Minä _____ vietnamilainen.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "olen",
+            "olet",
+            "on",
+            "olemme"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi minä đi với 'olen'."
+        },
+        {
+          "prompt": "2. Phủ định của ngôi 'hän': 'Hän _____ suomalainen.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "ei ole",
+            "en ole",
+            "et ole",
+            "eivät ole"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ngôi hän phủ định là 'ei ole'."
+        },
+        {
+          "prompt": "3. Đặt câu hỏi cho câu trả lời 'Hän on Päivi':",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kuka hän on?",
+            "Mikä hän on?",
+            "Mistä hän on?"
+          ],
+          "correctIndex": 0,
+          "explanation": "'Kuka hän on?' = Cô ấy là ai?"
+        },
+        {
+          "prompt": "4. Chuyển thành câu hỏi Có/Không: 'Sinä olet kurssilla.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Oletko sinä kurssilla?",
+            "Onko sinä kurssilla?",
+            "Sinäkö olet kurssilla?"
+          ],
+          "correctIndex": 0,
+          "explanation": "Đảo động từ và thêm đuôi -ko: 'Oletko sinä kurssilla?'"
+        },
+        {
+          "prompt": "5. Đáp lại lời chào 'Hauska tutustua!':",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Kiitos samoin!",
+            "Ole hyvä!",
+            "Ei kestä!"
+          ],
+          "correctIndex": 0,
+          "explanation": "Kiitos samoin!"
+        },
+        {
+          "prompt": "6. Số 10 trong tiếng Phần Lan là gì?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "kymmenen",
+            "kahdeksan",
+            "seitsemän"
+          ],
+          "correctIndex": 0,
+          "explanation": "kymmenen = 10."
+        },
+        {
+          "prompt": "7. Ngày thứ 6 trong tuần là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "perjantai",
+            "torstai",
+            "lauantai"
+          ],
+          "correctIndex": 0,
+          "explanation": "perjantai = Thứ 6."
+        },
+        {
+          "prompt": "8. Thành phố 'Helsinki' đi với đuôi địa điểm nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Helsingissä",
+            "Helsingissa"
+          ],
+          "correctIndex": 0,
+          "explanation": "Chỉ có nguyên âm trung tính e, i nên nhận đuôi -ssä."
+        },
+        {
+          "prompt": "9. Thành phố 'Turku' đi với đuôi địa điểm nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Turkussa",
+            "Turkussä"
+          ],
+          "correctIndex": 0,
+          "explanation": "Có nguyên âm sau u nên nhận đuôi -ssa."
+        },
+        {
+          "prompt": "10. 'Tiếng mẹ đẻ' trong tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "äidinkieli",
+            "suomen kieli",
+            "kotimaa"
+          ],
+          "correctIndex": 0,
+          "explanation": "äidinkieli = tiếng mẹ đẻ."
+        },
+        {
+          "prompt": "11. 'Hyvää huomenta!' là lời chào vào thời gian nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Buổi sáng",
+            "Buổi tối",
+            "Trước khi đi ngủ"
+          ],
+          "correctIndex": 0,
+          "explanation": "huomenta = buổi sáng."
+        },
+        {
+          "prompt": "12. Trong văn nói, 'Mä oon' tương đương với dạng văn viết nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Minä olen",
+            "Sinä olet",
+            "Hän on"
+          ],
+          "correctIndex": 0,
+          "explanation": "Mä oon = Minä olen."
+        },
+        {
+          "prompt": "13. Tên quốc tịch của người Việt Nam trong tiếng Phần Lan là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "vietnamilainen",
+            "Vietnam",
+            "vietnamia"
+          ],
+          "correctIndex": 0,
+          "explanation": "vietnamilainen."
+        },
+        {
+          "prompt": "14. Chữ cái 'J' trong tiếng Phần Lan phát âm giống chữ cái nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Chữ D (miền Nam) hoặc Y (tiếng Anh)",
+            "Chữ J (tiếng Anh)",
+            "Chữ G"
+          ],
+          "correctIndex": 0,
+          "explanation": "Âm bán nguyên âm /j/."
+        },
+        {
+          "prompt": "15. Câu 'Anteeksi, missä on opettaja?' có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Xin lỗi, giáo viên ở đâu?",
+            "Giáo viên là ai?",
+            "Giáo viên có khỏe không?"
+          ],
+          "correctIndex": 0,
+          "explanation": "missä on = ở đâu."
+        },
+        {
+          "prompt": "16. Từ 'Kyllä' có nghĩa là:",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Vâng, đúng vậy",
+            "Không phải",
+            "Xin chào"
+          ],
+          "correctIndex": 0,
+          "explanation": "Kyllä = Vâng, có."
+        },
+        {
+          "prompt": "17. 'Kaksi plus kolme on...' (2 + 3 = ?)",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "viisi (5)",
+            "neljä (4)",
+            "kuusi (6)"
+          ],
+          "correctIndex": 0,
+          "explanation": "viisi = 5."
+        },
+        {
+          "prompt": "18. Chia động từ olla ngôi 'he': 'He _____ opiskelijoita.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "ovat",
+            "on",
+            "olette"
+          ],
+          "correctIndex": 0,
+          "explanation": "he đi với ovat."
+        },
+        {
+          "prompt": "19. Phủ định ngôi 'me': 'Me _____ väsyneitä.'",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "emme ole",
+            "ette ole",
+            "ei ole"
+          ],
+          "correctIndex": 0,
+          "explanation": "me đi với emme ole."
+        },
+        {
+          "prompt": "20. Biển báo 'AUKIOLOAJAT: Ma-Pe 07-22' thông báo giờ mở cửa vào những ngày nào?",
+          "type": "MULTIPLE_CHOICE",
+          "options": [
+            "Từ Thứ 2 đến Thứ 6",
+            "Từ Thứ 7 đến Chủ nhật",
+            "Chỉ mở vào Thứ 2"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ma-Pe = Thứ 2 đến Thứ 6."
+        }
+      ]
+    }
+  ]
+}
