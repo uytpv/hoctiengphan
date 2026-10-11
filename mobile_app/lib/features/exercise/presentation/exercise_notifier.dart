@@ -125,11 +125,12 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
   }
 
   Future<void> _submitFinal() async {
+    if (state.exercise == null) return;
     _timer?.cancel();
     state = state.copyWith(isSubmitting: true);
     try {
       final result = await _repository.submitAnswer(
-        exerciseId: _exerciseId,
+        exercise: state.exercise!,
         answers: state.answers,
         planId: _planId,
         activityId: _activityId,
@@ -138,6 +139,7 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
         isSubmitting: false, 
         result: result,
         isCompleted: true,
+        score: (result['score'] as num?)?.toInt() ?? 0,
       );
     } catch (e) {
       state = state.copyWith(isSubmitting: false, error: e.toString());

@@ -18,17 +18,20 @@ class AuthScreen extends ConsumerStatefulWidget {
 
 class _AuthScreenState extends ConsumerState<AuthScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _nameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController(
     text: kDebugMode ? 'lengochue@gmail.com' : '',
   );
   final _passwordCtrl = TextEditingController(
     text: kDebugMode ? '123456' : '',
   );
+  bool _isSignUp = false;
   bool _obscurePassword = true;
   String? _errorMsg;
 
   @override
   void dispose() {
+    _nameCtrl.dispose();
     _emailCtrl.dispose();
     _passwordCtrl.dispose();
     super.dispose();
@@ -41,9 +44,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     try {
       final authRepo = ref.read(_authRepoProvider);
       await authRepo.signInWithGoogle();
-    } on Exception catch (_) {
+    } on Exception catch (e) {
       setState(() {
-        _errorMsg = 'Đăng nhập Google thất bại.';
+        _errorMsg = 'Đăng nhập Google thất bại: $e';
       });
     } finally {
       if (mounted) {
@@ -52,7 +55,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     }
   }
 
-  Future<void> _signIn() async {
+  Future<void> _submit() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
 
     setState(() => _errorMsg = null);
@@ -60,20 +63,34 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
     try {
       final authRepo = ref.read(_authRepoProvider);
-      await authRepo.signInWithEmailAndPassword(
-        email: _emailCtrl.text.trim(),
-        password: _passwordCtrl.text,
-      );
+      if (_isSignUp) {
+        await authRepo.signUpWithEmailAndPassword(
+          email: _emailCtrl.text.trim(),
+          password: _passwordCtrl.text,
+          displayName: _nameCtrl.text.trim(),
+        );
+      } else {
+        await authRepo.signInWithEmailAndPassword(
+          email: _emailCtrl.text.trim(),
+          password: _passwordCtrl.text,
+        );
+      }
     } on Exception catch (e) {
       final msg = e.toString();
       setState(() {
-        if (msg.contains('user-not-found')) {
+        if (msg.contains('email-already-in-use')) {
+          _errorMsg = 'Email này đã được sử dụng. Hãy đăng nhập.';
+        } else if (msg.contains('user-not-found')) {
           _errorMsg = 'Không tìm thấy tài khoản này.';
         } else if (msg.contains('wrong-password') ||
             msg.contains('invalid-credential')) {
           _errorMsg = 'Mật khẩu không đúng.';
+        } else if (msg.contains('weak-password')) {
+          _errorMsg = 'Mật khẩu quá yếu (tối thiểu 6 ký tự).';
         } else {
-          _errorMsg = 'Đăng nhập thất bại. Kiểm tra email và mật khẩu.';
+          _errorMsg = _isSignUp
+              ? 'Đăng ký thất bại. Kiểm tra lại thông tin.'
+              : 'Đăng nhập thất bại. Kiểm tra email và mật khẩu.';
         }
       });
     } finally {
@@ -151,7 +168,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Text(
-                              'Kirjaudu sisään',
+                              _isSignUp ? 'Luo uusi tili' : 'Kirjaudu sisään',
                               style: GoogleFonts.nunito(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w700,
@@ -161,7 +178,9 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'Đăng nhập để tiếp tục học',
+                              _isSignUp
+                                  ? 'Đăng ký tài khoản để bắt đầu học'
+                                  : 'Đăng nhập để tiếp tục học',
                               style: GoogleFonts.sourceSans3(
                                 fontSize: 14,
                                 color: AppColors.neutral,
@@ -201,10 +220,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                               const SizedBox(height: 16),
                             ],
 
-                            if (kDebugMode) ...[
-                              // Email field
+                            // Name field (chỉ hiển thị khi Đăng ký)
+                            if (_isSignUp) ...[
                               Text(
-                                'Email',
+                                'Họ và tên',
                                 style: GoogleFonts.sourceSans3(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
@@ -213,121 +232,177 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                               ),
                               const SizedBox(height: 6),
                               TextFormField(
-                                controller: _emailCtrl,
-                                keyboardType: TextInputType.emailAddress,
-                                autocorrect: false,
+                                controller: _nameCtrl,
+                                textCapitalization: TextCapitalization.words,
                                 style: GoogleFonts.sourceSans3(fontSize: 15),
                                 decoration: _inputDecoration(
-                                  hint: 'email@example.com',
-                                  icon: Icons.email_outlined,
+                                  hint: 'Nguyễn Văn A',
+                                  icon: Icons.person_outline,
                                 ),
                                 validator: (v) {
-                                  if (v == null || v.trim().isEmpty) {
-                                    return 'Nhập địa chỉ email';
-                                  }
-                                  if (!v.contains('@')) {
-                                    return 'Email không hợp lệ';
+                                  if (_isSignUp && (v == null || v.trim().isEmpty)) {
+                                    return 'Nhập họ và tên của bạn';
                                   }
                                   return null;
                                 },
                               ),
                               const SizedBox(height: 16),
+                            ],
 
-                              // Password field
-                              Text(
-                                'Mật khẩu',
-                                style: GoogleFonts.sourceSans3(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.surfaceDark,
+                            // Email field (luôn hiển thị trên mọi môi trường)
+                            Text(
+                              'Email',
+                              style: GoogleFonts.sourceSans3(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.surfaceDark,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            TextFormField(
+                              controller: _emailCtrl,
+                              keyboardType: TextInputType.emailAddress,
+                              autocorrect: false,
+                              style: GoogleFonts.sourceSans3(fontSize: 15),
+                              decoration: _inputDecoration(
+                                hint: 'email@example.com',
+                                icon: Icons.email_outlined,
+                              ),
+                              validator: (v) {
+                                if (v == null || v.trim().isEmpty) {
+                                  return 'Nhập địa chỉ email';
+                                }
+                                if (!v.contains('@')) {
+                                  return 'Email không hợp lệ';
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 16),
+
+                            // Password field (luôn hiển thị trên mọi môi trường)
+                            Text(
+                              'Mật khẩu',
+                              style: GoogleFonts.sourceSans3(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.surfaceDark,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            TextFormField(
+                              controller: _passwordCtrl,
+                              obscureText: _obscurePassword,
+                              style: GoogleFonts.sourceSans3(fontSize: 15),
+                              onFieldSubmitted: (_) => _submit(),
+                              decoration: _inputDecoration(
+                                hint: '••••••',
+                                icon: Icons.lock_outline,
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscurePassword
+                                        ? Icons.visibility_off_outlined
+                                        : Icons.visibility_outlined,
+                                  ),
+                                  onPressed: () => setState(
+                                      () => _obscurePassword = !_obscurePassword),
                                 ),
                               ),
-                              const SizedBox(height: 6),
-                              TextFormField(
-                                controller: _passwordCtrl,
-                                obscureText: _obscurePassword,
-                                style: GoogleFonts.sourceSans3(fontSize: 15),
-                                onFieldSubmitted: (_) => _signIn(),
-                                decoration: _inputDecoration(
-                                  hint: '••••••',
-                                  icon: Icons.lock_outline,
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _obscurePassword
-                                          ? Icons.visibility_off_outlined
-                                          : Icons.visibility_outlined,
-                                      size: 18,
-                                      color: AppColors.neutral,
-                                    ),
-                                    onPressed: () => setState(
-                                        () => _obscurePassword = !_obscurePassword),
-                                  ),
-                                ),
-                                validator: (v) {
-                                  if (v == null || v.isEmpty) {
-                                    return 'Nhập mật khẩu';
-                                  }
-                                  if (v.length < 6) {
-                                    return 'Mật khẩu tối thiểu 6 ký tự';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(height: 24),
+                              validator: (v) {
+                                if (v == null || v.isEmpty) {
+                                  return 'Nhập mật khẩu';
+                                }
+                                if (v.length < 6) {
+                                  return 'Mật khẩu tối thiểu 6 ký tự';
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 24),
 
-                              // Submit button
-                              SizedBox(
-                                height: 52,
-                                child: ElevatedButton(
-                                  onPressed: isLoading ? null : _signIn,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.primary,
-                                    foregroundColor: Colors.white,
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    disabledBackgroundColor:
-                                        AppColors.primary.withValues(alpha: 0.5),
+                            // Submit button
+                            SizedBox(
+                              height: 52,
+                              child: ElevatedButton(
+                                onPressed: isLoading ? null : _submit,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.primary,
+                                  foregroundColor: Colors.white,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: isLoading
-                                      ? const SizedBox(
-                                          width: 22,
-                                          height: 22,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2.5,
-                                            valueColor:
-                                                AlwaysStoppedAnimation(Colors.white),
-                                          ),
-                                        )
-                                      : Text(
-                                          'Đăng nhập Email',
-                                          style: GoogleFonts.nunito(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700,
-                                            letterSpacing: 0.3,
-                                          ),
+                                  disabledBackgroundColor:
+                                      AppColors.primary.withValues(alpha: 0.5),
+                                ),
+                                child: isLoading
+                                    ? const SizedBox(
+                                        width: 22,
+                                        height: 22,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2.5,
+                                          valueColor:
+                                              AlwaysStoppedAnimation(Colors.white),
                                         ),
+                                      )
+                                    : Text(
+                                        _isSignUp ? 'Đăng ký tài khoản' : 'Đăng nhập Email',
+                                        style: GoogleFonts.nunito(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: 0.3,
+                                        ),
+                                      ),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+
+                            // Toggle Chuyển đổi giữa Đăng ký & Đăng nhập
+                            Center(
+                              child: TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isSignUp = !_isSignUp;
+                                    _errorMsg = null;
+                                  });
+                                },
+                                child: Text(
+                                  _isSignUp
+                                      ? 'Đã có tài khoản? Đăng nhập ngay'
+                                      : 'Chưa có tài khoản? Đăng ký tại đây',
+                                  style: GoogleFonts.sourceSans3(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.primary,
+                                  ),
                                 ),
                               ),
-                              const SizedBox(height: 16),
+                            ),
+
+                            if (kDebugMode && !_isSignUp) ...[
+                              const SizedBox(height: 8),
                               _DevModeHint(
                                 email: _emailCtrl.text,
                                 password: _passwordCtrl.text,
                               ),
-                              const SizedBox(height: 16),
-                              Row(
-                                children: [
-                                  const Expanded(child: Divider(color: AppColors.border)),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                                    child: Text('HOẶC', style: GoogleFonts.sourceSans3(color: AppColors.neutral, fontSize: 12, fontWeight: FontWeight.bold)),
-                                  ),
-                                  const Expanded(child: Divider(color: AppColors.border)),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                            ], // end kDebugMode
+                            ],
+
+                            const SizedBox(height: 16),
+                            Row(
+                              children: [
+                                const Expanded(child: Divider(color: AppColors.border)),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Text('HOẶC',
+                                      style: GoogleFonts.sourceSans3(
+                                          color: AppColors.neutral,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                                const Expanded(child: Divider(color: AppColors.border)),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
 
                             // Google login button
                             SizedBox(

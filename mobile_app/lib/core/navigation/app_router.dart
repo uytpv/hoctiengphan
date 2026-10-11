@@ -7,6 +7,7 @@ import '../../features/study_plan/presentation/study_plan_list_screen.dart';
 import '../../features/study_plan/presentation/study_plan_detail_screen.dart';
 import '../../features/lesson/presentation/lesson_screen.dart';
 import '../../features/exercise/presentation/exercise_screen.dart';
+import '../../features/vocabulary/presentation/vocabulary_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../common/widgets/main_shell.dart';
 
@@ -43,6 +44,10 @@ final routerProvider = Provider<GoRouter>((ref) {
               initialWeekId: state.uri.queryParameters['weekId'],
               initialDayId: state.uri.queryParameters['dayId'],
             ),
+          ),
+          GoRoute(
+            path: '/vocabulary',
+            builder: (context, state) => const VocabularyScreen(),
           ),
           GoRoute(
             path: '/settings',

@@ -10,6 +10,7 @@ class MainShell extends StatelessWidget {
 
   static const _tabs = [
     (path: '/', icon: Icons.home_outlined, activeIcon: Icons.home, labelFi: 'Koti'),
+    (path: '/vocabulary', icon: Icons.style_outlined, activeIcon: Icons.style, labelFi: 'Sanasto'),
     (path: '/settings', icon: Icons.settings_outlined, activeIcon: Icons.settings, labelFi: 'Asetukset'),
   ];
 

@@ -20,12 +20,19 @@ enum ExerciseType {
   static ExerciseType fromJson(String json) {
     switch (json) {
       case 'MULTIPLE_CHOICE':
+      case 'multipleChoice':
+      case 'multiple-choice':
         return ExerciseType.multipleChoice;
       case 'FILL_IN_BLANK':
+      case 'fillInBlank':
+      case 'fill-in-blanks':
         return ExerciseType.fillInBlank;
       case 'MATCHING':
+      case 'matching':
         return ExerciseType.matching;
       case 'TRUE_FALSE':
+      case 'trueFalse':
+      case 'true-false':
         return ExerciseType.trueFalse;
       default:
         return ExerciseType.multipleChoice;

@@ -84,6 +84,7 @@ class _ExerciseScreenState extends ConsumerState<ExerciseScreen> {
             _ExerciseResultView(
               result: state.result!,
               onFinished: () => context.pop(),
+              onRetry: () => notifier.reset(),
               confettiController: _confettiController,
             )
           else if (state.exercise != null)
@@ -286,55 +287,163 @@ class _QuestionCard extends StatelessWidget {
 class _ExerciseResultView extends StatelessWidget {
   final Map<String, dynamic> result;
   final VoidCallback onFinished;
+  final VoidCallback onRetry;
   final ConfettiController confettiController;
 
   const _ExerciseResultView({
     required this.result,
     required this.onFinished,
+    required this.onRetry,
     required this.confettiController,
   });
 
   @override
   Widget build(BuildContext context) {
-    final score = result['score'] ?? 0;
-    final total = result['total'] ?? 0;
-    final isPassed = result['isPassed'] ?? false;
+    final score = (result['score'] as num?)?.toInt() ?? 0;
+    final total = (result['total'] as num?)?.toInt() ?? 0;
+    final percentage = (result['percentage'] as num?)?.toDouble() ??
+        (total > 0 ? (score / total) * 100 : 0.0);
+    final isPassed = result['passed'] == true ||
+        result['isPassed'] == true ||
+        percentage >= 70;
+    final feedback = (result['feedback'] as List<dynamic>?) ?? [];
+    final wrongAnswers = feedback
+        .where((item) => item is Map && item['isCorrect'] == false)
+        .toList();
 
     if (isPassed) {
       confettiController.play();
     }
 
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              isPassed ? Icons.check_circle_outline : Icons.sentiment_dissatisfied,
-              size: 100,
-              color: isPassed ? Colors.green : Colors.orange,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              isPassed ? 'Hienoa työtä!' : 'Melkein onnistui!',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Sait $score / $total pistettä',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 48),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(200, 50),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 36.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            isPassed ? Icons.check_circle_outline : Icons.sentiment_dissatisfied,
+            size: 90,
+            color: isPassed ? Colors.green : Colors.orange,
+          ),
+          const SizedBox(height: 20),
+          Text(
+            isPassed
+                ? 'Hienoa työtä! • Làm rất tốt!'
+                : 'Melkein onnistui! • Cố gắng thêm nhé!',
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Sait $score / $total pistettä (${percentage.toStringAsFixed(0)}%)',
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: isPassed ? Colors.green[700] : Colors.orange[800],
+                  fontWeight: FontWeight.w600,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            isPassed
+                ? 'Onneksi olkoon! Suoritit harjoituksen hyväksytysti.'
+                : 'Pistemäärä jäi alle 70%. Kertaa materiaali ja yritä uudelleen!',
+            style: TextStyle(color: Colors.grey[600], fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 28),
+
+          // Hiển thị danh sách câu làm sai và giải thích (nếu có)
+          if (wrongAnswers.isNotEmpty) ...[
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.orange.withValues(alpha: 0.06),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
               ),
-              onPressed: onFinished,
-              child: const Text('Palaa'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.info_outline,
+                          size: 20, color: Colors.orange),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Kertaa nämä kysymykset (${wrongAnswers.length}):',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  ...wrongAnswers.map((item) {
+                    final map = item as Map<String, dynamic>;
+                    final prompt = map['prompt'] as String? ?? 'Kysymys';
+                    final explanation = map['explanation'] as String?;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('• $prompt',
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w600)),
+                          if (explanation != null && explanation.isNotEmpty)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 12.0, top: 4.0),
+                              child: Text(
+                                '💡 $explanation',
+                                style: TextStyle(
+                                    color: Colors.grey[700], fontSize: 13),
+                              ),
+                            ),
+                        ],
+                      ),
+                    );
+                  }),
+                ],
+              ),
             ),
+            const SizedBox(height: 32),
           ],
-        ),
+
+          // Nút hành động: Làm lại bài hoặc Tiếp tục
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton.icon(
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(0, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  onPressed: onRetry,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Yritä uudelleen'),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[700],
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(0, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  onPressed: onFinished,
+                  icon: const Icon(Icons.arrow_forward),
+                  label: const Text('Jatka'),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
